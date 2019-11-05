@@ -6,7 +6,7 @@ const User = require("../db/models/User");
 api.get("/seed", (req, res) => {
   User.bulkCreate([
     {
-      firstName: "Pepe",
+      firstName: "Manuel",
       age: 23
     },
     {
