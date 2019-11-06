@@ -11,16 +11,16 @@ Book.init(
         notEmpty: true
       }
     },
+    price: {
+      type: S.FLOAT,
+      allowNull: false
+    },
     description: {
       type: S.TEXT,
       allowNull: false,
       validate: {
         notEmpty: true
       }
-    },
-    price: {
-      type: S.FLOAT,
-      allowNull: false
     },
     stock: {
       type: S.INTEGER,
@@ -40,10 +40,6 @@ Book.init(
     author: {
       type: S.STRING,
       allowNull: false
-    },
-    ISBN: {
-      type: S.STRING,
-      allowNull: false
     }
   },
   { sequelize: db, modelName: "book" }
@@ -58,6 +54,8 @@ Book.findByAuthor = author => {
       author
     }
   }).then(books => books);
-}; // DEVUELVE LOS LIBROS, NO LA PROMESA
+};
+
+module.exports = Book;
 
 // FALTA METODO DE CLASE PARA LAS REVIEWS
