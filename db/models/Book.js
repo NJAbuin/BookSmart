@@ -40,10 +40,6 @@ Book.init(
     author: {
       type: S.STRING,
       allowNull: false
-    },
-    ISBN: {
-      type: S.STRING,
-      allowNull: false
     }
   },
   { sequelize: db, modelName: "book" }
@@ -61,3 +57,5 @@ Book.findByAuthor = author => {
 }; // DEVUELVE LOS LIBROS, NO LA PROMESA
 
 // FALTA METODO DE CLASE PARA LAS REVIEWS
+
+module.exports = Book;
