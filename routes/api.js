@@ -2,7 +2,7 @@ const api = require("express").Router();
 const User = require("../db/models/User");
 
 const faker = require("faker");
-const Books = require("../db/models/Book"); // RUTA FRUTA: VA A SER LA RUTA DEL MODEL BOOKS
+const Books = require("../db/models/Book");
 
 api.get("/seed", (req, res) => {
   Books.bulkCreate([
