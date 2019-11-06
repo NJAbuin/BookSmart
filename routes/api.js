@@ -2,7 +2,7 @@ const api = require("express").Router();
 const User = require("../db/models/User");
 
 const faker = require("faker");
-const Books = require("./models/products"); // RUTA FRUTA: VA A SER LA RUTA DEL MODEL BOOKS
+const Books = require("../db/models/Book"); // RUTA FRUTA: VA A SER LA RUTA DEL MODEL BOOKS
 
 const randomName = faker.commerce.productName(); // FAKER BULKCREATE
 const randomPrice = faker.commerce.price(); // FAKER BULKCREATE
@@ -10,7 +10,7 @@ const randomDescription = faker.lorem.sentences(); // FAKER BULKCREATE
 const randomStock = faker.random.number(); // FAKER BULKCREATE
 const randomImgURL = faker.image.imageUrl(); // FAKER BULKCREATE
 const randomAuthor = faker.name.findName(); // FAKER BULKCREATE
-const randomISBN = fake.isbn10((separator = "-")); // FAKER BULKCREATE
+const randomISBN = faker.isbn10((separator = "-")); // FAKER BULKCREATE
 
 //DELETE THIS ROUTES BEFORE DEPLOYING/////////////////
 //EDIT THE SEED TO SUIT YOUR MODEL REQUIREMENTS

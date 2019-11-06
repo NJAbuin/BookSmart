@@ -24,7 +24,7 @@ User.init(
       type: S.TEXT
     },
     email: {
-      type: S.EMAIL,
+      type: S.STRING,
       allowNull: false,
       validate: {
         isEmail: true
