@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import List from "../components/List";
 import axios from "axios";
+import Register from './Register'
 
 export default class Main extends Component {
   constructor(props) {
@@ -9,6 +10,8 @@ export default class Main extends Component {
       list: [] //array of user objects
     };
   }
+
+
 
   componentDidMount() {
     //TEMPLATE ON HOW TO MAKE API REQUESTS TO BACKEND
@@ -20,8 +23,10 @@ export default class Main extends Component {
   render() {
     return (
       <div>
+        <Register />
         LISTA DE USUARIOS
         <List list={this.state.list} />
+     
       </div>
     );
   }
