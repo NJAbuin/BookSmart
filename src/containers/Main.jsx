@@ -1,8 +1,16 @@
 import React, { Component } from "react";
-import List from "../components/List";
+
 import axios from "axios";
-import { Route, Redirect, Switch, BrowserRouter, withRouter } from 'react-router-dom';
-import Register from '../components/Register'
+import {
+  Route,
+  Redirect,
+  Switch,
+  BrowserRouter,
+  withRouter,
+  Link
+} from "react-router-dom";
+import Register from "../components/Register";
+import ProductsContainer from "./ProductsContainer";
 
 export default class Main extends Component {
   constructor(props) {
@@ -12,9 +20,12 @@ export default class Main extends Component {
   render() {
     return (
       <div>
-      <Switch>
-
-      </Switch>
+        <Switch>
+          <ProductsContainer />
+          {/* ESTO DEBERIA SOLO RENDERIZARSE EN LA RUTA EXACT "/products" via link en NavBar */}
+          {/* <Link to="/products">All Products</Link>
+          <Route exact to="/products" Component={ProductsContainer} /> */}
+        </Switch>
       </div>
     );
   }

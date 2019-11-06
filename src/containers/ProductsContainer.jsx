@@ -1,7 +1,7 @@
 import React from "react";
 import { getProducts } from "../store/actions/products";
+import SingleProduct from "../components/SingleProduct";
 import { connect } from "react-redux";
-import 
 
 class ProductsContainer extends React.Component {
   constructor(props) {
@@ -16,12 +16,13 @@ class ProductsContainer extends React.Component {
   }
 
   render() {
+    let productList = this.props.products.product;
     return (
       <div>
         <ul>
-          {/* {props.list.map(e => {
-          return <li key={e.id}>{e.firstName}</li>; //TEMPLATE ON HOW TO map props to html items
-        })} */}
+          {productList.map(e => (
+            <SingleProduct info={e} />
+          ))}
         </ul>
       </div>
     );
