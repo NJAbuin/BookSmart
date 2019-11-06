@@ -8,6 +8,6 @@ router.get("/", (req, res) => {
   res.sendFile(HTML_FILE);
 });
 
-router.use("/auth", auth)
+router.use("/auth", require('./auth'))
 
 module.exports = router;

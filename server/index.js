@@ -3,7 +3,9 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const db = require("../db");
-
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
+const passport = require('passport')
 const DIST_DIR = path.join(__dirname, "../dist");
 
 const app = express();
@@ -17,6 +19,11 @@ app.use(bodyParser.json());
 app.use(morgan("tiny"));
 
 app.use(express.static(DIST_DIR));
+
+app.use(session({secret:'booksmart', resave: true, saveUninitialized: true}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(cookieParser())
 
 //use modular routes
 app.use("/api", require("../routes/api"));

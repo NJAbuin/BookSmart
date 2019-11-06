@@ -11,3 +11,12 @@ router.post('/register', (req, res)=>{
 router.post('/login', passport.authenticate('local'), (req, res)=>{
     res.send(req.user)
 })
+
+router.get('/logout', (req, res)=>{
+    req.logout()
+    res.send('logged Out!')
+})
+
+
+
+module.exports = router
