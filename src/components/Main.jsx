@@ -1,28 +1,34 @@
 import React, { Component } from "react";
-import List from "../components/List";
+import List from "./ProductsContainer";
 import axios from "axios";
 
-export default class Main extends Component {
+import { connect } from "react-redux";
+import ProductsContainer from "./ProductsContainer";
+
+class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      list: [] //array of user objects
-    };
-  }
-
-  componentDidMount() {
-    //TEMPLATE ON HOW TO MAKE API REQUESTS TO BACKEND
-    axios.get("/api/users").then(response => {
-      this.setState({ list: response.data });
-    });
   }
 
   render() {
     return (
       <div>
-        LISTA DE USUARIOS
-        <List list={this.state.list} />
+        LISTA DE Productos
+        <ProductsContainer />
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return { products: state };
+};
+
+const mapDispatchToProps = dispatch => ({
+  getProducts: () => dispatch(getProducts())
+});
+
+export default connect(
+  null,
+  null
+)(Main);

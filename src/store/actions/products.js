@@ -1,12 +1,14 @@
 import axios from "axios";
 import { FETCH_PRODUCTS } from "../constants";
 
-export const fetchProducts = () => dispatch => {
-  console.log("Fetching products");
-  axios.get(`${omdb}s=${title}`).then(response =>
-    dispatch({
-      type: FETCH_MOVIES,
-      payload: response
-    })
-  );
+export const getProducts = () => dispatch => {
+  axios
+    .get(`/api/products`)
+    .then(res => res.data)
+    .then(response => {
+      return dispatch({
+        type: FETCH_PRODUCTS,
+        payload: response
+      });
+    });
 };

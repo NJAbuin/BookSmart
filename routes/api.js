@@ -5,7 +5,7 @@ const faker = require("faker");
 const Books = require("../db/models/Book");
 
 api.get("/seed", (req, res) => {
-  Book.bulkCreate([
+  Books.bulkCreate([
     {
       name: faker.commerce.productName(),
       price: faker.commerce.price(),
@@ -112,7 +112,7 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      authors: faker.name.findName()
+      author: faker.name.findName()
     },
     {
       name: faker.commerce.productName(),
@@ -197,12 +197,16 @@ api.get("/destroydb", (req, res) => {
 
 //////////////////////////////////////////////////////////
 
-api.get("/users", (req, res) => {
-  User.findAll()
+//retorna todos los productos de la base de datos en formato JSON
+api.get("/products", (req, res) => {
+  Books.findAll()
     .then(data => {
+      console.log(Array.isArray(data));
       res.json(data);
     })
-    .catch(err => console.log("Failed to retrieve users at /api/users"));
+    .catch(err =>
+      console.log("Failed to retrieve all products at /api/products")
+    );
 });
 
 module.exports = api;
