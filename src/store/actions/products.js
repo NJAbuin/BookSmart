@@ -6,9 +6,10 @@ export const getProducts = () => dispatch => {
     .get(`/api/products`)
     .then(res => res.data)
     .then(response => {
-      return dispatch({
-        type: FETCH_PRODUCTS,
-        payload: response
-      });
+      return dispatch(productAction(response));
     });
+};
+
+const productAction = payload => {
+  return { type: FETCH_PRODUCTS, payload };
 };
