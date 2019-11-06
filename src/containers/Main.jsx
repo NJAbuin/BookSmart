@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import List from "../components/List";
 import axios from "axios";
-import Register from './Register'
+import Register from '../components/Register'
 
 export default class Main extends Component {
   constructor(props) {
