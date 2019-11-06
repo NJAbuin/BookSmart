@@ -197,12 +197,4 @@ api.get("/destroydb", (req, res) => {
 
 //////////////////////////////////////////////////////////
 
-api.get("/users", (req, res) => {
-  User.findAll()
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => console.log("Failed to retrieve users at /api/users"));
-});
-
 module.exports = api;
