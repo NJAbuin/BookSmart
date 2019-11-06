@@ -1,3 +1,6 @@
 import { combineReducers } from "redux";
+import { productsReducer } from "./productReducer";
 
-export default combineReducers(/*{ movies: moviesReducer, users: userReducer }*/);
+const reducers = { product: productsReducer };
+
+export default combineReducers(reducers);

@@ -197,4 +197,16 @@ api.get("/destroydb", (req, res) => {
 
 //////////////////////////////////////////////////////////
 
+//retorna todos los productos de la base de datos en formato JSON
+api.get("/products", (req, res) => {
+  Books.findAll()
+    .then(data => {
+      console.log(Array.isArray(data));
+      res.json(data);
+    })
+    .catch(err =>
+      console.log("Failed to retrieve all products at /api/products")
+    );
+});
+
 module.exports = api;

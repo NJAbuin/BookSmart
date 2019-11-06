@@ -56,6 +56,6 @@ Book.findByAuthor = author => {
   }).then(books => books);
 };
 
-module.exports = Book;
-
 // FALTA METODO DE CLASE PARA LAS REVIEWS
+
+module.exports = Book;
