@@ -11,16 +11,16 @@ Book.init(
         notEmpty: true
       }
     },
+    price: {
+      type: S.FLOAT,
+      allowNull: false
+    },
     description: {
       type: S.TEXT,
       allowNull: false,
       validate: {
         notEmpty: true
       }
-    },
-    price: {
-      type: S.FLOAT,
-      allowNull: false
     },
     stock: {
       type: S.INTEGER,
@@ -54,7 +54,9 @@ Book.findByAuthor = author => {
       author
     }
   }).then(books => books);
-}; // DEVUELVE LOS LIBROS, NO LA PROMESA
+};
+
+module.exports = Book;
 
 // FALTA METODO DE CLASE PARA LAS REVIEWS
 
