@@ -17,6 +17,10 @@ router.get('/logout', (req, res)=>{
     res.send('logged Out!')
 })
 
+router.get('/me', (req, res) =>{
+    res.send(req.user)
+})
+
 
 
 module.exports = router
