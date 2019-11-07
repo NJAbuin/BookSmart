@@ -1,42 +1,40 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { searchProducts } from '../store/actions/products'
-import Navbar from '../components/Navbar'
+import React from "react";
+import { connect } from "react-redux";
+import { searchProducts } from "../store/actions/products";
+import Navbar from "../components/Navbar";
 
 class NavbarContainer extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            inputValue: ""
-        }
-        this.handleInput = this.handleInput.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: ""
+    };
+    this.handleInput = this.handleInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    handleInput(evt) {
-        const value = evt.target.value
-        this.setState({ inputValue: value })
-    }
+  handleInput(evt) {
+    const value = evt.target.value;
+    this.setState({ inputValue: value });
+  }
 
-    handleSubmit(evt) {
-        evt.preventDefault()
-        this.props.searchProducts(this.state.inputValue)
-        this.props.history.push(`/products/${this.state.inputValue}`)
-    }
+  handleSubmit(evt) {
+    evt.preventDefault();
+    this.props.searchProducts(this.state.inputValue);
+  }
 
-    render() {
-        console.log(this.state.inputValue)
-        return (
-            <Navbar
-                handleInput={this.handleInput}
-                handleSubmit={this.handleSubmit}
-            />
-        )
-    }
+  render() {
+    return (
+      <Navbar handleInput={this.handleInput} handleSubmit={this.handleSubmit} />
+    );
+  }
 }
 
 const mapDispatchToProps = dispatch => ({
-    searchProducts: inputValue => dispatch(searchProducts(inputValue))
-})
+  searchProducts: inputValue => dispatch(searchProducts(inputValue))
+});
 
-export default connect(null, mapDispatchToProps)(NavbarContainer)
+export default connect(
+  null,
+  mapDispatchToProps
+)(NavbarContainer);
