@@ -57982,14 +57982,19 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var productList = this.props.products.product;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        style: containerStyle
-      }, productList.slice(0, 9).map(function (e) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SingleProduct__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          key: e.id,
-          info: e
-        });
-      })));
+
+      if (productList.length <= 0) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No se encontraron resultados");
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          style: containerStyle
+        }, productList.slice(0, 9).map(function (e) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SingleProduct__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            key: e.id,
+            info: e
+          });
+        })));
+      }
     }
   }]);
 
