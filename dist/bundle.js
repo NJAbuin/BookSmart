@@ -57802,9 +57802,26 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarContainer__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: gridContainer
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          gridArea: "nav"
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarContainer__WEBPACK_IMPORTED_MODULE_8__["default"], {
         history: this.props.history
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          gridArea: "side",
+          backgroundColor: "blue"
+        }
+      }, "SIDEBAR"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          gridArea: "content",
+          marginTop: "10px",
+          marginRight: "10px"
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/",
         component: _ProductsContainer__WEBPACK_IMPORTED_MODULE_7__["default"]
@@ -57812,7 +57829,12 @@ function (_Component) {
         exact: true,
         path: "/register",
         component: _RegisterContainer__WEBPACK_IMPORTED_MODULE_3__["default"]
-      })));
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          gridArea: "foot",
+          backgroundColor: "violet"
+        }
+      }, "FOOTER"));
     }
   }]);
 
@@ -57820,6 +57842,12 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
+var gridContainer = {
+  display: "grid",
+  gridTemplateColumns: "10% 1fr",
+  gridTemplateRows: "minmax(auto, 5%) 1fr 2.5%",
+  gridTemplateAreas: "  \"nav nav\"\n  \"side content\"\n  \"foot foot\""
+};
 
 /***/ }),
 
