@@ -12,7 +12,7 @@ import store from "../store";
 import { fetchUser } from "../store/actions/user";
 import LoginContainer from "./LoginContainer";
 import ProductsContainer from "./ProductsContainer";
-import NavbarContainer from "./NavbarContainer"
+import NavbarContainer from "./NavbarContainer";
 
 export default class Main extends Component {
   constructor(props) {
@@ -26,7 +26,10 @@ export default class Main extends Component {
     return (
       <div>
         <NavbarContainer history={this.props.history} />
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7bc1b69a4936b3364852c496405599e240ab36b3
         <Switch>
           <Route exact path="/" component={ProductsContainer} />
         </Switch>

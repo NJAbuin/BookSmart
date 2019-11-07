@@ -1,5 +1,6 @@
 const api = require("express").Router();
 const User = require("../db/models/User");
+const Op = require("sequelize").Op;
 
 const faker = require("faker");
 const Books = require("../db/models/Book");
@@ -214,19 +215,23 @@ api.get("/products", (req, res) => {
 // retorna un producto de la base de datos en formato JSON
 
 api.get("/products/:productName", (req, res) => {
-  const product = req.params.productName
-  console.log("SOY EL PRODUCTO", product)
+  const product = req.params.productName;
+
   Books.findAll({
     where: {
-      name: product
+      name: {
+        [Op.iLike]: `%${product}%`
+      }
     }
   })
     .then(books => {
-      res.json(books)
+      res.json(books);
     })
     .catch(err =>
-      console.log("Failed to retrieve all products at /api/products/:productName")
+      console.log(
+        "Failed to retrieve all products at /api/products/:productName"
+      )
     );
-})
+});
 
 module.exports = api;

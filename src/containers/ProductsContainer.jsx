@@ -1,5 +1,5 @@
 import React from "react";
-import { getProducts } from "../store/actions/products";
+import { getProducts, searchProducts } from "../store/actions/products";
 import SingleProduct from "../components/SingleProduct";
 import { connect } from "react-redux";
 
@@ -19,9 +19,8 @@ class ProductsContainer extends React.Component {
     let productList = this.props.products.product;
     return (
       <div>
-        >
         <ul style={containerStyle}>
-          {productList.map(e => (
+          {productList.slice(0, 9).map(e => (
             <SingleProduct key={e.id} info={e} />
           ))}
         </ul>
@@ -32,7 +31,7 @@ class ProductsContainer extends React.Component {
 
 const containerStyle = {
   display: "grid",
-  gridTemplateColumns: "1fr 1fr 1fr 1fr ",
+  gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
   gridGap: "2rem",
   justifyItems: "auto",
   alignItems: "auto"

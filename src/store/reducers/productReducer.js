@@ -8,7 +8,7 @@ export const productsReducer = (state = initialState, action) => {
     case FETCH_PRODUCTS:
       return [...state, ...action.payload];
     case SEARCH_PRODUCTS:
-      return [...state, ...action.payload]
+      return [...action.payload];
     default:
       return state;
   }
