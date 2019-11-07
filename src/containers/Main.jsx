@@ -1,30 +1,33 @@
 import React, { Component } from "react";
-
 import axios from "axios";
 import {
   Route,
   Redirect,
   Switch,
   BrowserRouter,
-  withRouter,
-  Link
+  withRouter
 } from "react-router-dom";
-import Register from "../components/Register";
-import ProductsContainer from "./ProductsContainer";
+import RegisterContainer from "./RegisterContainer";
+import store from "../store";
+import { fetchUser } from "../store/actions/user";
+import LoginContainer from "./LoginContainer";
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount() {
+    store.dispatch(fetchUser());
+  }
   render() {
     return (
       <div>
+        <RegisterContainer />
+        <LoginContainer />
         <Switch>
-          {/* ESTO DEBERIA SOLO RENDERIZARSE EN LA RUTA EXACT "/products" via link en NavBar */}
-          {/* <Link to="/products">All Products</Link>
-          <Route exact to="/products" Component={ProductsContainer} /> */}
           <Route exact path="/" component={ProductsContainer} />
+          <Route exact path="/register" component={RegisterContainer} />
         </Switch>
       </div>
     );

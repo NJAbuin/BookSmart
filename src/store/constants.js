@@ -1,1 +1,3 @@
 export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
+export const EMPTY_USER = "EMPTY_USER"
+export const RECEIVE_USER = "RECEIVE_USER"

@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var User = require('../db/models/User')
-var passport = require("passport")
+var passport = require("../server/passport")
 
 router.post('/register', (req, res)=>{
     User.create(req.body)
@@ -15,6 +15,10 @@ router.post('/login', passport.authenticate('local'), (req, res)=>{
 router.get('/logout', (req, res)=>{
     req.logout()
     res.send('logged Out!')
+})
+
+router.get('/me', (req, res) =>{
+    res.send(req.user)
 })
 
 
