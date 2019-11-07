@@ -6,10 +6,11 @@ const db = require("../db");
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const passport = require('passport')
+
 const DIST_DIR = path.join(__dirname, "../dist");
 
 const app = express();
-const port = process.env.PORT || 2710;
+const port = process.env.PORT || 3000;
 
 //bodyparsing middleware
 app.use(bodyParser.urlencoded({ extended: true }));

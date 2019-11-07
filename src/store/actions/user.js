@@ -1,9 +1,13 @@
 import axios from "axios";
-import {RECEIVE_USER} from '../constants'
+import {RECEIVE_USER, EMPTY_USER} from '../constants'
 
 export const receiveUser = (payload) => ({
   type: RECEIVE_USER,
   payload
+})
+
+export const emptyUser = () => ({
+  type: EMPTY_USER
 })
 
 export const fetchUser = () => dispatch => {
