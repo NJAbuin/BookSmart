@@ -57424,7 +57424,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
   var handleInput = _ref.handleInput,
       handleSubmit = _ref.handleSubmit;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"], {
     bg: "primary",
     variant: "dark"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"].Brand, {
@@ -57446,7 +57446,7 @@ __webpack_require__.r(__webpack_exports__);
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     onClick: handleSubmit,
     variant: "outline-light"
-  }, "Search"))));
+  }, "Search")));
 });
 
 /***/ }),
@@ -57503,25 +57503,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
- //props.
-// info:
-// author: "Fred Rowe"
-// createdAt: "2019-11-06T17:20:39.135Z"
-// description: "Molestiae et autem iusto inventore iure quia maxime. Dolores inventore eum veniam et laborum laborum et. Totam pariatur est exercitationem magni esse."
-// id: 86
-// imgURL: "http://lorempixel.com/640/480"
-// name: "Incredible Granite Gloves"
-// price: 767
-// stock: 80765
-// updatedAt: "2019-11-06T17:20:39.135Z"
-// year: 3043
 
 var cardStyle = {
   boxShadow: "0 4px 10px 0 rgba(0, 0, 0, 0.2)",
   fontFamily: "arial",
-  display: "grid",
+  // display: "grid",
   gridTemplateColumns: "1fr 1fr",
-  gridTemplateRows: "50% 1fr 3fr",
+  gridTemplateRows: "50% minmax(auto, 2fr) 3fr",
   gridTemplateAreas: "\"img img\"\n  \"title title\"\n  \"price add\"",
   gridGap: "15px",
   backgroundColor: "#E8E8E8",
@@ -57532,7 +57520,9 @@ var priceStyle = {
   color: "grey",
   fontSize: "22px",
   gridArea: "price",
-  textAlign: "center"
+  textAlign: "center",
+  alignSelf: "center",
+  justifySelf: "center"
 };
 var buttonStyle = {
   border: "none",
@@ -57540,12 +57530,12 @@ var buttonStyle = {
   padding: "12px",
   color: "black",
   backgroundColor: "#B0C4DE",
-  textAlign: "center",
   cursor: "pointer",
   width: "100%",
   fontSize: "18px",
   gridArea: "add",
-  alignSelf: "center"
+  alignSelf: "center",
+  justifySelf: "center"
 };
 
 function SingleProduct(props) {
@@ -57557,19 +57547,29 @@ function SingleProduct(props) {
     src: "https://quittingbydesign.com/wp-content/uploads/2018/09/image-coming-soon-placeholder.jpg",
     key: product.id,
     style: {
-      width: "100%",
-      height: "100%",
-      gridArea: "img"
+      padding: "10px",
+      width: "minmax(100em, 90%)",
+      height: "minmax(100em, 90%)",
+      gridArea: "img",
+      alignSelf: "center",
+      justifySelf: "center"
     }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     style: {
       gridArea: "title",
-      textAlign: "center"
+      textAlign: "center",
+      width: "100%",
+      height: "100%"
     }
   }, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "price",
     style: priceStyle
-  }, "$", product.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, "$", product.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      alignSelf: "center",
+      justifySelf: "center"
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     style: buttonStyle
   }, "Add to Cart")));
 }
@@ -57998,7 +57998,7 @@ function (_React$Component) {
 
 var containerStyle = {
   display: "grid",
-  gridTemplateColumns: "1fr 1fr 1fr 1fr ",
+  gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
   gridGap: "2rem",
   justifyItems: "auto",
   alignItems: "auto"
