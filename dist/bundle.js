@@ -57892,12 +57892,10 @@ function (_React$Component) {
     value: function handleSubmit(evt) {
       evt.preventDefault();
       this.props.searchProducts(this.state.inputValue);
-      this.props.history.push("/products/".concat(this.state.inputValue));
     }
   }, {
     key: "render",
     value: function render() {
-      console.log(this.state.inputValue);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
         handleInput: this.handleInput,
         handleSubmit: this.handleSubmit
@@ -57986,7 +57984,7 @@ function (_React$Component) {
       var productList = this.props.products.product;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         style: containerStyle
-      }, productList.map(function (e) {
+      }, productList.slice(0, 9).map(function (e) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SingleProduct__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: e.id,
           info: e
@@ -58208,7 +58206,6 @@ var productAction = function productAction(payload) {
   };
 };
 
-
 var searchProducts = function searchProducts(inputValue) {
   return function (dispatch) {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/products/".concat(inputValue)).then(function (res) {
@@ -58374,7 +58371,7 @@ var productsReducer = function productsReducer() {
       return [].concat(_toConsumableArray(state), _toConsumableArray(action.payload));
 
     case _constants__WEBPACK_IMPORTED_MODULE_0__["SEARCH_PRODUCTS"]:
-      return [].concat(_toConsumableArray(state), _toConsumableArray(action.payload));
+      return _toConsumableArray(action.payload);
 
     default:
       return state;
