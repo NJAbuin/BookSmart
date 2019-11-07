@@ -33,7 +33,7 @@ app.use("/api", require("../routes/api"));
 app.use("/", require("../routes/index"));
 
 //sync database then start server
-db.sync({ force: true })
+db.sync({ force: false })
   .then(() => {
     console.log("Connected to database...");
     app.listen(port, () => console.log(`Listening on port ${port}`));
