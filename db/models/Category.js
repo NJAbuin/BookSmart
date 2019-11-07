@@ -10,14 +10,15 @@ Category.init(
             allowNull: false
         }
     },
-    { sequelize: db, modelName: "book" }
+    { sequelize: db, modelName: "category" }
 )
 
 //DA METODOS getBooks, setBooks, addBooks, addBook a CATEGORY 
 //Y A BOOK getCategorys, setCategotys , addCategorys y addCategory
 
-Category.belongsToMany(Book, { through: "BookCategory" })
-Book.belongsToMany(Category, { through: "BookCategory" })
+// Category.belongsToMany(Book, { through: "BookCategory" })
+// Book.belongsToMany(Category, { through: "BookCategory" })
+
 
 Category.findByCategory = function (category) {
     return Category.findOne(
@@ -30,3 +31,5 @@ Category.findByCategory = function (category) {
     )
         .then(category => { console.log(category) })
 }
+
+module.exports = Category;

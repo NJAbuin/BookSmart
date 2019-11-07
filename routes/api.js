@@ -4,6 +4,7 @@ const Op = require("sequelize").Op;
 
 const faker = require("faker");
 const Books = require("../db/models/Book");
+const Category = require('../db/models/Category')
 
 api.get("/seed", (req, res) => {
   Books.bulkCreate([
@@ -14,7 +15,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -23,7 +25,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -32,7 +35,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -41,7 +45,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -50,7 +55,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -59,7 +65,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -68,7 +75,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -77,7 +85,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -86,7 +95,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Ninguna']
     },
     {
       name: faker.commerce.productName(),
@@ -95,7 +105,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -104,7 +115,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -113,7 +125,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -122,7 +135,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -131,7 +145,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -140,7 +155,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -149,7 +165,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Cuarta', 'Una Quinta']
     },
     {
       name: faker.commerce.productName(),
@@ -158,7 +175,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -167,7 +185,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -176,7 +195,8 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     },
     {
       name: faker.commerce.productName(),
@@ -185,10 +205,22 @@ api.get("/seed", (req, res) => {
       stock: faker.random.number(),
       imgURL: faker.image.imageUrl(),
       year: 3043,
-      author: faker.name.findName()
+      author: faker.name.findName(),
+      category: ['Una Categoria', 'Otra Categoria']
     }
   ]);
 });
+
+api.get('/seedCat', (req, res)=>{
+  Category.bulkCreate([
+    {name: 'Una Categoria'},
+    {name: 'Otra Categoria'},
+    {name: 'Una Cuarta'},
+    {name: 'Una Quinta'},
+    {name: 'Ninguna'}
+  
+])
+})
 
 api.get("/destroydb", (req, res) => {
   User.destroy({ where: {} })

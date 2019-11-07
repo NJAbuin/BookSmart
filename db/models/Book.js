@@ -1,5 +1,6 @@
 const db = require("../index");
 const S = require("sequelize");
+const Op = S.Op;
 
 class Book extends S.Model {}
 Book.init(
@@ -40,6 +41,9 @@ Book.init(
     author: {
       type: S.STRING,
       allowNull: false
+    },
+    category:{
+      type: S.ARRAY(S.TEXT)
     }
   },
   { sequelize: db, modelName: "book" }
@@ -56,6 +60,12 @@ Book.findByAuthor = author => {
   }).then(books => books);
 };
 
+Book.findByCategory = category => {
+  return Book.findAll({
+    where: {category: { [Op.contains]: [category] }}
+  })
+}
 // FALTA METODO DE CLASE PARA LAS REVIEWS
 
 module.exports = Book;
+
