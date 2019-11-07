@@ -19,7 +19,6 @@ class ProductsContainer extends React.Component {
     let productList = this.props.products.product;
     return (
       <div>
-        >
         <ul style={containerStyle}>
           {productList.map(e => (
             <SingleProduct key={e.id} info={e} />

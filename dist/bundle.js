@@ -45497,7 +45497,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var productList = this.props.products.product;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, ">", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         style: containerStyle
       }, productList.map(function (e) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SingleProduct__WEBPACK_IMPORTED_MODULE_2__["default"], {
