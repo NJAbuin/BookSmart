@@ -7,7 +7,7 @@ export function userReducer(state = initialState, action){
         case RECEIVE_USER:
             return action.payload
         case EMPTY_USER:
-            return {}
+            return ''
         default:
             return state
     }
