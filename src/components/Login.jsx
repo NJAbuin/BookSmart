@@ -2,7 +2,7 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
 
-export default function Register(props){
+export default function Login(props){
   const [show, setShow] = React.useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -20,18 +20,18 @@ export default function Register(props){
         <form onSubmit={props.handleSubmit} method="post">
         <div className="form-group">
         <label forhtml="exampleInputEmail1">Email address</label>
-  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={props.handleEmailInput}/>
+        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={props.handleEmailInput}/>
   </div>
 
   <div className="form-group">
   <label forhtml="exampleInputPassword1">Password</label>
   <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={props.handlePasswordInput}/>
   </div>
-  <Button type="primary" onClick={handleClose}>Login!</Button>
+  <Button type="primary" onClick={handleClose}>Login</Button>
 </form>
         </Modal.Body>
       </Modal>
       
 
-<button onClick={props.handleLogout}>Logout </button></div>)
+</div>)
 }
