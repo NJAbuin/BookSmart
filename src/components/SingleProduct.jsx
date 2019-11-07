@@ -58,16 +58,11 @@ function SingleProduct(props) {
           justifySelf: "center"
         }}
       />
-      <h1
-        style={{
-          gridArea: "title",
-          textAlign: "center",
-          width: "100%",
-          height: "100%"
-        }}
-      >
-        {product.name}
-      </h1>
+      <Link to={`/products/${product.id}`}>
+        <h1 style={{ gridArea: "title", textAlign: "center" }}>
+          {product.name}
+        </h1>
+      </Link>
       <p className="price" style={priceStyle}>
         ${product.price}
       </p>
@@ -76,28 +71,6 @@ function SingleProduct(props) {
       </p>
     </div>
   );
-}
-
-{
-  /* <div style={containerStyle}>
-      <div className="card" style={cardStyle}>
-        <img
-          src={
-            "https://quittingbydesign.com/wp-content/uploads/2018/09/image-coming-soon-placeholder.jpg"
-          }
-          key={product.id}
-          style={{ width: "100%", height: "50%" }}
-        />
-        <h1>{product.name}</h1>
-        <p className="price" style={priceStyle}>
-          ${product.price}
-        </p>
-        <p>{product.description}</p>
-        <p>
-          <button style={buttonStyle}>Add to Cart</button>
-        </p>
-      </div>
-    </div> */
 }
 
 export default SingleProduct;

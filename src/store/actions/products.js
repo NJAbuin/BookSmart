@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_PRODUCTS, SEARCH_PRODUCTS } from "../constants";
+import { FETCH_PRODUCTS, SEARCH_PRODUCTS, SELECT_PRODUCT } from "../constants";
 
 export const getProducts = () => dispatch => {
   axios
@@ -25,4 +25,16 @@ export const searchProducts = inputValue => dispatch => {
 
 const searchProductAction = payload => {
   return { type: SEARCH_PRODUCTS, payload };
+};
+
+export const selectProduct = id => dispatch => {
+  axios
+    .get(`/api/product/${id}`)
+    .then(res => res.data)
+    .then(product => {
+      return dispatch(selectProductAction(product));
+    });
+};
+const selectProductAction = payload => {
+  return { type: SELECT_PRODUCT, payload };
 };
