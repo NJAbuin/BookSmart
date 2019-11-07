@@ -1,5 +1,7 @@
 import React from "react";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import RegisterContainer from "../containers/RegisterContainer";
+import LoginContainer from "../containers/LoginContainer";
 
 export default ({ handleInput, handleSubmit }) => {
   return (
@@ -7,8 +9,14 @@ export default ({ handleInput, handleSubmit }) => {
       <Navbar bg="primary" variant="dark">
         <Navbar.Brand href="/">BookSmart</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="#features">Register</Nav.Link>
-          <Nav.Link href="#pricing">Login</Nav.Link>
+          <ul className="nav">
+            <li className="nav-item">
+              <RegisterContainer />
+            </li>
+            <li className="nav-item">
+              <LoginContainer />
+            </li>
+          </ul>
         </Nav>
         <Form onSubmit={handleSubmit} inline>
           <FormControl
