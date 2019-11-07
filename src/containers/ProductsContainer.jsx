@@ -17,15 +17,23 @@ class ProductsContainer extends React.Component {
 
   render() {
     let productList = this.props.products.product;
-    return (
-      <div>
-        <ul style={containerStyle}>
-          {productList.slice(0, 9).map(e => (
-            <SingleProduct key={e.id} info={e} />
-          ))}
-        </ul>
-      </div>
-    );
+    if (productList.length <= 0) {
+      return (
+        <p>
+          No se encontraron resultados
+        </p>
+      )
+    } else {
+      return (
+        <div>
+          <ul style={containerStyle}>
+            {productList.slice(0, 9).map(e => (
+              <SingleProduct key={e.id} info={e} />
+            ))}
+          </ul>
+        </div>
+      );
+    }
   }
 }
 

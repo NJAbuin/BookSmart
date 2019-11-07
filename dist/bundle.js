@@ -49406,7 +49406,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57696,9 +57696,7 @@ function SingleProduct(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     style: {
       gridArea: "title",
-      textAlign: "center",
-      width: "100%",
-      height: "100%"
+      textAlign: "center"
     }
   }, product.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "price",
@@ -58115,14 +58113,19 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var productList = this.props.products.product;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        style: containerStyle
-      }, productList.slice(0, 9).map(function (e) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SingleProduct__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          key: e.id,
-          info: e
-        });
-      })));
+
+      if (productList.length <= 0) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No se encontraron resultados");
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          style: containerStyle
+        }, productList.slice(0, 9).map(function (e) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SingleProduct__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            key: e.id,
+            info: e
+          });
+        })));
+      }
     }
   }]);
 
