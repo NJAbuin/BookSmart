@@ -13,6 +13,7 @@ import { fetchUser } from "../store/actions/user";
 import LoginContainer from "./LoginContainer";
 import ProductsContainer from "./ProductsContainer";
 import NavbarContainer from "./NavbarContainer";
+import ProductDetails from "../components/ProductDetails";
 
 export default class Main extends Component {
   constructor(props) {
@@ -26,8 +27,11 @@ export default class Main extends Component {
     return (
       <div>
         <NavbarContainer history={this.props.history} />
+
         <Switch>
           <Route exact path="/" component={ProductsContainer} />
+          <Route exact path="/register" component={RegisterContainer} />
+          <Route exact path="/products/:id" component={ProductDetails} />
         </Switch>
       </div>
     );
