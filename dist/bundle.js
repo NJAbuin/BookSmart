@@ -49406,7 +49406,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57767,8 +57767,8 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(LoginContainer).call(this, props));
     _this.state = {
-      emailInput: '',
-      passwordInput: ''
+      emailInput: "",
+      passwordInput: ""
     };
     _this.handleEmailInput = _this.handleEmailInput.bind(_assertThisInitialized(_this));
     _this.handlePasswordInput = _this.handlePasswordInput.bind(_assertThisInitialized(_this));
@@ -57799,7 +57799,7 @@ function (_React$Component) {
       evt.preventDefault();
 
       if (this.state.emailInput && this.state.passwordInput) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/auth/login', {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/auth/login", {
           email: this.state.emailInput,
           password: this.state.passwordInput
         }).then(function (res) {
@@ -57814,29 +57814,41 @@ function (_React$Component) {
     value: function handleLogout() {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/auth/logout').then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/auth/logout").then(function () {
         return _this3.props.emptyUser();
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var username = this.props.user.name || '';
-      var userLogged = this.props.user == '';
-      var name = username.split(' ')[0];
+      var username = this.props.user.name || "";
+      var userLogged = this.props.user == "";
+      var name = username.split(" ")[0];
       return userLogged == true ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {
         handleSubmit: this.handleSubmit,
         handleEmailInput: this.handleEmailInput,
         handlePasswordInput: this.handlePasswordInput,
         handleLogout: this.handleLogout
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "nav"
+        className: "nav",
+        style: {
+          color: "white",
+          justifyItems: "center",
+          alignItems: "center"
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "nav-item"
-      }, "Hola ".concat(name), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "nav-item",
-        onClick: this.handleLogout
-      }, "Logout "));
+        style: {
+          marginTop: "7px",
+          marginRight: "10px"
+        }
+      }, "Hola ", name, " \xA0 |"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nav-item",
+        onClick: this.handleLogout,
+        style: {
+          marginTop: "7px"
+        }
+      }, "Logout"));
     }
   }]);
 
@@ -57928,7 +57940,8 @@ function (_Component) {
         style: gridContainer
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
-          gridArea: "nav"
+          gridArea: "nav",
+          height: "100%"
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarContainer__WEBPACK_IMPORTED_MODULE_6__["default"], {
         history: this.props.history
@@ -57940,8 +57953,7 @@ function (_Component) {
       }, "SIDEBAR"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           gridArea: "content",
-          marginTop: "10px",
-          marginRight: "10px",
+          margin: "10px",
           height: "minmax(auto, 100%)"
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
@@ -57971,9 +57983,10 @@ function (_Component) {
 
 var gridContainer = {
   display: "grid",
-  gridTemplateColumns: "10% 1fr",
-  gridTemplateRows: "minmax(auto, 5%) 1fr 2.5%",
-  gridTemplateAreas: "  \"nav nav\"\n  \"side content\"\n  \"foot foot\""
+  gridTemplateColumns: "15% 1fr",
+  gridTemplateRows: "minmax(auto, 8%) 1fr minmax(auto, 4%)",
+  gridTemplateAreas: "  \"nav nav\"\n  \"side content\"\n  \"foot foot\"",
+  height: "100vh"
 };
 
 /***/ }),

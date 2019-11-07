@@ -1,79 +1,97 @@
-import React from 'react'
-import axios from 'axios'
-import Login from '../components/Login'
-import { connect } from 'react-redux'
-import { receiveUser, emptyUser } from '../store/actions/user'
+import React from "react";
+import axios from "axios";
+import Login from "../components/Login";
+import { connect } from "react-redux";
+import { receiveUser, emptyUser } from "../store/actions/user";
 
-
-class LoginContainer extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            emailInput : '',
-            passwordInput: '',
-        }
-        this.handleEmailInput =  this.handleEmailInput.bind(this)
-        this.handlePasswordInput = this.handlePasswordInput.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleLogout = this.handleLogout.bind(this)
-
-    }
-
-    handleEmailInput(evt){
-        this.setState({emailInput: evt.target.value})
-    }
-
-    handlePasswordInput(evt){
-        this.setState({passwordInput: evt.target.value})
-    }
-
-    handleSubmit(evt){
-        evt.preventDefault()
-        if(this.state.emailInput && this.state.passwordInput){
-            axios.post('/auth/login', {email: this.state.emailInput, password: this.state.passwordInput})
-            .then(res => res.data)
-            .then(user => {
-                this.props.receiveUser(user)
-            })
-        }
-        
-    }
-
-    handleLogout(){
-        axios.get('/auth/logout')
-        .then(()=>this.props.emptyUser())
-
-    }
-
-    
-
-    render(){
-        const username = this.props.user.name || ''
-        const userLogged = this.props.user == ''
-        const name = username.split(' ')[0]
-        return (
-        
-            userLogged == true?<Login handleSubmit={this.handleSubmit} 
-            handleEmailInput={this.handleEmailInput}  handlePasswordInput={this.handlePasswordInput} handleLogout={this.handleLogout}/>: 
-                <ul className="nav">
-                <li className="nav-item">{`Hola ${name}`} </li>
-                <li className="nav-item" onClick={this.handleLogout}>Logout </li>
-                </ul>
-     )
-        }
-
-    
-}
-
-  const mapDispatchToProps = {
-     receiveUser,
-     emptyUser,
+class LoginContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      emailInput: "",
+      passwordInput: ""
+    };
+    this.handleEmailInput = this.handleEmailInput.bind(this);
+    this.handlePasswordInput = this.handlePasswordInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
- 
+  handleEmailInput(evt) {
+    this.setState({ emailInput: evt.target.value });
+  }
 
-  const mapStateToProps = ({ user }) => ({
-    user
-  })
-  
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
+  handlePasswordInput(evt) {
+    this.setState({ passwordInput: evt.target.value });
+  }
+
+  handleSubmit(evt) {
+    evt.preventDefault();
+    if (this.state.emailInput && this.state.passwordInput) {
+      axios
+        .post("/auth/login", {
+          email: this.state.emailInput,
+          password: this.state.passwordInput
+        })
+        .then(res => res.data)
+        .then(user => {
+          this.props.receiveUser(user);
+        });
+    }
+  }
+
+  handleLogout() {
+    axios.get("/auth/logout").then(() => this.props.emptyUser());
+  }
+
+  render() {
+    const username = this.props.user.name || "";
+    const userLogged = this.props.user == "";
+    const name = username.split(" ")[0];
+    return userLogged == true ? (
+      <Login
+        handleSubmit={this.handleSubmit}
+        handleEmailInput={this.handleEmailInput}
+        handlePasswordInput={this.handlePasswordInput}
+        handleLogout={this.handleLogout}
+      />
+    ) : (
+      <ul
+        className="nav"
+        style={{
+          color: "white",
+          justifyItems: "center",
+          alignItems: "center"
+        }}
+      >
+        <li
+          className="nav-item"
+          style={{ marginTop: "7px", marginRight: "10px" }}
+        >
+          Hola {name} &nbsp; |
+        </li>
+        <li
+          className="nav-item"
+          onClick={this.handleLogout}
+          style={{ marginTop: "7px" }}
+        >
+          Logout
+        </li>
+      </ul>
+    );
+  }
+}
+
+const mapDispatchToProps = {
+  receiveUser,
+  emptyUser
+};
+
+const mapStateToProps = ({ user }) => ({
+  user
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginContainer);
