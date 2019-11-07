@@ -57696,9 +57696,7 @@ function SingleProduct(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     style: {
       gridArea: "title",
-      textAlign: "center",
-      width: "100%",
-      height: "100%"
+      textAlign: "center"
     }
   }, product.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "price",
