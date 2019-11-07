@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var User = require('../db/models/User')
 var passport = require("../server/passport")
+var Book = require('../db/models/Book')
 
 router.post('/register', (req, res)=>{
     console.log('Hola')
@@ -21,6 +22,10 @@ router.get('/logout', (req, res)=>{
 
 router.get('/me', (req, res) =>{
     res.send(req.user)
+})
+
+router.get('/ejemplo', (req, res) =>{
+    Book.findByCategory('Ninguna').then((e)=>res.send(e))
 })
 
 

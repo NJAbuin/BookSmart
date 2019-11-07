@@ -27,7 +27,7 @@ export default class Main extends Component {
             gridArea: "content",
             marginTop: "10px",
             marginRight: "10px",
-            height: "100vh"
+            height: "minmax(auto, 100%)"
           }}
         >
           <Switch>
