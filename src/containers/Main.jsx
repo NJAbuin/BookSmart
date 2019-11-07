@@ -28,7 +28,6 @@ export default class Main extends Component {
         <NavbarContainer history={this.props.history} />
         <Switch>
           <Route exact path="/" component={ProductsContainer} />
-          <Route exact path="/register" component={RegisterContainer} />
         </Switch>
       </div>
     );
