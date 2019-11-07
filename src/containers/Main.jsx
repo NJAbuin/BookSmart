@@ -5,6 +5,7 @@ import store from "../store";
 import { fetchUser } from "../store/actions/user";
 import ProductsContainer from "./ProductsContainer";
 import NavbarContainer from "./NavbarContainer";
+import ProductDetails from "../components/ProductDetails";
 
 export default class Main extends Component {
   constructor(props) {
@@ -25,12 +26,14 @@ export default class Main extends Component {
           style={{
             gridArea: "content",
             marginTop: "10px",
-            marginRight: "10px"
+            marginRight: "10px",
+            height: "100vh"
           }}
         >
           <Switch>
             <Route exact path="/" component={ProductsContainer} />
             <Route exact path="/register" component={RegisterContainer} />
+            <Route exact path="/products/:id" component={ProductDetails} />
           </Switch>
         </div>
         <div style={{ gridArea: "foot", backgroundColor: "violet" }}>
