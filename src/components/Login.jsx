@@ -33,5 +33,5 @@ export default function Login(props){
       </Modal>
       
 
-<button onClick={props.handleLogout}>Logout </button></div>)
+</div>)
 }

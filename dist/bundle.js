@@ -47370,7 +47370,7 @@ function (_React$Component) {
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_0___default()(_this), "referenceNode", void 0);
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_0___default()(_this), "setReferenceNode", function (newReferenceNode) {
-      if (newReferenceNode && _this.referenceNode !== newReferenceNode) {
+      if (_this.referenceNode !== newReferenceNode) {
         _this.referenceNode = newReferenceNode;
 
         _this.forceUpdate();
@@ -47381,10 +47381,6 @@ function (_React$Component) {
   }
 
   var _proto = Manager.prototype;
-
-  _proto.componentWillUnmount = function componentWillUnmount() {
-    this.referenceNode = null;
-  };
 
   _proto.render = function render() {
     return react__WEBPACK_IMPORTED_MODULE_3__["createElement"](ManagerReferenceNodeContext.Provider, {
@@ -49406,7 +49402,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57400,9 +57396,7 @@ function Login(props) {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     type: "primary",
     onClick: handleClose
-  }, "Login!")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: props.handleLogout
-  }, "Logout "));
+  }, "Login!")))));
 }
 
 /***/ }),
@@ -57419,6 +57413,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var _containers_RegisterContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../containers/RegisterContainer */ "./src/containers/RegisterContainer.jsx");
+/* harmony import */ var _containers_LoginContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../containers/LoginContainer */ "./src/containers/LoginContainer.jsx");
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
@@ -57427,15 +57425,15 @@ __webpack_require__.r(__webpack_exports__);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"], {
     bg: "primary",
     variant: "dark"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"].Brand, {
-    href: "#home"
-  }, "BookSmart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"].Brand, null, "BookSmart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
     className: "mr-auto"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
-    href: "#features"
-  }, "Register"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
-    href: "#pricing"
-  }, "Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "nav"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "nav-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_RegisterContainer__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "nav-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_LoginContainer__WEBPACK_IMPORTED_MODULE_3__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
     onSubmit: handleSubmit,
     inline: true
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["FormControl"], {
@@ -57463,9 +57461,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Register; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 function Register(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      show = _React$useState2[0],
+      setShow = _React$useState2[1];
+
+  var handleClose = function handleClose() {
+    return setShow(false);
+  };
+
+  var handleShow = function handleShow() {
+    return setShow(true);
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "primary",
+    onClick: handleShow
+  }, "Register"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    show: show,
+    onHide: handleClose
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
+    closeButton: true
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Title, null, "Register")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Body, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: props.handleSubmit,
     method: "post"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -57485,7 +57516,7 @@ function Register(props) {
     onChange: props.handlePasswordInput
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit"
-  }, "Registrate!"));
+  }, "Registrate!")))));
 }
 
 /***/ }),
@@ -57705,13 +57736,17 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var userLogged = this.props.user != '';
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      var userLogged = this.props.user == '';
+      var name =  false || this.props.user.name;
+      console.log(userLogged);
+      return userLogged == true ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {
         handleSubmit: this.handleSubmit,
         handleEmailInput: this.handleEmailInput,
         handlePasswordInput: this.handlePasswordInput,
         handleLogout: this.handleLogout
-      });
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Hola ".concat(name), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleLogout
+      }, "Logout "));
     }
   }]);
 
@@ -57808,10 +57843,6 @@ function (_Component) {
         exact: true,
         path: "/",
         component: _ProductsContainer__WEBPACK_IMPORTED_MODULE_7__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        exact: true,
-        path: "/register",
-        component: _RegisterContainer__WEBPACK_IMPORTED_MODULE_3__["default"]
       })));
     }
   }]);
@@ -58109,6 +58140,7 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(evt) {
       evt.preventDefault();
+      console.log('Hola');
 
       if (this.state.emailInput && this.state.passwordInput && this.state.nameInput) {
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/auth/register', {
@@ -58408,7 +58440,7 @@ function userReducer() {
       return action.payload;
 
     case _constants__WEBPACK_IMPORTED_MODULE_0__["EMPTY_USER"]:
-      return {};
+      return '';
 
     default:
       return state;
