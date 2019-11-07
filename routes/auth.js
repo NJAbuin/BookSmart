@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var User = require('../db/models/User')
-var passport = require("passport")
+var passport = require("../server/passport")
 
 router.post('/register', (req, res)=>{
     User.create(req.body)
