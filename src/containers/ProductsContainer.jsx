@@ -19,15 +19,24 @@ class ProductsContainer extends React.Component {
     let productList = this.props.products.product;
     return (
       <div>
-        <ul>
+        >
+        <ul style={containerStyle}>
           {productList.map(e => (
-            <SingleProduct info={e} />
+            <SingleProduct key={e.id} info={e} />
           ))}
         </ul>
       </div>
     );
   }
 }
+
+const containerStyle = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr 1fr 1fr ",
+  gridGap: "2rem",
+  justifyItems: "auto",
+  alignItems: "auto"
+};
 
 const mapStateToProps = state => {
   return { products: state };

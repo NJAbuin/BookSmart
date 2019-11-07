@@ -40554,6 +40554,8 @@ function Register() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
  //props.
 // info:
 // author: "Fred Rowe"
@@ -40567,18 +40569,85 @@ __webpack_require__.r(__webpack_exports__);
 // updatedAt: "2019-11-06T17:20:39.135Z"
 // year: 3043
 
+var cardStyle = {
+  boxShadow: "0 4px 10px 0 rgba(0, 0, 0, 0.2)",
+  fontFamily: "arial",
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gridTemplateRows: "50% 1fr 3fr",
+  gridTemplateAreas: "\"img img\"\n  \"title title\"\n  \"price add\"",
+  gridGap: "15px",
+  backgroundColor: "#E8E8E8",
+  justifyItems: "auto",
+  alignItems: "auto"
+};
+var priceStyle = {
+  color: "grey",
+  fontSize: "22px",
+  gridArea: "price",
+  textAlign: "center"
+};
+var buttonStyle = {
+  border: "none",
+  outline: "0",
+  padding: "12px",
+  color: "black",
+  backgroundColor: "#B0C4DE",
+  textAlign: "center",
+  cursor: "pointer",
+  width: "100%",
+  fontSize: "18px",
+  gridArea: "add",
+  alignSelf: "center"
+};
+
 function SingleProduct(props) {
   var product = props.info;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container",
+    className: "card",
+    style: cardStyle
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "https://quittingbydesign.com/wp-content/uploads/2018/09/image-coming-soon-placeholder.jpg",
+    key: product.id,
     style: {
-      backgroundColor: "#D0D0D0"
+      width: "100%",
+      height: "100%",
+      gridArea: "img"
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Title: ", product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: product.imgURL
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Synopsis: ", product.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Price: ", product.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Year: ", product.year), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Stock: ", product.stock));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    style: {
+      gridArea: "title",
+      textAlign: "center"
+    }
+  }, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "price",
+    style: priceStyle
+  }, "$", product.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    style: buttonStyle
+  }, "Add to Cart")));
 }
 
+{
+  /* <div style={containerStyle}>
+      <div className="card" style={cardStyle}>
+        <img
+          src={
+            "https://quittingbydesign.com/wp-content/uploads/2018/09/image-coming-soon-placeholder.jpg"
+          }
+          key={product.id}
+          style={{ width: "100%", height: "50%" }}
+        />
+        <h1>{product.name}</h1>
+        <p className="price" style={priceStyle}>
+          ${product.price}
+        </p>
+        <p>{product.description}</p>
+        <p>
+          <button style={buttonStyle}>Add to Cart</button>
+        </p>
+      </div>
+    </div> */
+}
 /* harmony default export */ __webpack_exports__["default"] = (SingleProduct);
 
 /***/ }),
@@ -40638,7 +40707,11 @@ function (_Component) {
   _createClass(Main, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
+        path: "/",
+        component: _ProductsContainer__WEBPACK_IMPORTED_MODULE_4__["default"]
+      })));
     }
   }]);
 
@@ -40713,8 +40786,11 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var productList = this.props.products.product;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, productList.map(function (e) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, ">", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        style: containerStyle
+      }, productList.map(function (e) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SingleProduct__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          key: e.id,
           info: e
         });
       })));
@@ -40723,6 +40799,14 @@ function (_React$Component) {
 
   return ProductsContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var containerStyle = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr 1fr 1fr ",
+  gridGap: "2rem",
+  justifyItems: "auto",
+  alignItems: "auto"
+};
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
@@ -40917,11 +41001,6 @@ var getProducts = function getProducts(state) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// body {
-//   // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Roboto,
-//   //   Arial, sans-serif;
-//   // color: brown;
-// }
 
 
 /***/ })

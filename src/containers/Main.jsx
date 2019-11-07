@@ -21,10 +21,10 @@ export default class Main extends Component {
     return (
       <div>
         <Switch>
-          <ProductsContainer />
           {/* ESTO DEBERIA SOLO RENDERIZARSE EN LA RUTA EXACT "/products" via link en NavBar */}
           {/* <Link to="/products">All Products</Link>
           <Route exact to="/products" Component={ProductsContainer} /> */}
+          <Route exact path="/" component={ProductsContainer} />
         </Switch>
       </div>
     );
