@@ -6,6 +6,7 @@ import { fetchUser } from "../store/actions/user";
 import ProductsContainer from "./ProductsContainer";
 import NavbarContainer from "./NavbarContainer";
 import ProductDetails from "../components/ProductDetails";
+import SidebarContainer from "./SidebarContainer";
 
 export default class Main extends Component {
   constructor(props) {
@@ -21,7 +22,9 @@ export default class Main extends Component {
         <div style={{ gridArea: "nav" }}>
           <NavbarContainer history={this.props.history} />
         </div>
-        <div style={{ gridArea: "side", backgroundColor: "blue" }}>SIDEBAR</div>
+        <div style={{ gridArea: "side", backgroundColor: "blue" }}>
+          <SidebarContainer />
+        </div>
         <div
           style={{
             gridArea: "content",
