@@ -24,7 +24,6 @@ export default class Main extends Component {
   }
   render() {
     return (
-<<<<<<< HEAD
       <div style={gridContainer}>
         <div style={{ gridArea: "nav" }}>
           <NavbarContainer history={this.props.history} />
@@ -45,13 +44,6 @@ export default class Main extends Component {
         <div style={{ gridArea: "foot", backgroundColor: "violet" }}>
           FOOTER
         </div>
-=======
-      <div>
-        <NavbarContainer history={this.props.history} />
-        <Switch>
-          <Route exact path="/" component={ProductsContainer} />
-        </Switch>
->>>>>>> b0a9562d76a4d784f3565a35244326f39f90fd0a
       </div>
     );
   }
