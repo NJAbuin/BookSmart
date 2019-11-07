@@ -1,16 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
-import {
-  Route,
-  Redirect,
-  Switch,
-  BrowserRouter,
-  withRouter
-} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import RegisterContainer from "./RegisterContainer";
 import store from "../store";
 import { fetchUser } from "../store/actions/user";
-import LoginContainer from "./LoginContainer";
 import ProductsContainer from "./ProductsContainer";
 import NavbarContainer from "./NavbarContainer";
 
