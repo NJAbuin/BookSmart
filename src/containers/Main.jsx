@@ -1,20 +1,37 @@
 import React, { Component } from "react";
-//import List from "../components/List";
-import { Route, Redirect, Switch } from 'react-router-dom';
-//import Register from '../components/Register'
-import NavbarContainer from '../containers/NavbarContainer'
+import axios from "axios";
+import {
+  Route,
+  Redirect,
+  Switch,
+  BrowserRouter,
+  withRouter
+} from "react-router-dom";
+import RegisterContainer from "./RegisterContainer";
+import store from "../store";
+import { fetchUser } from "../store/actions/user";
+import LoginContainer from "./LoginContainer";
+import ProductsContainer from "./ProductsContainer";
+import NavbarContainer from "./NavbarContainer"
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount() {
+    store.dispatch(fetchUser());
+  }
   render() {
     return (
       <div>
         <NavbarContainer history={this.props.history} />
-        <Switch>
 
+
+
+        <Switch>
+          <Route exact path="/" component={ProductsContainer} />
+          <Route exact path="/register" component={RegisterContainer} />
         </Switch>
       </div>
     );

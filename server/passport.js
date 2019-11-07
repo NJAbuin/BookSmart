@@ -7,7 +7,7 @@ passport.use(
         usernameField: 'email',
       },function(username, password, done) {
       User.findOne({
-        where: { username: username }
+        where: { email: username }
       })
         .then(user => {
           if (!user) {
