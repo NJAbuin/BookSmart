@@ -212,6 +212,12 @@ api.get("/products", (req, res) => {
 
 ////////////////////////////////////////////////////////////
 
+api.get("/product/:id", (req, res) => {
+  Books.findByPk(req.params.id).then(book => {
+    res.json(book);
+  });
+});
+
 // retorna un producto de la base de datos en formato JSON
 
 api.get("/products/:productName", (req, res) => {
