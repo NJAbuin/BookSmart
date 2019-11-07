@@ -5,8 +5,8 @@ import Main from "./containers/Main";
 import store from "../src/store/index";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-ReactDOM.render(<Main />, document.getElementById("root")); //ADD NEW COMPONENTS TO MAIN
 
 ReactDOM.render(
   <Provider store={store}>

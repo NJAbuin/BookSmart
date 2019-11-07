@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import List from "../components/List";
-import axios from "axios";
-import { Route, Redirect, Switch, BrowserRouter, withRouter } from 'react-router-dom';
-import Register from '../components/Register'
+//import List from "../components/List";
+import { Route, Redirect, Switch } from 'react-router-dom';
+//import Register from '../components/Register'
+import NavbarContainer from '../containers/NavbarContainer'
 
 export default class Main extends Component {
   constructor(props) {
@@ -12,9 +12,10 @@ export default class Main extends Component {
   render() {
     return (
       <div>
-      <Switch>
+        <NavbarContainer history={this.props.history} />
+        <Switch>
 
-      </Switch>
+        </Switch>
       </div>
     );
   }
