@@ -18,25 +18,39 @@ export default function Register(props) {
         </Modal.Header>
         <Modal.Body>
     <form onSubmit={props.handleSubmit} method="post">
+    <div className="form-group">
+      <label>Name</label>
       <input
         type="text"
         name="name"
         placeholder="Name"
+        className="form-control"
         onChange={props.handleNameInput}
       />
+      </div>
+      <div className="form-group">
+      <label>Email</label>
       <input
         type="text"
         name="email"
+        className="form-control" 
+        id="exampleInputEmail1" 
+        aria-describedby="emailHelp"
         placeholder="Email"
         onChange={props.handleEmailInput}
       />
+      </div>
+      <div className="form-group">
+      <label>Password</label>
       <input
         type="password"
         name="password"
+        className="form-control"
         placeholder="Password"
         onChange={props.handlePasswordInput}
       />
-      <button type="submit">Registrate!</button>
+      </div>
+      <Button className="btn btn-primary center-block" type="submit" onClick={handleClose}>Register</Button>
     </form>
     </Modal.Body>
     </Modal>

@@ -26,10 +26,6 @@ export default class Main extends Component {
     return (
       <div>
         <NavbarContainer history={this.props.history} />
-<<<<<<< HEAD
-
-=======
->>>>>>> 7bc1b69a4936b3364852c496405599e240ab36b3
         <Switch>
           <Route exact path="/" component={ProductsContainer} />
         </Switch>

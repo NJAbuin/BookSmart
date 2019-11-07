@@ -20,14 +20,14 @@ export default function Login(props){
         <form onSubmit={props.handleSubmit} method="post">
         <div className="form-group">
         <label forhtml="exampleInputEmail1">Email address</label>
-  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={props.handleEmailInput}/>
+        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={props.handleEmailInput}/>
   </div>
 
   <div className="form-group">
   <label forhtml="exampleInputPassword1">Password</label>
   <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={props.handlePasswordInput}/>
   </div>
-  <Button type="primary" onClick={handleClose}>Login!</Button>
+  <Button type="primary" onClick={handleClose}>Login</Button>
 </form>
         </Modal.Body>
       </Modal>

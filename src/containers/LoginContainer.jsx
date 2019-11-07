@@ -48,13 +48,17 @@ class LoginContainer extends React.Component{
     
 
     render(){
+        const username = this.props.user.name || ''
         const userLogged = this.props.user == ''
-        const name =  '' || this.props.user.name
-        console.log(userLogged)
+        const name = username.split(' ')[0]
         return (
         
             userLogged == true?<Login handleSubmit={this.handleSubmit} 
-            handleEmailInput={this.handleEmailInput}  handlePasswordInput={this.handlePasswordInput} handleLogout={this.handleLogout}/>:<div>{`Hola ${name}`} <button onClick={this.handleLogout}>Logout </button></div>
+            handleEmailInput={this.handleEmailInput}  handlePasswordInput={this.handlePasswordInput} handleLogout={this.handleLogout}/>: 
+                <ul className="nav">
+                <li className="nav-item">{`Hola ${name}`} </li>
+                <li className="nav-item" onClick={this.handleLogout}>Logout </li>
+                </ul>
      )
         }
 

@@ -1,10 +1,10 @@
-<<<<<<< HEAD
 import React from 'react'
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 import RegisterContainer from '../containers/RegisterContainer'
 import LoginContainer from '../containers/LoginContainer'
 
 export default ({ handleInput, handleSubmit }) => {
+  
     return (
         <>
 
@@ -25,30 +25,3 @@ export default ({ handleInput, handleSubmit }) => {
         </>
     )
 }
-=======
-import React from "react";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
-
-export default ({ handleInput, handleSubmit }) => {
-  return (
-    <Navbar bg="primary" variant="dark">
-      <Navbar.Brand href="#home">BookSmart</Navbar.Brand>
-      <Nav className="mr-auto">
-        <Nav.Link href="#features">Register</Nav.Link>
-        <Nav.Link href="#pricing">Login</Nav.Link>
-      </Nav>
-      <Form onSubmit={handleSubmit} inline>
-        <FormControl
-          onChange={handleInput}
-          type="text"
-          placeholder="Search"
-          className="mr-sm-2"
-        />
-        <Button onClick={handleSubmit} variant="outline-light">
-          Search
-        </Button>
-      </Form>
-    </Navbar>
-  );
-};
->>>>>>> 7bc1b69a4936b3364852c496405599e240ab36b3
