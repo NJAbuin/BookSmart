@@ -45213,6 +45213,141 @@ function SingleProduct(props) {
 
 /***/ }),
 
+/***/ "./src/containers/LoginContainer.jsx":
+/*!*******************************************!*\
+  !*** ./src/containers/LoginContainer.jsx ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/actions/user */ "./src/store/actions/user.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+var LoginContainer =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(LoginContainer, _React$Component);
+
+  function LoginContainer(props) {
+    var _this;
+
+    _classCallCheck(this, LoginContainer);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(LoginContainer).call(this, props));
+    _this.state = {
+      emailInput: '',
+      passwordInput: ''
+    };
+    _this.handleEmailInput = _this.handleEmailInput.bind(_assertThisInitialized(_this));
+    _this.handlePasswordInput = _this.handlePasswordInput.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleLogout = _this.handleLogout.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(LoginContainer, [{
+    key: "handleEmailInput",
+    value: function handleEmailInput(evt) {
+      this.setState({
+        emailInput: evt.target.value
+      });
+    }
+  }, {
+    key: "handlePasswordInput",
+    value: function handlePasswordInput(evt) {
+      this.setState({
+        passwordInput: evt.target.value
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(evt) {
+      var _this2 = this;
+
+      evt.preventDefault();
+
+      if (this.state.emailInput && this.state.passwordInput) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/auth/login', {
+          email: this.state.emailInput,
+          password: this.state.passwordInput
+        }).then(function (res) {
+          return res.data;
+        }).then(function (user) {
+          _this2.props.receiveUser(user);
+        });
+      }
+    }
+  }, {
+    key: "handleLogout",
+    value: function handleLogout() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/auth/logout').then(function () {
+        return _this3.props.emptyUser();
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var userLogged = this.props.user != '';
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        handleSubmit: this.handleSubmit,
+        handleEmailInput: this.handleEmailInput,
+        handlePasswordInput: this.handlePasswordInput,
+        handleLogout: this.handleLogout
+      });
+    }
+  }]);
+
+  return LoginContainer;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var mapDispatchToProps = {
+  receiveUser: _store_actions_user__WEBPACK_IMPORTED_MODULE_4__["receiveUser"],
+  emptyUser: _store_actions_user__WEBPACK_IMPORTED_MODULE_4__["emptyUser"]
+};
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var user = _ref.user;
+  return {
+    user: user
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(LoginContainer));
+
+/***/ }),
+
 /***/ "./src/containers/Main.jsx":
 /*!*********************************!*\
   !*** ./src/containers/Main.jsx ***!
@@ -45228,8 +45363,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _components_Register__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Register */ "./src/components/Register.jsx");
-/* harmony import */ var _ProductsContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductsContainer */ "./src/containers/ProductsContainer.jsx");
+/* harmony import */ var _RegisterContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RegisterContainer */ "./src/containers/RegisterContainer.jsx");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store */ "./src/store/index.js");
+/* harmony import */ var _store_actions_user__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/actions/user */ "./src/store/actions/user.js");
+/* harmony import */ var _LoginContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./LoginContainer */ "./src/containers/LoginContainer.jsx");
+/* harmony import */ var _ProductsContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ProductsContainer */ "./src/containers/ProductsContainer.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -45247,6 +45385,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -45275,10 +45414,14 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RegisterContainer__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LoginContainer__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/",
-        component: _ProductsContainer__WEBPACK_IMPORTED_MODULE_4__["default"]
+        component: _ProductsContainer__WEBPACK_IMPORTED_MODULE_7__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
+        path: "/register",
+        component: _RegisterContainer__WEBPACK_IMPORTED_MODULE_3__["default"]
       })));
     }
   }]);
@@ -45394,6 +45537,119 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./src/containers/RegisterContainer.jsx":
+/*!**********************************************!*\
+  !*** ./src/containers/RegisterContainer.jsx ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RegisterContainer; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Register */ "./src/components/Register.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var RegisterContainer =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(RegisterContainer, _React$Component);
+
+  function RegisterContainer(props) {
+    var _this;
+
+    _classCallCheck(this, RegisterContainer);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(RegisterContainer).call(this, props));
+    _this.state = {
+      emailInput: '',
+      passwordInput: '',
+      nameInput: ''
+    };
+    _this.handleEmailInput = _this.handleEmailInput.bind(_assertThisInitialized(_this));
+    _this.handleNameInput = _this.handleNameInput.bind(_assertThisInitialized(_this));
+    _this.handlePasswordInput = _this.handlePasswordInput.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(RegisterContainer, [{
+    key: "handleEmailInput",
+    value: function handleEmailInput(evt) {
+      this.setState({
+        emailInput: evt.target.value
+      });
+    }
+  }, {
+    key: "handlePasswordInput",
+    value: function handlePasswordInput(evt) {
+      this.setState({
+        passwordInput: evt.target.value
+      });
+    }
+  }, {
+    key: "handleNameInput",
+    value: function handleNameInput(evt) {
+      this.setState({
+        nameInput: evt.target.value
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(evt) {
+      evt.preventDefault();
+
+      if (this.state.emailInput && this.state.passwordInput && this.state.nameInput) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/auth/register', {
+          name: this.state.nameInput,
+          email: this.state.emailInput,
+          password: this.state.passwordInput
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Register__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        handleSubmit: this.handleSubmit,
+        handleEmailInput: this.handleEmailInput,
+        handleNameInput: this.handleNameInput,
+        handlePasswordInput: this.handlePasswordInput
+      });
+    }
+  }]);
+
+  return RegisterContainer;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
 /***/ "./src/index.jsx":
 /*!***********************!*\
   !*** ./src/index.jsx ***!
@@ -45458,6 +45714,46 @@ var productAction = function productAction(payload) {
   return {
     type: _constants__WEBPACK_IMPORTED_MODULE_1__["FETCH_PRODUCTS"],
     payload: payload
+  };
+};
+
+/***/ }),
+
+/***/ "./src/store/actions/user.js":
+/*!***********************************!*\
+  !*** ./src/store/actions/user.js ***!
+  \***********************************/
+/*! exports provided: receiveUser, emptyUser, fetchUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUser", function() { return receiveUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emptyUser", function() { return emptyUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
+
+
+var receiveUser = function receiveUser(payload) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"],
+    payload: payload
+  };
+};
+var emptyUser = function emptyUser() {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_1__["EMPTY_USER"]
+  };
+};
+var fetchUser = function fetchUser() {
+  return function (dispatch) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/auth/me').then(function (res) {
+      return res.data;
+    }).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
   };
 };
 

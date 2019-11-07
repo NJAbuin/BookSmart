@@ -11,6 +11,7 @@ import RegisterContainer from "./RegisterContainer";
 import store from "../store";
 import { fetchUser } from "../store/actions/user";
 import LoginContainer from "./LoginContainer";
+import ProductsContainer from "./ProductsContainer";
 
 export default class Main extends Component {
   constructor(props) {
