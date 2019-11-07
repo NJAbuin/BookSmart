@@ -29,6 +29,8 @@ app.use(cookieParser())
 app.use("/api", require("../routes/api"));
 app.use("/", require("../routes/index"));
 
+
+
 //sync database then start server
 db.sync({ force: false })
   .then(() => {
