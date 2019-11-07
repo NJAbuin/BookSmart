@@ -233,7 +233,6 @@ api.get("/destroydb", (req, res) => {
 api.get("/products", (req, res) => {
   Books.findAll()
     .then(data => {
-      console.log(Array.isArray(data));
       res.json(data);
     })
     .catch(err =>
