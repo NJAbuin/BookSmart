@@ -29,7 +29,6 @@ class SidebarContainer extends Component {
   }
 
   render() {
-    console.log(this.state.books);
     return (
       <Col sm={12} md={3} style={{padding:'0'}}>
         <Navbar fixed='position' className='col-md-3 col-sm-12' style={{position: 'fixed', padding:'0'}}>

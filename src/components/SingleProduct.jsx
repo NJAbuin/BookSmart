@@ -42,6 +42,9 @@ function SingleProduct(props) {
       <p className="price" style={priceStyle}>
         ${product.price}
       </p>
+      <p style={{ placeSelf: "center" }}>
+        Rating: {Math.round(Math.random() * 5)}/5
+      </p>
         <Button variant="success" style={buttonStyle}>Add to Cart</Button>
       </Card.Text>
       </Card.Body>

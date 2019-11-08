@@ -17,3 +17,9 @@ export default function Dropdown2({ categoryList, clickHandler }) {
    
   );
 }
+
+const stringStyle = {
+  color: "white",
+  fontFamily: "Bookman",
+  textAlign: "center"
+};

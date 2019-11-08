@@ -18,6 +18,7 @@ export default class Main extends Component {
   componentDidMount() {
     store.dispatch(fetchUser());
   }
+
   render() {
     return (
       <div className="container-fluid">
@@ -49,7 +50,7 @@ export default class Main extends Component {
 const gridContainer = {
   display: "grid",
   gridTemplateColumns: "15% 1fr",
-  gridTemplateRows: "minmax(auto, 8%) 1fr minmax(auto, 4%)",
+  gridTemplateRows: "7% 1fr minmax(auto, 4%)",
   gridTemplateAreas: `  "nav nav"
   "side content"
   "foot foot"`,
