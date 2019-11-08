@@ -19,13 +19,13 @@ export default class Main extends Component {
   render() {
     return (
       <div style={gridContainer}>
-        <div style={{ gridArea: "nav", height: "100%", overflow: "auto" }}>
+        <div style={{ gridArea: "nav", height: "100%", overflow: "hidden" }}>
           <NavbarContainer history={this.props.history} />
         </div>
         <div
           style={{
             gridArea: "side",
-            backgroundColor: "blue"
+            backgroundColor: " #6495ed"
           }}
         >
           <SidebarContainer />
@@ -60,7 +60,7 @@ export default class Main extends Component {
 const gridContainer = {
   display: "grid",
   gridTemplateColumns: "15% 1fr",
-  gridTemplateRows: "8% 1fr minmax(auto, 4%)",
+  gridTemplateRows: "7% 1fr minmax(auto, 4%)",
   gridTemplateAreas: `  "nav nav"
   "side content"
   "foot foot"`,
