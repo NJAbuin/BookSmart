@@ -6,6 +6,20 @@ const faker = require("faker");
 const Books = require("../db/models/Book");
 const Category = require("../db/models/Category");
 
+const categories = [
+  "Terror",
+  "Aventura",
+  "Policial",
+  "Periodistico",
+  "Romantica"
+];
+
+const getRandomCat = arr => {
+  let randomCategory = categories[Math.round(Math.random() * 5)];
+
+  return [randomCategory, randomCategory];
+};
+
 api.get("/seed", (req, res) => {
   Books.bulkCreate([
     {
@@ -16,7 +30,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -26,7 +40,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -36,7 +50,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -46,7 +60,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -56,7 +70,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -66,7 +80,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -76,7 +90,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -86,7 +100,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -96,7 +110,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Ninguna"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -106,7 +120,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -116,7 +130,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -126,7 +140,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -136,7 +150,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -146,7 +160,7 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
     {
       name: faker.commerce.productName(),
@@ -156,73 +170,64 @@ api.get("/seed", (req, res) => {
       imgURL: faker.image.imageUrl(),
       year: 3043,
       author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
+      category: getRandomCat(categories)
     },
-    {
-      name: faker.commerce.productName(),
-      price: faker.commerce.price(),
-      description: faker.lorem.sentences(),
-      stock: faker.random.number(),
-      imgURL: faker.image.imageUrl(),
-      year: 3043,
-      author: faker.name.findName(),
-      category: ["Una Cuarta", "Una Quinta"]
-    },
-    {
-      name: faker.commerce.productName(),
-      price: faker.commerce.price(),
-      description: faker.lorem.sentences(),
-      stock: faker.random.number(),
-      imgURL: faker.image.imageUrl(),
-      year: 3043,
-      author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
-    },
-    {
-      name: faker.commerce.productName(),
-      price: faker.commerce.price(),
-      description: faker.lorem.sentences(),
-      stock: faker.random.number(),
-      imgURL: faker.image.imageUrl(),
-      year: 3043,
-      author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
-    },
-    {
-      name: faker.commerce.productName(),
-      price: faker.commerce.price(),
-      description: faker.lorem.sentences(),
-      stock: faker.random.number(),
-      imgURL: faker.image.imageUrl(),
-      year: 3043,
-      author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
-    },
-    {
-      name: faker.commerce.productName(),
-      price: faker.commerce.price(),
-      description: faker.lorem.sentences(),
-      stock: faker.random.number(),
-      imgURL: faker.image.imageUrl(),
-      year: 3043,
-      author: faker.name.findName(),
-      category: ["Una Categoria", "Otra Categoria"]
-    }
-  ]);
-});
 
-api.get("/seedCat", (req, res) => {
-  Category.bulkCreate([
-    { name: "Una Categoria" },
-    { name: "Otra Categoria" },
-    { name: "Una Cuarta" },
-    { name: "Una Quinta" },
-    { name: "Ninguna" }
-  ]);
+    {
+      name: faker.commerce.productName(),
+      price: faker.commerce.price(),
+      description: faker.lorem.sentences(),
+      stock: faker.random.number(),
+      imgURL: faker.image.imageUrl(),
+      year: 3043,
+      author: faker.name.findName(),
+      category: getRandomCat(categories)
+    },
+    {
+      name: faker.commerce.productName(),
+      price: faker.commerce.price(),
+      description: faker.lorem.sentences(),
+      stock: faker.random.number(),
+      imgURL: faker.image.imageUrl(),
+      year: 3043,
+      author: faker.name.findName(),
+      category: getRandomCat(categories)
+    },
+    {
+      name: faker.commerce.productName(),
+      price: faker.commerce.price(),
+      description: faker.lorem.sentences(),
+      stock: faker.random.number(),
+      imgURL: faker.image.imageUrl(),
+      year: 3043,
+      author: faker.name.findName(),
+      category: getRandomCat(categories)
+    },
+    {
+      name: faker.commerce.productName(),
+      price: faker.commerce.price(),
+      description: faker.lorem.sentences(),
+      stock: faker.random.number(),
+      imgURL: faker.image.imageUrl(),
+      year: 3043,
+      author: faker.name.findName(),
+      category: getRandomCat(categories)
+    }
+  ]).then(() => {
+    Category.bulkCreate([
+      { name: "Terror" },
+      { name: "Aventura" },
+      { name: "Policial" },
+      { name: "Periodistico" },
+      { name: "Romantica" }
+    ]);
+  });
 });
 
 api.get("/destroydb", (req, res) => {
   User.destroy({ where: {} })
+    .then(data => Books.destroy({}))
+    .then(data => Category.destroy({}))
     .then(data => res.redirect("/"))
     .catch(err => err => console.log(`Failed to destroy db :: ERROR: ${err}`));
 });

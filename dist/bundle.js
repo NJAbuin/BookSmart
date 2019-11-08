@@ -57340,6 +57340,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 function Dropdown(_ref) {
@@ -57744,7 +57746,11 @@ function SingleProduct(props) {
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     style: buttonStyle
-  }, "Add to Cart")));
+  }, "Add to Cart")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      placeSelf: "center"
+    }
+  }, "Rating: ", Math.round(Math.random() * 5), "/5"));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (SingleProduct);
