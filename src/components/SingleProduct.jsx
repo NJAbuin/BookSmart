@@ -36,7 +36,7 @@ function SingleProduct(props) {
       <Card.Body>
       <Link to={`/products/${product.id}`}>
         <Card.Title style={{ gridArea: "title", textAlign: "center" }}>
-          {product.name}
+          {product.name.length>29? `${product.name.substring(0,28)}...`:product.name}
         </Card.Title>
       </Link>
       <Card.Text>
