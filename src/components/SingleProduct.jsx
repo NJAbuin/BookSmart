@@ -45,9 +45,7 @@ function SingleProduct(props) {
   return (
     <div className="card" style={cardStyle}>
       <img
-        src={
-          "https://quittingbydesign.com/wp-content/uploads/2018/09/image-coming-soon-placeholder.jpg"
-        }
+        src={product.imgURL}
         key={product.id}
         style={{
           padding: "10px",
