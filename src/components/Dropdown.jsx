@@ -1,13 +1,13 @@
 import React from "react";
 import Axios from "axios";
 
-export default function Dropdown({ categoryList }) {
+export default function Dropdown({ categoryList, clickHandler }) {
   return (
     <div>
       <ul style={{ listStyleType: "none", color: "white" }}>
         {categoryList.map(e => {
           return (
-            <p onClick={clickHandler(e)} key={e}>
+            <p onClick={evt => clickHandler(e)} key={e}>
               {e}
             </p>
           );
@@ -16,7 +16,3 @@ export default function Dropdown({ categoryList }) {
     </div>
   );
 }
-
-const clickHandler = e => {
-  Axios.post("/api/category/books", { name: e }).then(res => console.log(res));
-};
