@@ -57555,9 +57555,9 @@ function (_Component) {
     key: "render",
     value: function render() {
       var product = this.props.product.product[0];
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "TITLE: ", product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://quittingbydesign.com/wp-content/uploads/2018/09/image-coming-soon-placeholder.jpg"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "PRICE: ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "DESCRIPCION: ", product.description, " "));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: product.imgURL
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$ ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Synopsis ", product.description, " "));
     }
   }]);
 
@@ -57723,7 +57723,7 @@ function SingleProduct(props) {
     className: "card",
     style: cardStyle
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "https://quittingbydesign.com/wp-content/uploads/2018/09/image-coming-soon-placeholder.jpg",
+    src: product.imgURL,
     key: product.id,
     style: {
       padding: "10px",
@@ -57740,7 +57740,7 @@ function SingleProduct(props) {
       gridArea: "title",
       textAlign: "center",
       placeSelf: "center",
-      height: "2.5em"
+      height: "minmax(2.5em, 2.5em)"
     }, "textAlign", "center")
   }, product.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "price",
@@ -58438,7 +58438,6 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.state.books);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Dropdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
         clickHandler: this.clickHandler,
         categoryList: this.state.data
@@ -58619,11 +58618,14 @@ var emptyUser = function emptyUser() {
 };
 var fetchUser = function fetchUser() {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/auth/me').then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/auth/me").then(function (res) {
       return res.data;
     }).then(function (user) {
       return dispatch(receiveUser(user));
-    });
+    }); // axios
+    //   .get("/auth/me")
+    //   .then(res => res.data)
+    //   .then(user => dispatch(receiveUser(user)));
   };
 };
 
