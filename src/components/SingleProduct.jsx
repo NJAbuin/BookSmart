@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-
+import axios from 'axios'
 
 
 const priceStyle = {
@@ -28,10 +28,11 @@ const buttonStyle = {
 
 function SingleProduct(props) {
   const product = props.info;
+  
 
   return (
     <Card key={product.id} style={{marginBottom:'3%'}}>
-      <Card.Img variant="top" src="https://quittingbydesign.com/wp-content/uploads/2018/09/image-coming-soon-placeholder.jpg"/>
+      <Card.Img variant="top" src={product.imgURL}/>
       <Card.Body>
       <Link to={`/products/${product.id}`}>
         <Card.Title style={{ gridArea: "title", textAlign: "center" }}>
