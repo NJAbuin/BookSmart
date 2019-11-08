@@ -21,6 +21,7 @@ class NavbarContainer extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.searchProducts(this.state.inputValue);
+    this.props.history.push("/");
   }
 
   render() {

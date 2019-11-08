@@ -21,8 +21,4 @@ router.get("/me", (req, res) => {
   res.send(req.user);
 });
 
-router.get("/ejemplo", (req, res) => {
-  Book.findByCategory("Ninguna").then(e => res.send(e));
-});
-
 module.exports = router;

@@ -270,4 +270,16 @@ api.get("/products/:productName", (req, res) => {
     );
 });
 
+api.get("/category", (req, res) => {
+  Category.findAll({})
+    .then(res => res.map(e => e.dataValues.name))
+    .then(categories => res.json(categories))
+    .catch(e => console.log(e));
+});
+
+api.post("/category/books", (req, res) => {
+  console.log("hola", req.body);
+  Books.findByCategory(req.body.name).then(e => res.send(e));
+});
+
 module.exports = api;

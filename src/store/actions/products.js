@@ -10,8 +10,21 @@ export const getProducts = () => dispatch => {
     });
 };
 
-const productAction = payload => {
+export const productAction = payload => {
   return { type: FETCH_PRODUCTS, payload };
+};
+
+export const getFilterAction = e => dispatch => {
+  axios
+    .post("/api/category/books", { name: e })
+    .then(res => res.data)
+    .then(product => {
+      return dispatch(searchProductAction(product));
+    });
+};
+
+export const filterAction = payload => {
+  return { type: "FILTER_PRODUCTS", payload };
 };
 
 export const searchProducts = inputValue => dispatch => {
