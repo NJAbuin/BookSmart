@@ -11,6 +11,8 @@ export const productsReducer = (state = initialState, action) => {
       return [...action.payload];
     case SELECT_PRODUCT:
       return [action.payload];
+    case "FILTER_PRODUCT":
+      return [action.payload];
     default:
       return state;
   }
