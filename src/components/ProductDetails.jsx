@@ -18,14 +18,10 @@ class ProductDetails extends Component {
 
     return (
       <div>
-        <h1>TITLE: {product.name}</h1>
-        <img
-          src={
-            "https://quittingbydesign.com/wp-content/uploads/2018/09/image-coming-soon-placeholder.jpg"
-          }
-        />
-        <p>PRICE: {product.price} </p>
-        <p>DESCRIPCION: {product.description} </p>
+        <h1>{product.name}</h1>
+        <img src={product.imgURL} />
+        <h3>$ {product.price} </h3>
+        <p>Synopsis {product.description} </p>
       </div>
     );
   }

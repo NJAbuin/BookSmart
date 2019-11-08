@@ -16,6 +16,7 @@ export default class Main extends Component {
   componentDidMount() {
     store.dispatch(fetchUser());
   }
+
   render() {
     return (
       <div style={gridContainer}>
