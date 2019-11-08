@@ -19,10 +19,15 @@ export default class Main extends Component {
   render() {
     return (
       <div style={gridContainer}>
-        <div style={{ gridArea: "nav", height: "100%" }}>
+        <div style={{ gridArea: "nav", height: "100%", overflow: "hidden" }}>
           <NavbarContainer history={this.props.history} />
         </div>
-        <div style={{ gridArea: "side", backgroundColor: "blue" }}>
+        <div
+          style={{
+            gridArea: "side",
+            backgroundColor: " #6495ed"
+          }}
+        >
           <SidebarContainer />
         </div>
         <div
@@ -38,8 +43,14 @@ export default class Main extends Component {
             <Route exact path="/products/:id" component={ProductDetails} />
           </Switch>
         </div>
-        <div style={{ gridArea: "foot", backgroundColor: "violet" }}>
-          FOOTER
+        <div
+          style={{
+            gridArea: "foot",
+            backgroundColor: "violet",
+            textAlign: "center"
+          }}
+        >
+          FOOTER - PLACEHOLDER
         </div>
       </div>
     );
@@ -49,7 +60,7 @@ export default class Main extends Component {
 const gridContainer = {
   display: "grid",
   gridTemplateColumns: "15% 1fr",
-  gridTemplateRows: "minmax(auto, 8%) 1fr minmax(auto, 4%)",
+  gridTemplateRows: "7% 1fr minmax(auto, 4%)",
   gridTemplateAreas: `  "nav nav"
   "side content"
   "foot foot"`,

@@ -59,7 +59,15 @@ function SingleProduct(props) {
         }}
       />
       <Link to={`/products/${product.id}`}>
-        <h1 style={{ gridArea: "title", textAlign: "center" }}>
+        <h1
+          style={{
+            gridArea: "title",
+            textAlign: "center",
+            placeSelf: "center",
+            height: "2.5em",
+            textAlign: "center"
+          }}
+        >
           {product.name}
         </h1>
       </Link>
