@@ -18,11 +18,7 @@ class ProductsContainer extends React.Component {
   render() {
     let productList = this.props.products.product;
     if (productList.length <= 0) {
-      return (
-        <p>
-          No se encontraron resultados
-        </p>
-      )
+      return <p>No se encontraron resultados</p>;
     } else {
       return (
         <div>

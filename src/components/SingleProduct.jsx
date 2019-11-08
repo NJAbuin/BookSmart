@@ -69,6 +69,9 @@ function SingleProduct(props) {
       <p style={{ alignSelf: "center", justifySelf: "center" }}>
         <button style={buttonStyle}>Add to Cart</button>
       </p>
+      <p style={{ placeSelf: "center" }}>
+        Rating: {Math.round(Math.random() * 5)}/5
+      </p>
     </div>
   );
 }
