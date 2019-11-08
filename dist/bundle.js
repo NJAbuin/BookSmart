@@ -57343,7 +57343,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Dropdown(_ref) {
-  var categoryList = _ref.categoryList;
+  var categoryList = _ref.categoryList,
+      clickHandler = _ref.clickHandler;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     style: {
       listStyleType: "none",
@@ -57351,19 +57352,13 @@ function Dropdown(_ref) {
     }
   }, categoryList.map(function (e) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      onClick: clickHandler(e),
+      onClick: function onClick(evt) {
+        return clickHandler(e);
+      },
       key: e
     }, e);
   })));
 }
-
-var clickHandler = function clickHandler(e) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/category/books", {
-    name: e
-  }).then(function (res) {
-    return console.log(res);
-  });
-};
 
 /***/ }),
 
@@ -58103,6 +58098,7 @@ function (_React$Component) {
     value: function handleSubmit(evt) {
       evt.preventDefault();
       this.props.searchProducts(this.state.inputValue);
+      this.props.history.push("/");
     }
   }, {
     key: "render",
@@ -58367,6 +58363,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Dropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Dropdown */ "./src/components/Dropdown.jsx");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _store_actions_products__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/actions/products */ "./src/store/actions/products.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -58377,13 +58374,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -58402,9 +58400,10 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SidebarContainer).call(this, props));
     _this.state = {
-      data: []
-    }; //string array
-
+      data: [],
+      books: []
+    };
+    _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -58418,9 +58417,16 @@ function (_Component) {
       });
     }
   }, {
+    key: "clickHandler",
+    value: function clickHandler(e) {
+      this.props.getFilterAction(e);
+    }
+  }, {
     key: "render",
     value: function render() {
+      console.log(this.state.books);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Dropdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        clickHandler: this.clickHandler,
         categoryList: this.state.data
       }));
     }
@@ -58429,7 +58435,17 @@ function (_Component) {
   return SidebarContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, null)(SidebarContainer));
+var mapStateToProps = function mapStateToProps(state) {};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    getFilterAction: function getFilterAction(data) {
+      return dispatch(Object(_store_actions_products__WEBPACK_IMPORTED_MODULE_4__["getFilterAction"])(data));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(SidebarContainer));
 
 /***/ }),
 
@@ -58475,12 +58491,15 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 /*!***************************************!*\
   !*** ./src/store/actions/products.js ***!
   \***************************************/
-/*! exports provided: getProducts, searchProducts, selectProduct */
+/*! exports provided: getProducts, productAction, getFilterAction, filterAction, searchProducts, selectProduct */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProducts", function() { return getProducts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "productAction", function() { return productAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFilterAction", function() { return getFilterAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterAction", function() { return filterAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchProducts", function() { return searchProducts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectProduct", function() { return selectProduct; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -58497,14 +58516,29 @@ var getProducts = function getProducts() {
     });
   };
 };
-
 var productAction = function productAction(payload) {
   return {
     type: _constants__WEBPACK_IMPORTED_MODULE_1__["FETCH_PRODUCTS"],
     payload: payload
   };
 };
-
+var getFilterAction = function getFilterAction(e) {
+  return function (dispatch) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/category/books", {
+      name: e
+    }).then(function (res) {
+      return res.data;
+    }).then(function (product) {
+      return dispatch(searchProductAction(product));
+    });
+  };
+};
+var filterAction = function filterAction(payload) {
+  return {
+    type: "FILTER_PRODUCTS",
+    payload: payload
+  };
+};
 var searchProducts = function searchProducts(inputValue) {
   return function (dispatch) {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/products/".concat(inputValue)).then(function (res) {
@@ -58692,6 +58726,9 @@ var productsReducer = function productsReducer() {
       return _toConsumableArray(action.payload);
 
     case _constants__WEBPACK_IMPORTED_MODULE_0__["SELECT_PRODUCT"]:
+      return [action.payload];
+
+    case "FILTER_PRODUCT":
       return [action.payload];
 
     default:
