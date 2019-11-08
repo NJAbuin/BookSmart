@@ -25,7 +25,6 @@ class SidebarContainer extends Component {
   }
 
   render() {
-    console.log(this.state.books);
     return (
       <div>
         <Dropdown
