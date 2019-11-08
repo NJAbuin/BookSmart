@@ -49406,7 +49406,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57338,27 +57338,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Dropdown; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
 
 function Dropdown(_ref) {
   var categoryList = _ref.categoryList,
       clickHandler = _ref.clickHandler;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     style: {
-      listStyleType: "none",
-      color: "white"
+      color: "white",
+      fontFamily: "Bookman",
+      textAlign: "center"
     }
-  }, categoryList.map(function (e) {
+  }, "Categorias"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), categoryList.map(function (e) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      style: stringStyle,
       onClick: function onClick(evt) {
         return clickHandler(e);
       },
       key: e
     }, e);
-  })));
+  }));
 }
+var stringStyle = {
+  color: "white",
+  fontFamily: "Bookman",
+  textAlign: "center"
+};
 
 /***/ }),
 
@@ -57675,6 +57679,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var cardStyle = {
@@ -57730,10 +57736,12 @@ function SingleProduct(props) {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/products/".concat(product.id)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    style: {
+    style: _defineProperty({
       gridArea: "title",
-      textAlign: "center"
-    }
+      textAlign: "center",
+      placeSelf: "center",
+      height: "2.5em"
+    }, "textAlign", "center")
   }, product.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "price",
     style: priceStyle
@@ -57983,14 +57991,15 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           gridArea: "nav",
-          height: "100%"
+          height: "100%",
+          overflow: "hidden"
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavbarContainer__WEBPACK_IMPORTED_MODULE_6__["default"], {
         history: this.props.history
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           gridArea: "side",
-          backgroundColor: "blue"
+          backgroundColor: " #6495ed"
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SidebarContainer__WEBPACK_IMPORTED_MODULE_8__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
@@ -58013,9 +58022,10 @@ function (_Component) {
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           gridArea: "foot",
-          backgroundColor: "violet"
+          backgroundColor: "violet",
+          textAlign: "center"
         }
-      }, "FOOTER"));
+      }, "FOOTER - PLACEHOLDER"));
     }
   }]);
 
@@ -58026,7 +58036,7 @@ function (_Component) {
 var gridContainer = {
   display: "grid",
   gridTemplateColumns: "15% 1fr",
-  gridTemplateRows: "minmax(auto, 8%) 1fr minmax(auto, 4%)",
+  gridTemplateRows: "7% 1fr minmax(auto, 4%)",
   gridTemplateAreas: "  \"nav nav\"\n  \"side content\"\n  \"foot foot\"",
   height: "100vh"
 };
