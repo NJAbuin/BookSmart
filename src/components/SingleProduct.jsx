@@ -62,7 +62,7 @@ function SingleProduct(props) {
             gridArea: "title",
             textAlign: "center",
             placeSelf: "center",
-            height: "2.5em",
+            height: "minmax(2.5em, 2.5em)",
             textAlign: "center"
           }}
         >
