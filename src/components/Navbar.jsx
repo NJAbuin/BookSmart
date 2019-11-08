@@ -6,10 +6,10 @@ import LoginContainer from "../containers/LoginContainer";
 export default ({ handleInput, handleSubmit }) => {
   return (
     <>
-      <Navbar bg="primary" variant="dark">
+      <Navbar bg="primary" variant="dark" fixed="top" >
         <Navbar.Brand href="/">BookSmart</Navbar.Brand>
         <Nav className="mr-auto">
-          <ul className="nav">
+          <ul className="nav ">
             <li className="nav-item">
               <RegisterContainer />
             </li>

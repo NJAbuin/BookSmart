@@ -2,6 +2,9 @@ import React from "react";
 import { getProducts, searchProducts } from "../store/actions/products";
 import SingleProduct from "../components/SingleProduct";
 import { connect } from "react-redux";
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import CardDeck from 'react-bootstrap/CardDeck'
 
 class ProductsContainer extends React.Component {
   constructor(props) {
@@ -21,13 +24,18 @@ class ProductsContainer extends React.Component {
       return <p>No se encontraron resultados</p>;
     } else {
       return (
-        <div>
-          <ul style={containerStyle}>
+          <Row>
             {productList.slice(0, 9).map(e => (
+              
+              <Col sm='12' md='4'>
+                <CardDeck>
               <SingleProduct key={e.id} info={e} />
+              </CardDeck>
+              </Col>
             ))}
-          </ul>
-        </div>
+            </Row>  
+        
+      
       );
     }
   }
