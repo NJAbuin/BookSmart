@@ -1,24 +1,20 @@
 import React from "react";
+import Axios from "axios";
+import Dropdown from 'react-bootstrap/Dropdown'
 
-export default function Dropdown({ categoryList, clickHandler }) {
+export default function Dropdown2({ categoryList, clickHandler }) {
   return (
     <div>
-      <br />
-      <h4
-        style={{ color: "white", fontFamily: "Bookman", textAlign: "center" }}
-      >
-        Categorias
-      </h4>
-      <br />
-
-      {categoryList.map(e => {
-        return (
-          <p style={stringStyle} onClick={evt => clickHandler(e)} key={e}>
-            {e}
-          </p>
-        );
-      })}
-    </div>
+        {categoryList.map(e => {
+          return (
+            <Dropdown.Item onClick={evt => clickHandler(e)} key={e}>
+              {e}
+            </Dropdown.Item>
+          );
+        })}
+        </div>
+      
+   
   );
 }
 

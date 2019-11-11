@@ -272,7 +272,6 @@ api.get("/category", (req, res) => {
 });
 
 api.post("/category/books", (req, res) => {
-  console.log("hola", req.body);
   Books.findByCategory(req.body.name).then(e => res.send(e));
 });
 

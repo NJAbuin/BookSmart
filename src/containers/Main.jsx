@@ -7,6 +7,8 @@ import ProductsContainer from "./ProductsContainer";
 import NavbarContainer from "./NavbarContainer";
 import ProductDetails from "../components/ProductDetails";
 import SidebarContainer from "./SidebarContainer";
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export default class Main extends Component {
   constructor(props) {
@@ -19,40 +21,27 @@ export default class Main extends Component {
 
   render() {
     return (
-      <div style={gridContainer}>
-        <div style={{ gridArea: "nav", height: "100%", overflow: "hidden" }}>
-          <NavbarContainer history={this.props.history} />
-        </div>
-        <div
-          style={{
-            gridArea: "side",
-            backgroundColor: " #6495ed"
-          }}
-        >
-          <SidebarContainer />
-        </div>
-        <div
-          style={{
-            gridArea: "content",
-            margin: "10px",
-            height: "minmax(auto, 100%)"
-          }}
-        >
+      <div className="container-fluid">
+        <div>
+      <Row>
+        <Col sm='12'>
+          <NavbarContainer/>
+        </Col>
+      </Row>
+      </div>
+      <br/><br/><br/>
+      <Row>
+        
+          <SidebarContainer/>
+        
+        <Col sm='12' md='8'>
           <Switch>
             <Route exact path="/" component={ProductsContainer} />
             <Route exact path="/register" component={RegisterContainer} />
             <Route exact path="/products/:id" component={ProductDetails} />
           </Switch>
-        </div>
-        <div
-          style={{
-            gridArea: "foot",
-            backgroundColor: "violet",
-            textAlign: "center"
-          }}
-        >
-          FOOTER - PLACEHOLDER
-        </div>
+          </Col>
+        </Row>
       </div>
     );
   }
