@@ -173,7 +173,7 @@ api.get("/seed", (req, res) => {
         "Cuando hacen rellenar el absurdo test de orientación profesional en el instituto, todo el mundo elige profesiones elegantes, bien remuneradas y con reconocimiento social. Yo dejé la casilla en blanco, puestodavía no había decidido qué carrera universitaria quería cursar. Al final acabé con una licenciatura en bioquímica alimentaria y un novio dispuesto a casarse conmigo en cuanto lográramos un buen puesto de trabajo. Solo conseguí una de las dos cosas. Sigo soltera. Y no he sentido en ningún momento la tentación de establecer una relación convencional porque no he tenido ni tiempo ni ganas. ",
       stock: faker.random.number(),
       imgURL:
-        "hhttps://images.bajalibros.com/jPHgOWGxVfR3dlvC5cT3pCY5QH0=/fit-in/292x446/filters:fill(f8f8f8):quality(90):format(webp)/d2d6tho5fth6q4.cloudfront.net/extast1099657_0cf5bc785c7d39a521746f66afb7481d07c7944a.jpg",
+        "https://images.bajalibros.com/jPHgOWGxVfR3dlvC5cT3pCY5QH0=/fit-in/292x446/filters:fill(f8f8f8):quality(90):format(webp)/d2d6tho5fth6q4.cloudfront.net/extast1099657_0cf5bc785c7d39a521746f66afb7481d07c7944a.jpg",
       year: 2019,
       author: faker.name.findName(),
       category: getRandomCat(categories)
@@ -272,7 +272,6 @@ api.get("/category", (req, res) => {
 });
 
 api.post("/category/books", (req, res) => {
-  console.log("hola", req.body);
   Books.findByCategory(req.body.name).then(e => res.send(e));
 });
 
