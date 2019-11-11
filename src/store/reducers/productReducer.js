@@ -11,7 +11,7 @@ const initialState = [];
 export const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PRODUCTS:
-      return [...state, ...action.payload];
+      return [...newstate, ...action.payload];
     case SEARCH_PRODUCTS:
       return [...action.payload];
     case SELECT_PRODUCT:

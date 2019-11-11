@@ -10,4 +10,8 @@ router.get("/*", (req, res) => {
 
 router.use("/api/auth", auth);
 
+// router.get("*", (req, res) => {
+//   res.redirect('/')
+// });
+
 module.exports = router;

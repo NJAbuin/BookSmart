@@ -5,7 +5,9 @@ import { selectProduct } from "../store/actions/products";
 class ProductDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      selectedProduct2: []
+    };
     this.productID = this.props.match.params.id;
   }
 
@@ -13,18 +15,24 @@ class ProductDetails extends Component {
     this.props.selectProduct(this.productID);
   }
 
-  render() {
-    const product = this.props.product.product[0];
+ 
 
+  
+  render() {
+    let  product = this.props.product.product[0] || {name: '', imgURL: '', price: '', description: ''}
+    
     return (
+    
       <div>
         <h1>{product.name}</h1>
-        <img src={product.imgURL} />
+        <img src={product.imgURL } />
         <h3>$ {product.price} </h3>
         <p>Synopsis: {product.description} </p>
       </div>
     );
   }
+
+  
 }
 
 const mapStateToProps = state => {

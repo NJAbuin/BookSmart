@@ -49406,7 +49406,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57549,7 +57549,9 @@ function (_Component) {
     _classCallCheck(this, ProductDetails);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductDetails).call(this, props));
-    _this.state = {};
+    _this.state = {
+      selectedProduct2: []
+    };
     _this.productID = _this.props.match.params.id;
     return _this;
   }
@@ -57562,7 +57564,12 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var product = this.props.product.product[0];
+      var product = this.props.product.product[0] || {
+        name: '',
+        imgURL: '',
+        price: '',
+        description: ''
+      };
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: product.imgURL
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$ ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Synopsis: ", product.description, " "));
@@ -57722,6 +57729,28 @@ function SingleProduct(props) {
 
   var addHandler = function addHandler(product) {
     props.addToCart(product);
+    var carroSucio = props.cartReducer;
+    var carroLimpio = []; //array<{book:{},quantity:integer}>
+
+    carroSucio.map(function (e) {
+      if (carroLimpio.findIndex(function (i) {
+        return i.book === e;
+      }) === -1) {
+        carroLimpio.push({
+          quantity: 1,
+          book: e
+        });
+      } else {
+        carroLimpio[carroLimpio.findIndex(function (i) {
+          return i.book === e;
+        })].quantity += 1;
+      }
+    });
+    console.log(carroLimpio);
+
+    if (!props.user.name) {
+      localStorage.carroLimpio;
+    }
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -57739,7 +57768,7 @@ function SingleProduct(props) {
       gridArea: "title",
       textAlign: "center"
     }
-  }, product.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"].Text, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, product.name.length > 29 ? "".concat(product.name.substring(0, 28), "...") : product.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"].Text, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "price",
     style: priceStyle
   }, "$", product.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -57755,6 +57784,15 @@ function SingleProduct(props) {
   }, "Add to Cart"))));
 }
 
+var mapStateToProps = function mapStateToProps(_ref) {
+  var user = _ref.user,
+      cartReducer = _ref.cartReducer;
+  return {
+    user: user,
+    cartReducer: cartReducer
+  };
+};
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     addToCart: function addToCart(id) {
@@ -57763,7 +57801,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mapDispatchToProps)(SingleProduct));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchToProps)(SingleProduct));
 
 /***/ }),
 
@@ -58349,7 +58387,6 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(evt) {
       evt.preventDefault();
-      console.log("Hola");
 
       if (this.state.emailInput && this.state.passwordInput && this.state.nameInput) {
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/auth/register", {
@@ -58576,11 +58613,9 @@ var addToCart = function addToCart(product) {
   return function (dispatch) {
     console.log("PRODUCT");
     console.log(product.id);
+    dispatch(cartAction(product));
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/product/".concat(product.id)).then(function (res) {
       return res.data;
-    }).then(function (response) {
-      console.log(response);
-      return dispatch(cartAction(product.id));
     });
   };
 };
@@ -58872,7 +58907,7 @@ var productsReducer = function productsReducer() {
 
   switch (action.type) {
     case _constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_PRODUCTS"]:
-      return [].concat(_toConsumableArray(state), _toConsumableArray(action.payload));
+      return [].concat(_toConsumableArray(newstate), _toConsumableArray(action.payload));
 
     case _constants__WEBPACK_IMPORTED_MODULE_0__["SEARCH_PRODUCTS"]:
       return _toConsumableArray(action.payload);
