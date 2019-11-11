@@ -7,8 +7,9 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 
-const DIST_DIR = path.join(__dirname, "../dist");
 
+
+const DIST_DIR = path.join(__dirname, "../dist");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -26,12 +27,17 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+
 
 //use modular routes
 app.use("/api", require("../routes/api"));
 app.use("/", require("../routes/index"));
 
+app.use("*", express.static(DIST_DIR));
 //sync database then start server
 db.sync({ force: false })
   .then(() => {

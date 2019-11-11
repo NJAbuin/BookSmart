@@ -4,10 +4,14 @@ const DIST_DIR = path.join(__dirname, "../dist");
 const HTML_FILE = path.join(DIST_DIR, "index.html");
 const auth = require("./auth");
 
-router.get("/", (req, res) => {
-  res.sendFile(HTML_FILE);
-});
+// router.get("/", (req, res) => {
+//   res.sendFile(HTML_FILE);
+// });
 
 router.use("/auth", auth);
+
+// router.get("*", (req, res) => {
+//   res.redirect('/')
+// });
 
 module.exports = router;

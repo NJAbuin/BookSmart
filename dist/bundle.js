@@ -57356,6 +57356,11 @@ function Dropdown2(_ref) {
     }, e);
   }));
 }
+var stringStyle = {
+  color: "white",
+  fontFamily: "Bookman",
+  textAlign: "center"
+};
 
 /***/ }),
 
@@ -57543,7 +57548,9 @@ function (_Component) {
     _classCallCheck(this, ProductDetails);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductDetails).call(this, props));
-    _this.state = {};
+    _this.state = {
+      selectedProduct2: []
+    };
     _this.productID = _this.props.match.params.id;
     return _this;
   }
@@ -57556,10 +57563,15 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var product = this.props.product.product[0];
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "TITLE: ", product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://quittingbydesign.com/wp-content/uploads/2018/09/image-coming-soon-placeholder.jpg"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "PRICE: ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "DESCRIPCION: ", product.description, " "));
+      var product = this.props.product.product[0] || {
+        name: '',
+        imgURL: '',
+        price: '',
+        description: ''
+      };
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: product.imgURL
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$ ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Synopsis ", product.description, " "));
     }
   }]);
 
@@ -57683,6 +57695,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Card */ "./node_modules/react-bootstrap/esm/Card.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -57716,7 +57731,7 @@ function SingleProduct(props) {
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"].Img, {
     variant: "top",
-    src: "https://quittingbydesign.com/wp-content/uploads/2018/09/image-coming-soon-placeholder.jpg"
+    src: product.imgURL
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"].Body, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/products/".concat(product.id)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
@@ -57724,10 +57739,14 @@ function SingleProduct(props) {
       gridArea: "title",
       textAlign: "center"
     }
-  }, product.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"].Text, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, product.name.length > 29 ? "".concat(product.name.substring(0, 28), "...") : product.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"].Text, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "price",
     style: priceStyle
-  }, "$", product.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "$", product.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      placeSelf: "center"
+    }
+  }, "Rating: ", Math.round(Math.random() * 5), "/5"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "success",
     style: buttonStyle
   }, "Add to Cart"))));
@@ -58016,7 +58035,7 @@ function (_Component) {
 var gridContainer = {
   display: "grid",
   gridTemplateColumns: "15% 1fr",
-  gridTemplateRows: "minmax(auto, 8%) 1fr minmax(auto, 4%)",
+  gridTemplateRows: "7% 1fr minmax(auto, 4%)",
   gridTemplateAreas: "  \"nav nav\"\n  \"side content\"\n  \"foot foot\"",
   height: "100vh"
 };
@@ -58437,7 +58456,6 @@ function (_Component) {
     value: function render() {
       var _this3 = this;
 
-      console.log(this.state.books);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_8__["default"], {
         sm: 12,
         md: 3,
@@ -58646,11 +58664,14 @@ var emptyUser = function emptyUser() {
 };
 var fetchUser = function fetchUser() {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/auth/me').then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/auth/me").then(function (res) {
       return res.data;
     }).then(function (user) {
       return dispatch(receiveUser(user));
-    });
+    }); // axios
+    //   .get("/auth/me")
+    //   .then(res => res.data)
+    //   .then(user => dispatch(receiveUser(user)));
   };
 };
 
@@ -58761,7 +58782,7 @@ var productsReducer = function productsReducer() {
 
   switch (action.type) {
     case _constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_PRODUCTS"]:
-      return [].concat(_toConsumableArray(state), _toConsumableArray(action.payload));
+      return [].concat(_toConsumableArray(newstate), _toConsumableArray(action.payload));
 
     case _constants__WEBPACK_IMPORTED_MODULE_0__["SEARCH_PRODUCTS"]:
       return _toConsumableArray(action.payload);

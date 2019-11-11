@@ -275,4 +275,8 @@ api.post("/category/books", (req, res) => {
   Books.findByCategory(req.body.name).then(e => res.send(e));
 });
 
+api.post('/getbook', (req, res)=>{
+  Books.findByPk(req.body.id).then(el=>res.send(el))
+})
+
 module.exports = api;

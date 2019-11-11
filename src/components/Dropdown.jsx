@@ -3,6 +3,7 @@ import Axios from "axios";
 import Dropdown from 'react-bootstrap/Dropdown'
 
 export default function Dropdown2({ categoryList, clickHandler }) {
+  
   return (
     <div>
         {categoryList.map(e => {
