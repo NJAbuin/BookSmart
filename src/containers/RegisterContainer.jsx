@@ -30,7 +30,6 @@ export default class RegisterContainer extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    console.log("Hola");
     if (
       this.state.emailInput &&
       this.state.passwordInput &&

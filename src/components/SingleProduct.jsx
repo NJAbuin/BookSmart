@@ -31,6 +31,21 @@ function SingleProduct(props) {
 
   const addHandler = product => {
     props.addToCart(product);
+    const carroSucio = props.cartReducer;
+
+    let carroLimpio = []; //array<{book:{},quantity:integer}>
+    carroSucio.map(e => {
+      if (carroLimpio.findIndex(i => i.book === e) === -1) {
+        carroLimpio.push({ quantity: 1, book: e });
+      } else {
+        carroLimpio[carroLimpio.findIndex(i => i.book === e)].quantity += 1;
+      }
+    });
+    console.log(carroLimpio);
+
+    if (!props.user.name) {
+      localStorage.carroLimpio;
+    }
   };
 
   return (
@@ -62,11 +77,16 @@ function SingleProduct(props) {
   );
 }
 
+const mapStateToProps = ({ user, cartReducer }) => ({
+  user,
+  cartReducer
+});
+
 const mapDispatchToProps = dispatch => ({
   addToCart: id => dispatch(addToCart(id))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SingleProduct);
