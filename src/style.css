@@ -1,0 +1,21 @@
+.product-container{
+display: flex;
+}
+
+.img-container{
+   margin-top: 30px;
+}
+
+.product-details{
+    margin-top: 30px;
+    padding-left: 100px;
+}
+.category-product-details{
+    display: inline-block;
+    color: white;
+    background-color: grey;
+}
+
+.product-name{
+    font-weight: bold;
+}

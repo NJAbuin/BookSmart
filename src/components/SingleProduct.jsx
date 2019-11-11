@@ -28,26 +28,28 @@ const buttonStyle = {
 
 function SingleProduct(props) {
   const product = props.info;
-  
+
 
   return (
-    <Card key={product.id} style={{marginBottom:'3%'}}>
-      <Card.Img variant="top" src={product.imgURL}/>
-      <Card.Body>
+    <Card key={product.id} style={{ marginBottom: '3%' }}>
       <Link to={`/products/${product.id}`}>
-        <Card.Title style={{ gridArea: "title", textAlign: "center" }}>
-          {product.name}
-        </Card.Title>
+        <Card.Img variant="top" src={product.imgURL} />
       </Link>
-      <Card.Text>
-      <p className="price" style={priceStyle}>
-        ${product.price}
+      <Card.Body>
+        <Link to={`/products/${product.id}`}>
+          <Card.Title style={{ gridArea: "title", textAlign: "center" }}>
+            {product.name}
+          </Card.Title>
+        </Link>
+        <Card.Text>
+          <p className="price" style={priceStyle}>
+            ${product.price}
+          </p>
+          <p style={{ placeSelf: "center" }}>
+            Rating: {Math.round(Math.random() * 5)}/5
       </p>
-      <p style={{ placeSelf: "center" }}>
-        Rating: {Math.round(Math.random() * 5)}/5
-      </p>
-        <Button variant="success" style={buttonStyle}>Add to Cart</Button>
-      </Card.Text>
+          <Button variant="success" style={buttonStyle}>Add to Cart</Button>
+        </Card.Text>
       </Card.Body>
     </Card>
   );
