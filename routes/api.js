@@ -200,17 +200,15 @@ api.get("/seed", (req, res) => {
       author: faker.name.findName(),
       category: getRandomCat(categories)
     }
-  ])
-    .then(() => {
-      Category.bulkCreate([
-        { name: "Terror" },
-        { name: "Aventura" },
-        { name: "Policial" },
-        { name: "Periodistico" },
-        { name: "Romantica" }
-      ]);
-    })
-    .then(res => res.redirect("/"));
+  ]).then(() => {
+    Category.bulkCreate([
+      { name: "Terror" },
+      { name: "Aventura" },
+      { name: "Policial" },
+      { name: "Periodistico" },
+      { name: "Romantica" }
+    ]);
+  });
 });
 
 api.get("/seedcarro", (req, res) => {
@@ -241,12 +239,9 @@ api.get("/product/:id", (req, res) => {
 });
 
 api.post("/product/:id", (req, res) => {
-  console.log("ESTOYU EN PTODUCTOTS");
   const product = req.body;
   Cart.findOrCreate({
-    where: {
-      userId: userId
-    }
+    where: {}
   });
 });
 
@@ -280,7 +275,7 @@ api.get("/category", (req, res) => {
 });
 
 api.post("/category/books", (req, res) => {
-  Books.findByCategory(req.body.name).then(e => res.send(e));
+  Book.findByCategory(req.body.name).then(e => res.send(e));
 });
 
 api.use("/auth", require("./auth"));
