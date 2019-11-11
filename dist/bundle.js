@@ -57338,17 +57338,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Dropdown2; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Dropdown */ "./node_modules/react-bootstrap/esm/Dropdown.js");
-
+/* harmony import */ var react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Dropdown */ "./node_modules/react-bootstrap/esm/Dropdown.js");
 
 
 function Dropdown2(_ref) {
   var categoryList = _ref.categoryList,
       clickHandler = _ref.clickHandler;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, categoryList.map(function (e) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_1__["default"].Item, {
       onClick: function onClick(evt) {
         return clickHandler(e);
       },
@@ -57356,6 +57353,11 @@ function Dropdown2(_ref) {
     }, e);
   }));
 }
+var stringStyle = {
+  color: "white",
+  fontFamily: "Bookman",
+  textAlign: "center"
+};
 
 /***/ }),
 
@@ -57373,6 +57375,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -57380,6 +57383,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -57398,7 +57402,6 @@ function Login(props) {
     return setShow(true);
   };
 
-  console.log(props);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     variant: "primary",
     onClick: handleShow
@@ -57557,9 +57560,9 @@ function (_Component) {
     key: "render",
     value: function render() {
       var product = this.props.product.product[0];
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "TITLE: ", product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://quittingbydesign.com/wp-content/uploads/2018/09/image-coming-soon-placeholder.jpg"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "PRICE: ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "DESCRIPCION: ", product.description, " "));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: product.imgURL
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$ ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Synopsis: ", product.description, " "));
     }
   }]);
 
@@ -57683,6 +57686,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Card */ "./node_modules/react-bootstrap/esm/Card.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -57716,7 +57722,7 @@ function SingleProduct(props) {
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"].Img, {
     variant: "top",
-    src: "https://quittingbydesign.com/wp-content/uploads/2018/09/image-coming-soon-placeholder.jpg"
+    src: product.imgURL
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"].Body, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/products/".concat(product.id)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"].Title, {
@@ -57727,7 +57733,11 @@ function SingleProduct(props) {
   }, product.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"].Text, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "price",
     style: priceStyle
-  }, "$", product.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "$", product.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      placeSelf: "center"
+    }
+  }, "Rating: ", Math.round(Math.random() * 5), "/5"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "success",
     style: buttonStyle
   }, "Add to Cart"))));
@@ -57822,7 +57832,7 @@ function (_React$Component) {
       evt.preventDefault();
 
       if (this.state.emailInput && this.state.passwordInput) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/auth/login", {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/auth/login", {
           email: this.state.emailInput,
           password: this.state.passwordInput
         }).then(function (res) {
@@ -57845,7 +57855,7 @@ function (_React$Component) {
     value: function handleLogout() {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/auth/logout").then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/auth/logout").then(function () {
         return _this3.props.emptyUser();
       });
     }
@@ -57854,13 +57864,12 @@ function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      console.log(this.state);
       var username = this.props.user.name || "";
       var userLogged = this.props.user == "";
       var name = username.split(" ")[0];
 
       var displayError = function displayError() {
-        alert('Credenciales Incorrectas');
+        alert("Credenciales Incorrectas");
 
         _this4.setState({
           error: false
@@ -58016,7 +58025,7 @@ function (_Component) {
 var gridContainer = {
   display: "grid",
   gridTemplateColumns: "15% 1fr",
-  gridTemplateRows: "minmax(auto, 8%) 1fr minmax(auto, 4%)",
+  gridTemplateRows: "7% 1fr minmax(auto, 4%)",
   gridTemplateAreas: "  \"nav nav\"\n  \"side content\"\n  \"foot foot\"",
   height: "100vh"
 };
@@ -58284,9 +58293,9 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(RegisterContainer).call(this, props));
     _this.state = {
-      emailInput: '',
-      passwordInput: '',
-      nameInput: ''
+      emailInput: "",
+      passwordInput: "",
+      nameInput: ""
     };
     _this.handleEmailInput = _this.handleEmailInput.bind(_assertThisInitialized(_this));
     _this.handleNameInput = _this.handleNameInput.bind(_assertThisInitialized(_this));
@@ -58320,10 +58329,10 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(evt) {
       evt.preventDefault();
-      console.log('Hola');
+      console.log("Hola");
 
       if (this.state.emailInput && this.state.passwordInput && this.state.nameInput) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/auth/register', {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/auth/register", {
           name: this.state.nameInput,
           email: this.state.emailInput,
           password: this.state.passwordInput
@@ -58437,24 +58446,23 @@ function (_Component) {
     value: function render() {
       var _this3 = this;
 
-      console.log(this.state.books);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_8__["default"], {
         sm: 12,
         md: 3,
         style: {
-          padding: '0'
+          padding: "0"
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Navbar__WEBPACK_IMPORTED_MODULE_9__["default"], {
         fixed: "position",
         className: "col-md-3 col-sm-12",
         style: {
-          position: 'fixed',
-          padding: '0'
+          position: "fixed",
+          padding: "0"
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_7__["default"].Menu, {
         show: true,
         style: {
-          position: 'initial'
+          position: "initial"
         },
         className: "col-sm-12",
         sticky: "top"
@@ -58646,11 +58654,14 @@ var emptyUser = function emptyUser() {
 };
 var fetchUser = function fetchUser() {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/auth/me').then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/auth/me").then(function (res) {
       return res.data;
     }).then(function (user) {
       return dispatch(receiveUser(user));
-    });
+    }); // axios
+    //   .get("/api/auth/me")
+    //   .then(res => res.data)
+    //   .then(user => dispatch(receiveUser(user)));
   };
 };
 
