@@ -1,6 +1,7 @@
 const db = require("../index");
 const S = require("sequelize");
 const Op = S.Op;
+const Cart = require("./Cart");
 
 class Book extends S.Model {}
 Book.init(
@@ -42,7 +43,7 @@ Book.init(
       type: S.STRING,
       allowNull: false
     },
-    category:{
+    category: {
       type: S.ARRAY(S.TEXT)
     }
   },
@@ -62,10 +63,20 @@ Book.findByAuthor = author => {
 
 Book.findByCategory = category => {
   return Book.findAll({
-    where: {category: { [Op.contains]: [category] }}
-  })
-}
+    where: { category: { [Op.contains]: [category] } }
+  });
+};
+
 // FALTA METODO DE CLASE PARA LAS REVIEWS
 
-module.exports = Book;
+Book.belongsToMany(Cart, {
+  as: "Book",
+  through: "CartBook",
+  foreignKey: "bookId"
+});
 
+Cart.belongsToMany(Book, {
+  through: "CartBook"
+});
+
+module.exports = Book;

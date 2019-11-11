@@ -30,10 +30,12 @@ app.use(cookieParser());
 
 //use modular routes
 app.use("/api", require("../routes/api"));
-app.use("/", require("../routes/index"));
+app.use("/*", (req, res) =>
+  res.sendFile(path.join(__dirname, "../dist", "index.html"))
+);
 
 //sync database then start server
-db.sync({ force: false })
+db.sync({ force: true })
   .then(() => {
     console.log("Connected to database...");
     app.listen(port, () => console.log(`Listening on port ${port}`));
