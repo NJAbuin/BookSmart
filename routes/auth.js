@@ -20,4 +20,17 @@ router.get("/logout", (req, res) => {
   res.send("logged Out!");
 });
 
+router.get("/facebook", passport.authenticate("facebook"), (req, res) => {
+  console.log("Estoy en la ruta de facebook auth.");
+  res.send(req.user);
+});
+
+router.get("/facebook/callback", passport.authenticate("facebook"), function(
+  req,
+  res
+) {
+  console.log("Algo de facebook?");
+  res.redirect("/");
+});
+
 module.exports = router;
