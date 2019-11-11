@@ -1,10 +1,8 @@
 const api = require("express").Router();
-const User = require("../db/models/User");
-const Op = require("sequelize").Op;
 
+const Op = require("sequelize").Op;
+const { User, Book, Cart, Category } = require("../db/models/index");
 const faker = require("faker");
-const Books = require("../db/models/Book");
-const Category = require("../db/models/Category");
 
 const categories = [
   "Terror",
@@ -21,7 +19,7 @@ const getRandomCat = arr => {
 };
 
 api.get("/seed", (req, res) => {
-  Books.bulkCreate([
+  Book.bulkCreate([
     {
       name: "Fernández & Fernández",
       price: 399.99,
@@ -202,30 +200,30 @@ api.get("/seed", (req, res) => {
       author: faker.name.findName(),
       category: getRandomCat(categories)
     }
-  ]).then(() => {
-    Category.bulkCreate([
-      { name: "Terror" },
-      { name: "Aventura" },
-      { name: "Policial" },
-      { name: "Periodistico" },
-      { name: "Romantica" }
-    ]);
-  });
+  ])
+    .then(() => {
+      Category.bulkCreate([
+        { name: "Terror" },
+        { name: "Aventura" },
+        { name: "Policial" },
+        { name: "Periodistico" },
+        { name: "Romantica" }
+      ]);
+    })
+    .then(res => res.redirect("/"));
 });
 
-api.get("/destroydb", (req, res) => {
-  User.destroy({ where: {} })
-    .then(data => Books.destroy({}))
-    .then(data => Category.destroy({}))
-    .then(data => res.redirect("/"))
-    .catch(err => err => console.log(`Failed to destroy db :: ERROR: ${err}`));
+api.get("/seedcarro", (req, res) => {
+  Cart.findOne({ where: { id: 3 }, include: { model: Book } }).then(data =>
+    res.json(data)
+  );
 });
 
 //////////////////////////////////////////////////////////
 
 //retorna todos los productos de la base de datos en formato JSON
 api.get("/products", (req, res) => {
-  Books.findAll()
+  Book.findAll()
     .then(data => {
       res.json(data);
     })
@@ -237,8 +235,18 @@ api.get("/products", (req, res) => {
 ////////////////////////////////////////////////////////////
 
 api.get("/product/:id", (req, res) => {
-  Books.findByPk(req.params.id).then(book => {
+  Book.findByPk(req.params.id).then(book => {
     res.json(book);
+  });
+});
+
+api.post("/product/:id", (req, res) => {
+  console.log("ESTOYU EN PTODUCTOTS");
+  const product = req.body;
+  Cart.findOrCreate({
+    where: {
+      userId: userId
+    }
   });
 });
 
@@ -247,7 +255,7 @@ api.get("/product/:id", (req, res) => {
 api.get("/products/:productName", (req, res) => {
   const product = req.params.productName;
 
-  Books.findAll({
+  Book.findAll({
     where: {
       name: {
         [Op.iLike]: `%${product}%`

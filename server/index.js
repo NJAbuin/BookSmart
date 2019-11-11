@@ -6,6 +6,7 @@ const db = require("../db");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
+const chalk = require("chalk");
 
 const DIST_DIR = path.join(__dirname, "../dist");
 
@@ -35,9 +36,11 @@ app.use("/*", (req, res) =>
 );
 
 //sync database then start server
-db.sync({ force: true })
+db.sync({ force: false })
   .then(() => {
-    console.log("Connected to database...");
-    app.listen(port, () => console.log(`Listening on port ${port}`));
+    console.log(chalk.bgGreen.black("Connected to database..."));
+    app.listen(port, () =>
+      console.log(chalk.bgRed.black(`Listening on port ${port}`))
+    );
   })
   .catch(console.error); //error catcher

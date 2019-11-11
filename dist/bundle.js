@@ -49406,7 +49406,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57331,9 +57331,36 @@ module.exports = function(originalModule) {
   !*** ./src/components/Dropdown.jsx ***!
   \*************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/budi/Desktop/plataforma5/BookSmart/src/components/Dropdown.jsx: Unexpected token (2:1)\n\n\u001b[0m \u001b[90m 1 | \u001b[39m\u001b[36mimport\u001b[39m \u001b[33mReact\u001b[39m from \u001b[32m\"react\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 2 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 3 | \u001b[39m\u001b[36mimport\u001b[39m \u001b[33mAxios\u001b[39m from \u001b[32m\"axios\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 4 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m\u001b[33m>>>\u001b[39m\u001b[33m>>>\u001b[39m\u001b[33m>\u001b[39m \u001b[35m0\u001b[39mdeb3ca983e9d6244114aadbce7d0a1af53d5d83\u001b[0m\n    at Object.raise (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:6420:17)\n    at Object.unexpected (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:7773:16)\n    at Object.jsxParseIdentifier (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3392:12)\n    at Object.jsxParseNamespacedName (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3402:23)\n    at Object.jsxParseElementName (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3413:21)\n    at Object.jsxParseOpeningElementAt (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3499:22)\n    at Object.jsxParseElementAt (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3532:33)\n    at Object.jsxParseElement (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3606:17)\n    at Object.parseExprAtom (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3613:19)\n    at Object.parseExprSubscripts (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:8556:23)\n    at Object.parseMaybeUnary (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:8536:21)\n    at Object.parseExprOps (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:8402:23)\n    at Object.parseMaybeConditional (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:8375:23)\n    at Object.parseMaybeAssign (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:8325:21)\n    at Object.parseExpression (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:8275:23)\n    at Object.parseStatementContent (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:10138:23)\n    at Object.parseStatement (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:10009:17)\n    at Object.parseBlockOrModuleBlockBody (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:10585:25)\n    at Object.parseBlockBody (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:10572:10)\n    at Object.parseTopLevel (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:9940:10)\n    at Object.parse (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:11447:17)\n    at parse (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:11483:38)\n    at parser (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/core/lib/transformation/normalize-file.js:168:34)\n    at normalizeFile (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/core/lib/transformation/normalize-file.js:102:11)\n    at runSync (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/core/lib/transformation/index.js:44:43)\n    at runAsync (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/core/lib/transformation/index.js:35:14)\n    at process.nextTick (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/core/lib/transform.js:34:34)\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Dropdown2; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Dropdown */ "./node_modules/react-bootstrap/esm/Dropdown.js");
+
+
+
+function Dropdown2(_ref) {
+  var categoryList = _ref.categoryList,
+      clickHandler = _ref.clickHandler;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "CATEGORIAS"), categoryList.map(function (e) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
+      onClick: function onClick(evt) {
+        return clickHandler(e);
+      },
+      key: e
+    }, e);
+  }));
+}
+var stringStyle = {
+  color: "white",
+  fontFamily: "Bookman",
+  textAlign: "center"
+};
 
 /***/ }),
 
@@ -57662,8 +57689,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Card */ "./node_modules/react-bootstrap/esm/Card.js");
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
+
 
 
 
@@ -57691,10 +57719,15 @@ var buttonStyle = {
 
 function SingleProduct(props) {
   var product = props.info;
+
+  var addHandler = function addHandler(product) {
+    props.addToCart(product);
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"], {
     key: product.id,
     style: {
-      marginBottom: '3%'
+      marginBottom: "3%"
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"].Img, {
     variant: "top",
@@ -57715,11 +57748,22 @@ function SingleProduct(props) {
     }
   }, "Rating: ", Math.round(Math.random() * 5), "/5"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "success",
+    onClick: function onClick() {
+      return addHandler(product);
+    },
     style: buttonStyle
   }, "Add to Cart"))));
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (SingleProduct);
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    addToCart: function addToCart(id) {
+      return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_5__["addToCart"])(id));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mapDispatchToProps)(SingleProduct));
 
 /***/ }),
 
@@ -58512,6 +58556,43 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 
 /***/ }),
 
+/***/ "./src/store/actions/cart.js":
+/*!***********************************!*\
+  !*** ./src/store/actions/cart.js ***!
+  \***********************************/
+/*! exports provided: addToCart, cartAction */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToCart", function() { return addToCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cartAction", function() { return cartAction; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
+
+
+var addToCart = function addToCart(product) {
+  return function (dispatch) {
+    console.log("PRODUCT");
+    console.log(product.id);
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/product/".concat(product.id)).then(function (res) {
+      return res.data;
+    }).then(function (response) {
+      console.log(response);
+      return dispatch(cartAction(product.id));
+    });
+  };
+};
+var cartAction = function cartAction(payload) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_1__["ADD_TO_CART"],
+    payload: payload
+  };
+};
+
+/***/ }),
+
 /***/ "./src/store/actions/products.js":
 /*!***************************************!*\
   !*** ./src/store/actions/products.js ***!
@@ -58647,7 +58728,7 @@ var fetchUser = function fetchUser() {
 /*!********************************!*\
   !*** ./src/store/constants.js ***!
   \********************************/
-/*! exports provided: FETCH_PRODUCTS, SEARCH_PRODUCTS, EMPTY_USER, RECEIVE_USER, SELECT_PRODUCT, FILTER_PRODUCT */
+/*! exports provided: FETCH_PRODUCTS, SEARCH_PRODUCTS, EMPTY_USER, RECEIVE_USER, SELECT_PRODUCT, FILTER_PRODUCT, ADD_TO_CART */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58658,12 +58739,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SELECT_PRODUCT", function() { return SELECT_PRODUCT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FILTER_PRODUCT", function() { return FILTER_PRODUCT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_TO_CART", function() { return ADD_TO_CART; });
 var FETCH_PRODUCTS = "FETCH_PRODUCTS";
 var SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
 var EMPTY_USER = "EMPTY_USER";
 var RECEIVE_USER = "RECEIVE_USER";
 var SELECT_PRODUCT = "SELECT_PRODUCT";
 var FILTER_PRODUCT = "FILTER_PRODUCT";
+var ADD_TO_CART = "ADD_TO_CART";
 
 /***/ }),
 
@@ -58698,6 +58781,42 @@ var middleWare = [Object(redux_logger__WEBPACK_IMPORTED_MODULE_1__["createLogger
 
 /***/ }),
 
+/***/ "./src/store/reducers/cartReducer.js":
+/*!*******************************************!*\
+  !*** ./src/store/reducers/cartReducer.js ***!
+  \*******************************************/
+/*! exports provided: cartReducer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cartReducer", function() { return cartReducer; });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
+var initialState = [];
+var cartReducer = function cartReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _constants__WEBPACK_IMPORTED_MODULE_0__["ADD_TO_CART"]:
+      return [].concat(_toConsumableArray(state), [action.payload]);
+
+    default:
+      return state;
+  }
+};
+
+/***/ }),
+
 /***/ "./src/store/reducers/index.js":
 /*!*************************************!*\
   !*** ./src/store/reducers/index.js ***!
@@ -58710,12 +58829,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _productReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./productReducer */ "./src/store/reducers/productReducer.js");
 /* harmony import */ var _userReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userReducer */ "./src/store/reducers/userReducer.js");
+/* harmony import */ var _cartReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./cartReducer */ "./src/store/reducers/cartReducer.js");
+
 
 
 
 var reducers = {
   product: _productReducer__WEBPACK_IMPORTED_MODULE_1__["productsReducer"],
-  user: _userReducer__WEBPACK_IMPORTED_MODULE_2__["userReducer"]
+  user: _userReducer__WEBPACK_IMPORTED_MODULE_2__["userReducer"],
+  cartReducer: _cartReducer__WEBPACK_IMPORTED_MODULE_3__["cartReducer"]
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(reducers));
 

@@ -1,7 +1,7 @@
 const db = require("../index");
 const S = require("sequelize");
 const Op = S.Op;
-const Cart = require("./Cart");
+const chalk = require("chalk");
 
 class Book extends S.Model {}
 Book.init(
@@ -68,15 +68,8 @@ Book.findByCategory = category => {
 };
 
 // FALTA METODO DE CLASE PARA LAS REVIEWS
-
-Book.belongsToMany(Cart, {
-  as: "Book",
-  through: "CartBook",
-  foreignKey: "bookId"
-});
-
-Cart.belongsToMany(Book, {
-  through: "CartBook"
-});
+//////////////////////////////////////////////////////////////////////////////
+//RELACIONES
+/////////////
 
 module.exports = Book;

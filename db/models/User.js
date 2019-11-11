@@ -2,6 +2,7 @@ const db = require("../index");
 const S = require("sequelize");
 const crypto = require("crypto");
 const Transaction = require("./Transaction");
+const Cart = require("./Cart");
 
 class User extends S.Model {}
 User.init(
@@ -41,6 +42,10 @@ User.beforeCreate(user => {
   user.password = user.hashPassword(user.password);
 });
 
+User.afterCreate(user => {
+  Cart.create({});
+});
+
 User.prototype.hashPassword = function(password) {
   return crypto
     .createHmac("sha1", this.salt)
@@ -56,7 +61,5 @@ User.prototype.validatePassword = function(password) {
   let newPassword = this.hashPassword(password);
   return newPassword === this.password;
 };
-
-User.hasMany(Transaction, { as: "Transaction" });
 
 module.exports = User;
