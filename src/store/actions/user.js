@@ -12,13 +12,13 @@ export const emptyUser = () => ({
 
 export const fetchUser = () => dispatch => {
   axios
-    .get("/auth/me")
+    .get("/api/auth/me")
     .then(res => res.data)
     .then(user => {
       return dispatch(receiveUser(user));
     });
   // axios
-  //   .get("/auth/me")
+  //   .get("/api/auth/me")
   //   .then(res => res.data)
   //   .then(user => dispatch(receiveUser(user)));
 };
