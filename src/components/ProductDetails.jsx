@@ -21,7 +21,8 @@ class ProductDetails extends Component {
         <h1>{product.name}</h1>
         <img src={product.imgURL} />
         <h3>$ {product.price} </h3>
-        <p>Synopsis {product.description} </p>
+        <p>
+          {product.description} </p>
       </div>
     );
   }
