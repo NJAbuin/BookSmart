@@ -49406,7 +49406,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57331,36 +57331,9 @@ module.exports = function(originalModule) {
   !*** ./src/components/Dropdown.jsx ***!
   \*************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Dropdown2; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Dropdown */ "./node_modules/react-bootstrap/esm/Dropdown.js");
-
-
-
-function Dropdown2(_ref) {
-  var categoryList = _ref.categoryList,
-      clickHandler = _ref.clickHandler;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "CATEGORIAS"), categoryList.map(function (e) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_2__["default"].Item, {
-      onClick: function onClick(evt) {
-        return clickHandler(e);
-      },
-      key: e
-    }, e);
-  }));
-}
-var stringStyle = {
-  color: "white",
-  fontFamily: "Bookman",
-  textAlign: "center"
-};
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/budi/Desktop/plataforma5/BookSmart/src/components/Dropdown.jsx: Unexpected token (2:1)\n\n\u001b[0m \u001b[90m 1 | \u001b[39m\u001b[36mimport\u001b[39m \u001b[33mReact\u001b[39m from \u001b[32m\"react\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 2 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 3 | \u001b[39m\u001b[36mimport\u001b[39m \u001b[33mAxios\u001b[39m from \u001b[32m\"axios\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 4 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m\u001b[33m>>>\u001b[39m\u001b[33m>>>\u001b[39m\u001b[33m>\u001b[39m \u001b[35m0\u001b[39mdeb3ca983e9d6244114aadbce7d0a1af53d5d83\u001b[0m\n    at Object.raise (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:6420:17)\n    at Object.unexpected (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:7773:16)\n    at Object.jsxParseIdentifier (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3392:12)\n    at Object.jsxParseNamespacedName (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3402:23)\n    at Object.jsxParseElementName (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3413:21)\n    at Object.jsxParseOpeningElementAt (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3499:22)\n    at Object.jsxParseElementAt (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3532:33)\n    at Object.jsxParseElement (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3606:17)\n    at Object.parseExprAtom (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:3613:19)\n    at Object.parseExprSubscripts (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:8556:23)\n    at Object.parseMaybeUnary (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:8536:21)\n    at Object.parseExprOps (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:8402:23)\n    at Object.parseMaybeConditional (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:8375:23)\n    at Object.parseMaybeAssign (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:8325:21)\n    at Object.parseExpression (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:8275:23)\n    at Object.parseStatementContent (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:10138:23)\n    at Object.parseStatement (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:10009:17)\n    at Object.parseBlockOrModuleBlockBody (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:10585:25)\n    at Object.parseBlockBody (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:10572:10)\n    at Object.parseTopLevel (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:9940:10)\n    at Object.parse (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:11447:17)\n    at parse (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/parser/lib/index.js:11483:38)\n    at parser (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/core/lib/transformation/normalize-file.js:168:34)\n    at normalizeFile (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/core/lib/transformation/normalize-file.js:102:11)\n    at runSync (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/core/lib/transformation/index.js:44:43)\n    at runAsync (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/core/lib/transformation/index.js:35:14)\n    at process.nextTick (/home/budi/Desktop/plataforma5/BookSmart/node_modules/@babel/core/lib/transform.js:34:34)\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 
@@ -57378,6 +57351,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -57385,6 +57359,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -57403,7 +57378,6 @@ function Login(props) {
     return setShow(true);
   };
 
-  console.log(props);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     variant: "primary",
     onClick: handleShow
@@ -57564,7 +57538,7 @@ function (_Component) {
       var product = this.props.product.product[0];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: product.imgURL
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$ ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Synopsis ", product.description, " "));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$ ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Synopsis: ", product.description, " "));
     }
   }]);
 
@@ -57834,7 +57808,7 @@ function (_React$Component) {
       evt.preventDefault();
 
       if (this.state.emailInput && this.state.passwordInput) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/auth/login", {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/auth/login", {
           email: this.state.emailInput,
           password: this.state.passwordInput
         }).then(function (res) {
@@ -57857,7 +57831,7 @@ function (_React$Component) {
     value: function handleLogout() {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/auth/logout").then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/auth/logout").then(function () {
         return _this3.props.emptyUser();
       });
     }
@@ -57866,13 +57840,12 @@ function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      console.log(this.state);
       var username = this.props.user.name || "";
       var userLogged = this.props.user == "";
       var name = username.split(" ")[0];
 
       var displayError = function displayError() {
-        alert('Credenciales Incorrectas');
+        alert("Credenciales Incorrectas");
 
         _this4.setState({
           error: false
@@ -58296,9 +58269,9 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(RegisterContainer).call(this, props));
     _this.state = {
-      emailInput: '',
-      passwordInput: '',
-      nameInput: ''
+      emailInput: "",
+      passwordInput: "",
+      nameInput: ""
     };
     _this.handleEmailInput = _this.handleEmailInput.bind(_assertThisInitialized(_this));
     _this.handleNameInput = _this.handleNameInput.bind(_assertThisInitialized(_this));
@@ -58332,10 +58305,10 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(evt) {
       evt.preventDefault();
-      console.log('Hola');
+      console.log("Hola");
 
       if (this.state.emailInput && this.state.passwordInput && this.state.nameInput) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/auth/register', {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/auth/register", {
           name: this.state.nameInput,
           email: this.state.emailInput,
           password: this.state.passwordInput
@@ -58453,19 +58426,19 @@ function (_Component) {
         sm: 12,
         md: 3,
         style: {
-          padding: '0'
+          padding: "0"
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Navbar__WEBPACK_IMPORTED_MODULE_9__["default"], {
         fixed: "position",
         className: "col-md-3 col-sm-12",
         style: {
-          position: 'fixed',
-          padding: '0'
+          position: "fixed",
+          padding: "0"
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Dropdown__WEBPACK_IMPORTED_MODULE_7__["default"].Menu, {
         show: true,
         style: {
-          position: 'initial'
+          position: "initial"
         },
         className: "col-sm-12",
         sticky: "top"
@@ -58657,12 +58630,12 @@ var emptyUser = function emptyUser() {
 };
 var fetchUser = function fetchUser() {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/auth/me").then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/auth/me").then(function (res) {
       return res.data;
     }).then(function (user) {
       return dispatch(receiveUser(user));
     }); // axios
-    //   .get("/auth/me")
+    //   .get("/api/auth/me")
     //   .then(res => res.data)
     //   .then(user => dispatch(receiveUser(user)));
   };

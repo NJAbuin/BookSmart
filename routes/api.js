@@ -275,4 +275,6 @@ api.post("/category/books", (req, res) => {
   Books.findByCategory(req.body.name).then(e => res.send(e));
 });
 
+api.use("/auth", require("./auth"));
+
 module.exports = api;
