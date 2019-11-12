@@ -42,10 +42,12 @@ class ProductDetails extends Component {
 
     return (
       <div>
-        <div className="product-container">
+        <div className="product-container" key={product.id}>
+          {console.log("ME ESTOY MONTANDO")}
           <div className="img-container">
             <img src={product.imgURL} />
           </div>
+          {}
           <div className="product-details">
             <h1 className="product-name">{product.name}</h1>
             <h3>Author: {product.author}</h3>

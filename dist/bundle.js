@@ -57354,12 +57354,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
+ //create your forceUpdate hook
+
+function useForceUpdate() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      value = _useState2[0],
+      setValue = _useState2[1]; //boolean state
+
+
+  return function () {
+    return setValue(!value);
+  }; // toggle the state to force render
+}
 
 function Cart(props) {
+  var forceUpdate = useForceUpdate();
+
   var totalValue = function totalValue(cart) {
     var totalPrice = 0;
 
@@ -57392,8 +57414,10 @@ function Cart(props) {
     className: "cart-container-products-titles"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Producto"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Cantidad"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total")), props.cart.map(function (product) {
     var totalPrice = product.price * product.quantity;
+    var productQtty = product.quantity;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "cart-container-products-list"
+      className: "cart-container-products-list",
+      key: product.id
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: product.imgURL,
       style: {
@@ -57404,25 +57428,19 @@ function Cart(props) {
       style: {
         width: "80px"
       }
-    }, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: product.id
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
       variant: "outline-info"
-    }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      style: {
-        width: "30px",
-        textAlign: "center"
-      },
-      type: "text",
-      defaultValue: product.quantity,
-      name: "",
-      id: ""
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, productQtty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onClick: function onClick() {
-        return props.incHandler(product);
+        props.addToCart(product);
+        forceUpdate();
       },
       variant: "outline-info"
     }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "product-price"
-    }, "$", totalPrice), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }, "$", totalPrice.toFixed(2)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onClick: function onClick() {
         return props.deleteProduct(product);
       },
@@ -57773,8 +57791,9 @@ function (_Component) {
       };
       console.log("!!!!!!!!!!!!", this.props.product);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "product-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "product-container",
+        key: product.id
+      }, console.log("ME ESTOY MONTANDO"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "img-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: product.imgURL
@@ -58056,21 +58075,28 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CartContainer).call(this, props));
     _this.deleteProduct = _this.deleteProduct.bind(_assertThisInitialized(_this));
+    _this.incHandler = _this.incHandler.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(CartContainer, [{
+    key: "incHandler",
+    value: function incHandler(book) {
+      this.props.addToCart(book);
+      this.forceUpdate();
+    }
+  }, {
     key: "deleteProduct",
     value: function deleteProduct(product) {
-      console.log("ME CLICKIASTE", product);
       this.props.deleteToCart(product);
     }
   }, {
     key: "render",
     value: function render() {
+      console.log("me monte container");
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Cart__WEBPACK_IMPORTED_MODULE_1__["default"], {
         deleteProduct: this.deleteProduct,
-        incHandler: this.props.addToCart,
+        incHandler: this.incHandler,
         decHandler: this.props.delFromCart,
         cart: this.props.cart
       });
@@ -58080,9 +58106,10 @@ function (_React$Component) {
   return CartContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(_ref) {
+  var cart = _ref.cart;
   return {
-    cart: state.cart
+    cart: cart
   };
 };
 
@@ -59198,7 +59225,7 @@ var delProdFromCart = function delProdFromCart(state, book) {
 };
 
 var cartFilter = function cartFilter(state, book) {
-  console.log("STATE: ", state, "BOOK: ", book);
+  console.log(state, book, "SSSSSSSSSSSSss");
 
   if (state.includes(book)) {
     book.quantity += 1;
