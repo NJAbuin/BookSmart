@@ -3,6 +3,7 @@ import axios from "axios";
 import Login from "../components/Login";
 import { connect } from "react-redux";
 import { receiveUser, emptyUser } from "../store/actions/user";
+import { Link } from "react-router-dom";
 
 class LoginContainer extends React.Component {
   constructor(props) {
@@ -90,7 +91,9 @@ class LoginContainer extends React.Component {
               onClick={this.handleLogout}
               style={{ marginTop: "7px" }}
             >
-              Logout
+              <Link style={{ color: "white" }} to="/">
+                Logout
+              </Link>
             </li>
           </ul>
         )}
@@ -108,7 +111,4 @@ const mapStateToProps = ({ user }) => ({
   user
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

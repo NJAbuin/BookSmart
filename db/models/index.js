@@ -7,16 +7,18 @@ const CartProduct = require("./CartProduct");
 
 Book.belongsToMany(Cart, {
   as: "Book",
-  through: "CartBook",
+  through: "CartProduct",
   foreignKey: "bookId"
 });
 
 Cart.belongsToMany(Book, {
-  through: "CartBook"
+  through: "CartProduct",
+  foreignKey: 'cartId'
 });
 
-User.hasMany(Cart, { as: "Carts" });
+ //Esto crea en la tabla Cart un campo que se llama UserID (https://sequelize.org/master/manual/associations.html#source--amp--target)
 
-User.hasMany(Transaction, { as: "Transactions" });
-
+User.hasMany(Transaction); // => Transaction va a tener userid
+Cart.hasMany(Transaction); // => Transaction va a tener cartId
+//User.hasOne(Cart)
 module.exports = { Book, Cart, User, Transaction, Category, CartProduct };

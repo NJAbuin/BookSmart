@@ -1,7 +1,7 @@
 const api = require("express").Router();
 
 const Op = require("sequelize").Op;
-const { User, Book, Cart, Category } = require("../db/models/index");
+const { User, Book, Cart, Category, Transaction, CartProduct } = require("../db/models/index");
 const faker = require("faker");
 const chalk = require("chalk");
 
@@ -244,13 +244,6 @@ api.get("/product/:id", (req, res) => {
   });
 });
 
-api.post("/product/:id", (req, res) => {
-  const product = req.body;
-  Cart.findOrCreate({
-    where: {}
-  });
-});
-
 // retorna un producto de la base de datos en formato JSON
 
 api.get("/products/:productName", (req, res) => {
@@ -289,5 +282,27 @@ api.post("/category/books", (req, res) => {
 });
 
 api.use("/auth", require("./auth"));
+
+api.post('/checkout', (req, res) =>{
+  Cart.chekout(req.body.id).then(e=> Transaction.open(e))
+  .then(()=> res.send('SUCCESS'))
+  .catch(error => {
+    console.log(error)
+    res.send("ERROR")})
+})
+
+api.post('/addToCart', (req, res)=>{
+  const add = req.body
+  let cartData = {} // Aca va a cargarse el orderId y el cartId 
+  Cart.findOrCreate({where:{cartId: add.userId, state: 'Opened'}})
+  .then(e=> {return cartData={cartId: e[0].cartId, orderId: e[0].id}})
+  .then(cart => {
+    return CartProduct.findOne({where:{cartId: add.userId, productId: add.bookId, orderId: cartData.orderId}})
+    })
+  .then(e=>{return e==null? CartProduct.create({cartId: cartData.cartId, productId: add.bookId, quantity: add.quantity, orderId: cartData.orderId}):
+    CartProduct.update({quantity: add.quantity}, {where:{cartId: add.userId, orderId: cartData.orderId, productId: add.bookId }})
+})
+    
+  })
 
 module.exports = api;

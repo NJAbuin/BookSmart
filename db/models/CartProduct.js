@@ -16,7 +16,17 @@ CartProduct.init(
     quantity: {
       type: S.INTEGER,
       allowNull: false
+    },
+    orderId: {
+      type: S.INTEGER,
+      allowNull: false
     }
   },
   { sequelize: db, modelName: "cartProduct" }
 );
+
+CartProduct.newProduct = obj =>{
+  return CartProduct.create(obj)
+}
+
+module.exports = CartProduct

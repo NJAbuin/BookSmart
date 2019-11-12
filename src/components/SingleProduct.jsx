@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 import { addToCart } from "../store/actions/cart";
+import axios from 'axios'
 
 const priceStyle = {
   color: "grey",
@@ -33,6 +34,9 @@ function SingleProduct(props) {
     props.addToCart(product);
     if (!props.user) {
       localStorage.setItem("cart", JSON.stringify(props.cart));
+    }
+    else{
+      axios.post(`/api/addToCart`, {userId: props.user.id, bookId: product.id, quantity: product.quantity})
     }
   };
 
