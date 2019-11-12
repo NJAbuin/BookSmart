@@ -23,6 +23,7 @@ const delProdFromCart = (state, book) => {
 };
 
 const cartFilter = (state, book) => {
+  console.log("STATE: ", state, "BOOK: ", book);
   if (state.includes(book)) {
     book.quantity += 1;
   } else {
