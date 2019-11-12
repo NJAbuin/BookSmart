@@ -18,7 +18,7 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const product = this.props.product.product[0];
+
     console.log(product)
     const buttonStyle = {
       border: "none",

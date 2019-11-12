@@ -57663,9 +57663,118 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./src/components/ProductDetails.jsx ***!
   \*******************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/facundo/Bootcamp/E-Commerce/BookSmart/src/components/ProductDetails.jsx: Identifier 'product' has already been declared (39:8)\n\n\u001b[0m \u001b[90m 37 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 38 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 39 | \u001b[39m    let product \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mprops\u001b[33m.\u001b[39mproduct\u001b[33m.\u001b[39mproduct[\u001b[35m0\u001b[39m] \u001b[33m||\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m''\u001b[39m\u001b[33m,\u001b[39m imgURL\u001b[33m:\u001b[39m \u001b[32m''\u001b[39m\u001b[33m,\u001b[39m price\u001b[33m:\u001b[39m \u001b[32m''\u001b[39m\u001b[33m,\u001b[39m description\u001b[33m:\u001b[39m \u001b[32m''\u001b[39m }\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 40 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 41 | \u001b[39m    \u001b[36mreturn\u001b[39m (\u001b[0m\n\u001b[0m \u001b[90m 42 | \u001b[39m\u001b[0m\n    at Object.raise (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:6420:17)\n    at ScopeHandler.checkRedeclarationInScope (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:3776:12)\n    at ScopeHandler.declareName (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:3742:12)\n    at Object.checkLVal (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:8159:22)\n    at Object.parseVarId (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10682:10)\n    at Object.parseVar (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10657:12)\n    at Object.parseVarStatement (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10479:10)\n    at Object.parseStatementContent (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10076:21)\n    at Object.parseStatement (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10009:17)\n    at Object.parseBlockOrModuleBlockBody (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10585:25)\n    at Object.parseBlockBody (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10572:10)\n    at Object.parseBlock (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10556:10)\n    at Object.parseFunctionBody (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:9584:24)\n    at Object.parseFunctionBodyAndFinish (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:9554:10)\n    at Object.parseMethod (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:9508:10)\n    at Object.pushClassMethod (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10987:30)\n    at Object.parseClassMemberWithIsStatic (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10912:12)\n    at Object.parseClassMember (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10851:10)\n    at withTopicForbiddingContext (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10806:14)\n    at Object.withTopicForbiddingContext (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:9884:14)\n    at Object.parseClassBody (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10783:10)\n    at Object.parseClass (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10757:22)\n    at Object.parseStatementContent (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10051:21)\n    at Object.parseStatement (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10009:17)\n    at Object.parseBlockOrModuleBlockBody (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10585:25)\n    at Object.parseBlockBody (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10572:10)\n    at Object.parseTopLevel (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:9940:10)\n    at Object.parse (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:11447:17)\n    at parse (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:11483:38)\n    at parser (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/core/lib/transformation/normalize-file.js:168:34)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_products__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/actions/products */ "./src/store/actions/products.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var ProductDetails =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ProductDetails, _Component);
+
+  function ProductDetails(props) {
+    var _this;
+
+    _classCallCheck(this, ProductDetails);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductDetails).call(this, props));
+    _this.state = {
+      selectedProduct2: []
+    };
+    _this.productID = _this.props.match.params.id;
+    return _this;
+  }
+
+  _createClass(ProductDetails, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.selectProduct(this.productID);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      console.log(product);
+      var buttonStyle = {
+        border: "none",
+        outline: "0",
+        padding: "12px",
+        cursor: "pointer",
+        width: "100%",
+        fontSize: "18px",
+        gridArea: "add",
+        alignSelf: "center",
+        justifySelf: "center"
+      };
+      var product = this.props.product.product[0] || {
+        name: '',
+        imgURL: '',
+        price: '',
+        description: ''
+      };
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "product-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "img-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: product.imgURL
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "product-details"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "product-name"
+      }, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Author: ", product.author), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "category-product-details"
+      }, product.category[0]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Sinopsis"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, product.description.slice(0, 300) + "...", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, product.year), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " $ ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        variant: "success"
+      }, "Add to Cart"))));
+    }
+  }]);
+
+  return ProductDetails;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    product: state
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    selectProduct: function selectProduct(id) {
+      return dispatch(Object(_store_actions_products__WEBPACK_IMPORTED_MODULE_2__["selectProduct"])(id));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ProductDetails));
 
 /***/ }),
 
@@ -59061,7 +59170,7 @@ var productsReducer = function productsReducer() {
 
   switch (action.type) {
     case _constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_PRODUCTS"]:
-      return [].concat(_toConsumableArray(newstate), _toConsumableArray(action.payload));
+      return [].concat(_toConsumableArray(state), _toConsumableArray(action.payload));
 
     case _constants__WEBPACK_IMPORTED_MODULE_0__["SEARCH_PRODUCTS"]:
       return _toConsumableArray(action.payload);
