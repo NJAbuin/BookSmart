@@ -8,8 +8,6 @@ const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const chalk = require("chalk");
 
-
-
 const DIST_DIR = path.join(__dirname, "../dist");
 const app = express();
 const port = process.env.PORT || 3000;
@@ -31,8 +29,6 @@ app.use(passport.session());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-
 
 //use modular routes
 app.use("/api", require("../routes/api"));
