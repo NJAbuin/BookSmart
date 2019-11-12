@@ -26,16 +26,25 @@ class NavbarContainer extends React.Component {
 
   render() {
     return (
-      <Navbar handleInput={this.handleInput} handleSubmit={this.handleSubmit} />
+      <Navbar
+        cart={this.props.cart}
+        handleInput={this.handleInput}
+        handleSubmit={this.handleSubmit} />
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    cart: state.cart
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   searchProducts: inputValue => dispatch(searchProducts(inputValue))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(NavbarContainer);

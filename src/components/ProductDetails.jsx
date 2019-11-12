@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { selectProduct } from "../store/actions/products";
-import { addToCart } from "../store/actions/cart";
 import Button from "react-bootstrap/Button";
 
 class ProductDetails extends Component {
@@ -14,11 +13,10 @@ class ProductDetails extends Component {
   }
 
   componentDidMount() {
-    this.props.selectProduct(this.productID);
+    this.props.selectProduct(this.props.match.params.id);
   }
 
   render() {
-    console.log("!!!!!!!!!!!!!!!", this.props.product);
     const buttonStyle = {
       border: "none",
       outline: "0",
@@ -35,7 +33,8 @@ class ProductDetails extends Component {
       name: "",
       imgURL: "",
       price: "",
-      description: ""
+      description: "",
+      category: []
     };
 
     return (
@@ -47,17 +46,14 @@ class ProductDetails extends Component {
           <div className="product-details">
             <h1 className="product-name">{product.name}</h1>
             <h3>Author: {product.author}</h3>
-            <h5 className="category-product-details">{product.category[0]}</h5>
+            <h5 className="category-product-details">
+              {product.category[0] || ""}
+            </h5>
             <h2>Sinopsis</h2>
             <p>{product.description.slice(0, 300) + "..."} </p>
             <h5>{product.year}</h5>
             <h3> $ {product.price} </h3>
-            <Button
-              onClick={() => this.props.addToCart(this.props.product)}
-              variant="success"
-            >
-              Add to Cart
-            </Button>
+            <Button variant="success">Add to Cart</Button>
           </div>
         </div>
       </div>

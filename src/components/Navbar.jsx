@@ -6,7 +6,18 @@ import { Link } from "react-router-dom";
 
 
 
-export default ({ handleInput, handleSubmit }) => {
+export default ({ handleInput, handleSubmit, cart }) => {
+
+  console.log(cart)
+
+  const totalValue = function (cart) {
+    let totalPrice = 0
+    for (let i = 0; i < cart.length; i++) {
+      totalPrice += cart[i].price * cart[i].quantity
+    }
+    return totalPrice.toFixed(2)
+  }
+
   return (
     <>
       <Navbar bg="primary" variant="dark" fixed="top" >
@@ -37,7 +48,12 @@ export default ({ handleInput, handleSubmit }) => {
         </Link>
         &nbsp;&nbsp;&nbsp;
         <Link to="/cart">
-          <h3 style={{ color: "black" }} >$ 0,00</h3>
+          {cart.length <= 0 &&
+            <p>$ 0,00</p>
+          }
+          {cart.length > 0 &&
+            <p>$ {totalValue(cart)}</p>
+          }
         </Link>
       </Navbar>
     </>
