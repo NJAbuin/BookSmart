@@ -243,13 +243,6 @@ api.get("/product/:id", (req, res) => {
   });
 });
 
-api.post("/product/:id", (req, res) => {
-  const product = req.body;
-  Cart.findOrCreate({
-    where: {}
-  });
-});
-
 // retorna un producto de la base de datos en formato JSON
 
 api.get("/products/:productName", (req, res) => {

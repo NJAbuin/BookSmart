@@ -21,7 +21,6 @@ class CartContainer extends React.Component {
   }
 
   render() {
-    console.log("me monte container");
     return (
       <Cart
         deleteProduct={this.deleteProduct}
