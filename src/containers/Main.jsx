@@ -7,6 +7,7 @@ import ProductsContainer from "./ProductsContainer";
 import NavbarContainer from "./NavbarContainer";
 import ProductDetails from "../components/ProductDetails"; 1
 import SidebarContainer from "./SidebarContainer";
+import CartContainer from "./CartContainer"
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -38,6 +39,7 @@ export default class Main extends Component {
           <Col sm="12" md="8">
             <Switch>
               <Route exact path="/" component={ProductsContainer} />
+              <Route exact path="/cart" component={CartContainer} />
               <Route exact path="/register" component={RegisterContainer} />
               <Route exact path="/products/:id" component={ProductDetails} />
             </Switch>

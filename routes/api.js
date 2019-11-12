@@ -16,8 +16,13 @@ const categories = [
 
 const getRandomCat = arr => {
   let randomCategory = categories[Math.round(Math.random() * 5)];
+  let randomCategory2 = categories[Math.round(Math.random() * 5)];
 
-  return [randomCategory, randomCategory];
+  while (randomCategory == randomCategory2) {
+    randomCategory2 = categories[Math.round(Math.random() * 5)];
+  }
+
+  return [randomCategory, randomCategory2];
 };
 
 api.get("/seed", (req, res) => {

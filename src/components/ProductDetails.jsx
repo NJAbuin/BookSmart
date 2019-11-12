@@ -43,7 +43,7 @@ class ProductDetails extends Component {
             <h2>Sinopsis</h2>
             <p>
               {product.description.slice(0, 300) + "..."} </p>
-            <h6>{product.year}</h6>
+            <h5>{product.year}</h5>
             <h3> $ {product.price} </h3>
             <Button variant="success" >Add to Cart</Button>
           </div>
