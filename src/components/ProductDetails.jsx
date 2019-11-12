@@ -38,12 +38,9 @@ class ProductDetails extends Component {
       category: []
     };
 
-    console.log("!!!!!!!!!!!!", this.props.product);
-
     return (
       <div>
         <div className="product-container" key={product.id}>
-          {console.log("ME ESTOY MONTANDO")}
           <div className="img-container">
             <img src={product.imgURL} />
           </div>
@@ -53,6 +50,8 @@ class ProductDetails extends Component {
             <h3>Author: {product.author}</h3>
             <h5 className="category-product-details">
               {product.category[0] || ""}
+              <br />
+              {product.category[1] || ""}
             </h5>
             <h2>Sinopsis</h2>
             <p>{product.description.slice(0, 300) + "..."} </p>
