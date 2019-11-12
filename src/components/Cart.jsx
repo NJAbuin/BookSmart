@@ -20,7 +20,8 @@ function Cart(props) {
     return totalPrice.toFixed(2);
   };
 
-  const cartToMap = props.user ? props.cart : JSON.parse(localStorage.cart);
+  const cartToMap =
+    props.user !== "" ? props.cart : JSON.parse(localStorage.cart);
 
   return (
     <div>
@@ -54,8 +55,9 @@ function Cart(props) {
                   <Button variant="outline-info">-</Button>
                   <p>{productQtty}</p>
                   <Button
-                    onClick={() => {
+                    onClick={e => {
                       props.addToCart(product);
+
                       forceUpdate();
                     }}
                     variant="outline-info"

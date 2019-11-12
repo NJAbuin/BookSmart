@@ -3,6 +3,7 @@ const api = require("express").Router();
 const Op = require("sequelize").Op;
 const { User, Book, Cart, Category } = require("../db/models/index");
 const faker = require("faker");
+const chalk = require("chalk");
 
 const categories = [
   "Terror",
@@ -277,6 +278,10 @@ api.get("/category", (req, res) => {
     .then(res => res.map(e => e.dataValues.name))
     .then(categories => res.json(categories))
     .catch(e => console.log(e));
+});
+
+api.get("/categs/:cat", (req, res) => {
+  Book.findByCategory(req.params.cat).then(data => res.send(data));
 });
 
 api.post("/category/books", (req, res) => {
