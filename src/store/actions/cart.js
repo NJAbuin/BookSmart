@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_TO_CART } from "../constants";
+import { ADD_TO_CART, DELETE_TO_CART } from "../constants";
 
 export const addToCart = product => dispatch => {
   console.log("PRODUCT");
@@ -11,3 +11,14 @@ export const addToCart = product => dispatch => {
 export const cartAction = payload => {
   return { type: ADD_TO_CART, payload };
 };
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+// export const deleteToCart = product => dispatch => {
+//   dispatch(deleteAction(product));
+// }
+
+// export const deleteAction = payload => {
+//   return { type: DELETE_TO_CART, payload };
+// }
