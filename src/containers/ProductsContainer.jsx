@@ -23,19 +23,26 @@ class ProductsContainer extends React.Component {
     if (productList.length <= 0) {
       return <p>No se encontraron resultados</p>;
     } else {
+      for (let i = 0; i < productList.length; i++) {
+        for (let j = i + 1; j < productList.length; j++) {
+          if (productList[i].name == productList[j].name) {
+            let indexProduct = productList.indexOf(productList[i])
+            productList.splice(indexProduct, 1)
+          }
+        }
+      }
       return (
-          <Row>
-            {productList.slice(0, 9).map(e => (
-              
-              <Col sm='12' md='4'>
-                <CardDeck>
-              <SingleProduct key={e.id} info={e} />
+        <Row>
+          {productList.slice(0, 9).map(e => (
+            <Col sm='12' md='4'>
+              <CardDeck>
+                <SingleProduct key={e.id} info={e} />
               </CardDeck>
-              </Col>
-            ))}
-            </Row>  
-        
-      
+            </Col>
+          ))}
+        </Row>
+
+
       );
     }
   }

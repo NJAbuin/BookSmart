@@ -1,6 +1,8 @@
 const db = require("../index");
 const S = require("sequelize");
 const crypto = require("crypto");
+const Transaction = require("./Transaction");
+const Cart = require("./Cart");
 
 class User extends S.Model {}
 User.init(
@@ -38,6 +40,10 @@ User.init(
 User.beforeCreate(user => {
   user.salt = user.randomSalt();
   user.password = user.hashPassword(user.password);
+});
+
+User.afterCreate(user => {
+  Cart.create({});
 });
 
 User.prototype.hashPassword = function(password) {
