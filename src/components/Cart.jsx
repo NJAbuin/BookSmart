@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 import { addToCart, delFromCart } from "../store/actions/cart";
 
+//create your forceUpdate hook
+function useForceUpdate() {
+  const [value, setValue] = useState(true); //boolean state
+  return () => setValue(!value); // toggle the state to force render
+}
+
 function Cart(props) {
+  const forceUpdate = useForceUpdate();
+
   const totalValue = function(cart) {
     let totalPrice = 0;
     for (let i = 0; i < cart.length; i++) {
@@ -34,27 +42,25 @@ function Cart(props) {
           </div>
           {props.cart.map(product => {
             const totalPrice = product.price * product.quantity;
+            let productQtty = product.quantity;
             return (
-              <div className="cart-container-products-list">
+              <div className="cart-container-products-list" key={product.id}>
                 <img src={product.imgURL} style={{ width: "75px" }} alt="" />
                 <p style={{ width: "80px" }}>{product.name}</p>
                 <div>
                   <Button variant="outline-info">-</Button>
-                  <input
-                    style={{ width: "30px", textAlign: "center" }}
-                    type="text"
-                    defaultValue={product.quantity}
-                    name=""
-                    id=""
-                  />
+                  <p>{productQtty}</p>
                   <Button
-                    onClick={() => props.incHandler(product)}
+                    onClick={() => {
+                      props.addToCart(product);
+                      forceUpdate();
+                    }}
                     variant="outline-info"
                   >
                     +
                   </Button>
                 </div>
-                <div className="product-price">${totalPrice}</div>
+                <div className="product-price">${totalPrice.toFixed(2)}</div>
                 <Button
                   onClick={() => props.deleteProduct(product)}
                   variant="danger"

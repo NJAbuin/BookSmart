@@ -41,7 +41,7 @@ class ProductDetails extends Component {
 
     return (
       <div>
-        <div className="product-container">
+        <div className="product-container" key={product.id}>
           <div className="img-container">
             <Carousel style={{ width: "300px" }}>
               <Carousel.Item>
@@ -60,11 +60,14 @@ class ProductDetails extends Component {
               </Carousel.Item>
             </Carousel>
           </div>
+          {}
           <div className="product-details">
             <h1 className="product-name">{product.name}</h1>
             <h3>Author: {product.author}</h3>
             <h5 className="category-product-details">
               {product.category[0] || ""}
+              <br />
+              {product.category[1] || ""}
             </h5>
             <h2>Sinopsis</h2>
             <p>{product.description.slice(0, 300) + "..."} </p>

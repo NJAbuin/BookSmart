@@ -57345,138 +57345,9 @@ module.exports = function(originalModule) {
   !*** ./src/components/Cart.jsx ***!
   \*********************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
-
-
-
-
-
-function Cart(props) {
-  var totalValue = function totalValue(cart) {
-    var totalPrice = 0;
-
-    for (var i = 0; i < cart.length; i++) {
-      totalPrice += cart[i].price * cart[i].quantity;
-    }
-
-    return totalPrice.toFixed(2);
-  };
-
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "https://image.flaticon.com/icons/png/512/107/107831.png",
-    style: {
-      width: "40px",
-      display: "inline-block"
-    },
-    alt: ""
-  }), " ", "\xA0\xA0\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    style: {
-      display: "inline-block",
-      margin: "0 0 0 0"
-    }
-  }, "Mi Carrito")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart-container-products"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart-container-products-titles"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Producto"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Cantidad"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total")), props.cart.map(function (product) {
-    var totalPrice = product.price * product.quantity;
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "cart-container-products-list"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: product.imgURL,
-      style: {
-        width: "75px"
-      },
-      alt: ""
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      style: {
-        width: "80px"
-      }
-    }, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      variant: "outline-info"
-    }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      style: {
-        width: "30px",
-        textAlign: "center"
-      },
-      type: "text",
-      defaultValue: product.quantity,
-      name: "",
-      id: ""
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      onClick: function onClick() {
-        return props.incHandler(product);
-      },
-      variant: "outline-info"
-    }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "product-price"
-    }, "$", totalPrice), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      onClick: function onClick() {
-        return props.deleteProduct(product);
-      },
-      variant: "danger"
-    }, "Delete"));
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart-container-total"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart-container-descount"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "CUPON DE DESCUENTO"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "descount-input"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    style: {
-      width: "120px"
-    }
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "primary"
-  }, "Agregar"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart-container-subtotal-count"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SUBTOTAL"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "$ ", totalValue(props.cart))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart-container-envio"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ENVIO"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "primary"
-  }, "Calcular")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart-container-total-count"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    style: {
-      fontWeight: "bold"
-    }
-  }, "TOTAL:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "$ ", totalValue(props.cart))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "success",
-    className: "button-finish-style"
-  }, "Finalizar Compra"))));
-}
-
-var mapStateToProps = function mapStateToProps(_ref) {
-  var user = _ref.user,
-      cart = _ref.cart;
-  return {
-    user: user,
-    cart: cart
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    addToCart: function addToCart(book) {
-      return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["addToCart"])(book));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(Cart));
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/src/components/Cart.jsx: Unexpected token (13:1)\n\n\u001b[0m \u001b[90m 11 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m\u001b[36mfunction\u001b[39m \u001b[33mCart\u001b[39m(props) {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 14 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 15 | \u001b[39m  \u001b[36mconst\u001b[39m forceUpdate \u001b[33m=\u001b[39m useForceUpdate()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 16 | \u001b[39m\u001b[0m\n    at Object.raise (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:6420:17)\n    at Object.unexpected (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:7773:16)\n    at Object.jsxParseIdentifier (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3392:12)\n    at Object.jsxParseNamespacedName (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3402:23)\n    at Object.jsxParseElementName (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3413:21)\n    at Object.jsxParseOpeningElementAt (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3499:22)\n    at Object.jsxParseElementAt (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3532:33)\n    at Object.jsxParseElement (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3606:17)\n    at Object.parseExprAtom (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3613:19)\n    at Object.parseExprSubscripts (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:8556:23)\n    at Object.parseMaybeUnary (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:8536:21)\n    at Object.parseExprOps (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:8402:23)\n    at Object.parseMaybeConditional (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:8375:23)\n    at Object.parseMaybeAssign (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:8325:21)\n    at Object.parseExpression (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:8275:23)\n    at Object.parseStatementContent (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10138:23)\n    at Object.parseStatement (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10009:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10585:25)\n    at Object.parseBlockBody (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10572:10)\n    at Object.parseBlock (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10556:10)\n    at Object.parseFunctionBody (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:9584:24)\n    at Object.parseFunctionBodyAndFinish (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:9554:10)\n    at withTopicForbiddingContext (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10717:12)\n    at Object.withTopicForbiddingContext (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:9884:14)\n    at Object.parseFunction (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10716:10)\n    at Object.parseFunctionStatement (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10357:17)\n    at Object.parseStatementContent (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10047:21)\n    at Object.parseStatement (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10009:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10585:25)\n    at Object.parseBlockBody (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10572:10)");
 
 /***/ }),
 
@@ -57630,7 +57501,6 @@ __webpack_require__.r(__webpack_exports__);
   var handleInput = _ref.handleInput,
       handleSubmit = _ref.handleSubmit,
       cart = _ref.cart;
-  console.log(cart);
 
   var totalValue = function totalValue(cart) {
     var totalPrice = 0;
@@ -57671,7 +57541,7 @@ __webpack_require__.r(__webpack_exports__);
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     onClick: handleSubmit,
     variant: "outline-light"
-  }, "Search")), " \xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+  }, "Search")), " ", "\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
     to: "/cart"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: "https://image.flaticon.com/icons/png/512/107/107831.png",
@@ -57774,7 +57644,8 @@ function (_Component) {
         category: []
       };
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "product-container"
+        className: "product-container",
+        key: product.id
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "img-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Carousel__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -57795,7 +57666,7 @@ function (_Component) {
         className: "product-name"
       }, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Author: ", product.author), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "category-product-details"
-      }, product.category[0] || ""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Sinopsis"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, product.description.slice(0, 300) + "...", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, product.year), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " $ ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, product.category[0] || "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), product.category[1] || ""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Sinopsis"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, product.description.slice(0, 300) + "...", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, product.year), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " $ ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
         onClick: function onClick() {
           return _this2.props.addToCart(_this2.props.product.product[0]);
         },
@@ -58067,21 +57938,28 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CartContainer).call(this, props));
     _this.deleteProduct = _this.deleteProduct.bind(_assertThisInitialized(_this));
+    _this.incHandler = _this.incHandler.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(CartContainer, [{
+    key: "incHandler",
+    value: function incHandler(book) {
+      this.props.addToCart(book);
+      this.forceUpdate();
+    }
+  }, {
     key: "deleteProduct",
     value: function deleteProduct(product) {
-      console.log("ME CLICKIASTE", product);
       this.props.deleteToCart(product);
     }
   }, {
     key: "render",
     value: function render() {
+      console.log("me monte container");
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Cart__WEBPACK_IMPORTED_MODULE_1__["default"], {
         deleteProduct: this.deleteProduct,
-        incHandler: this.props.addToCart,
+        incHandler: this.incHandler,
         decHandler: this.props.delFromCart,
         cart: this.props.cart
       });
@@ -58091,9 +57969,10 @@ function (_React$Component) {
   return CartContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(_ref) {
+  var cart = _ref.cart;
   return {
-    cart: state.cart
+    cart: cart
   };
 };
 
@@ -59187,6 +59066,14 @@ var middleWare = [Object(redux_logger__WEBPACK_IMPORTED_MODULE_1__["createLogger
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cartReducer", function() { return cartReducer; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 var initialState = [];
 var cartReducer = function cartReducer() {
@@ -59215,14 +59102,16 @@ var delProdFromCart = function delProdFromCart(state, book) {
   return state;
 };
 
-var cartFilter = function cartFilter(state, book) {
-  console.log("STATE: ", state, "BOOK: ", book);
+var cartFilter = function cartFilter(state, added) {
+  var found = state.find(function (book) {
+    return book.id == added.id;
+  });
 
-  if (state.includes(book)) {
-    book.quantity += 1;
+  if (found) {
+    found.quantity += 1;
   } else {
-    book.quantity = 1;
-    state.push(book);
+    added.quantity = 1;
+    state = [].concat(_toConsumableArray(state), [added]);
   }
 
   return state;

@@ -22,13 +22,16 @@ const delProdFromCart = (state, book) => {
   return state;
 };
 
-const cartFilter = (state, book) => {
-  console.log("STATE: ", state, "BOOK: ", book);
-  if (state.includes(book)) {
-    book.quantity += 1;
+const cartFilter = (state, added) => {
+  let found = state.find(book => {
+    return book.id == added.id;
+  });
+
+  if (found) {
+    found.quantity += 1;
   } else {
-    book.quantity = 1;
-    state.push(book);
+    added.quantity = 1;
+    state = [...state, added];
   }
 
   return state;
