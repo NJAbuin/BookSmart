@@ -47,7 +47,7 @@ function Cart(props) {
               <div className="cart-container-products-list" key={product.id}>
                 <img src={product.imgURL} style={{ width: "75px" }} alt="" />
                 <p style={{ width: "80px" }}>{product.name}</p>
-                <div >
+                <div>
                   <Button variant="outline-info">-</Button>
                   <p>{productQtty}</p>
                   <Button
