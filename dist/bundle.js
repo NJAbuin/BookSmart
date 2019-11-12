@@ -58051,8 +58051,7 @@ function (_React$Component) {
   _createClass(CartContainer, [{
     key: "deleteProduct",
     value: function deleteProduct(product) {
-      console.log("ME CLICKIASTE", product);
-      this.props.deleteToCart(product);
+      this.props.deleteProductFromCart(product);
     }
   }, {
     key: "render",
@@ -58077,8 +58076,8 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    deleteToCart: function deleteToCart(product) {
-      return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["deleteToCart"])(product));
+    deleteProductFromCart: function deleteProductFromCart(product) {
+      return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["deleteProductFromCart"])(product));
     },
     addToCart: function addToCart(book) {
       return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["addToCart"])(book));
@@ -58909,13 +58908,15 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 /*!***********************************!*\
   !*** ./src/store/actions/cart.js ***!
   \***********************************/
-/*! exports provided: addToCart, cartAction, delFromCart, delCartAction */
+/*! exports provided: addToCart, cartAction, deleteProductFromCart, deleteProductAction, delFromCart, delCartAction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToCart", function() { return addToCart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cartAction", function() { return cartAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteProductFromCart", function() { return deleteProductFromCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteProductAction", function() { return deleteProductAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "delFromCart", function() { return delFromCart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "delCartAction", function() { return delCartAction; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -58937,12 +58938,18 @@ var cartAction = function cartAction(payload) {
     payload: payload
   };
 }; ///////////////////////////////////////////////////////////////////////////////
-// export const deleteToCart = product => dispatch => {
-//   dispatch(deleteAction(product));
-// }
-// export const deleteAction = payload => {
-//   return { type: DELETE_TO_CART, payload };
-// }
+
+var deleteProductFromCart = function deleteProductFromCart(product) {
+  return function (dispatch) {
+    dispatch(deleteProductAction(product));
+  };
+};
+var deleteProductAction = function deleteProductAction(payload) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_1__["DELETE_PRODUCT_FROM_CART"],
+    payload: payload
+  };
+}; ////////////////////////////////////////////////////////////////////////////////
 
 var delFromCart = function delFromCart(product) {
   return function (dispatch) {
@@ -59093,7 +59100,7 @@ var fetchUser = function fetchUser() {
 /*!********************************!*\
   !*** ./src/store/constants.js ***!
   \********************************/
-/*! exports provided: FETCH_PRODUCTS, SEARCH_PRODUCTS, EMPTY_USER, RECEIVE_USER, SELECT_PRODUCT, FILTER_PRODUCT, ADD_TO_CART, DELETE_TO_CART, DEL_FROM_CART */
+/*! exports provided: FETCH_PRODUCTS, SEARCH_PRODUCTS, EMPTY_USER, RECEIVE_USER, SELECT_PRODUCT, FILTER_PRODUCT, ADD_TO_CART, DELETE_PRODUCT_FROM_CART, DEL_FROM_CART */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59105,7 +59112,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SELECT_PRODUCT", function() { return SELECT_PRODUCT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FILTER_PRODUCT", function() { return FILTER_PRODUCT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_TO_CART", function() { return ADD_TO_CART; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_TO_CART", function() { return DELETE_TO_CART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_PRODUCT_FROM_CART", function() { return DELETE_PRODUCT_FROM_CART; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEL_FROM_CART", function() { return DEL_FROM_CART; });
 var FETCH_PRODUCTS = "FETCH_PRODUCTS";
 var SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
@@ -59114,8 +59121,7 @@ var RECEIVE_USER = "RECEIVE_USER";
 var SELECT_PRODUCT = "SELECT_PRODUCT";
 var FILTER_PRODUCT = "FILTER_PRODUCT";
 var ADD_TO_CART = "ADD_TO_CART";
-var DELETE_TO_CART = "DELETE_TO_CART"; // RENOMBRAR
-
+var DELETE_PRODUCT_FROM_CART = "DELETE_PRODUCT_FROM_CART";
 var DEL_FROM_CART = "DEL_FROM_CART";
 
 /***/ }),
@@ -59171,6 +59177,11 @@ var cartReducer = function cartReducer() {
 
     case _constants__WEBPACK_IMPORTED_MODULE_0__["DEL_FROM_CART"]:
       return delProdFromCart(state, action.payload);
+
+    case _constants__WEBPACK_IMPORTED_MODULE_0__["DELETE_PRODUCT_FROM_CART"]:
+      return state.filter(function (item) {
+        return item !== action.payload;
+      });
 
     default:
       return state;

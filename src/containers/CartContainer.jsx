@@ -1,7 +1,7 @@
 import React from "react";
 import Cart from "../components/Cart";
 import { connect } from "react-redux";
-import { addToCart, delFromCart, deleteToCart } from "../store/actions/cart";
+import { addToCart, delFromCart, deleteProductFromCart } from "../store/actions/cart";
 
 class CartContainer extends React.Component {
   constructor(props) {
@@ -11,8 +11,7 @@ class CartContainer extends React.Component {
   }
 
   deleteProduct(product) {
-    console.log("ME CLICKIASTE", product)
-    this.props.deleteToCart(product)
+    this.props.deleteProductFromCart(product)
   }
 
   render() {
@@ -34,7 +33,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  deleteToCart: product => dispatch(deleteToCart(product)),
+  deleteProductFromCart: product => dispatch(deleteProductFromCart(product)),
   addToCart: book => dispatch(addToCart(book))
 });
 
