@@ -57345,9 +57345,154 @@ module.exports = function(originalModule) {
   !*** ./src/components/Cart.jsx ***!
   \*********************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/src/components/Cart.jsx: Unexpected token (13:1)\n\n\u001b[0m \u001b[90m 11 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m\u001b[36mfunction\u001b[39m \u001b[33mCart\u001b[39m(props) {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 14 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 15 | \u001b[39m  \u001b[36mconst\u001b[39m forceUpdate \u001b[33m=\u001b[39m useForceUpdate()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 16 | \u001b[39m\u001b[0m\n    at Object.raise (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:6420:17)\n    at Object.unexpected (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:7773:16)\n    at Object.jsxParseIdentifier (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3392:12)\n    at Object.jsxParseNamespacedName (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3402:23)\n    at Object.jsxParseElementName (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3413:21)\n    at Object.jsxParseOpeningElementAt (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3499:22)\n    at Object.jsxParseElementAt (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3532:33)\n    at Object.jsxParseElement (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3606:17)\n    at Object.parseExprAtom (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:3613:19)\n    at Object.parseExprSubscripts (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:8556:23)\n    at Object.parseMaybeUnary (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:8536:21)\n    at Object.parseExprOps (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:8402:23)\n    at Object.parseMaybeConditional (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:8375:23)\n    at Object.parseMaybeAssign (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:8325:21)\n    at Object.parseExpression (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:8275:23)\n    at Object.parseStatementContent (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10138:23)\n    at Object.parseStatement (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10009:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10585:25)\n    at Object.parseBlockBody (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10572:10)\n    at Object.parseBlock (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10556:10)\n    at Object.parseFunctionBody (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:9584:24)\n    at Object.parseFunctionBodyAndFinish (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:9554:10)\n    at withTopicForbiddingContext (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10717:12)\n    at Object.withTopicForbiddingContext (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:9884:14)\n    at Object.parseFunction (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10716:10)\n    at Object.parseFunctionStatement (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10357:17)\n    at Object.parseStatementContent (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10047:21)\n    at Object.parseStatement (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10009:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10585:25)\n    at Object.parseBlockBody (/Users/mariahelenalopez/Desktop/CodingBootcamp/BookSmart/node_modules/@babel/parser/lib/index.js:10572:10)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+ //create your forceUpdate hook
+
+function useForceUpdate() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      value = _useState2[0],
+      setValue = _useState2[1]; //boolean state
+
+
+  return function () {
+    return setValue(!value);
+  }; // toggle the state to force render
+}
+
+function Cart(props) {
+  var forceUpdate = useForceUpdate();
+
+  var totalValue = function totalValue(cart) {
+    var totalPrice = 0;
+
+    for (var i = 0; i < cart.length; i++) {
+      totalPrice += cart[i].price * cart[i].quantity;
+    }
+
+    return totalPrice.toFixed(2);
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "https://image.flaticon.com/icons/png/512/107/107831.png",
+    style: {
+      width: "40px",
+      display: "inline-block"
+    },
+    alt: ""
+  }), " ", "\xA0\xA0\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    style: {
+      display: "inline-block",
+      margin: "0 0 0 0"
+    }
+  }, "Mi Carrito")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart-container-products"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart-container-products-titles"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Producto"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Cantidad"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total")), props.cart.map(function (product) {
+    var totalPrice = product.price * product.quantity;
+    var productQtty = product.quantity;
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "cart-container-products-list",
+      key: product.id
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: product.imgURL,
+      style: {
+        width: "75px"
+      },
+      alt: ""
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      style: {
+        width: "80px"
+      }
+    }, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      variant: "outline-info"
+    }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, productQtty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      onClick: function onClick() {
+        props.addToCart(product);
+        forceUpdate();
+      },
+      variant: "outline-info"
+    }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "product-price"
+    }, "$", totalPrice.toFixed(2)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      onClick: function onClick() {
+        return props.deleteProduct(product);
+      },
+      variant: "danger"
+    }, "Delete"));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart-container-total"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart-container-descount"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "CUPON DE DESCUENTO"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "descount-input"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    style: {
+      width: "120px"
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "primary"
+  }, "Agregar"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart-container-subtotal-count"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SUBTOTAL"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "$ ", totalValue(props.cart))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart-container-envio"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ENVIO"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "primary"
+  }, "Calcular")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart-container-total-count"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      fontWeight: "bold"
+    }
+  }, "TOTAL:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "$ ", totalValue(props.cart))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "success",
+    className: "button-finish-style"
+  }, "Finalizar Compra"))));
+}
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var user = _ref.user,
+      cart = _ref.cart;
+  return {
+    user: user,
+    cart: cart
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    addToCart: function addToCart(book) {
+      return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["addToCart"])(book));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(Cart));
 
 /***/ }),
 
