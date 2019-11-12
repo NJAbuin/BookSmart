@@ -1,17 +1,30 @@
 import React from "react";
 import Cart from "../components/Cart";
 import { connect } from "react-redux";
-import { addToCart, delFromCart } from "../store/actions/cart";
+import { addToCart, delFromCart, deleteToCart } from "../store/actions/cart";
 
 class CartContainer extends React.Component {
   constructor(props) {
     super(props);
+
+    this.deleteProduct = this.deleteProduct.bind(this);
+    this.incHandler = this.incHandler.bind(this);
+  }
+
+  incHandler(book) {
+    this.props.addToCart(book);
+    this.forceUpdate();
+  }
+
+  deleteProduct(product) {
+    this.props.deleteToCart(product);
   }
 
   render() {
     return (
       <Cart
-        incHandler={this.props.addToCart}
+        deleteProduct={this.deleteProduct}
+        incHandler={this.incHandler}
         decHandler={this.props.delFromCart}
         cart={this.props.cart}
       />
@@ -19,13 +32,14 @@ class CartContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ cart }) => {
   return {
-    cart: state.cart
+    cart
   };
 };
 
 const mapDispatchToProps = dispatch => ({
+  deleteToCart: product => dispatch(deleteToCart(product)),
   addToCart: book => dispatch(addToCart(book))
 });
 

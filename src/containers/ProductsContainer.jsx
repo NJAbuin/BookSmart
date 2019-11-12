@@ -46,13 +46,13 @@ class ProductsContainer extends React.Component {
   }
 }
 
-const containerStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-  gridGap: "2rem",
-  justifyItems: "auto",
-  alignItems: "auto"
-};
+// const containerStyle = {
+//   display: "grid",
+//   gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+//   gridGap: "2rem",
+//   justifyItems: "auto",
+//   alignItems: "auto"
+// };
 
 const mapStateToProps = state => {
   return { products: state };

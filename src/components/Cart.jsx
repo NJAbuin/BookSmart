@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 import { addToCart, delFromCart } from "../store/actions/cart";
 
+//create your forceUpdate hook
+function useForceUpdate() {
+  const [value, setValue] = useState(true); //boolean state
+  return () => setValue(!value); // toggle the state to force render
+}
+
 function Cart(props) {
-  console.log(props);
+  const forceUpdate = useForceUpdate();
+
+  const totalValue = function(cart) {
+    let totalPrice = 0;
+    for (let i = 0; i < cart.length; i++) {
+      totalPrice += cart[i].price * cart[i].quantity;
+    }
+    return totalPrice.toFixed(2);
+  };
+
   return (
     <div>
       <div className="cart">
@@ -26,28 +41,32 @@ function Cart(props) {
             <h3>Total</h3>
           </div>
           {props.cart.map(product => {
+            const totalPrice = product.price * product.quantity;
+            let productQtty = product.quantity;
             return (
               <div className="cart-container-products-list" key={product.id}>
                 <img src={product.imgURL} style={{ width: "75px" }} alt="" />
-                <p>{product.name}</p>
-                <div>
+                <p style={{ width: "80px" }}>{product.name}</p>
+                <div >
                   <Button variant="outline-info">-</Button>
-                  <input
-                    style={{ width: "30px", textAlign: "center" }}
-                    type="text"
-                    defaultValue="1"
-                    name=""
-                    id=""
-                  />
+                  <p>{productQtty}</p>
                   <Button
+                    onClick={() => {
+                      props.addToCart(product);
+                      forceUpdate();
+                    }}
                     variant="outline-info"
-                    onClick={() => props.incHandler(product)}
                   >
                     +
                   </Button>
                 </div>
-                <div className="product-price">${product.price}</div>
-                <Button variant="danger">Delete</Button>
+                <div className="product-price">${totalPrice.toFixed(2)}</div>
+                <Button
+                  onClick={() => props.deleteProduct(product)}
+                  variant="danger"
+                >
+                  Delete
+                </Button>
               </div>
             );
           })}
@@ -62,7 +81,7 @@ function Cart(props) {
           </div>
           <div className="cart-container-subtotal-count">
             <p>SUBTOTAL</p>
-            <p>$1.234,99</p>
+            <p>$ {totalValue(props.cart)}</p>
           </div>
           <div className="cart-container-envio">
             <p>ENVIO</p>
@@ -70,7 +89,7 @@ function Cart(props) {
           </div>
           <div className="cart-container-total-count">
             <p style={{ fontWeight: "bold" }}>TOTAL:</p>
-            <p>$1.234,99</p>
+            <p>$ {totalValue(props.cart)}</p>
           </div>
           <Button variant="success" className="button-finish-style">
             Finalizar Compra
