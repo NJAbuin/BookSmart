@@ -38,10 +38,10 @@ display: flex;
     border: 2px solid grey; 
     border-radius: 6px;
     width: 300px;
-    height: 500px;
+    height: 400px;
     display: flex;
     flex-direction: column;
-  justify-content: flex-end;
+    justify-content: space-between;
 
 }
 
@@ -64,6 +64,32 @@ display: flex;
     display: flex;
     justify-content: space-around;
 }
+.cart-container-descount{
+    padding-bottom: 10px;
+    border-bottom: 2px dashed grey;
+}
+
+.cart-container-subtotal-count{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed grey;
+}
+
+.cart-container-envio{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed grey;
+}
+
+
+.descount-input{
+    display: flex;
+    justify-content: space-around;
+}
+
+
 
 .button-finish-style{
     border: none;
