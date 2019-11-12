@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { selectProduct } from "../store/actions/products";
 import { addToCart } from "../store/actions/cart";
 import Button from "react-bootstrap/Button";
+import Carousel from "react-bootstrap/Carousel";
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -38,13 +39,26 @@ class ProductDetails extends Component {
       category: []
     };
 
-    console.log("!!!!!!!!!!!!", this.props.product);
-
     return (
       <div>
         <div className="product-container">
           <div className="img-container">
-            <img src={product.imgURL} />
+            <Carousel style={{ width: "300px" }}>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src={product.imgURL}
+                  alt="First slide"
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="https://www.brandcrowd.com/gallery/brands/pictures/picture14259392814670.png"
+                  alt="Third slide"
+                />
+              </Carousel.Item>
+            </Carousel>
           </div>
           <div className="product-details">
             <h1 className="product-name">{product.name}</h1>
