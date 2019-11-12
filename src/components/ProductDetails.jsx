@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { selectProduct } from "../store/actions/products";
+import { addToCart } from "../store/actions/cart";
 import Button from "react-bootstrap/Button";
 
 class ProductDetails extends Component {
@@ -37,6 +38,8 @@ class ProductDetails extends Component {
       category: []
     };
 
+    console.log("!!!!!!!!!!!!", this.props.product);
+
     return (
       <div>
         <div className="product-container" key={product.id}>
@@ -55,7 +58,14 @@ class ProductDetails extends Component {
             <p>{product.description.slice(0, 300) + "..."} </p>
             <h5>{product.year}</h5>
             <h3> $ {product.price} </h3>
-            <Button variant="success">Add to Cart</Button>
+            <Button
+              onClick={() =>
+                this.props.addToCart(this.props.product.product[0])
+              }
+              variant="success"
+            >
+              Add to Cart
+            </Button>
           </div>
         </div>
       </div>
@@ -68,7 +78,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  selectProduct: id => dispatch(selectProduct(id))
+  selectProduct: id => dispatch(selectProduct(id)),
+  addToCart: input => dispatch(addToCart(input))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
