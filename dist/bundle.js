@@ -2752,7 +2752,7 @@ exports.push([module.i, "/*!\n * Bootstrap v4.3.1 (https://getbootstrap.com/)\n 
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".product-container{\ndisplay: flex;\n}\n\n.img-container{\n   margin-top: 30px;\n}\n\n.product-details{\n    margin-top: 30px;\n    padding-left: 100px;\n}\n.category-product-details{\n    display: inline-block;\n    color: white;\n    background-color: grey;\n}\n\n.product-name{\n    font-weight: bold;\n}\n\n.cart{\n    border-bottom: 2px solid black;\n}\n\n.cart-container{\n    display: flex;\n    margin-top: 10px;\n}\n\n.cart-container-products{\n    /* border: 2px solid grey; \n    border-radius: 6px; */\n}\n\n.cart-container-total{\n    border: 2px solid grey; \n    border-radius: 6px;\n    width: 300px;\n    height: 500px;\n    display: flex;\n    flex-direction: column;\n  justify-content: flex-end;\n\n}\n\n.cart-container-products-titles{\n    width: 700px;\n    display: flex;\n    justify-content: space-evenly;\n}\n\n.cart-container-products-list{\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    border: 2px solid grey; \n    border-radius: 6px;\n    margin-top: 10px;\n}\n\n.cart-container-total-count{\n    display: flex;\n    justify-content: space-around;\n}\n\n.button-finish-style{\n    border: none;\n    outline: 0;\n    padding: 12px;\n    cursor: pointer; \n    width: 100%;\n    font-size: 18px;\n    grid-area: add;\n    align-self: center;\n    justify-self: center\n}", ""]);
+exports.push([module.i, ".product-container{\ndisplay: flex;\n}\n\n.img-container{\n   margin-top: 30px;\n}\n\n.product-details{\n    margin-top: 30px;\n    padding-left: 100px;\n}\n.category-product-details{\n    display: inline-block;\n    color: white;\n    background-color: grey;\n}\n\n.product-name{\n    font-weight: bold;\n}\n\n.cart{\n    border-bottom: 2px solid black;\n}\n\n.cart-container{\n    display: flex;\n    margin-top: 10px;\n}\n\n.cart-container-products{\n    /* border: 2px solid grey; \n    border-radius: 6px; */\n}\n\n.cart-container-total{\n    border: 2px solid grey; \n    border-radius: 6px;\n    width: 300px;\n    height: 400px;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n\n}\n\n.cart-container-products-titles{\n    width: 700px;\n    display: flex;\n    justify-content: space-evenly;\n}\n\n.cart-container-products-list{\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    border: 2px solid grey; \n    border-radius: 6px;\n    margin-top: 10px;\n}\n\n.cart-container-total-count{\n    display: flex;\n    justify-content: space-around;\n}\n.cart-container-descount{\n    padding-bottom: 10px;\n    border-bottom: 2px dashed grey;\n}\n\n.cart-container-subtotal-count{\n    display: flex;\n    justify-content: space-around;\n    padding-bottom: 10px;\n    border-bottom: 2px dashed grey;\n}\n\n.cart-container-envio{\n    display: flex;\n    justify-content: space-around;\n    padding-bottom: 10px;\n    border-bottom: 2px dashed grey;\n}\n\n\n.descount-input{\n    display: flex;\n    justify-content: space-around;\n}\n\n\n\n.button-finish-style{\n    border: none;\n    outline: 0;\n    padding: 12px;\n    cursor: pointer; \n    width: 100%;\n    font-size: 18px;\n    grid-area: add;\n    align-self: center;\n    justify-self: center\n}", ""]);
 
 
 /***/ }),
@@ -49420,7 +49420,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57355,7 +57355,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Cart() {
+function Cart(_ref) {
+  var cart = _ref.cart;
+  console.log(cart);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cart"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -57365,7 +57367,7 @@ function Cart() {
       display: "inline-block"
     },
     alt: ""
-  }), " \xA0\xA0\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+  }), " ", "\xA0\xA0\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     style: {
       display: "inline-block",
       margin: "0 0 0 0"
@@ -57376,86 +57378,59 @@ function Cart() {
     className: "cart-container-products"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cart-container-products-titles"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Producto"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Cantidad"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart-container-products-list"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "https://images.bajalibros.com/JKMS-PdecpKBMlFoom9stu5KiQ4=/fit-in/292x446/filters:fill(f8f8f8):quality(90):format(webp)/d2d6tho5fth6q4.cloudfront.net/extast1112016_294e81a3a4fe80d2d944056f45c6824945a34a06.jpg",
-    style: {
-      width: "75px"
-    },
-    alt: ""
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Nombre del Producto"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "outline-info"
-  }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    style: {
-      width: "30px",
-      textAlign: "center"
-    },
-    type: "text",
-    value: "1",
-    name: "",
-    id: ""
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "outline-info"
-  }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "product-price"
-  }, "$1233,99"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "danger"
-  }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart-container-products-list"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "https://images.bajalibros.com/hMxN8O3YzT33y0sQzWdjk52Kjgk=/fit-in/292x446/filters:fill(f8f8f8):quality(90):format(webp)/d2d6tho5fth6q4.cloudfront.net/extast1112519_344472d771c2b7dbed7f9c864a82f943dd5ebbe2.jpg",
-    style: {
-      width: "75px"
-    },
-    alt: ""
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Nombre del Producto"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "outline-info"
-  }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    style: {
-      width: "30px",
-      textAlign: "center"
-    },
-    type: "text",
-    value: "1",
-    name: "",
-    id: ""
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "outline-info"
-  }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "product-price"
-  }, "$1233,99"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "danger"
-  }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart-container-products-list"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "https://images.bajalibros.com/hpSAn5EPsAus1A_KlKw4v9DOyzs=/fit-in/292x446/filters:fill(f8f8f8):quality(90):format(webp)/d2d6tho5fth6q4.cloudfront.net/extast1098153_e118dd016a949356434bb9685c663a8131585900.jpg",
-    style: {
-      width: "75px"
-    },
-    alt: ""
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Nombre del Producto"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "outline-info"
-  }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    style: {
-      width: "30px",
-      textAlign: "center"
-    },
-    type: "text",
-    value: "1",
-    name: "",
-    id: ""
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "outline-info"
-  }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "product-price"
-  }, "$1233,99"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "danger"
-  }, "Delete"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Producto"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Cantidad"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total")), cart.map(function (product) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "cart-container-products-list"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: product.imgURL,
+      style: {
+        width: "75px"
+      },
+      alt: ""
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      variant: "outline-info"
+    }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      style: {
+        width: "30px",
+        textAlign: "center"
+      },
+      type: "text",
+      defaultValue: "1",
+      name: "",
+      id: ""
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      variant: "outline-info"
+    }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "product-price"
+    }, "$", product.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      variant: "danger"
+    }, "Delete"));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cart-container-total"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart-container-descount"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "CUPON DE DESCUENTO"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "descount-input"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    style: {
+      width: "120px"
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "primary"
+  }, "Agregar"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart-container-subtotal-count"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SUBTOTAL"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "$1.234,99")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart-container-envio"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ENVIO"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "primary"
+  }, "Calcular")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cart-container-total-count"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "TOTAL:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "$1.234,99")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      fontWeight: "bold"
+    }
+  }, "TOTAL:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "$1.234,99")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     variant: "success",
     className: "button-finish-style"
   }, "Finalizar Compra"))));
@@ -57618,8 +57593,12 @@ __webpack_require__.r(__webpack_exports__);
     bg: "primary",
     variant: "dark",
     fixed: "top"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"].Brand, {
-    href: "/"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+    to: "/",
+    style: {
+      color: "white",
+      textDecoration: "none"
+    }
   }, "BookSmart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
     className: "mr-auto"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -57671,7 +57650,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_actions_products__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/actions/products */ "./src/store/actions/products.js");
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -57689,6 +57669,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -57721,7 +57702,9 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(product);
+      var _this2 = this;
+
+      console.log("!!!!!!!!!!!!!!!", this.props.product);
       var buttonStyle = {
         border: "none",
         outline: "0",
@@ -57734,10 +57717,10 @@ function (_Component) {
         justifySelf: "center"
       };
       var product = this.props.product.product[0] || {
-        name: '',
-        imgURL: '',
-        price: '',
-        description: ''
+        name: "",
+        imgURL: "",
+        price: "",
+        description: ""
       };
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product-container"
@@ -57751,7 +57734,10 @@ function (_Component) {
         className: "product-name"
       }, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Author: ", product.author), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "category-product-details"
-      }, product.category[0]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Sinopsis"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, product.description.slice(0, 300) + "...", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, product.year), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " $ ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, product.category[0]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Sinopsis"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, product.description.slice(0, 300) + "...", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, product.year), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " $ ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        onClick: function onClick() {
+          return _this2.props.addToCart(_this2.props.product);
+        },
         variant: "success"
       }, "Add to Cart"))));
     }
@@ -57770,6 +57756,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     selectProduct: function selectProduct(id) {
       return dispatch(Object(_store_actions_products__WEBPACK_IMPORTED_MODULE_2__["selectProduct"])(id));
+    },
+    addToCart: function addToCart(input) {
+      return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["addToCart"])(input));
     }
   };
 };
@@ -58017,20 +58006,26 @@ function (_React$Component) {
   _createClass(CartContainer, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Cart__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Cart__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        cart: this.props.cart
+      });
     }
   }]);
 
   return CartContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-var mapStateToProps = function mapStateToProps(state) {};
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    cart: state.cart
+  };
+};
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {};
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null, null)(CartContainer));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, null)(CartContainer));
 
 /***/ }),
 
@@ -58520,15 +58515,14 @@ function (_React$Component) {
   }]);
 
   return ProductsContainer;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // const containerStyle = {
+//   display: "grid",
+//   gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+//   gridGap: "2rem",
+//   justifyItems: "auto",
+//   alignItems: "auto"
+// };
 
-var containerStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-  gridGap: "2rem",
-  justifyItems: "auto",
-  alignItems: "auto"
-};
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
@@ -59110,6 +59104,8 @@ var limpiaCarros = function limpiaCarros(objArr) {
 };
 
 var cartFilter = function cartFilter(state, book) {
+  console.log("STATE: ", state, "BOOK: ", book);
+
   if (state.includes(book)) {
     book.quantity += 1;
   } else {
