@@ -33,7 +33,7 @@ function Cart(props) {
                         <h3>Cantidad</h3>
                         <h3>Total</h3>
                     </div>
-                    {cart.map(product => {
+                    {props.cart.map(product => {
                         const totalPrice = product.price * product.quantity
                         return (
                             <div className="cart-container-products-list">
@@ -51,7 +51,7 @@ function Cart(props) {
                                     <Button onClick={() => props.incHandler(product)} variant="outline-info">+</Button>
                                 </div>
                                 <div className="product-price">${totalPrice}</div>
-                                <Button onClick={() => deleteProduct(product)} variant="danger">Delete</Button>
+                                <Button onClick={() => props.deleteProduct(product)} variant="danger">Delete</Button>
                             </div>
                         );
                     })}
@@ -66,7 +66,7 @@ function Cart(props) {
                     </div>
                     <div className="cart-container-subtotal-count">
                         <p>SUBTOTAL</p>
-                        <p>$ {totalValue(cart)}</p>
+                        <p>$ {totalValue(props.cart)}</p>
                     </div>
                     <div className="cart-container-envio">
                         <p>ENVIO</p>
@@ -74,7 +74,7 @@ function Cart(props) {
                     </div>
                     <div className="cart-container-total-count">
                         <p style={{ fontWeight: "bold" }}>TOTAL:</p>
-                        <p>$ {totalValue(cart)}</p>
+                        <p>$ {totalValue(props.cart)}</p>
                     </div>
                     <Button variant="success" className="button-finish-style">
                         Finalizar Compra
