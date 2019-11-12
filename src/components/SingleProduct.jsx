@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
-import { addToCart, cartReducer } from "../store/actions/cart";
+import { addToCart } from "../store/actions/cart";
 
 const priceStyle = {
   color: "grey",
