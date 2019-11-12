@@ -1,7 +1,7 @@
 const api = require("express").Router();
 
 const Op = require("sequelize").Op;
-const { User, Book, Cart, Category } = require("../db/models/index");
+const { User, Book, Cart, Category, Transaction } = require("../db/models/index");
 const faker = require("faker");
 
 const categories = [
@@ -284,5 +284,15 @@ api.post("/category/books", (req, res) => {
 });
 
 api.use("/auth", require("./auth"));
+
+api.post('/checkout', (req, res) =>{
+  Cart.chekout(req.body.id).then(e=> Transaction.open(e))
+  .then(()=> res.send('SUCCESS'))
+  .catch(error => {
+    console.log(error)
+    res.send("ERROR")})
+})
+
+
 
 module.exports = api;

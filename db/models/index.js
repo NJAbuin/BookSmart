@@ -15,8 +15,9 @@ Cart.belongsToMany(Book, {
   through: "CartBook"
 });
 
-User.hasMany(Cart, { as: "Carts" });
+User.hasMany(Cart); //Esto crea en la tabla Cart un campo que se llama UserID (https://sequelize.org/master/manual/associations.html#source--amp--target)
 
-User.hasMany(Transaction, { as: "Transactions" });
+User.hasMany(Transaction); // => Transaction va a tener userid
+Cart.hasMany(Transaction); // => Transaction va a tener cartId
 
 module.exports = { Book, Cart, User, Transaction, Category, CartProduct };
