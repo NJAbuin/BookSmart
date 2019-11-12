@@ -9,7 +9,6 @@ class ProductDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedProduct2: []
     };
     this.productID = this.props.match.params.id;
   }

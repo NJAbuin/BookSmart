@@ -57753,9 +57753,7 @@ function (_Component) {
     _classCallCheck(this, ProductDetails);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductDetails).call(this, props));
-    _this.state = {
-      selectedProduct2: []
-    };
+    _this.state = {};
     _this.productID = _this.props.match.params.id;
     return _this;
   }
@@ -57945,6 +57943,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -57979,6 +57980,12 @@ function SingleProduct(props) {
 
     if (!props.user) {
       localStorage.setItem("cart", JSON.stringify(props.cart));
+    } else {
+      axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/addToCart", {
+        userId: props.user.id,
+        bookId: product.id,
+        quantity: product.quantity
+      });
     }
   };
 
@@ -58101,7 +58108,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log("me monte container");
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Cart__WEBPACK_IMPORTED_MODULE_1__["default"], {
         deleteProduct: this.deleteProduct,
         incHandler: this.incHandler,
