@@ -11,10 +11,14 @@ Cart.init(
         //CARTPRODUCT.FINDALL
       }
     },
-    status: {
+    cartId: {
+      type: S.INTEGER,
+      allowNull: false
+    },
+    state:{
       type: S.ENUM,
-      values: ['opened', 'closed'],
-      defaultValue: 'opened'
+      values: ['Opened','In Process', 'Cancelled', 'Completed'],
+      defaultValue: 'Opened'
     }
   },
   { sequelize: db, modelName: "cart" }
