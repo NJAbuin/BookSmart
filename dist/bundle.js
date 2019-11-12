@@ -57632,7 +57632,7 @@ __webpack_require__.r(__webpack_exports__);
     style: {
       color: "black"
     }
-  }, "$ 0,00"))));
+  }, "$ 1000,00"))));
 });
 
 /***/ }),

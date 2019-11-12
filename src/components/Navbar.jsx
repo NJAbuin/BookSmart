@@ -37,7 +37,7 @@ export default ({ handleInput, handleSubmit }) => {
         </Link>
         &nbsp;&nbsp;&nbsp;
         <Link to="/cart">
-          <h3 style={{ color: "black" }} >$ 0,00</h3>
+          <h3 style={{ color: "black" }} >$ 1000,00</h3>
         </Link>
       </Navbar>
     </>
