@@ -10,13 +10,15 @@ class CartContainer extends React.Component {
 
     render() {
         return (
-            <Cart />
+            <Cart cartReducer={this.props.cartReducer} />
         )
     }
 }
 
 const mapStateToProps = state => {
-
+    return {
+        cartReducer: state.cartReducer
+    }
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -24,7 +26,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-    null,
+    mapStateToProps,
     null
 )(CartContainer);
 

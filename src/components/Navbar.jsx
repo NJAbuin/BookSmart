@@ -10,7 +10,7 @@ export default ({ handleInput, handleSubmit }) => {
   return (
     <>
       <Navbar bg="primary" variant="dark" fixed="top" >
-        <Navbar.Brand href="/">BookSmart</Navbar.Brand>
+        <Link to="/" style={{ color: "white", textDecoration: "none" }} >BookSmart</Link>
         <Nav className="mr-auto">
           <ul className="nav ">
             <li className="nav-item">
