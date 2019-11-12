@@ -1,8 +1,10 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { connect } from "react-redux";
+import { addToCart, delFromCart } from "../store/actions/cart";
 
-function Cart({ cart }) {
-  console.log(cart);
+function Cart(props) {
+  console.log(props);
   return (
     <div>
       <div className="cart">
@@ -23,9 +25,9 @@ function Cart({ cart }) {
             <h3>Cantidad</h3>
             <h3>Total</h3>
           </div>
-          {cart.map(product => {
+          {props.cart.map(product => {
             return (
-              <div className="cart-container-products-list">
+              <div className="cart-container-products-list" key={product.id}>
                 <img src={product.imgURL} style={{ width: "75px" }} alt="" />
                 <p>{product.name}</p>
                 <div>
@@ -37,7 +39,12 @@ function Cart({ cart }) {
                     name=""
                     id=""
                   />
-                  <Button variant="outline-info">+</Button>
+                  <Button
+                    variant="outline-info"
+                    onClick={() => props.incHandler(product)}
+                  >
+                    +
+                  </Button>
                 </div>
                 <div className="product-price">${product.price}</div>
                 <Button variant="danger">Delete</Button>
@@ -74,4 +81,13 @@ function Cart({ cart }) {
   );
 }
 
-export default Cart;
+const mapStateToProps = ({ user, cart }) => ({
+  user,
+  cart
+});
+
+const mapDispatchToProps = dispatch => ({
+  addToCart: book => dispatch(addToCart(book))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
