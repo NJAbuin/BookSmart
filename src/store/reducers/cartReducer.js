@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from "../constants";
+import { ADD_TO_CART, DEL_FROM_CART } from "../constants";
 
 const initialState = [];
 
@@ -6,22 +6,20 @@ export const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       return cartFilter(state, action.payload);
+    case DEL_FROM_CART:
+      return delProdFromCart(state, action.payload);
     default:
       return state;
   }
 };
 
-const limpiaCarros = objArr => {
-  let carroLimpio = []; //array<{book:{},quantity:integer}>
-  console.log(objArr);
-  [objArr].map(e => {
-    if (carroLimpio.findIndex(i => i.bookId === e.id) === -1) {
-      carroLimpio.push({ quantity: 1, bookId: e.id });
-    } else {
-      carroLimpio[carroLimpio.findIndex(i => i.bookId === e.id)].quantity += 1;
-    }
-  });
-  return carroLimpio;
+const delProdFromCart = (state, book) => {
+  if (book.quantity === 1) {
+    state.splice(state[state.indexOf(book)], 1);
+  } else {
+    book.quantity -= 1;
+  }
+  return state;
 };
 
 const cartFilter = (state, book) => {

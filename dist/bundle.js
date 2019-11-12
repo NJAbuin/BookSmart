@@ -57352,14 +57352,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
 
 
 
-function Cart(_ref) {
-  var cart = _ref.cart,
-      deleteProduct = _ref.deleteProduct;
-  console.log(cart);
 
+
+function Cart(props) {
   var totalValue = function totalValue(cart) {
     var totalPrice = 0;
 
@@ -57370,7 +57370,6 @@ function Cart(_ref) {
     return totalPrice.toFixed(2);
   };
 
-  console.log(totalValue(cart));
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cart"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -57417,6 +57416,9 @@ function Cart(_ref) {
       name: "",
       id: ""
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      onClick: function onClick() {
+        return props.incHandler(product);
+      },
       variant: "outline-info"
     }, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "product-price"
@@ -57457,7 +57459,24 @@ function Cart(_ref) {
   }, "Finalizar Compra"))));
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Cart);
+var mapStateToProps = function mapStateToProps(_ref) {
+  var user = _ref.user,
+      cart = _ref.cart;
+  return {
+    user: user,
+    cart: cart
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    addToCart: function addToCart(book) {
+      return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["addToCart"])(book));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(Cart));
 
 /***/ }),
 
@@ -57725,12 +57744,11 @@ function (_Component) {
   _createClass(ProductDetails, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.selectProduct(this.productID);
+      this.props.selectProduct(this.props.match.params.id);
     }
   }, {
     key: "render",
     value: function render() {
-      console.log(product);
       var buttonStyle = {
         border: "none",
         outline: "0",
@@ -57743,10 +57761,11 @@ function (_Component) {
         justifySelf: "center"
       };
       var product = this.props.product.product[0] || {
-        name: '',
-        imgURL: '',
-        price: '',
-        description: ''
+        name: "",
+        imgURL: "",
+        price: "",
+        description: "",
+        category: []
       };
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product-container"
@@ -57760,7 +57779,7 @@ function (_Component) {
         className: "product-name"
       }, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Author: ", product.author), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "category-product-details"
-      }, product.category[0]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Sinopsis"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, product.description.slice(0, 300) + "...", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, product.year), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " $ ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, product.category[0] || ""), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Sinopsis"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, product.description.slice(0, 300) + "...", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, product.year), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " $ ", product.price, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
         variant: "success"
       }, "Add to Cart"))));
     }
@@ -58039,8 +58058,10 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Cart__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        cart: this.props.cart,
-        deleteProduct: this.deleteProduct
+        deleteProduct: this.deleteProduct,
+        incHandler: this.props.addToCart,
+        decHandler: this.props.delFromCart,
+        cart: this.props.cart
       });
     }
   }]);
@@ -58058,6 +58079,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     deleteToCart: function deleteToCart(product) {
       return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["deleteToCart"])(product));
+    },
+    addToCart: function addToCart(book) {
+      return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["addToCart"])(book));
     }
   };
 };
@@ -58885,13 +58909,15 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 /*!***********************************!*\
   !*** ./src/store/actions/cart.js ***!
   \***********************************/
-/*! exports provided: addToCart, cartAction */
+/*! exports provided: addToCart, cartAction, delFromCart, delCartAction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToCart", function() { return addToCart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cartAction", function() { return cartAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "delFromCart", function() { return delFromCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "delCartAction", function() { return delCartAction; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
@@ -58899,8 +58925,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var addToCart = function addToCart(product) {
   return function (dispatch) {
-    console.log("PRODUCT");
-    console.log(product.id);
     dispatch(cartAction(product));
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/product/".concat(product.id)).then(function (res) {
       return res.data;
@@ -58919,6 +58943,18 @@ var cartAction = function cartAction(payload) {
 // export const deleteAction = payload => {
 //   return { type: DELETE_TO_CART, payload };
 // }
+
+var delFromCart = function delFromCart(product) {
+  return function (dispatch) {
+    dispatch(delCartAction(product)); // axios.post(`/api/product/${product.id}`).then(res => res.data);
+  };
+};
+var delCartAction = function delCartAction(payload) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_1__["DEL_FROM_CART"],
+    payload: payload
+  };
+};
 
 /***/ }),
 
@@ -59057,7 +59093,7 @@ var fetchUser = function fetchUser() {
 /*!********************************!*\
   !*** ./src/store/constants.js ***!
   \********************************/
-/*! exports provided: FETCH_PRODUCTS, SEARCH_PRODUCTS, EMPTY_USER, RECEIVE_USER, SELECT_PRODUCT, FILTER_PRODUCT, ADD_TO_CART, DELETE_TO_CART */
+/*! exports provided: FETCH_PRODUCTS, SEARCH_PRODUCTS, EMPTY_USER, RECEIVE_USER, SELECT_PRODUCT, FILTER_PRODUCT, ADD_TO_CART, DELETE_TO_CART, DEL_FROM_CART */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59070,6 +59106,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FILTER_PRODUCT", function() { return FILTER_PRODUCT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_TO_CART", function() { return ADD_TO_CART; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_TO_CART", function() { return DELETE_TO_CART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEL_FROM_CART", function() { return DEL_FROM_CART; });
 var FETCH_PRODUCTS = "FETCH_PRODUCTS";
 var SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
 var EMPTY_USER = "EMPTY_USER";
@@ -59077,7 +59114,9 @@ var RECEIVE_USER = "RECEIVE_USER";
 var SELECT_PRODUCT = "SELECT_PRODUCT";
 var FILTER_PRODUCT = "FILTER_PRODUCT";
 var ADD_TO_CART = "ADD_TO_CART";
-var DELETE_TO_CART = "DELETE_TO_CART";
+var DELETE_TO_CART = "DELETE_TO_CART"; // RENOMBRAR
+
+var DEL_FROM_CART = "DEL_FROM_CART";
 
 /***/ }),
 
@@ -59130,30 +59169,22 @@ var cartReducer = function cartReducer() {
     case _constants__WEBPACK_IMPORTED_MODULE_0__["ADD_TO_CART"]:
       return cartFilter(state, action.payload);
 
+    case _constants__WEBPACK_IMPORTED_MODULE_0__["DEL_FROM_CART"]:
+      return delProdFromCart(state, action.payload);
+
     default:
       return state;
   }
 };
 
-var limpiaCarros = function limpiaCarros(objArr) {
-  var carroLimpio = []; //array<{book:{},quantity:integer}>
+var delProdFromCart = function delProdFromCart(state, book) {
+  if (book.quantity === 1) {
+    state.splice(state[state.indexOf(book)], 1);
+  } else {
+    book.quantity -= 1;
+  }
 
-  console.log(objArr);
-  [objArr].map(function (e) {
-    if (carroLimpio.findIndex(function (i) {
-      return i.bookId === e.id;
-    }) === -1) {
-      carroLimpio.push({
-        quantity: 1,
-        bookId: e.id
-      });
-    } else {
-      carroLimpio[carroLimpio.findIndex(function (i) {
-        return i.bookId === e.id;
-      })].quantity += 1;
-    }
-  });
-  return carroLimpio;
+  return state;
 };
 
 var cartFilter = function cartFilter(state, book) {

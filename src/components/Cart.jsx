@@ -1,8 +1,9 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { connect } from "react-redux";
+import { addToCart, delFromCart } from "../store/actions/cart";
 
-function Cart({ cart, deleteProduct }) {
-    console.log(cart);
+function Cart(props) {
 
     const totalValue = function (cart) {
         let totalPrice = 0
@@ -11,9 +12,6 @@ function Cart({ cart, deleteProduct }) {
         }
         return totalPrice.toFixed(2)
     }
-
-    console.log(totalValue(cart))
-
 
     return (
         <div>
@@ -50,7 +48,7 @@ function Cart({ cart, deleteProduct }) {
                                         name=""
                                         id=""
                                     />
-                                    <Button variant="outline-info">+</Button>
+                                    <Button onClick={() => props.incHandler(product)} variant="outline-info">+</Button>
                                 </div>
                                 <div className="product-price">${totalPrice}</div>
                                 <Button onClick={() => deleteProduct(product)} variant="danger">Delete</Button>
@@ -87,4 +85,13 @@ function Cart({ cart, deleteProduct }) {
     );
 }
 
-export default Cart;
+const mapStateToProps = ({ user, cart }) => ({
+    user,
+    cart
+});
+
+const mapDispatchToProps = dispatch => ({
+    addToCart: book => dispatch(addToCart(book))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
