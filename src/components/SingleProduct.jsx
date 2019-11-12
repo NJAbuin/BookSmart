@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
-import { addToCart } from "../store/actions/cart";
+import { addToCart, cartReducer } from "../store/actions/cart";
 
 const priceStyle = {
   color: "grey",
@@ -31,20 +31,8 @@ function SingleProduct(props) {
 
   const addHandler = product => {
     props.addToCart(product);
-    const carroSucio = props.cartReducer;
-
-    let carroLimpio = []; //array<{book:{},quantity:integer}>
-    carroSucio.map(e => {
-      if (carroLimpio.findIndex(i => i.book === e) === -1) {
-        carroLimpio.push({ quantity: 1, book: e });
-      } else {
-        carroLimpio[carroLimpio.findIndex(i => i.book === e)].quantity += 1;
-      }
-    });
-    console.log(carroLimpio);
-
-    if (!props.user.name) {
-      localStorage.carroLimpio;
+    if (!props.user) {
+      localStorage.setItem("cart", JSON.stringify(props.cart));
     }
   };
 
@@ -54,7 +42,9 @@ function SingleProduct(props) {
       <Card.Body>
         <Link to={`/products/${product.id}`}>
           <Card.Title style={{ gridArea: "title", textAlign: "center" }}>
-            {product.name.length > 29 ? `${product.name.substring(0, 28)}...` : product.name}
+            {product.name.length > 29
+              ? `${product.name.substring(0, 28)}...`
+              : product.name}
           </Card.Title>
         </Link>
 
@@ -76,9 +66,9 @@ function SingleProduct(props) {
   );
 }
 
-const mapStateToProps = ({ user, cartReducer }) => ({
+const mapStateToProps = ({ user, cart }) => ({
   user,
-  cartReducer
+  cart
 });
 
 const mapDispatchToProps = dispatch => ({
