@@ -57,21 +57,20 @@ function SingleProduct(props) {
             {product.name}
           </Card.Title>
         </Link>
-        <Card.Text>
-          <p className="price" style={priceStyle}>
-            ${product.price}
-          </p>
-          <p style={{ placeSelf: "center" }}>
-            Rating: {Math.round(Math.random() * 5)}/5
-          </p>
-          <Button
-            variant="success"
-            onClick={() => addHandler(product)}
-            style={buttonStyle}
-          >
-            Add to Cart
-          </Button>
-        </Card.Text>
+
+        <p className="price" style={priceStyle}>
+          ${product.price}
+        </p>
+        <p style={{ placeSelf: "center" }}>
+          Rating: {Math.round(Math.random() * 5)}/5
+        </p>
+        <Button
+          variant="success"
+          onClick={() => addHandler(product)}
+          style={buttonStyle}
+        >
+          Add to Cart
+        </Button>
       </Card.Body>
     </Card>
   );
@@ -86,7 +85,4 @@ const mapDispatchToProps = dispatch => ({
   addToCart: id => dispatch(addToCart(id))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SingleProduct);
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
