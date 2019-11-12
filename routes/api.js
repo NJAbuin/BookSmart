@@ -1,10 +1,8 @@
 const api = require("express").Router();
-const User = require("../db/models/User");
-const Op = require("sequelize").Op;
 
+const Op = require("sequelize").Op;
+const { User, Book, Cart, Category } = require("../db/models/index");
 const faker = require("faker");
-const Books = require("../db/models/Book");
-const Category = require("../db/models/Category");
 
 const categories = [
   "Terror",
@@ -26,7 +24,7 @@ const getRandomCat = arr => {
 };
 
 api.get("/seed", (req, res) => {
-  Books.bulkCreate([
+  Book.bulkCreate([
     {
       name: "Fernández & Fernández",
       price: 399.99,
@@ -178,7 +176,7 @@ api.get("/seed", (req, res) => {
         "Cuando hacen rellenar el absurdo test de orientación profesional en el instituto, todo el mundo elige profesiones elegantes, bien remuneradas y con reconocimiento social. Yo dejé la casilla en blanco, puestodavía no había decidido qué carrera universitaria quería cursar. Al final acabé con una licenciatura en bioquímica alimentaria y un novio dispuesto a casarse conmigo en cuanto lográramos un buen puesto de trabajo. Solo conseguí una de las dos cosas. Sigo soltera. Y no he sentido en ningún momento la tentación de establecer una relación convencional porque no he tenido ni tiempo ni ganas. ",
       stock: faker.random.number(),
       imgURL:
-        "hhttps://images.bajalibros.com/jPHgOWGxVfR3dlvC5cT3pCY5QH0=/fit-in/292x446/filters:fill(f8f8f8):quality(90):format(webp)/d2d6tho5fth6q4.cloudfront.net/extast1099657_0cf5bc785c7d39a521746f66afb7481d07c7944a.jpg",
+        "https://images.bajalibros.com/jPHgOWGxVfR3dlvC5cT3pCY5QH0=/fit-in/292x446/filters:fill(f8f8f8):quality(90):format(webp)/d2d6tho5fth6q4.cloudfront.net/extast1099657_0cf5bc785c7d39a521746f66afb7481d07c7944a.jpg",
       year: 2019,
       author: faker.name.findName(),
       category: getRandomCat(categories)
@@ -218,19 +216,17 @@ api.get("/seed", (req, res) => {
   });
 });
 
-api.get("/destroydb", (req, res) => {
-  User.destroy({ where: {} })
-    .then(data => Books.destroy({}))
-    .then(data => Category.destroy({}))
-    .then(data => res.redirect("/"))
-    .catch(err => err => console.log(`Failed to destroy db :: ERROR: ${err}`));
+api.get("/seedcarro", (req, res) => {
+  Cart.findOne({ where: { id: 3 }, include: { model: Book } }).then(data =>
+    res.json(data)
+  );
 });
 
 //////////////////////////////////////////////////////////
 
 //retorna todos los productos de la base de datos en formato JSON
 api.get("/products", (req, res) => {
-  Books.findAll()
+  Book.findAll()
     .then(data => {
       res.json(data);
     })
@@ -242,8 +238,15 @@ api.get("/products", (req, res) => {
 ////////////////////////////////////////////////////////////
 
 api.get("/product/:id", (req, res) => {
-  Books.findByPk(req.params.id).then(book => {
+  Book.findByPk(req.params.id).then(book => {
     res.json(book);
+  });
+});
+
+api.post("/product/:id", (req, res) => {
+  const product = req.body;
+  Cart.findOrCreate({
+    where: {}
   });
 });
 
@@ -252,7 +255,7 @@ api.get("/product/:id", (req, res) => {
 api.get("/products/:productName", (req, res) => {
   const product = req.params.productName;
 
-  Books.findAll({
+  Book.findAll({
     where: {
       name: {
         [Op.iLike]: `%${product}%`
@@ -277,7 +280,7 @@ api.get("/category", (req, res) => {
 });
 
 api.post("/category/books", (req, res) => {
-  Books.findByCategory(req.body.name).then(e => res.send(e));
+  Book.findByCategory(req.body.name).then(e => res.send(e));
 });
 
 api.use("/auth", require("./auth"));

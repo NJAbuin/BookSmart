@@ -7,7 +7,9 @@ import Button from 'react-bootstrap/Button'
 class ProductDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      selectedProduct2: []
+    };
     this.productID = this.props.match.params.id;
   }
 
@@ -28,9 +30,16 @@ class ProductDetails extends Component {
       gridArea: "add",
       alignSelf: "center",
       justifySelf: "center"
-    };
+    }
+
+
+
+
+
+    let product = this.props.product.product[0] || { name: '', imgURL: '', price: '', description: '' }
 
     return (
+
       <div>
         <div className="product-container" >
           <div className="img-container" >
@@ -51,6 +60,8 @@ class ProductDetails extends Component {
       </div>
     );
   }
+
+
 }
 
 const mapStateToProps = state => {
