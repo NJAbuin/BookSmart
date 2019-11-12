@@ -7,19 +7,25 @@ class CartContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.deleteProduct = this.deleteProduct.bind(this)
+    this.deleteProduct = this.deleteProduct.bind(this);
+    this.incHandler = this.incHandler.bind(this);
+  }
+
+  incHandler(book) {
+    this.props.addToCart(book);
+    this.forceUpdate();
   }
 
   deleteProduct(product) {
-    console.log("ME CLICKIASTE", product)
-    this.props.deleteToCart(product)
+    this.props.deleteToCart(product);
   }
 
   render() {
+    console.log("me monte container");
     return (
       <Cart
         deleteProduct={this.deleteProduct}
-        incHandler={this.props.addToCart}
+        incHandler={this.incHandler}
         decHandler={this.props.delFromCart}
         cart={this.props.cart}
       />
@@ -27,9 +33,9 @@ class CartContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ cart }) => {
   return {
-    cart: state.cart
+    cart
   };
 };
 
