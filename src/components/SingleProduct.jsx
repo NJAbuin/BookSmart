@@ -42,7 +42,9 @@ function SingleProduct(props) {
 
   return (
     <Card key={product.id} style={{ marginBottom: "3%" }}>
-      <Card.Img variant="top" src={product.imgURL} />
+      <Link to={`/products/${product.id}`}>
+        <Card.Img variant="top" src={product.imgURL} />
+      </Link>
       <Card.Body>
         <Link to={`/products/${product.id}`}>
           <Card.Title style={{ gridArea: "title", textAlign: "center" }}>
