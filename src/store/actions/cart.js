@@ -25,6 +25,8 @@ export const deleteProductAction = payload => {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+import axios from "axios";
+
 export const delFromCart = product => dispatch => {
   dispatch(delCartAction(product));
 };

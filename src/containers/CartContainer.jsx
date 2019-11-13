@@ -29,14 +29,16 @@ class CartContainer extends React.Component {
         incHandler={this.incHandler}
         decHandler={this.props.delFromCart}
         cart={this.props.cart}
+        user={this.props.user}
       />
     );
   }
 }
 
-const mapStateToProps = ({ cart }) => {
+const mapStateToProps = ({ cart, user }) => {
   return {
-    cart
+    cart,
+    user
   };
 };
 

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getProducts } from "../store/actions/products";
 
-function NavBar({ handleInput, handleSubmit, cart, getProducts }) {
+function NavBar({ handleInput, handleSubmit, user, getProducts }) {
   return (
     <>
       <Navbar bg="primary" variant="dark" fixed="top">
