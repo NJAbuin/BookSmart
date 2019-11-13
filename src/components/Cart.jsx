@@ -93,34 +93,45 @@ function Cart(props) {
             <h3>Cantidad</h3>
             <h3>Total</h3>
           </div>
+
           {props.cart.map(product => {
             const totalPrice = product.price * product.quantity;
             let productQtty = product.quantity;
             return (
-              <div className="cart-container-products-list" key={product.id}>
-                <img src={product.imgURL} style={{ width: "75px" }} alt="" />
-                <p style={{ width: "80px" }}>{product.name}</p>
-                <div>
-                  <Button variant="outline-info">-</Button>
-                  <p>{productQtty}</p>
+              product.quantity > 0 && (
+                <div className="cart-container-products-list" key={product.id}>
+                  <img src={product.imgURL} style={{ width: "75px" }} alt="" />
+                  <p style={{ width: "80px" }}>{product.name}</p>
+                  <div>
+                    <Button
+                      variant="outline-info"
+                      onClick={() => {
+                        props.delFromCart(product);
+                        forceUpdate();
+                      }}
+                    >
+                      -
+                    </Button>
+                    <p>{productQtty}</p>
+                    <Button
+                      onClick={() => {
+                        props.addToCart(product);
+                        forceUpdate();
+                      }}
+                      variant="outline-info"
+                    >
+                      +
+                    </Button>
+                  </div>
+                  <div className="product-price">${totalPrice.toFixed(2)}</div>
                   <Button
-                    onClick={() => {
-                      props.addToCart(product);
-                      forceUpdate();
-                    }}
-                    variant="outline-info"
+                    onClick={() => props.deleteProduct(product)}
+                    variant="danger"
                   >
-                    +
+                    Delete
                   </Button>
                 </div>
-                <div className="product-price">${totalPrice.toFixed(2)}</div>
-                <Button
-                  onClick={() => props.deleteProduct(product)}
-                  variant="danger"
-                >
-                  Delete
-                </Button>
-              </div>
+              )
             );
           })}
         </div>
@@ -174,7 +185,8 @@ const mapStateToProps = ({ user, cart }) => ({
 
 const mapDispatchToProps = dispatch => ({
   addToCart: book => dispatch(addToCart(book)),
-  checkOut: cart => dispatch(checkOut(cart))
+  checkOut: cart => dispatch(checkOut(cart)),
+  delFromCart: book => dispatch(delFromCart(book))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -10,6 +10,7 @@ const {
   CartProduct
 } = require("../db/models/index");
 const faker = require("faker");
+const chalk = require("chalk");
 
 const categories = [
   "Terror",
@@ -279,8 +280,8 @@ api.get("/category", (req, res) => {
     .catch(e => console.log(e));
 });
 
-api.post("/category/books", (req, res) => {
-  Book.findByCategory(req.body.name).then(e => res.send(e));
+api.get("/categs/:cat", (req, res) => {
+  Book.findByCategory(req.params.cat).then(data => res.send(data));
 });
 
 api.use("/auth", require("./auth"));
