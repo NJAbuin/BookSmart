@@ -57622,6 +57622,50 @@ function Login(props) {
 
 /***/ }),
 
+/***/ "./src/components/ModalChooseCart.jsx":
+/*!********************************************!*\
+  !*** ./src/components/ModalChooseCart.jsx ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ModalChooseCart; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
+
+
+
+function ModalChooseCart(_ref) {
+  var show = _ref.show,
+      handleShow = _ref.handleShow,
+      handleClose = _ref.handleClose,
+      handleCartSelection = _ref.handleCartSelection;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    show: show,
+    onHide: handleClose
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
+    closeButton: true
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Title, null, "Que quiere hacer con su carrito anterior?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Body, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Ejemplo.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Footer, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "secondary",
+    onClick: function onClick() {
+      return handleCartSelection('Merge');
+    }
+  }, "Merge"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "primary",
+    onClick: function onClick() {
+      return handleCartSelection('Replace');
+    }
+  }, "Replace"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "primary"
+  }, "Keep Original Cart")));
+}
+
+/***/ }),
+
 /***/ "./src/components/Navbar.jsx":
 /*!***********************************!*\
   !*** ./src/components/Navbar.jsx ***!
@@ -57981,6 +58025,7 @@ function SingleProduct(props) {
     if (!props.user) {
       localStorage.setItem("cart", JSON.stringify(props.cart));
     } else {
+      console.log('entre aca');
       axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/addToCart", {
         userId: props.user.id,
         bookId: product.id,
@@ -58159,6 +58204,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_actions_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/actions/user */ "./src/store/actions/user.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var _components_ModalChooseCart__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/ModalChooseCart */ "./src/components/ModalChooseCart.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -58184,6 +58232,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
 var LoginContainer =
 /*#__PURE__*/
 function (_React$Component) {
@@ -58198,16 +58249,51 @@ function (_React$Component) {
     _this.state = {
       emailInput: "",
       passwordInput: "",
-      error: false
+      error: false,
+      showCartModal: false
     };
     _this.handleEmailInput = _this.handleEmailInput.bind(_assertThisInitialized(_this));
     _this.handlePasswordInput = _this.handlePasswordInput.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleLogout = _this.handleLogout.bind(_assertThisInitialized(_this));
+    _this.handleShow = _this.handleShow.bind(_assertThisInitialized(_this));
+    _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_this));
+    _this.handleCartSelection = _this.handleCartSelection.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(LoginContainer, [{
+    key: "handleShow",
+    value: function handleShow() {
+      this.setState({
+        showCartModal: true
+      });
+    }
+  }, {
+    key: "handleCartSelection",
+    value: function handleCartSelection(string) {
+      var _this2 = this;
+
+      console.log('entre con ', string);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/addToCartinBulk".concat(string), {
+        userId: this.props.user.id,
+        bookId: this.props.cart
+      }).then(function (e) {
+        _this2.setState({
+          showCartModal: false
+        });
+
+        console.log(e.data);
+      });
+    }
+  }, {
+    key: "handleClose",
+    value: function handleClose() {
+      this.setState({
+        showCartModal: false
+      });
+    }
+  }, {
     key: "handleEmailInput",
     value: function handleEmailInput(evt) {
       this.setState({
@@ -58224,7 +58310,7 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(evt) {
-      var _this2 = this;
+      var _this3 = this;
 
       evt.preventDefault();
 
@@ -58235,13 +58321,26 @@ function (_React$Component) {
         }).then(function (res) {
           return res.data;
         }).then(function (user) {
-          _this2.props.receiveUser(user);
-        }).then(function () {
-          return _this2.setState({
+          _this3.props.receiveUser(user);
+
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/getNumberOfCarts', {
+            userId: _this3.props.user.id
+          }).then(function (resp) {
+            console.log(resp.data);
+
+            if (_this3.props.cart.length > 0 && resp != null) {
+              _this3.handleShow();
+            }
+
+            return null;
+          });
+        }) //return axios.post(`/api/addToCartinBulkMerge`, {userId: this.props.user.id, bookId: this.props.cart})
+        .then(function () {
+          return _this3.setState({
             error: false
           });
         })["catch"](function () {
-          _this2.setState({
+          _this3.setState({
             error: true
           });
         });
@@ -58250,16 +58349,16 @@ function (_React$Component) {
   }, {
     key: "handleLogout",
     value: function handleLogout() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/auth/logout").then(function () {
-        return _this3.props.emptyUser();
+        return _this4.props.emptyUser();
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       var username = this.props.user.name || "";
       var userLogged = this.props.user == "";
@@ -58268,11 +58367,12 @@ function (_React$Component) {
       var displayError = function displayError() {
         alert("Credenciales Incorrectas");
 
-        _this4.setState({
+        _this5.setState({
           error: false
         });
       };
 
+      console.log(this.props);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, userLogged == true ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {
         handleSubmit: this.handleSubmit,
         handleEmailInput: this.handleEmailInput,
@@ -58303,7 +58403,12 @@ function (_React$Component) {
           color: "white"
         },
         to: "/"
-      }, "Logout"))));
+      }, "Logout"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ModalChooseCart__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        show: this.state.showCartModal,
+        handleClose: this.handleClose,
+        handleShow: this.handleShow,
+        handleCartSelection: this.handleCartSelection
+      }));
     }
   }]);
 
@@ -58316,9 +58421,11 @@ var mapDispatchToProps = {
 };
 
 var mapStateToProps = function mapStateToProps(_ref) {
-  var user = _ref.user;
+  var user = _ref.user,
+      cart = _ref.cart;
   return {
-    user: user
+    user: user,
+    cart: cart
   };
 };
 
@@ -58725,7 +58832,7 @@ function (_React$Component) {
     _this.handleEmailInput = _this.handleEmailInput.bind(_assertThisInitialized(_this));
     _this.handleNameInput = _this.handleNameInput.bind(_assertThisInitialized(_this));
     _this.handlePasswordInput = _this.handlePasswordInput.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleSubmitRegister = _this.handleSubmitRegister.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -58751,8 +58858,8 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "handleSubmit",
-    value: function handleSubmit(evt) {
+    key: "handleSubmitRegister",
+    value: function handleSubmitRegister(evt) {
       evt.preventDefault();
 
       if (this.state.emailInput && this.state.passwordInput && this.state.nameInput) {
@@ -58767,7 +58874,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Register__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        handleSubmit: this.handleSubmit,
+        handleSubmit: this.handleSubmitRegister,
         handleEmailInput: this.handleEmailInput,
         handleNameInput: this.handleNameInput,
         handlePasswordInput: this.handlePasswordInput

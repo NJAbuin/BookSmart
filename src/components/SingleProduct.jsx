@@ -36,7 +36,9 @@ function SingleProduct(props) {
       localStorage.setItem("cart", JSON.stringify(props.cart));
     }
     else{
+      console.log('entre aca')
       axios.post(`/api/addToCart`, {userId: props.user.id, bookId: product.id, quantity: product.quantity})
+     
     }
   };
 
