@@ -1,4 +1,4 @@
-import { ADD_TO_CART, DEL_FROM_CART } from "../constants";
+import { ADD_TO_CART, DEL_FROM_CART, CHECKOUT } from "../constants";
 
 const initialState = [];
 
@@ -8,6 +8,8 @@ export const cartReducer = (state = initialState, action) => {
       return cartFilter(state, action.payload);
     case DEL_FROM_CART:
       return delProdFromCart(state, action.payload);
+    case CHECKOUT:
+      return initialState;
     default:
       return state;
   }

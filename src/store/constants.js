@@ -7,3 +7,4 @@ export const FILTER_PRODUCT = "FILTER_PRODUCT";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_TO_CART = "DELETE_TO_CART"; // RENOMBRAR
 export const DEL_FROM_CART = "DEL_FROM_CART";
+export const CHECKOUT = "CHECKOUT";
