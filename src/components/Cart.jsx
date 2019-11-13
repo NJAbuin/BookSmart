@@ -1,7 +1,58 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
-import { addToCart, delFromCart } from "../store/actions/cart";
+import { addToCart, checkOut } from "../store/actions/cart";
+import Modal from "react-bootstrap/Modal";
+import { ButtonToolbar } from "react-bootstrap";
+
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">Booksmart</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h4>Tu compra se ha realizado exitosamente!</h4>
+        <p>
+          Recibirás notificaciones con respecto al estado de tu compra! Gracias
+          por confiar en Booksmart!
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+} // PARA MODAL CHECKOUT
+
+function App({ checkOutAction }) {
+  const [modalShow, setModalShow] = React.useState(false);
+
+  return (
+    <ButtonToolbar>
+      <Button
+        variant="success"
+        className="button-finish-style"
+        onClick={() => {
+          checkOutAction();
+          setModalShow(true);
+        }}
+      >
+        Finalizar compra!
+      </Button>
+
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+    </ButtonToolbar>
+  );
+} // PARA MODAL CHECKOUT
 
 //create your forceUpdate hook
 function useForceUpdate() {
@@ -19,6 +70,8 @@ function Cart(props) {
     }
     return totalPrice.toFixed(2);
   };
+
+  const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <div>
@@ -102,9 +155,23 @@ function Cart(props) {
             <p style={{ fontWeight: "bold" }}>TOTAL:</p>
             <p>$ {totalValue(props.cart)}</p>
           </div>
-          <Button variant="success" className="button-finish-style">
-            Finalizar Compra
-          </Button>
+          <ButtonToolbar>
+            <Button
+              variant="success"
+              className="button-finish-style"
+              onClick={() => {
+                let userId = props.user.id;
+                props.checkOut({ cart: props.cart, user: userId });
+                setModalShow(true);
+              }}
+            >
+              Finalizar Compra!
+            </Button>
+            <MyVerticallyCenteredModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
+          </ButtonToolbar>
         </div>
       </div>
     </div>
@@ -118,6 +185,7 @@ const mapStateToProps = ({ user, cart }) => ({
 
 const mapDispatchToProps = dispatch => ({
   addToCart: book => dispatch(addToCart(book)),
+  checkOut: cart => dispatch(checkOut(cart)),
   delFromCart: book => dispatch(delFromCart(book))
 });
 

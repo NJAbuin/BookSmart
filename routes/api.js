@@ -286,15 +286,13 @@ api.get("/categs/:cat", (req, res) => {
 
 api.use("/auth", require("./auth"));
 
-api.post("/checkout", (req, res) => {
-  Cart.chekout(req.body.id)
-    .then(e => Transaction.open(e))
-    .then(() => res.send("SUCCESS"))
-    .catch(error => {
-      console.log(error);
-      res.send("ERROR");
-    });
-});
+// api.post('/checkout', (req, res) =>{
+//   Cart.chekout(req.body.id).then(e=> Transaction.open(e))
+//   .then(()=> res.send('SUCCESS'))
+//   .catch(error => {
+//     console.log(error)
+//     res.send("ERROR")})
+// })
 
 api.post("/addToCart", (req, res) => {
   const add = req.body;
@@ -331,6 +329,13 @@ api.post("/addToCart", (req, res) => {
             }
           );
     });
+});
+
+api.put("/checkout", (req, res) => {
+  Cart.update(
+    { state: "In Process" },
+    { where: { cartId: req.body.cartId } }
+  ).catch(e => console.log(e));
 });
 
 module.exports = api;
