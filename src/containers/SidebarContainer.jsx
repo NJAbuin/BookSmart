@@ -8,24 +8,14 @@ import Row from "react-bootstrap/Row";
 import Dropdown from "react-bootstrap/Dropdown";
 import Col from "react-bootstrap/Col";
 import Navbar from "react-bootstrap/Navbar";
+import { CATEGORIES } from "../store/constants";
 class SidebarContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: [],
       books: []
     };
-
-    this.clickHandler = this.clickHandler.bind(this);
-  }
-
-  componentDidMount() {
-    Axios.get("/api/category").then(data => this.setState(data));
-  }
-
-  clickHandler(e) {
-    this.props.getFilterAction(e);
   }
 
   render() {
@@ -43,18 +33,7 @@ class SidebarContainer extends Component {
             sticky="top"
           >
             <Switch>
-              <Route path="/products" />
-
-              <Route
-                exact
-                path="/"
-                render={() => (
-                  <Dropdown2
-                    clickHandler={this.clickHandler}
-                    categoryList={this.state.data}
-                  />
-                )}
-              />
+              <Route path="/" render={() => <Dropdown2 />} />
             </Switch>
           </Dropdown.Menu>
         </Navbar>
@@ -66,7 +45,7 @@ class SidebarContainer extends Component {
 const mapStateToProps = state => {};
 
 const mapDispatchToProps = dispatch => ({
-  getFilterAction: data => dispatch(getFilterAction(data))
+  filterByCategory: data => dispatch(filterByCategory(data))
 });
 
 export default connect(null, mapDispatchToProps)(SidebarContainer);

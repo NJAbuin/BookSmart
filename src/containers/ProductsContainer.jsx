@@ -1,5 +1,9 @@
 import React from "react";
-import { getProducts, searchProducts } from "../store/actions/products";
+import {
+  getProducts,
+  searchProducts,
+  filterByCategory
+} from "../store/actions/products";
 import SingleProduct from "../components/SingleProduct";
 import { connect } from "react-redux";
 import Col from "react-bootstrap/Col";
@@ -10,12 +14,18 @@ class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [] //array of user objects
+      products: [], //array of user objects
+      filteredBooks: []
     };
   }
 
   componentDidMount() {
-    this.props.getProducts();
+    //if in home get all products
+    if (this.props.match.path === this.props.match.url) {
+      this.props.getProducts();
+    } else {
+      this.props.filterByCategory(this.props.match.params.category);
+    }
   }
 
   render() {
@@ -59,7 +69,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getProducts: () => dispatch(getProducts())
+  getProducts: () => dispatch(getProducts()),
+  filterByCategory: cat => dispatch(filterByCategory(cat))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);

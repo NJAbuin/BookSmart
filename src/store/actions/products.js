@@ -1,5 +1,10 @@
 import axios from "axios";
-import { FETCH_PRODUCTS, SEARCH_PRODUCTS, SELECT_PRODUCT } from "../constants";
+import {
+  FETCH_PRODUCTS,
+  SEARCH_PRODUCTS,
+  SELECT_PRODUCT,
+  FILTER_PRODUCT
+} from "../constants";
 
 export const getProducts = () => dispatch => {
   axios
@@ -14,18 +19,17 @@ export const productAction = payload => {
   return { type: FETCH_PRODUCTS, payload };
 };
 
-export const filterByCategory = () => dispatch => {
+export const filterByCategory = category => dispatch => {
   axios
-    .get("/api/categs/:category")
+    .get(`/api/categs/${category}`)
     .then(res => res.data)
-    .then(product => {
-      console.log(product);
-      return dispatch(searchProductAction(product));
+    .then(category => {
+      return dispatch(filterAction(category));
     });
 };
 
 const filterAction = payload => {
-  return { type: "FILTER_PRODUCTS", payload };
+  return { type: FILTER_PRODUCT, payload };
 };
 
 export const searchProducts = inputValue => dispatch => {

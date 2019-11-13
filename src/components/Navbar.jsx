@@ -3,13 +3,20 @@ import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import RegisterContainer from "../containers/RegisterContainer";
 import LoginContainer from "../containers/LoginContainer";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getProducts } from "../store/actions/products";
 
-export default ({ handleInput, handleSubmit, cart }) => {
-
+function NavBar({ handleInput, handleSubmit, cart, getProducts }) {
   return (
     <>
       <Navbar bg="primary" variant="dark" fixed="top">
-        <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+        <Link
+          to="/"
+          style={{ color: "white", textDecoration: "none" }}
+          onClick={() => {
+            getProducts();
+          }}
+        >
           BookSmart
         </Link>
         <Nav className="mr-auto">
@@ -42,9 +49,16 @@ export default ({ handleInput, handleSubmit, cart }) => {
           />
         </Link>
         &nbsp;&nbsp;&nbsp;
-        <Link to="/cart">
-        </Link>
+        <Link to="/cart"></Link>
       </Navbar>
     </>
   );
-};
+}
+
+const mapStateToProps = state => {};
+
+const mapDispatchToProps = dispatch => ({
+  getProducts: () => dispatch(getProducts())
+});
+
+export default connect(null, mapDispatchToProps)(NavBar);
