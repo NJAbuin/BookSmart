@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { addToCart, checkOut, delFromCart } from "../store/actions/cart";
 import Modal from "react-bootstrap/Modal";
 import { ButtonToolbar } from "react-bootstrap";
+import { doesNotReject } from "assert";
+import axios from "axios";
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -163,6 +165,7 @@ function Cart(props) {
                 let userId = props.user.id;
                 props.checkOut({ cart: props.cart, user: userId });
                 setModalShow(true);
+                sendEmail(props.user.email);
               }}
             >
               Finalizar Compra!
@@ -177,6 +180,12 @@ function Cart(props) {
     </div>
   );
 }
+
+const sendEmail = userEmail => {
+  axios
+    .post("/api/email", { email: userEmail })
+    .then(data => console.log("Email Sent"));
+};
 
 const mapStateToProps = ({ user, cart }) => ({
   user,

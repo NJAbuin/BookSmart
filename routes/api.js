@@ -11,6 +11,24 @@ const {
 } = require("../db/models/index");
 const faker = require("faker");
 const chalk = require("chalk");
+var nodemailer = require("nodemailer");
+
+var transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "booksmart.is.cool@gmail.com",
+    pass: "plataforma5"
+  }
+});
+
+var mailOptions = userEmail => {
+  return {
+    from: "booksmart.is.cool@gmail.com",
+    to: userEmail,
+    subject: "Gracias por su compra!",
+    text: "La orden le llegara en 420 dias"
+  };
+};
 
 const categories = [
   "Terror",
@@ -271,6 +289,19 @@ api.get("/products/:productName", (req, res) => {
         "Failed to retrieve all products at /api/products/:productName"
       )
     );
+});
+
+api.post("/email", (req, res) => {
+  transporter.sendMail(mailOptions(req.body.email), function(error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(
+        chalk.bgGreen(`Email sent to ${req.body.email}: ` + info.response)
+      );
+    }
+  });
+  done();
 });
 
 api.get("/category", (req, res) => {

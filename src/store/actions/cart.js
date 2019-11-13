@@ -5,6 +5,7 @@ import {
   CHECKOUT,
   SET_CART
 } from "../constants";
+import axios from "axios";
 
 import axios from "axios";
 
