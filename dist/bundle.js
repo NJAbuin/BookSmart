@@ -59486,10 +59486,85 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 /*!***********************************!*\
   !*** ./src/store/actions/cart.js ***!
   \***********************************/
-/*! exports provided: addToCart, cartAction, deleteProductFromCart, deleteProductAction, delFromCart, delCartAction, checkOut, checkOutAction */
-/***/ (function(module, exports) {
+/*! exports provided: addToCart, cartAction, setCart, setToCart, deleteProductFromCart, deleteProductAction, delFromCart, delCartAction, checkOut, checkOutAction */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/facundo/Bootcamp/E-Commerce/BookSmart/src/store/actions/cart.js: Identifier 'axios' has already been declared (10:7)\n\n\u001b[0m \u001b[90m  8 | \u001b[39m\u001b[36mimport\u001b[39m axios from \u001b[32m\"axios\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  9 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 | \u001b[39m\u001b[36mimport\u001b[39m axios from \u001b[32m\"axios\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 11 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m addToCart \u001b[33m=\u001b[39m product \u001b[33m=>\u001b[39m dispatch \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 13 | \u001b[39m  dispatch(cartAction(product))\u001b[33m;\u001b[39m\u001b[0m\n    at Object.raise (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:6420:17)\n    at ScopeHandler.checkRedeclarationInScope (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:3776:12)\n    at ScopeHandler.declareName (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:3742:12)\n    at Object.checkLVal (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:8159:22)\n    at Object.parseImportSpecifierLocal (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:11364:10)\n    at Object.maybeParseDefaultImportSpecifier (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:11370:12)\n    at Object.parseImport (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:11341:31)\n    at Object.parseStatementContent (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10107:27)\n    at Object.parseStatement (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10009:17)\n    at Object.parseBlockOrModuleBlockBody (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10585:25)\n    at Object.parseBlockBody (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:10572:10)\n    at Object.parseTopLevel (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:9940:10)\n    at Object.parse (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:11447:17)\n    at parse (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/parser/lib/index.js:11483:38)\n    at parser (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/core/lib/transformation/normalize-file.js:168:34)\n    at normalizeFile (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/core/lib/transformation/normalize-file.js:102:11)\n    at runSync (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/core/lib/transformation/index.js:44:43)\n    at runAsync (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/core/lib/transformation/index.js:35:14)\n    at process.nextTick (/home/facundo/Bootcamp/E-Commerce/BookSmart/node_modules/@babel/core/lib/transform.js:34:34)\n    at process._tickCallback (internal/process/next_tick.js:61:11)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToCart", function() { return addToCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cartAction", function() { return cartAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCart", function() { return setCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setToCart", function() { return setToCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteProductFromCart", function() { return deleteProductFromCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteProductAction", function() { return deleteProductAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "delFromCart", function() { return delFromCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "delCartAction", function() { return delCartAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkOut", function() { return checkOut; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkOutAction", function() { return checkOutAction; });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var addToCart = function addToCart(product) {
+  return function (dispatch) {
+    dispatch(cartAction(product));
+  };
+};
+var cartAction = function cartAction(payload) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["ADD_TO_CART"],
+    payload: payload
+  };
+};
+var setCart = function setCart(payload) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["SET_CART"],
+    payload: payload
+  };
+};
+var setToCart = function setToCart(payload) {
+  return function (dispatch) {
+    dispatch(setCart(payload));
+  };
+}; ///////////////////////////////////////////////////////////////////////////////
+
+var deleteProductFromCart = function deleteProductFromCart(product) {
+  return function (dispatch) {
+    dispatch(deleteProductAction(product));
+  };
+};
+var deleteProductAction = function deleteProductAction(payload) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["DELETE_PRODUCT_FROM_CART"],
+    payload: payload
+  };
+}; ////////////////////////////////////////////////////////////////////////////////
+
+var delFromCart = function delFromCart(product) {
+  return function (dispatch) {
+    dispatch(delCartAction(product));
+  };
+};
+var delCartAction = function delCartAction(payload) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["DEL_FROM_CART"],
+    payload: payload
+  };
+};
+var checkOut = function checkOut(obj) {
+  return function (dispatch) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("/api/checkout", {
+      cartId: obj.user
+    });
+    dispatch(checkOutAction());
+  };
+};
+var checkOutAction = function checkOutAction() {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["CHECKOUT"]
+  };
+};
 
 /***/ }),
 
