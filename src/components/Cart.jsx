@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
-import { addToCart, checkOut } from "../store/actions/cart";
+import { addToCart, checkOut, delFromCart } from "../store/actions/cart";
 import Modal from "react-bootstrap/Modal";
 import { ButtonToolbar } from "react-bootstrap";
 

@@ -2,8 +2,11 @@ import {
   ADD_TO_CART,
   DEL_FROM_CART,
   DELETE_PRODUCT_FROM_CART,
-  CHECKOUT
+  CHECKOUT,
+  SET_CART
 } from "../constants";
+
+import axios from "axios";
 
 export const addToCart = product => dispatch => {
   dispatch(cartAction(product));
@@ -11,6 +14,15 @@ export const addToCart = product => dispatch => {
 
 export const cartAction = payload => {
   return { type: ADD_TO_CART, payload };
+};
+
+export const setCart = payload => ({
+  type: SET_CART,
+  payload
+});
+
+export const setToCart = payload => dispatch => {
+  dispatch(setCart(payload));
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -34,8 +46,6 @@ export const delCartAction = payload => {
 };
 
 export const checkOut = obj => dispatch => {
-  console.log("!!!!!!!!!!!!!!!!", obj.cart);
-  console.log("!!!!!!!!!!", obj.user);
   axios.put("/api/checkout", { cartId: obj.user });
   dispatch(checkOutAction());
 };
