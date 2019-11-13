@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Dropdown2 from "../components/Dropdown";
 import { Switch, Route } from "react-router-dom";
-import Axios from "axios";
 import { searchProducts, filterByCategory } from "../store/actions/products";
 import Row from "react-bootstrap/Row";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -33,9 +32,7 @@ class SidebarContainer extends Component {
             sticky="top"
           >
             <Switch>
-              <Route path="/products" />
-
-              <Route exact path="/" render={() => <Dropdown2 />} />
+              <Route path="/" render={() => <Dropdown2 />} />
             </Switch>
           </Dropdown.Menu>
         </Navbar>

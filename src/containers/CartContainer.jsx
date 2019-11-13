@@ -1,7 +1,11 @@
 import React from "react";
 import Cart from "../components/Cart";
 import { connect } from "react-redux";
-import { addToCart, delFromCart, deleteProductFromCart } from "../store/actions/cart";
+import {
+  addToCart,
+  setToCart,
+  deleteProductFromCart
+} from "../store/actions/cart";
 
 class CartContainer extends React.Component {
   constructor(props) {
@@ -17,7 +21,21 @@ class CartContainer extends React.Component {
   }
 
   deleteProduct(product) {
-    this.props.deleteProductFromCart(product)
+    this.props.deleteProductFromCart(product);
+  }
+
+  componentDidMount() {
+    let window = localStorage;
+    if (!this.props.user.id) {
+      if (this.props.cart.length > 0) {
+        window.setItem("cart", JSON.stringify(this.props.cart));
+        console.log("Dos");
+      }
+      if (this.props.cart.length == 0) {
+        this.props.setToCart(JSON.parse(window.cart));
+        console.log("Uno.");
+      }
+    }
   }
 
 
@@ -44,7 +62,8 @@ const mapStateToProps = ({ cart, user }) => {
 
 const mapDispatchToProps = dispatch => ({
   deleteProductFromCart: product => dispatch(deleteProductFromCart(product)),
-  addToCart: book => dispatch(addToCart(book))
+  addToCart: book => dispatch(addToCart(book)),
+  setToCart: cart => dispatch(setToCart(cart))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);

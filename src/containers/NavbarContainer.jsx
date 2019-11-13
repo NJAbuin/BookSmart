@@ -21,7 +21,7 @@ class NavbarContainer extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.searchProducts(this.state.inputValue);
-    this.props.history.push("/");
+    this.props.history && this.props.history.push("/");
   }
 
   render() {
@@ -30,7 +30,8 @@ class NavbarContainer extends React.Component {
         user={this.props.user}
         cart={this.props.cart}
         handleInput={this.handleInput}
-        handleSubmit={this.handleSubmit} />
+        handleSubmit={this.handleSubmit}
+      />
     );
   }
 }
@@ -46,7 +47,4 @@ const mapDispatchToProps = dispatch => ({
   searchProducts: inputValue => dispatch(searchProducts(inputValue))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NavbarContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarContainer);
