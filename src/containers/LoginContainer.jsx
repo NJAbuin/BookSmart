@@ -31,11 +31,9 @@ class LoginContainer extends React.Component {
   }
 
   handleCartSelection(string){
-    console.log('entre con ', string)
     axios.post(`/api/addToCartinBulk${string}`, {userId: this.props.user.id, bookId: this.props.cart})
     .then((e)=> {
       this.setState({showCartModal: false}) 
-      console.log(e.data)
     })
     
   }
@@ -67,7 +65,6 @@ class LoginContainer extends React.Component {
            this.props.receiveUser(user);
            axios.post('/api/getNumberOfCarts', {userId: this.props.user.id})
            .then(resp=>{
-            console.log(resp.data)
            if(this.props.cart.length > 0 && resp != null){this.handleShow()}
            return null})})
            //return axios.post(`/api/addToCartinBulkMerge`, {userId: this.props.user.id, bookId: this.props.cart})
@@ -91,7 +88,6 @@ class LoginContainer extends React.Component {
       alert("Credenciales Incorrectas");
       this.setState({ error: false });
     }
-    console.log(this.props)
     return (
       <div>
         {userLogged == true ? (
