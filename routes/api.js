@@ -318,7 +318,7 @@ api.get("/categs/:cat", (req, res) => {
 api.use("/auth", require("./auth"));
 
 // api.post('/checkout', (req, res) =>{
-//   Cart.chekout(req.body.id).then(e=> Transaction.open(e))
+//   Cart.checkout(req.body.id).then(e=> Transaction.open(e))
 //   .then(()=> res.send('SUCCESS'))
 //   .catch(error => {
 //     console.log(error)

@@ -29,8 +29,6 @@ class ProductsContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props.match);
-
     let productList = this.props.products.product;
     if (productList.length <= 0) {
       return <p>No se encontraron resultados</p>;

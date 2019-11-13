@@ -15,17 +15,20 @@ Cart.init(
       type: S.INTEGER,
       allowNull: false
     },
-    state:{
+    state: {
       type: S.ENUM,
-      values: ['Opened','In Process', 'Cancelled', 'Completed', 'Droped'],
-      defaultValue: 'Opened'
+      values: ["Opened", "In Process", "Cancelled", "Completed", "Droped"],
+      defaultValue: "Opened"
     }
   },
   { sequelize: db, modelName: "cart" }
 );
 
-Cart.chekout = (userId) =>{
-  return this.update({status:'closed'},{where:{userId: userId, status: 'opened'}})
-}
-  
+Cart.checkout = userId => {
+  return this.update(
+    { status: "closed" },
+    { where: { userId: userId, status: "opened" } }
+  );
+};
+
 module.exports = Cart;

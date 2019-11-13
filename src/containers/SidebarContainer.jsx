@@ -32,9 +32,7 @@ class SidebarContainer extends Component {
             sticky="top"
           >
             <Switch>
-              <Route path="/products" />
-
-              <Route exact path="/" render={() => <Dropdown2 />} />
+              <Route path="/" render={() => <Dropdown2 />} />
             </Switch>
           </Dropdown.Menu>
         </Navbar>
