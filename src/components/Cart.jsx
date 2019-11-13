@@ -12,16 +12,13 @@ function useForceUpdate() {
 function Cart(props) {
   const forceUpdate = useForceUpdate();
 
-  const totalValue = function (cart) {
+  const totalValue = function(cart) {
     let totalPrice = 0;
     for (let i = 0; i < cart.length; i++) {
       totalPrice += cart[i].price * cart[i].quantity;
     }
     return totalPrice.toFixed(2);
   };
-
-  const cartToMap =
-    props.user !== "" ? props.cart : JSON.parse(localStorage.cart);
 
   return (
     <div>
@@ -44,7 +41,7 @@ function Cart(props) {
             <h3>Total</h3>
           </div>
 
-          {cartToMap.map(product => {
+          {props.cart.map(product => {
             const totalPrice = product.price * product.quantity;
             let productQtty = product.quantity;
             return (
