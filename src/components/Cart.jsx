@@ -20,6 +20,9 @@ function Cart(props) {
     return totalPrice.toFixed(2);
   };
 
+  const cartToMap =
+    props.user !== "" ? props.cart : JSON.parse(localStorage.cart);
+
   return (
     <div>
       <div className="cart">
@@ -40,7 +43,8 @@ function Cart(props) {
             <h3>Cantidad</h3>
             <h3>Total</h3>
           </div>
-          {props.cart.map(product => {
+
+          {cartToMap.map(product => {
             const totalPrice = product.price * product.quantity;
             let productQtty = product.quantity;
             return (
@@ -51,8 +55,9 @@ function Cart(props) {
                   <Button variant="outline-info">-</Button>
                   <p>{productQtty}</p>
                   <Button
-                    onClick={() => {
+                    onClick={e => {
                       props.addToCart(product);
+
                       forceUpdate();
                     }}
                     variant="outline-info"
