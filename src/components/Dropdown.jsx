@@ -1,24 +1,46 @@
 import React from "react";
 import Axios from "axios";
 import Dropdown from "react-bootstrap/Dropdown";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { filterByCategory } from "../store/actions/products";
+import { CATEGORIES } from "../store/constants";
 
-export default function Dropdown2({ categoryList, clickHandler }) {
-  return (
-    <div>
-      <h3>CATEGORIAS</h3>
-      {categoryList.map(e => {
-        return (
-          <Dropdown.Item onClick={evt => clickHandler(e)} key={e}>
-            {e}
-          </Dropdown.Item>
-        );
-      })}
-    </div>
-  );
+class Dropdown2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  filterHandler(e) {
+    this.props.filterByCategory(e);
+  }
+
+  render() {
+    return (
+      <div>
+        <h3 style={{ marginLeft: "0.5em" }}>CATEGORIAS</h3>
+        {CATEGORIES.map(elt => {
+          return (
+            <h5 style={{ margin: "1.5em" }} key={elt}>
+              <Link
+                to={`/category/${elt}`}
+                onClick={() => this.filterHandler(elt)}
+              >
+                {elt}
+              </Link>
+            </h5>
+          );
+        })}
+      </div>
+    );
+  }
 }
 
-const stringStyle = {
-  color: "white",
-  fontFamily: "Bookman",
-  textAlign: "center"
-};
+const mapStateToProps = state => {};
+
+const mapDispatchToProps = dispatch => ({
+  filterByCategory: data => dispatch(filterByCategory(data))
+});
+
+export default connect(null, mapDispatchToProps)(Dropdown2);

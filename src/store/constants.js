@@ -7,4 +7,11 @@ export const FILTER_PRODUCT = "FILTER_PRODUCT";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_PRODUCT_FROM_CART = "DELETE_PRODUCT_FROM_CART";
 export const DEL_FROM_CART = "DEL_FROM_CART";
+export const CATEGORIES = [
+  "Terror",
+  "Aventura",
+  "Policial",
+  "Periodistico",
+  "Romantica"
+];
 export const CHECKOUT = "CHECKOUT";
