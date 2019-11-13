@@ -4,6 +4,7 @@ import {
   DELETE_PRODUCT_FROM_CART,
   CHECKOUT
 } from "../constants";
+import axios from "axios";
 
 export const addToCart = product => dispatch => {
   dispatch(cartAction(product));
@@ -34,8 +35,6 @@ export const delCartAction = payload => {
 };
 
 export const checkOut = obj => dispatch => {
-  console.log("!!!!!!!!!!!!!!!!", obj.cart);
-  console.log("!!!!!!!!!!", obj.user);
   axios.put("/api/checkout", { cartId: obj.user });
   dispatch(checkOutAction());
 };
