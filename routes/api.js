@@ -1,8 +1,16 @@
 const api = require("express").Router();
 
 const Op = require("sequelize").Op;
-const { User, Book, Cart, Category, Transaction, CartProduct } = require("../db/models/index");
+const {
+  User,
+  Book,
+  Cart,
+  Category,
+  Transaction,
+  CartProduct
+} = require("../db/models/index");
 const faker = require("faker");
+const chalk = require("chalk");
 
 const categories = [
   "Terror",
@@ -272,35 +280,56 @@ api.get("/category", (req, res) => {
     .catch(e => console.log(e));
 });
 
-api.post("/category/books", (req, res) => {
-  Book.findByCategory(req.body.name).then(e => res.send(e));
+api.get("/categs/:cat", (req, res) => {
+  Book.findByCategory(req.params.cat).then(data => res.send(data));
 });
 
 api.use("/auth", require("./auth"));
 
-api.post('/checkout', (req, res) =>{
-  Cart.chekout(req.body.id).then(e=> Transaction.open(e))
-  .then(()=> res.send('SUCCESS'))
-  .catch(error => {
-    console.log(error)
-    res.send("ERROR")})
-})
+// api.post('/checkout', (req, res) =>{
+//   Cart.chekout(req.body.id).then(e=> Transaction.open(e))
+//   .then(()=> res.send('SUCCESS'))
+//   .catch(error => {
+//     console.log(error)
+//     res.send("ERROR")})
+// })
 
-api.post('/addToCart', (req, res)=>{
-  const add = req.body
-  let cartData = {} // Aca va a cargarse el orderId y el cartId 
-  Cart.findOrCreate({where:{cartId: add.userId, state: 'Opened'}})
-  .then(e=> {return cartData={cartId: e[0].cartId, orderId: e[0].id}})
-  .then(cart => {
-    return CartProduct.findOne({where:{cartId: add.userId, productId: add.bookId, orderId: cartData.orderId}})
+api.post("/addToCart", (req, res) => {
+  const add = req.body;
+  let cartData = {}; // Aca va a cargarse el orderId y el cartId
+  Cart.findOrCreate({ where: { cartId: add.userId, state: "Opened" } })
+    .then(e => {
+      return (cartData = { cartId: e[0].cartId, orderId: e[0].id });
     })
-  .then(e=>{
-    return e==null? CartProduct.create({cartId: cartData.cartId, productId: add.bookId, quantity: add.quantity, orderId: cartData.orderId}):
-    CartProduct.update({quantity: add.quantity}, {where:{cartId: add.userId, orderId: cartData.orderId, productId: add.bookId }})
-})
-  // .then(()=> res.send(CartProduct.findAll({where:{cartId: add.userId, orderId: cartData.orderId}})))
-    
-  })
+    .then(cart => {
+      return CartProduct.findOne({
+        where: {
+          cartId: add.userId,
+          productId: add.bookId,
+          orderId: cartData.orderId
+        }
+      });
+    })
+    .then(e => {
+      return e == null
+        ? CartProduct.create({
+            cartId: cartData.cartId,
+            productId: add.bookId,
+            quantity: add.quantity,
+            orderId: cartData.orderId
+          })
+        : CartProduct.update(
+            { quantity: add.quantity },
+            {
+              where: {
+                cartId: add.userId,
+                orderId: cartData.orderId,
+                productId: add.bookId
+              }
+            }
+          );
+    });
+});
 
   api.post('/addToCartinBulkReplace', (req, res)=>{
     const add = req.body
@@ -340,4 +369,14 @@ api.post('/addToCart', (req, res)=>{
       res.send(null)
     })
   })
+
+
+api.put("/checkout", (req, res) => {
+  Cart.update(
+    { state: "In Process" },
+    { where: { cartId: req.body.cartId } }
+  ).catch(e => console.log(e));
+});
+
 module.exports = api;
+

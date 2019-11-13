@@ -44,7 +44,9 @@ function SingleProduct(props) {
 
   return (
     <Card key={product.id} style={{ marginBottom: "3%" }}>
-      <Card.Img variant="top" src={product.imgURL} />
+      <Link to={`/products/${product.id}`}>
+        <Card.Img variant="top" src={product.imgURL} />
+      </Link>
       <Card.Body>
         <Link to={`/products/${product.id}`}>
           <Card.Title style={{ gridArea: "title", textAlign: "center" }}>
@@ -57,9 +59,7 @@ function SingleProduct(props) {
         <p className="price" style={priceStyle}>
           ${product.price}
         </p>
-        <p style={{ placeSelf: "center" }}>
-          Rating: {Math.round(Math.random() * 5)}/5
-        </p>
+        <p style={{ placeSelf: "center" }}>Rating: 3/5</p>
         <Button
           variant="success"
           onClick={() => addHandler(product)}

@@ -1,7 +1,58 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
-import { addToCart, delFromCart } from "../store/actions/cart";
+import { addToCart, checkOut } from "../store/actions/cart";
+import Modal from "react-bootstrap/Modal";
+import { ButtonToolbar } from "react-bootstrap";
+
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">Booksmart</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h4>Tu compra se ha realizado exitosamente!</h4>
+        <p>
+          Recibirás notificaciones con respecto al estado de tu compra! Gracias
+          por confiar en Booksmart!
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+} // PARA MODAL CHECKOUT
+
+function App({ checkOutAction }) {
+  const [modalShow, setModalShow] = React.useState(false);
+
+  return (
+    <ButtonToolbar>
+      <Button
+        variant="success"
+        className="button-finish-style"
+        onClick={() => {
+          checkOutAction();
+          setModalShow(true);
+        }}
+      >
+        Finalizar compra!
+      </Button>
+
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+    </ButtonToolbar>
+  );
+} // PARA MODAL CHECKOUT
 
 //create your forceUpdate hook
 function useForceUpdate() {
@@ -19,6 +70,8 @@ function Cart(props) {
     }
     return totalPrice.toFixed(2);
   };
+
+  const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <div>
@@ -40,34 +93,45 @@ function Cart(props) {
             <h3>Cantidad</h3>
             <h3>Total</h3>
           </div>
+
           {props.cart.map(product => {
             const totalPrice = product.price * product.quantity;
             let productQtty = product.quantity;
             return (
-              <div className="cart-container-products-list" key={product.id}>
-                <img src={product.imgURL} style={{ width: "75px" }} alt="" />
-                <p style={{ width: "80px" }}>{product.name}</p>
-                <div>
-                  <Button variant="outline-info">-</Button>
-                  <p>{productQtty}</p>
+              product.quantity > 0 && (
+                <div className="cart-container-products-list" key={product.id}>
+                  <img src={product.imgURL} style={{ width: "75px" }} alt="" />
+                  <p style={{ width: "80px" }}>{product.name}</p>
+                  <div>
+                    <Button
+                      variant="outline-info"
+                      onClick={() => {
+                        props.delFromCart(product);
+                        forceUpdate();
+                      }}
+                    >
+                      -
+                    </Button>
+                    <p>{productQtty}</p>
+                    <Button
+                      onClick={() => {
+                        props.addToCart(product);
+                        forceUpdate();
+                      }}
+                      variant="outline-info"
+                    >
+                      +
+                    </Button>
+                  </div>
+                  <div className="product-price">${totalPrice.toFixed(2)}</div>
                   <Button
-                    onClick={() => {
-                      props.addToCart(product);
-                      forceUpdate();
-                    }}
-                    variant="outline-info"
+                    onClick={() => props.deleteProduct(product)}
+                    variant="danger"
                   >
-                    +
+                    Delete
                   </Button>
                 </div>
-                <div className="product-price">${totalPrice.toFixed(2)}</div>
-                <Button
-                  onClick={() => props.deleteProduct(product)}
-                  variant="danger"
-                >
-                  Delete
-                </Button>
-              </div>
+              )
             );
           })}
         </div>
@@ -91,9 +155,23 @@ function Cart(props) {
             <p style={{ fontWeight: "bold" }}>TOTAL:</p>
             <p>$ {totalValue(props.cart)}</p>
           </div>
-          <Button variant="success" className="button-finish-style">
-            Finalizar Compra
-          </Button>
+          <ButtonToolbar>
+            <Button
+              variant="success"
+              className="button-finish-style"
+              onClick={() => {
+                let userId = props.user.id;
+                props.checkOut({ cart: props.cart, user: userId });
+                setModalShow(true);
+              }}
+            >
+              Finalizar Compra!
+            </Button>
+            <MyVerticallyCenteredModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
+          </ButtonToolbar>
         </div>
       </div>
     </div>
@@ -106,7 +184,9 @@ const mapStateToProps = ({ user, cart }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addToCart: book => dispatch(addToCart(book))
+  addToCart: book => dispatch(addToCart(book)),
+  checkOut: cart => dispatch(checkOut(cart)),
+  delFromCart: book => dispatch(delFromCart(book))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
