@@ -27,6 +27,7 @@ class NavbarContainer extends React.Component {
   render() {
     return (
       <Navbar
+        user={this.props.user}
         cart={this.props.cart}
         handleInput={this.handleInput}
         handleSubmit={this.handleSubmit} />
@@ -36,7 +37,8 @@ class NavbarContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    user: state.user
   };
 };
 

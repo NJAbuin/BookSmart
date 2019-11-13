@@ -103,3 +103,51 @@ display: flex;
     align-self: center;
     justify-self: center
 }
+
+.compras-container{
+    background-color: lightblue;
+    border: solid 1px grey;
+    border-radius: 4px;
+    margin-top: 10px;
+    
+}
+
+.transaction-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.transaction-name{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.transaction-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.transaction-total-state{
+    
+}
+
+.transaction-total{
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.transaction-state{
+    margin-top: 10px;
+    display: inline-block;
+    color: white;
+    background-color: grey;
+    border-radius: 3px;
+}
+
+.transaction-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

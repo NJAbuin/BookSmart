@@ -20,6 +20,8 @@ class CartContainer extends React.Component {
     this.props.deleteProductFromCart(product)
   }
 
+
+
   render() {
     return (
       <Cart

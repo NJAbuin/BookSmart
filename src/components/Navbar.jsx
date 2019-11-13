@@ -4,7 +4,7 @@ import RegisterContainer from "../containers/RegisterContainer";
 import LoginContainer from "../containers/LoginContainer";
 import { Link } from "react-router-dom";
 
-export default ({ handleInput, handleSubmit, cart }) => {
+export default ({ handleInput, handleSubmit, user }) => {
 
   return (
     <>
@@ -12,11 +12,14 @@ export default ({ handleInput, handleSubmit, cart }) => {
         <Link to="/" style={{ color: "white", textDecoration: "none" }}>
           BookSmart
         </Link>
+        &nbsp;&nbsp;&nbsp;
         <Nav className="mr-auto">
           <ul className="nav ">
-            <li className="nav-item">
-              <RegisterContainer />
-            </li>
+            {!user.id &&
+              <li className="nav-item">
+                <RegisterContainer />
+              </li>
+            }
             <li className="nav-item">
               <LoginContainer />
             </li>

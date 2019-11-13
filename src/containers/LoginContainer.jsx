@@ -72,31 +72,39 @@ class LoginContainer extends React.Component {
             handleError={this.state.error}
           />
         ) : (
-          <ul
-            className="nav"
-            style={{
-              color: "white",
-              justifyItems: "center",
-              alignItems: "center"
-            }}
-          >
-            <li
-              className="nav-item"
-              style={{ marginTop: "7px", marginRight: "10px" }}
+            <ul
+              className="nav"
+              style={{
+                color: "white",
+                justifyItems: "center",
+                alignItems: "center"
+              }}
             >
-              Hola {name} &nbsp; |
+              <li
+                className="nav-item"
+                style={{ marginTop: "7px", marginRight: "10px" }}
+              >
+                Hola {name} &nbsp; |
             </li>
-            <li
-              className="nav-item"
-              onClick={this.handleLogout}
-              style={{ marginTop: "7px" }}
-            >
-              <Link style={{ color: "white" }} to="/">
-                Logout
+              <li
+                className="nav-item"
+                style={{ marginTop: "7px", marginRight: "10px" }}
+              >
+                <Link style={{ color: "white", textDecoration: "none" }} to="/compras">
+                  Mis Compras &nbsp; | &nbsp;
               </Link>
-            </li>
-          </ul>
-        )}
+              </li>
+              <li
+                className="nav-item"
+                onClick={this.handleLogout}
+                style={{ marginTop: "7px" }}
+              >
+                <Link style={{ color: "white" }} to="/">
+                  Logout
+              </Link>
+              </li>
+            </ul>
+          )}
       </div>
     );
   }

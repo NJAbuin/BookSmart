@@ -2752,7 +2752,7 @@ exports.push([module.i, "/*!\n * Bootstrap v4.3.1 (https://getbootstrap.com/)\n 
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".product-container{\ndisplay: flex;\n}\n\n.img-container{\n   margin-top: 30px;\n}\n\n.product-details{\n    margin-top: 30px;\n    padding-left: 100px;\n}\n.category-product-details{\n    display: inline-block;\n    color: white;\n    background-color: grey;\n}\n\n.product-name{\n    font-weight: bold;\n}\n\n.cart{\n    border-bottom: 2px solid black;\n}\n\n.cart-container{\n    display: flex;\n    margin-top: 10px;\n}\n\n.cart-container-products{\n    /* border: 2px solid grey; \n    border-radius: 6px; */\n}\n\n.cart-container-total{\n    border: 2px solid grey; \n    border-radius: 6px;\n    width: 300px;\n    height: 400px;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-left: 10px;\n\n}\n\n.cart-container-products-titles{\n    width: 700px;\n    display: flex;\n    justify-content: space-evenly;\n}\n\n.cart-container-products-list{\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    border: 2px solid grey; \n    border-radius: 6px;\n    margin-top: 10px;\n}\n\n.cart-container-total-count{\n    display: flex;\n    justify-content: space-around;\n}\n.cart-container-descount{\n    padding-bottom: 10px;\n    border-bottom: 2px dashed grey;\n}\n\n.cart-container-subtotal-count{\n    display: flex;\n    justify-content: space-around;\n    padding-bottom: 10px;\n    border-bottom: 2px dashed grey;\n}\n\n.cart-container-envio{\n    display: flex;\n    justify-content: space-around;\n    padding-bottom: 10px;\n    border-bottom: 2px dashed grey;\n}\n\n\n.descount-input{\n    display: flex;\n    justify-content: space-around;\n}\n\n\n\n.button-finish-style{\n    border: none;\n    outline: 0;\n    padding: 12px;\n    cursor: pointer; \n    width: 100%;\n    font-size: 18px;\n    grid-area: add;\n    align-self: center;\n    justify-self: center\n}", ""]);
+exports.push([module.i, ".product-container{\ndisplay: flex;\n}\n\n.img-container{\n   margin-top: 30px;\n}\n\n.product-details{\n    margin-top: 30px;\n    padding-left: 100px;\n}\n.category-product-details{\n    display: inline-block;\n    color: white;\n    background-color: grey;\n}\n\n.product-name{\n    font-weight: bold;\n}\n\n.cart{\n    border-bottom: 2px solid black;\n}\n\n.cart-container{\n    display: flex;\n    margin-top: 10px;\n}\n\n.cart-container-products{\n    /* border: 2px solid grey; \n    border-radius: 6px; */\n}\n\n.cart-container-total{\n    border: 2px solid grey; \n    border-radius: 6px;\n    width: 300px;\n    height: 400px;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-left: 10px;\n\n}\n\n.cart-container-products-titles{\n    width: 700px;\n    display: flex;\n    justify-content: space-evenly;\n}\n\n.cart-container-products-list{\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    border: 2px solid grey; \n    border-radius: 6px;\n    margin-top: 10px;\n}\n\n.cart-container-total-count{\n    display: flex;\n    justify-content: space-around;\n}\n.cart-container-descount{\n    padding-bottom: 10px;\n    border-bottom: 2px dashed grey;\n}\n\n.cart-container-subtotal-count{\n    display: flex;\n    justify-content: space-around;\n    padding-bottom: 10px;\n    border-bottom: 2px dashed grey;\n}\n\n.cart-container-envio{\n    display: flex;\n    justify-content: space-around;\n    padding-bottom: 10px;\n    border-bottom: 2px dashed grey;\n}\n\n\n.descount-input{\n    display: flex;\n    justify-content: space-around;\n}\n\n\n\n.button-finish-style{\n    border: none;\n    outline: 0;\n    padding: 12px;\n    cursor: pointer; \n    width: 100%;\n    font-size: 18px;\n    grid-area: add;\n    align-self: center;\n    justify-self: center\n}\n\n.compras-container{\n    background-color: lightblue;\n    border: solid 1px grey;\n    border-radius: 4px;\n    margin-top: 10px;\n    \n}\n\n.transaction-container{\n    display: flex;\n    justify-content: space-around;\n}\n\n.transaction-name{\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n}\n\n.transaction-details{\n    display: flex;\n    flex-direction: column;\n    justify-content: start;\n}\n\n.transaction-total-state{\n    \n}\n\n.transaction-total{\n    margin-top: 10px;\n    font-weight: bold;\n}\n\n.transaction-state{\n    margin-top: 10px;\n    display: inline-block;\n    color: white;\n    background-color: grey;\n    border-radius: 3px;\n}\n\n.transaction-buttons{\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n}", ""]);
 
 
 /***/ }),
@@ -57496,6 +57496,154 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./src/components/Compras.jsx":
+/*!************************************!*\
+  !*** ./src/components/Compras.jsx ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Compras; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+
+
+var cart = [{
+  state: "en proceso"
+}, {
+  id: 1,
+  name: "Fernández & Fernández",
+  price: 399.99,
+  quantity: 3
+}, {
+  id: 2,
+  name: "Sexo ATR",
+  price: 419.99,
+  quantity: 2
+}, {
+  id: 3,
+  name: "Andiamos",
+  price: 319.99,
+  quantity: 2
+}];
+var cart1 = [{
+  state: "confirmada"
+}, {
+  id: 1,
+  name: "Budismo Practico",
+  price: 244.99,
+  quantity: 2
+}, {
+  id: 2,
+  name: "Todo esta j*dido",
+  price: 145,
+  quantity: 6
+}, {
+  id: 3,
+  name: "Andiamos",
+  price: 319.99,
+  quantity: 2
+}];
+var cart2 = [{
+  state: "cancelada"
+}, {
+  id: 1,
+  name: "Predicciones 2020",
+  price: 279.99,
+  quantity: 2
+}, {
+  id: 1,
+  name: "Budismo Practico",
+  price: 244.99,
+  quantity: 1
+}, {
+  id: 2,
+  name: "Todo esta j*dido",
+  price: 145,
+  quantity: 3
+}];
+var transactions = [cart, cart1, cart2];
+function Compras() {
+  var totalValue = function totalValue(cart) {
+    var totalPrice = 0;
+
+    for (var i = 1; i < cart.length; i++) {
+      totalPrice += cart[i].price * cart[i].quantity;
+    }
+
+    return totalPrice.toFixed(2);
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    style: {
+      display: "inline-block",
+      margin: "0 0 0 0"
+    }
+  }, "Mis Compras")), transactions.map(function (transaction) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "compras-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "transaction-container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "transaction-name"
+    }, transaction.map(function (product) {
+      if (product.name) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "transaction-details"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          style: {
+            marginBottom: "0",
+            fontWeight: "bold"
+          }
+        }, product.name, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          style: {
+            marginBottom: "0"
+          }
+        }, " $", product.price, " x ", product.quantity));
+      }
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "transaction-total-state"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "transaction-total"
+    }, "Total: $ ", totalValue(transaction)), transaction[0].state === "en proceso" && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "transaction-state"
+    }, transaction[0].state), transaction[0].state === "confirmada" && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: {
+        color: "white",
+        backgroundColor: "green"
+      },
+      className: "transaction-state"
+    }, transaction[0].state), transaction[0].state === "cancelada" && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: {
+        color: "white",
+        backgroundColor: "red"
+      },
+      className: "transaction-state"
+    }, transaction[0].state)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "transaction-buttons"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: ""
+    }, "Ver detalle")), transaction.map(function (cart) {
+      if (cart.state) {
+        if (cart.state === "en proceso") {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            variant: "success"
+          }, "Confirmar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            variant: "danger"
+          }, "Cancelar"));
+        }
+      }
+    }))));
+  }));
+}
+
+/***/ }),
+
 /***/ "./src/components/Dropdown.jsx":
 /*!*************************************!*\
   !*** ./src/components/Dropdown.jsx ***!
@@ -57645,7 +57793,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
   var handleInput = _ref.handleInput,
       handleSubmit = _ref.handleSubmit,
-      cart = _ref.cart;
+      user = _ref.user;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"], {
     bg: "primary",
     variant: "dark",
@@ -57656,11 +57804,11 @@ __webpack_require__.r(__webpack_exports__);
       color: "white",
       textDecoration: "none"
     }
-  }, "BookSmart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
+  }, "BookSmart"), "\xA0\xA0\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
     className: "mr-auto"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "nav "
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+  }, !user.id && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_RegisterContainer__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav-item"
@@ -58133,6 +58281,66 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./src/containers/ComprasContainer.jsx":
+/*!*********************************************!*\
+  !*** ./src/containers/ComprasContainer.jsx ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Compras__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Compras */ "./src/components/Compras.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var ComprasContainer =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ComprasContainer, _React$Component);
+
+  function ComprasContainer(props) {
+    _classCallCheck(this, ComprasContainer);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ComprasContainer).call(this, props));
+  }
+
+  _createClass(ComprasContainer, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Compras__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+    }
+  }]);
+
+  return ComprasContainer;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null, null)(ComprasContainer));
+
+/***/ }),
+
 /***/ "./src/containers/LoginContainer.jsx":
 /*!*******************************************!*\
   !*** ./src/containers/LoginContainer.jsx ***!
@@ -58285,6 +58493,18 @@ function (_React$Component) {
         }
       }, "Hola ", name, " \xA0 |"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "nav-item",
+        style: {
+          marginTop: "7px",
+          marginRight: "10px"
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+        style: {
+          color: "white",
+          textDecoration: "none"
+        },
+        to: "/compras"
+      }, "Mis Compras \xA0 | \xA0")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nav-item",
         onClick: this.handleLogout,
         style: {
           marginTop: "7px"
@@ -58340,6 +58560,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CartContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./CartContainer */ "./src/containers/CartContainer.jsx");
 /* harmony import */ var react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap/Row */ "./node_modules/react-bootstrap/esm/Row.js");
 /* harmony import */ var react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-bootstrap/Col */ "./node_modules/react-bootstrap/esm/Col.js");
+/* harmony import */ var _ComprasContainer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ComprasContainer */ "./src/containers/ComprasContainer.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -58367,6 +58588,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 1;
+
 
 
 
@@ -58406,6 +58628,10 @@ function (_Component) {
         exact: true,
         path: "/cart",
         component: _CartContainer__WEBPACK_IMPORTED_MODULE_9__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        exact: true,
+        path: "/compras",
+        component: _ComprasContainer__WEBPACK_IMPORTED_MODULE_12__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         exact: true,
         path: "/register",
@@ -58507,6 +58733,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        user: this.props.user,
         cart: this.props.cart,
         handleInput: this.handleInput,
         handleSubmit: this.handleSubmit
@@ -58519,7 +58746,8 @@ function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    cart: state.cart
+    cart: state.cart,
+    user: state.user
   };
 };
 

@@ -10,6 +10,7 @@ import SidebarContainer from "./SidebarContainer";
 import CartContainer from "./CartContainer"
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import ComprasContainer from "./ComprasContainer";
 
 export default class Main extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ export default class Main extends Component {
             <Switch>
               <Route exact path="/" component={ProductsContainer} />
               <Route exact path="/cart" component={CartContainer} />
+              <Route exact path="/compras" component={ComprasContainer} />
               <Route exact path="/register" component={RegisterContainer} />
               <Route exact path="/products/:id" component={ProductDetails} />
             </Switch>
