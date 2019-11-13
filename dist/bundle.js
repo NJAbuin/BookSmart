@@ -57481,13 +57481,21 @@ function Cart(props) {
       style: {
         width: "80px"
       }
-    }, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "cart-container-total-count"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
       variant: "outline-info",
       onClick: function onClick() {
         props.delFromCart(product);
         forceUpdate();
       }
-    }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, productQtty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      style: {
+        width: "30px",
+        marginLeft: "center",
+        marginRight: "auto"
+      }
+    }, productQtty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onClick: function onClick() {
         props.addToCart(product);
         forceUpdate();
@@ -57570,19 +57578,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     checkOut: function checkOut(cart) {
       return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["checkOut"])(cart));
     },
-    delFromCart: function (_delFromCart) {
-      function delFromCart(_x) {
-        return _delFromCart.apply(this, arguments);
-      }
-
-      delFromCart.toString = function () {
-        return _delFromCart.toString();
-      };
-
-      return delFromCart;
-    }(function (book) {
-      return dispatch(delFromCart(book));
-    })
+    delFromCart: function delFromCart(book) {
+      return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["delFromCart"])(book));
+    }
   };
 };
 

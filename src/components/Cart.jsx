@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
-import { addToCart, checkOut } from "../store/actions/cart";
+import { addToCart, checkOut, delFromCart } from "../store/actions/cart";
 import Modal from "react-bootstrap/Modal";
 import { ButtonToolbar } from "react-bootstrap";
 import LoginContainer from '../containers/LoginContainer'
@@ -103,7 +103,7 @@ function Cart(props) {
                 <div className="cart-container-products-list" key={product.id}>
                   <img src={product.imgURL} style={{ width: "75px" }} alt="" />
                   <p style={{ width: "80px" }}>{product.name}</p>
-                  <div>
+                  <div className="cart-container-total-count" >
                     <Button
                       variant="outline-info"
                       onClick={() => {
@@ -113,7 +113,7 @@ function Cart(props) {
                     >
                       -
                     </Button>
-                    <p>{productQtty}</p>
+                    <p style={{ width: "30px", marginLeft: "center", marginRight: "auto" }} >{productQtty}</p>
                     <Button
                       onClick={() => {
                         props.addToCart(product);
