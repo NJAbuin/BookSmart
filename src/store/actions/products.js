@@ -14,16 +14,17 @@ export const productAction = payload => {
   return { type: FETCH_PRODUCTS, payload };
 };
 
-export const getFilterAction = e => dispatch => {
+export const filterByCategory = () => dispatch => {
   axios
-    .post("/api/category/books", { name: e })
+    .get("/api/categs/:category")
     .then(res => res.data)
     .then(product => {
+      console.log(product);
       return dispatch(searchProductAction(product));
     });
 };
 
-export const filterAction = payload => {
+const filterAction = payload => {
   return { type: "FILTER_PRODUCTS", payload };
 };
 

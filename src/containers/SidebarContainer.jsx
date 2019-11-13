@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Dropdown2 from "../components/Dropdown";
 import { Switch, Route } from "react-router-dom";
 import Axios from "axios";
-import { searchProducts, getFilterAction } from "../store/actions/products";
+import { searchProducts, filterByCategory } from "../store/actions/products";
 import Row from "react-bootstrap/Row";
 import Dropdown from "react-bootstrap/Dropdown";
 import Col from "react-bootstrap/Col";
@@ -69,7 +69,4 @@ const mapDispatchToProps = dispatch => ({
   getFilterAction: data => dispatch(getFilterAction(data))
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(SidebarContainer);
+export default connect(null, mapDispatchToProps)(SidebarContainer);

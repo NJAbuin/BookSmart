@@ -284,10 +284,6 @@ api.get("/categs/:cat", (req, res) => {
   Book.findByCategory(req.params.cat).then(data => res.send(data));
 });
 
-api.post("/category/books", (req, res) => {
-  Book.findByCategory(req.body.name).then(e => res.send(e));
-});
-
 api.use("/auth", require("./auth"));
 
 api.post("/checkout", (req, res) => {
