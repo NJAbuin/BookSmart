@@ -12,7 +12,7 @@ function useForceUpdate() {
 function Cart(props) {
   const forceUpdate = useForceUpdate();
 
-  const totalValue = function(cart) {
+  const totalValue = function (cart) {
     let totalPrice = 0;
     for (let i = 0; i < cart.length; i++) {
       totalPrice += cart[i].price * cart[i].quantity;
