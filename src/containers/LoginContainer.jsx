@@ -4,6 +4,9 @@ import Login from "../components/Login";
 import { connect } from "react-redux";
 import { receiveUser, emptyUser } from "../store/actions/user";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import ModalChooseCart from '../components/ModalChooseCart'
 
 class LoginContainer extends React.Component {
   constructor(props) {
@@ -11,12 +14,32 @@ class LoginContainer extends React.Component {
     this.state = {
       emailInput: "",
       passwordInput: "",
-      error: false
+      error: false,
+      showCartModal: false,
     };
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleShow = this.handleShow.bind(this)
+    this.handleClose = this.handleClose.bind(this)
+    this.handleCartSelection = this.handleCartSelection.bind(this)
+  }
+
+  handleShow() {
+    this.setState({ showCartModal: true })
+  }
+
+  handleCartSelection(string) {
+    axios.post(`/api/addToCartinBulk${string}`, { userId: this.props.user.id, bookId: this.props.cart })
+      .then((e) => {
+        this.setState({ showCartModal: false })
+      })
+
+  }
+
+  handleClose() {
+    this.setState({ showCartModal: false })
   }
 
   handleEmailInput(evt) {
@@ -38,16 +61,22 @@ class LoginContainer extends React.Component {
         .then(res => {
           return res.data;
         })
-
         .then(user => {
           this.props.receiveUser(user);
+          axios.post('/api/getNumberOfCarts', { userId: this.props.user.id })
+            .then(resp => {
+              if (this.props.cart.length > 0 && resp != null) { this.handleShow() }
+              return null
+            })
         })
+        //return axios.post(`/api/addToCartinBulkMerge`, {userId: this.props.user.id, bookId: this.props.cart})
         .then(() => this.setState({ error: false }))
         .catch(() => {
           this.setState({ error: true });
         });
     }
   }
+
 
   handleLogout() {
     axios.get("/api/auth/logout").then(() => this.props.emptyUser());
@@ -60,7 +89,7 @@ class LoginContainer extends React.Component {
     const displayError = () => {
       alert("Credenciales Incorrectas");
       this.setState({ error: false });
-    };
+    }
     return (
       <div>
         {userLogged == true ? (
@@ -105,6 +134,8 @@ class LoginContainer extends React.Component {
               </li>
             </ul>
           )}
+
+        <ModalChooseCart show={this.state.showCartModal} handleClose={this.handleClose} handleShow={this.handleShow} handleCartSelection={this.handleCartSelection} />
       </div>
     );
   }
@@ -115,8 +146,9 @@ const mapDispatchToProps = {
   emptyUser
 };
 
-const mapStateToProps = ({ user }) => ({
-  user
+const mapStateToProps = ({ user, cart }) => ({
+  user,
+  cart
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

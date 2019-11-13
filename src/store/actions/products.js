@@ -1,5 +1,10 @@
 import axios from "axios";
-import { FETCH_PRODUCTS, SEARCH_PRODUCTS, SELECT_PRODUCT } from "../constants";
+import {
+  FETCH_PRODUCTS,
+  SEARCH_PRODUCTS,
+  SELECT_PRODUCT,
+  FILTER_PRODUCT
+} from "../constants";
 
 export const getProducts = () => dispatch => {
   axios
@@ -14,17 +19,17 @@ export const productAction = payload => {
   return { type: FETCH_PRODUCTS, payload };
 };
 
-export const getFilterAction = e => dispatch => {
+export const filterByCategory = category => dispatch => {
   axios
-    .post("/api/category/books", { name: e })
+    .get(`/api/categs/${category}`)
     .then(res => res.data)
-    .then(product => {
-      return dispatch(searchProductAction(product));
+    .then(category => {
+      return dispatch(filterAction(category));
     });
 };
 
-export const filterAction = payload => {
-  return { type: "FILTER_PRODUCTS", payload };
+const filterAction = payload => {
+  return { type: FILTER_PRODUCT, payload };
 };
 
 export const searchProducts = inputValue => dispatch => {

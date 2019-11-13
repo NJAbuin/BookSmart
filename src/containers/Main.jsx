@@ -5,9 +5,10 @@ import store from "../store";
 import { fetchUser } from "../store/actions/user";
 import ProductsContainer from "./ProductsContainer";
 import NavbarContainer from "./NavbarContainer";
-import ProductDetails from "../components/ProductDetails"; 1
+import ProductDetails from "../components/ProductDetails";
+1;
 import SidebarContainer from "./SidebarContainer";
-import CartContainer from "./CartContainer"
+import CartContainer from "./CartContainer";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ComprasContainer from "./ComprasContainer";
@@ -44,6 +45,11 @@ export default class Main extends Component {
               <Route exact path="/compras" component={ComprasContainer} />
               <Route exact path="/register" component={RegisterContainer} />
               <Route exact path="/products/:id" component={ProductDetails} />
+              <Route
+                exact
+                path="/category/:category"
+                component={ProductsContainer}
+              />
             </Switch>
           </Col>
         </Row>
