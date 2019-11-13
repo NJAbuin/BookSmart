@@ -17,7 +17,7 @@ Cart.init(
     },
     state:{
       type: S.ENUM,
-      values: ['Opened','In Process', 'Cancelled', 'Completed'],
+      values: ['Opened','In Process', 'Cancelled', 'Completed', 'Droped'],
       defaultValue: 'Opened'
     }
   },

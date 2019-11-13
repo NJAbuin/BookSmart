@@ -14,3 +14,4 @@ export const CATEGORIES = [
   "Periodistico",
   "Romantica"
 ];
+export const CHECKOUT = "CHECKOUT";
