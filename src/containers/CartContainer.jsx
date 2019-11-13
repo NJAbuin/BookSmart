@@ -38,6 +38,8 @@ class CartContainer extends React.Component {
     }
   }
 
+
+
   render() {
     return (
       <Cart
@@ -45,6 +47,7 @@ class CartContainer extends React.Component {
         incHandler={this.incHandler}
         decHandler={this.props.delFromCart}
         cart={this.props.cart}
+        user={this.props.user}
       />
     );
   }

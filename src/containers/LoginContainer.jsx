@@ -26,20 +26,20 @@ class LoginContainer extends React.Component {
     this.handleCartSelection = this.handleCartSelection.bind(this)
   }
 
-  handleShow(){
-    this.setState({showCartModal: true})
+  handleShow() {
+    this.setState({ showCartModal: true })
   }
 
-  handleCartSelection(string){
-    axios.post(`/api/addToCartinBulk${string}`, {userId: this.props.user.id, bookId: this.props.cart})
-    .then((e)=> {
-      this.setState({showCartModal: false}) 
-    })
-    
+  handleCartSelection(string) {
+    axios.post(`/api/addToCartinBulk${string}`, { userId: this.props.user.id, bookId: this.props.cart })
+      .then((e) => {
+        this.setState({ showCartModal: false })
+      })
+
   }
 
-  handleClose(){
-    this.setState({showCartModal: false})
+  handleClose() {
+    this.setState({ showCartModal: false })
   }
 
   handleEmailInput(evt) {
@@ -62,12 +62,14 @@ class LoginContainer extends React.Component {
           return res.data;
         })
         .then(user => {
-           this.props.receiveUser(user);
-           axios.post('/api/getNumberOfCarts', {userId: this.props.user.id})
-           .then(resp=>{
-           if(this.props.cart.length > 0 && resp != null){this.handleShow()}
-           return null})})
-           //return axios.post(`/api/addToCartinBulkMerge`, {userId: this.props.user.id, bookId: this.props.cart})
+          this.props.receiveUser(user);
+          axios.post('/api/getNumberOfCarts', { userId: this.props.user.id })
+            .then(resp => {
+              if (this.props.cart.length > 0 && resp != null) { this.handleShow() }
+              return null
+            })
+        })
+        //return axios.post(`/api/addToCartinBulkMerge`, {userId: this.props.user.id, bookId: this.props.cart})
         .then(() => this.setState({ error: false }))
         .catch(() => {
           this.setState({ error: true });
@@ -99,33 +101,41 @@ class LoginContainer extends React.Component {
             handleError={this.state.error}
           />
         ) : (
-          <ul
-            className="nav"
-            style={{
-              color: "white",
-              justifyItems: "center",
-              alignItems: "center"
-            }}
-          >
-            <li
-              className="nav-item"
-              style={{ marginTop: "7px", marginRight: "10px" }}
+            <ul
+              className="nav"
+              style={{
+                color: "white",
+                justifyItems: "center",
+                alignItems: "center"
+              }}
             >
-              Hola {name} &nbsp; |
+              <li
+                className="nav-item"
+                style={{ marginTop: "7px", marginRight: "10px" }}
+              >
+                Hola {name} &nbsp; |
             </li>
-            <li
-              className="nav-item"
-              onClick={this.handleLogout}
-              style={{ marginTop: "7px" }}
-            >
-              <Link style={{ color: "white" }} to="/">
-                Logout
+              <li
+                className="nav-item"
+                style={{ marginTop: "7px", marginRight: "10px" }}
+              >
+                <Link style={{ color: "white", textDecoration: "none" }} to="/compras">
+                  Mis Compras &nbsp; | &nbsp;
               </Link>
-            </li>
-          </ul>
-         
-        )}
-         <ModalChooseCart show={this.state.showCartModal} handleClose={this.handleClose} handleShow={this.handleShow} handleCartSelection={this.handleCartSelection}/>
+              </li>
+              <li
+                className="nav-item"
+                onClick={this.handleLogout}
+                style={{ marginTop: "7px" }}
+              >
+                <Link style={{ color: "white" }} to="/">
+                  Logout
+              </Link>
+              </li>
+            </ul>
+          )}
+
+        <ModalChooseCart show={this.state.showCartModal} handleClose={this.handleClose} handleShow={this.handleShow} handleCartSelection={this.handleCartSelection} />
       </div>
     );
   }

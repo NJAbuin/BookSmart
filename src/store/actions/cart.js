@@ -7,7 +7,7 @@ import {
 } from "../constants";
 import axios from "axios";
 
-import axios from "axios";
+
 
 export const addToCart = product => dispatch => {
   dispatch(cartAction(product));
@@ -37,6 +37,8 @@ export const deleteProductAction = payload => {
 };
 
 ////////////////////////////////////////////////////////////////////////////////
+
+
 
 export const delFromCart = product => dispatch => {
   dispatch(delCartAction(product));

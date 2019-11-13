@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getProducts } from "../store/actions/products";
 
-function NavBar({ handleInput, handleSubmit, cart, getProducts }) {
+function NavBar({ handleInput, handleSubmit, user, getProducts }) {
   return (
     <>
       <Navbar bg="primary" variant="dark" fixed="top">
@@ -19,11 +19,14 @@ function NavBar({ handleInput, handleSubmit, cart, getProducts }) {
         >
           BookSmart
         </Link>
+        &nbsp;&nbsp;&nbsp;
         <Nav className="mr-auto">
           <ul className="nav ">
-            <li className="nav-item">
-              <RegisterContainer />
-            </li>
+            {!user.id &&
+              <li className="nav-item">
+                <RegisterContainer />
+              </li>
+            }
             <li className="nav-item">
               <LoginContainer />
             </li>
@@ -55,7 +58,7 @@ function NavBar({ handleInput, handleSubmit, cart, getProducts }) {
   );
 }
 
-const mapStateToProps = state => {};
+const mapStateToProps = state => { };
 
 const mapDispatchToProps = dispatch => ({
   getProducts: () => dispatch(getProducts())

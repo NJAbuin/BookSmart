@@ -4,6 +4,8 @@ import { selectProduct } from "../store/actions/products";
 import { addToCart } from "../store/actions/cart";
 import Button from "react-bootstrap/Button";
 import Carousel from "react-bootstrap/Carousel";
+import { Link } from "react-router-dom";
+
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -63,11 +65,17 @@ class ProductDetails extends Component {
           <div className="product-details">
             <h1 className="product-name">{product.name}</h1>
             <h3>Author: {product.author}</h3>
-            <h5 className="category-product-details">
-              {product.category[0] || ""}
-              <br />
-              {product.category[1] || ""}
-            </h5>
+            <Link to={`/category/${product.category[0]}`} >
+              <h5 className="category-product-details">
+                {product.category[0]}
+              </h5>
+            </Link>
+            &nbsp;
+            <Link to={`/category/${product.category[1]}`} >
+              <h5 className="category-product-details">
+                {product.category[1]}
+              </h5>
+            </Link>
             <h2>Sinopsis</h2>
             <p>{product.description.slice(0, 300) + "..."} </p>
             <h5>{product.year}</h5>
@@ -97,3 +105,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
+
+
