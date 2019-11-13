@@ -37,7 +37,7 @@ class ProductDetails extends Component {
       description: "",
       category: []
     };
-
+    console.log(this.props.match.path=='/')
     return (
       <div>
         <div className="product-container" key={product.id}>

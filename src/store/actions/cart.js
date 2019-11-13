@@ -2,8 +2,11 @@ import {
   ADD_TO_CART,
   DEL_FROM_CART,
   DELETE_PRODUCT_FROM_CART,
-  CHECKOUT
+  CHECKOUT,
+  EMPTY_CART
 } from "../constants";
+
+import axios from 'axios'
 
 export const addToCart = product => dispatch => {
   dispatch(cartAction(product));
@@ -13,6 +16,9 @@ export const cartAction = payload => {
   return { type: ADD_TO_CART, payload };
 };
 
+export const emptyCart = () =>{
+  return {type: EMPTY_CART}
+}
 ///////////////////////////////////////////////////////////////////////////////
 
 export const deleteProductFromCart = product => dispatch => {

@@ -3,6 +3,7 @@ import axios from "axios";
 import Login from "../components/Login";
 import { connect } from "react-redux";
 import { receiveUser, emptyUser } from "../store/actions/user";
+import { emptyCart, addToCart } from '../store/actions/cart'
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -32,7 +33,12 @@ class LoginContainer extends React.Component {
 
   handleCartSelection(string){
     axios.post(`/api/addToCartinBulk${string}`, {userId: this.props.user.id, bookId: this.props.cart})
-    .then((e)=> {
+    .then(e=>{
+      if(string == 'Merge'){
+        this.props.emptyCart()
+        e.data.map(book=>axios.get(`/api/product/${book.productId}`).then(resp=>addToCart(resp.data)))}})
+     //Esto es el carrito que hay que pasar al store
+    .then(()=> {
       this.setState({showCartModal: false}) 
     })
     
@@ -78,6 +84,7 @@ class LoginContainer extends React.Component {
 
   handleLogout() {
     axios.get("/api/auth/logout").then(() => this.props.emptyUser());
+    this.props.emptyCart()
   }
 
   render() {
@@ -133,7 +140,9 @@ class LoginContainer extends React.Component {
 
 const mapDispatchToProps = {
   receiveUser,
-  emptyUser
+  emptyUser,
+  emptyCart,
+  addToCart
 };
 
 const mapStateToProps = ({ user, cart }) => ({

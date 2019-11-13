@@ -8,3 +8,4 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_PRODUCT_FROM_CART = "DELETE_PRODUCT_FROM_CART";
 export const DEL_FROM_CART = "DEL_FROM_CART";
 export const CHECKOUT = "CHECKOUT";
+export const EMPTY_CART = "EMPTY_CART"

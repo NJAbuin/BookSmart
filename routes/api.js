@@ -351,7 +351,7 @@ api.post("/addToCart", (req, res) => {
     .then(e => add.bookId.map(book=>CartProduct.findOne({where:{orderId: e.id, productId: book.id, quantity: book.quantity, cartId: e.cartId }})
       .then(res =>{
         return res==null? CartProduct.create({orderId: e.id, productId: book.id, quantity: book.quantity, cartId: e.cartId }):
-        CartProduct.update({quantity: res.quantity+book.quantity}, {where:{orderId: e.id, productId: 1, cartId: e.cartId}})
+        CartProduct.update({quantity: res.quantity+book.quantity}, {where:{orderId: e.id, productId: book.id, cartId: e.cartId}})
       })
     ))
     .then(()=> CartProduct.findAll({where: {orderId: presentOrder}}))
