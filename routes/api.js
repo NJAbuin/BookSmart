@@ -331,6 +331,46 @@ api.post("/addToCart", (req, res) => {
     });
 });
 
+  api.post('/addToCartinBulkReplace', (req, res)=>{
+    const add = req.body
+    // Chequeo que no haya ningun carro del usuario abierto y si lo tiene se lo cierro
+    Cart.update({state: 'Droped'}, {where:{cartId: add.userId, state: 'Opened'}})
+    .then(()=>Cart.create({cartId: add.userId, state: 'Opened'}))
+    .then(e => add.bookId.map(book=>CartProduct.create({orderId: e.id, productId: book.id, quantity: book.quantity, cartId: e.cartId })))
+  })
+
+  api.post('/addToCartinBulkMerge', (req, res)=>{
+    const add = req.body
+    let presentOrder = ''
+    // Chequeo que no haya ningun carro del usuario abierto y si lo tiene se lo cierro
+    Cart.findOne({where:{cartId: add.userId, state: 'Opened'}})
+    .then(e=> {
+      presentOrder = e.dataValues.id
+      return e
+    })
+    .then(e => add.bookId.map(book=>CartProduct.findOne({where:{orderId: e.id, productId: book.id, quantity: book.quantity, cartId: e.cartId }})
+      .then(res =>{
+        return res==null? CartProduct.create({orderId: e.id, productId: book.id, quantity: book.quantity, cartId: e.cartId }):
+        CartProduct.update({quantity: res.quantity+book.quantity}, {where:{orderId: e.id, productId: 1, cartId: e.cartId}})
+      })
+    ))
+    .then(()=> CartProduct.findAll({where: {orderId: presentOrder}}))
+    .then(e=> res.send(e))
+    .catch(err=> console.log(err))
+  })
+  // findOrCreate({orderId: e.id, productId: book.id, quantity: book.quantity, cartId: e.cartId })
+
+  api.post('/getNumberOfCarts', (req, res)=>{
+    console.log(req.body)
+    user = req.body
+    Cart.findOne({where: {cartId: user.userId, state:'Opened'}})
+    .then(e=> {return e != null?
+      CartProduct.findAll({where:{orderId: e.dataValues.id}}).then(e=>res.send(e)):
+      res.send(null)
+    })
+  })
+
+
 api.put("/checkout", (req, res) => {
   Cart.update(
     { state: "In Process" },
@@ -339,3 +379,4 @@ api.put("/checkout", (req, res) => {
 });
 
 module.exports = api;
+

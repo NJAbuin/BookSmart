@@ -13,7 +13,7 @@ export default class RegisterContainer extends React.Component {
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handleNameInput = this.handleNameInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitRegister = this.handleSubmitRegister.bind(this);
   }
 
   handleEmailInput(evt) {
@@ -28,7 +28,7 @@ export default class RegisterContainer extends React.Component {
     this.setState({ nameInput: evt.target.value });
   }
 
-  handleSubmit(evt) {
+  handleSubmitRegister(evt) {
     evt.preventDefault();
     if (
       this.state.emailInput &&
@@ -46,7 +46,7 @@ export default class RegisterContainer extends React.Component {
   render() {
     return (
       <Register
-        handleSubmit={this.handleSubmit}
+        handleSubmit={this.handleSubmitRegister}
         handleEmailInput={this.handleEmailInput}
         handleNameInput={this.handleNameInput}
         handlePasswordInput={this.handlePasswordInput}
