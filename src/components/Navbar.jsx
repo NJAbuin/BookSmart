@@ -5,13 +5,6 @@ import LoginContainer from "../containers/LoginContainer";
 import { Link } from "react-router-dom";
 
 export default ({ handleInput, handleSubmit, cart }) => {
-  const totalValue = function(cart) {
-    let totalPrice = 0;
-    for (let i = 0; i < cart.length; i++) {
-      totalPrice += cart[i].price * cart[i].quantity;
-    }
-    return totalPrice.toFixed(2);
-  };
 
   return (
     <>
@@ -50,8 +43,6 @@ export default ({ handleInput, handleSubmit, cart }) => {
         </Link>
         &nbsp;&nbsp;&nbsp;
         <Link to="/cart">
-          {cart.length <= 0 && <p>$ 0,00</p>}
-          {cart.length > 0 && <p>$ {totalValue(cart)}</p>}
         </Link>
       </Navbar>
     </>
