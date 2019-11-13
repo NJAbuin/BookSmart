@@ -10,9 +10,22 @@ Cart.init(
       get() {
         //CARTPRODUCT.FINDALL
       }
+    },
+    cartId: {
+      type: S.INTEGER,
+      allowNull: false
+    },
+    state:{
+      type: S.ENUM,
+      values: ['Opened','In Process', 'Cancelled', 'Completed'],
+      defaultValue: 'Opened'
     }
   },
   { sequelize: db, modelName: "cart" }
 );
 
+Cart.chekout = (userId) =>{
+  return this.update({status:'closed'},{where:{userId: userId, status: 'opened'}})
+}
+  
 module.exports = Cart;

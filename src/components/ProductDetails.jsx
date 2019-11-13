@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { selectProduct } from "../store/actions/products";
 import { addToCart } from "../store/actions/cart";
 import Button from "react-bootstrap/Button";
+import Carousel from "react-bootstrap/Carousel";
 
 class ProductDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedProduct2: []
     };
     this.productID = this.props.match.params.id;
   }
@@ -38,19 +38,35 @@ class ProductDetails extends Component {
       category: []
     };
 
-    console.log("!!!!!!!!!!!!", this.props.product);
-
     return (
       <div>
-        <div className="product-container">
+        <div className="product-container" key={product.id}>
           <div className="img-container">
-            <img src={product.imgURL} />
+            <Carousel style={{ width: "300px" }}>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src={product.imgURL}
+                  alt="First slide"
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="https://www.brandcrowd.com/gallery/brands/pictures/picture14259392814670.png"
+                  alt="Third slide"
+                />
+              </Carousel.Item>
+            </Carousel>
           </div>
+          {}
           <div className="product-details">
             <h1 className="product-name">{product.name}</h1>
             <h3>Author: {product.author}</h3>
             <h5 className="category-product-details">
               {product.category[0] || ""}
+              <br />
+              {product.category[1] || ""}
             </h5>
             <h2>Sinopsis</h2>
             <p>{product.description.slice(0, 300) + "..."} </p>
