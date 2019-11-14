@@ -8,8 +8,6 @@ import {
 } from "../constants";
 import axios from "axios";
 
-
-
 export const addToCart = product => dispatch => {
   dispatch(cartAction(product));
 };
@@ -18,9 +16,9 @@ export const cartAction = payload => {
   return { type: ADD_TO_CART, payload };
 };
 
-export const emptyCart = () =>{
-  return {type: EMPTY_CART}
-}
+export const emptyCart = () => {
+  return { type: EMPTY_CART };
+};
 export const setCart = payload => ({
   type: SET_CART,
   payload
@@ -44,8 +42,6 @@ export const deleteProductAction = payload => {
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-
-
 
 export const delFromCart = product => dispatch => {
   dispatch(delCartAction(product));

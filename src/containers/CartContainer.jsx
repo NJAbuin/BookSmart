@@ -31,18 +31,11 @@ class CartContainer extends React.Component {
   componentDidMount() {
     let window = localStorage;
     if (!this.props.user.id) {
-      if (this.props.cart.length > 0) {
-        window.setItem("cart", JSON.stringify(this.props.cart));
-        console.log("Dos");
-      }
       if (this.props.cart.length == 0) {
         this.props.setToCart(JSON.parse(window.cart));
-        console.log("Uno.");
       }
     }
   }
-
-
 
   render() {
     return (
