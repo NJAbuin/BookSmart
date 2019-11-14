@@ -64,6 +64,7 @@ function useForceUpdate() {
 function Cart(props) {
   const forceUpdate = useForceUpdate();
   const cartPersist = function() {
+    if (props.cart.length == 0) return localStorage.setItem("cart", "[]");
     !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
   };
 
@@ -142,6 +143,7 @@ function Cart(props) {
                     onClick={() => {
                       props.deleteProduct(product);
                       cartPersist();
+                      forceUpdate();
                     }}
                     variant="danger"
                   >
