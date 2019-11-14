@@ -66,7 +66,6 @@ const mapDispatchToProps = dispatch => ({
   addToCart: book => dispatch(addToCart(book)),
   setToCart: cart => dispatch(setToCart(cart)),
   addTransaction: cart => {
-    console.log("ESTOY DISPATCHEANDO AL STORE", cart)
     dispatch(addTransaction(cart))
   }
 });

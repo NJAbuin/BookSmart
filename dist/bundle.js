@@ -58482,7 +58482,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["setToCart"])(cart));
     },
     addTransaction: function addTransaction(cart) {
-      console.log("ESTOY DISPATCHEANDO AL STORE", cart);
       dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["addTransaction"])(cart));
     }
   };
