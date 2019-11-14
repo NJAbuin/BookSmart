@@ -25,8 +25,8 @@ CartProduct.init(
   { sequelize: db, modelName: "cartProduct" }
 );
 
-CartProduct.newProduct = obj =>{
-  return CartProduct.create(obj)
-}
+CartProduct.newProduct = obj => {
+  return CartProduct.create(obj);
+};
 
-module.exports = CartProduct
+module.exports = CartProduct;

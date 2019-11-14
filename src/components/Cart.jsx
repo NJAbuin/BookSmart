@@ -5,6 +5,7 @@ import { addToCart, checkOut, delFromCart } from "../store/actions/cart";
 import Modal from "react-bootstrap/Modal";
 import { ButtonToolbar } from "react-bootstrap";
 import axios from 'axios'
+import LoginContainer from '../containers/LoginContainer'
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -40,8 +41,8 @@ function App({ checkOutAction }) {
         variant="success"
         className="button-finish-style"
         onClick={() => {
-          checkOutAction();
           setModalShow(true);
+          checkOutAction();
         }}
       >
         Finalizar compra!
@@ -64,7 +65,7 @@ function useForceUpdate() {
 function Cart(props) {
   const forceUpdate = useForceUpdate();
 
-  const totalValue = function(cart) {
+  const totalValue = function (cart) {
     let totalPrice = 0;
     for (let i = 0; i < cart.length; i++) {
       totalPrice += cart[i].price * cart[i].quantity;
@@ -103,7 +104,7 @@ function Cart(props) {
                 <div className="cart-container-products-list" key={product.id}>
                   <img src={product.imgURL} style={{ width: "75px" }} alt="" />
                   <p style={{ width: "80px" }}>{product.name}</p>
-                  <div>
+                  <div className="cart-container-total-count" >
                     <Button
                       variant="outline-info"
                       onClick={() => {
@@ -113,7 +114,7 @@ function Cart(props) {
                     >
                       -
                     </Button>
-                    <p>{productQtty}</p>
+                    <p style={{ width: "30px", marginLeft: "center", marginRight: "auto" }} >{productQtty}</p>
                     <Button
                       onClick={() => {
                         props.addToCart(product);
@@ -156,23 +157,47 @@ function Cart(props) {
             <p style={{ fontWeight: "bold" }}>TOTAL:</p>
             <p>$ {totalValue(props.cart)}</p>
           </div>
-          <ButtonToolbar>
-            <Button
-              variant="success"
-              className="button-finish-style"
-              onClick={() => {
-                let userId = props.user.id;
-                props.checkOut({ cart: props.cart, user: userId });
-                setModalShow(true);
-              }}
-            >
-              Finalizar Compra!
+          {
+            props.user &&
+            <ButtonToolbar>
+              <Button
+                variant="success"
+                className="button-finish-style"
+                onClick={() => {
+                  let userId = props.user.id;
+                  setModalShow(true);
+                  props.checkOut({ cart: props.cart, user: userId });
+                }}
+              >
+                Finalizar Compra!
             </Button>
-            <MyVerticallyCenteredModal
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-            />
-          </ButtonToolbar>
+              {/* <LoginContainer /> */}
+              <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+              />
+            </ButtonToolbar>
+          }
+          {/* {
+            props.cart.length == 0 &&
+            <div>
+              <div className="text-login-cart" >
+                <p style={{ marginBottom: "0" }} >Por favor, agregue productos al carro para completar la compra</p>
+              </div>
+            </div>
+          } */}
+          {
+            !props.user &&
+            <div>
+              <div className="text-login-cart" >
+                <p style={{ marginBottom: "0" }} >Por favor, inicie sesion para completar la compra</p>
+              </div>
+              <div className="button-login-cart" >
+                <LoginContainer />
+              </div>
+            </div>
+
+          }
         </div>
       </div>
     </div>
