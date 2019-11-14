@@ -16,9 +16,7 @@ class LoginContainer extends React.Component {
       emailInput: "",
       passwordInput: "",
       error: false,
-      showCartModal: false,
-      isAdmin:
-        this.props.user && this.props.user.isAdmin ? "(Logged as admin)" : ""
+      showCartModal: false
     };
 
     this.handleEmailInput = this.handleEmailInput.bind(this);
@@ -34,24 +32,30 @@ class LoginContainer extends React.Component {
     this.setState({ showCartModal: true });
   }
 
-  handleCartSelection(string){
-    axios.post(`/api/addToCartinBulk${string}`, {userId: this.props.user.id, bookId: this.props.cart})
-    .then(()=> axios.post('/api/getNumberofCarts', {userId: this.props.user.id}))
-    .then(resp=>resp.data)
-    .then(bookArray =>{
-    console.log(bookArray)
-    let toStoreArray = []
-    bookArray.map(singleBook=>{
-      let singleBookToStore = {}
-      singleBookToStore = singleBook
-      singleBookToStore['quantity'] = singleBook.cartProduct.quantity
-      toStoreArray.push(singleBookToStore)})
-    this.props.addFromDB(toStoreArray)
-    })
-    .then(()=> {
-      this.setState({showCartModal: false}) 
-    })
-    
+  handleCartSelection(string) {
+    axios
+      .post(`/api/addToCartinBulk${string}`, {
+        userId: this.props.user.id,
+        bookId: this.props.cart
+      })
+      .then(() =>
+        axios.post("/api/getNumberofCarts", { userId: this.props.user.id })
+      )
+      .then(resp => resp.data)
+      .then(bookArray => {
+        console.log(bookArray);
+        let toStoreArray = [];
+        bookArray.map(singleBook => {
+          let singleBookToStore = {};
+          singleBookToStore = singleBook;
+          singleBookToStore["quantity"] = singleBook.cartProduct.quantity;
+          toStoreArray.push(singleBookToStore);
+        });
+        this.props.addFromDB(toStoreArray);
+      })
+      .then(() => {
+        this.setState({ showCartModal: false });
+      });
   }
 
   handleClose() {
@@ -77,34 +81,33 @@ class LoginContainer extends React.Component {
         .then(res => {
           return res.data;
         })
-        .then(user=>{
+        .then(user => {
           this.props.receiveUser(user);
-          console.log(this.props.user.id)
-          return axios.post('/api/getNumberofCarts', {userId: this.props.user.id})
+          console.log(this.props.user.id);
+          return axios.post("/api/getNumberofCarts", {
+            userId: this.props.user.id
+          });
         })
-        .then(bookArray=> {
-          console.log(this.props.cart.length)
-          if(bookArray.data.length > 0 && this.props.cart.length ==0  ){
-            let toStoreArray = []
-            bookArray.data.map(singleBook=>{
-              let singleBookToStore = {}
-              singleBookToStore = singleBook
-              singleBookToStore['quantity'] = singleBook.cartProduct.quantity
-              toStoreArray.push(singleBookToStore)
-              
-            })
-            this.props.addFromDB(toStoreArray)
+        .then(bookArray => {
+          console.log(this.props.cart.length);
+          if (bookArray.data.length > 0 && this.props.cart.length == 0) {
+            let toStoreArray = [];
+            bookArray.data.map(singleBook => {
+              let singleBookToStore = {};
+              singleBookToStore = singleBook;
+              singleBookToStore["quantity"] = singleBook.cartProduct.quantity;
+              toStoreArray.push(singleBookToStore);
+            });
+            this.props.addFromDB(toStoreArray);
+          } else if (bookArray.data.length > 0 && this.props.cart.length > 0) {
+            this.handleShow();
           }
-          else if(bookArray.data.length > 0 && this.props.cart.length > 0){
-            this.handleShow()
-          }
-          
         })
         .then(() => this.setState({ error: false }))
         .catch(() => {
           this.setState({ error: true });
         });
-    } 
+    }
   }
 
   handleLogout() {
@@ -143,7 +146,7 @@ class LoginContainer extends React.Component {
               className="nav-item"
               style={{ marginTop: "7px", marginRight: "10px" }}
             >
-              Hola {name + this.state.isAdmin} &nbsp; |
+              Hola {name} &nbsp; |
             </li>
             <li
               className="nav-item"

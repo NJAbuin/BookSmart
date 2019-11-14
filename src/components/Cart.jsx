@@ -59,10 +59,8 @@ function App({ checkOutAction }) {
 function Cart(props) {
   const cartPersist = function() {
     if (props.cart.length == 0) {
-      console.log("Hola.");
       return localStorage.setItem("cart", "[]");
     }
-    console.log("No.", props.cart);
     !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
   };
 
