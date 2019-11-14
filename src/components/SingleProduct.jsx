@@ -38,9 +38,18 @@ function SingleProduct(props) {
     else{
       console.log('entre aca')
       axios.post(`/api/addToCart`, {userId: props.user.id, bookId: product.id, quantity: product.quantity})
+      .then(e=>{
+        let arrayToStore = []
+        e.data['0'].books.map(e=>{
+          let singletoStore = {}
+          singletoStore=e
+          singletoStore['quantity'] = e.cartProduct.quantity
+          arrayToStore.push(singletoStore)
+          console.log(arrayToStore)
+        })
      
-    }
-  };
+    })
+  }};
 
   return (
     <Card key={product.id} style={{ marginBottom: "3%" }}>

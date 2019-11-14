@@ -16,7 +16,7 @@ export default function ModalChooseCart({show, handleShow, handleClose, handleCa
   <Modal.Footer>
     <Button variant="secondary" onClick={()=>handleCartSelection('Merge')}>Merge</Button>
     <Button variant="primary" onClick={()=>handleCartSelection('Replace')}>Replace</Button>
-    <Button variant="primary">Keep Original Cart</Button>
+    <Button variant="primary" onClick={()=>handleCartSelection('Keep')}>Keep Original Cart</Button>
   </Modal.Footer>
 </Modal>)
 
