@@ -17,3 +17,4 @@ export const CATEGORIES = [
 ];
 export const CHECKOUT = "CHECKOUT";
 export const EMPTY_CART = "EMPTY_CART"
+export const ADD_TRANSACTION = "ADD_TRANSACTION" 

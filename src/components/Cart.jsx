@@ -161,7 +161,7 @@ function Cart(props) {
           </div>
           <div className="cart-container-subtotal-count">
             <p>SUBTOTAL</p>
-            <p>$ {totalValue(props.cart, descount)}</p>
+            <p>$ {totalValue(props.cart)}</p>
           </div>
           <div className="cart-container-envio">
             <p>ENVIO</p>
@@ -169,7 +169,7 @@ function Cart(props) {
           </div>
           <div className="cart-container-total-count">
             <p style={{ fontWeight: "bold" }}>TOTAL:</p>
-            <p>$ {totalValue(props.cart, descount)}</p>
+            <p>$ {totalValue(props.cart)}</p>
           </div>
           {props.user && (
             <ButtonToolbar>
@@ -178,13 +178,14 @@ function Cart(props) {
                 className="button-finish-style"
                 onClick={() => {
                   let userId = props.user.id;
+                  console.log(props.cart)
+                  props.addTransactionToStore(props.cart)
                   setModalShow(true);
                   props.checkOut({ cart: props.cart, user: userId });
                 }}
               >
                 Finalizar Compra!
               </Button>
-              {/* <LoginContainer /> */}
               <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
