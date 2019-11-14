@@ -5,6 +5,7 @@ import { addToCart, checkOut, delFromCart } from "../store/actions/cart";
 import Modal from "react-bootstrap/Modal";
 import { ButtonToolbar } from "react-bootstrap";
 import LoginContainer from "../containers/LoginContainer";
+import Axios from "axios";
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -183,6 +184,7 @@ function Cart(props) {
                   let userId = props.user.id;
                   setModalShow(true);
                   props.checkOut({ cart: props.cart, user: userId });
+                  sendEmail(props.user.email, props.cart);
                 }}
               >
                 Finalizar Compra!
@@ -216,6 +218,12 @@ function Cart(props) {
     </div>
   );
 }
+
+const sendEmail = (email, cart) => {
+  Axios.post("/api/email", { email, cart })
+    .then(() => console.log(`Email sent to: ${email}`))
+    .catch(console.error());
+};
 
 const mapStateToProps = ({ user, cart }) => ({
   user,
