@@ -57429,8 +57429,10 @@ function useForceUpdate() {
 
 function Cart(props) {
   var forceUpdate = useForceUpdate();
+  var descount = "";
 
-  var totalValue = function totalValue(cart) {
+  var totalValue = function totalValue(cart, descountParam) {
+    console.log(descountParam);
     var totalPrice = 0;
 
     for (var i = 0; i < cart.length; i++) {
@@ -57516,6 +57518,7 @@ function Cart(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "CUPON DE DESCUENTO"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "descount-input"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: props.handleInput,
     type: "text",
     style: {
       width: "120px"
@@ -57524,7 +57527,7 @@ function Cart(props) {
     variant: "primary"
   }, "Agregar"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cart-container-subtotal-count"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SUBTOTAL"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "$ ", totalValue(props.cart))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SUBTOTAL"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "$ ", totalValue(props.cart, descount))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cart-container-envio"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ENVIO"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     variant: "primary"
@@ -57534,7 +57537,7 @@ function Cart(props) {
     style: {
       fontWeight: "bold"
     }
-  }, "TOTAL:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "$ ", totalValue(props.cart))), props.user && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["ButtonToolbar"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, "TOTAL:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "$ ", totalValue(props.cart, descount))), props.user && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["ButtonToolbar"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     variant: "success",
     className: "button-finish-style",
     onClick: function onClick() {

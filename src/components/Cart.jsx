@@ -64,12 +64,16 @@ function useForceUpdate() {
 function Cart(props) {
   const forceUpdate = useForceUpdate();
 
-  const totalValue = function (cart) {
+  let descount = ""
+
+  const totalValue = function (cart, descountParam) {
+    console.log(descountParam)
     let totalPrice = 0;
     for (let i = 0; i < cart.length; i++) {
       totalPrice += cart[i].price * cart[i].quantity;
     }
-    return totalPrice.toFixed(2);
+    return totalPrice.toFixed(2)
+
   };
 
   const [modalShow, setModalShow] = React.useState(false);
@@ -140,13 +144,13 @@ function Cart(props) {
           <div className="cart-container-descount">
             <p>CUPON DE DESCUENTO</p>
             <div className="descount-input">
-              <input type="text" style={{ width: "120px" }} />
+              <input onChange={props.handleInput} type="text" style={{ width: "120px" }} />
               <Button variant="primary">Agregar</Button>
             </div>
           </div>
           <div className="cart-container-subtotal-count">
             <p>SUBTOTAL</p>
-            <p>$ {totalValue(props.cart)}</p>
+            <p>$ {totalValue(props.cart, descount)}</p>
           </div>
           <div className="cart-container-envio">
             <p>ENVIO</p>
@@ -154,7 +158,7 @@ function Cart(props) {
           </div>
           <div className="cart-container-total-count">
             <p style={{ fontWeight: "bold" }}>TOTAL:</p>
-            <p>$ {totalValue(props.cart)}</p>
+            <p>$ {totalValue(props.cart, descount)}</p>
           </div>
           {
             props.user &&
