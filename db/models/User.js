@@ -18,9 +18,9 @@ User.init(
       type: S.STRING,
       allowNull: false
     },
-    role: {
-      type: S.STRING,
-      defaultValue: null
+    isAdmin: {
+      type: S.BOOLEAN,
+      defaultValue: true
     },
     salt: {
       type: S.TEXT
