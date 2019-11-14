@@ -3,6 +3,7 @@ import {
   DEL_FROM_CART,
   DELETE_PRODUCT_FROM_CART,
   CHECKOUT,
+  EMPTY_CART,
   SET_CART
 } from "../constants";
 import axios from "axios";
@@ -17,11 +18,18 @@ export const cartAction = payload => {
   return { type: ADD_TO_CART, payload };
 };
 
+export const emptyCart = () =>{
+  return {type: EMPTY_CART}
+}
 export const setCart = payload => ({
   type: SET_CART,
   payload
 });
 
+export const addFromDB = payload => {
+  console.log('AAAAAAAAAAAAA ', payload)
+  return {type: 'LOAD_FROM_DB', payload}
+}
 export const setToCart = payload => dispatch => {
   dispatch(setCart(payload));
 };

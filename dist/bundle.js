@@ -57372,7 +57372,29 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
+function App(_ref) {
+  var checkOutAction = _ref.checkOutAction;
 
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      modalShow = _React$useState2[0],
+      setModalShow = _React$useState2[1];
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["ButtonToolbar"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "success",
+    className: "button-finish-style",
+    onClick: function onClick() {
+      checkOutAction();
+      setModalShow(true);
+    }
+  }, "Finalizar compra!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MyVerticallyCenteredModal, {
+    show: modalShow,
+    onHide: function onHide() {
+      return setModalShow(false);
+    }
+  }));
+} // PARA MODAL CHECKOUT
+//create your forceUpdate hook
 
 
 function MyVerticallyCenteredModal(props) {
@@ -58147,6 +58169,7 @@ function (_Component) {
         description: "",
         category: []
       };
+      console.log(this.props.match.path == '/');
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "product-container",
         key: product.id
@@ -58611,10 +58634,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_actions_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/actions/user */ "./src/store/actions/user.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
-/* harmony import */ var _components_ModalChooseCart__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/ModalChooseCart */ "./src/components/ModalChooseCart.jsx");
+/* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
+/* harmony import */ var _components_ModalChooseCart__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/ModalChooseCart */ "./src/components/ModalChooseCart.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -58632,6 +58656,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -58686,6 +58711,17 @@ function (_React$Component) {
         userId: this.props.user.id,
         bookId: this.props.cart
       }).then(function (e) {
+        if (string == 'Merge') {
+          _this2.props.emptyCart();
+
+          e.data.map(function (book) {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/product/".concat(book.productId)).then(function (resp) {
+              return Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_5__["addToCart"])(resp.data);
+            });
+          });
+        }
+      }) //Esto es el carrito que hay que pasar al store
+      .then(function () {
         _this2.setState({
           showCartModal: false
         });
@@ -58757,6 +58793,7 @@ function (_React$Component) {
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/auth/logout").then(function () {
         return _this4.props.emptyUser();
       });
+      this.props.emptyCart();
     }
   }, {
     key: "render",
@@ -58812,12 +58849,12 @@ function (_React$Component) {
         style: {
           marginTop: "7px"
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
         style: {
           color: "white"
         },
         to: "/"
-      }, "Logout"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ModalChooseCart__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, "Logout"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ModalChooseCart__WEBPACK_IMPORTED_MODULE_9__["default"], {
         show: this.state.showCartModal,
         handleClose: this.handleClose,
         handleShow: this.handleShow,
@@ -58831,7 +58868,9 @@ function (_React$Component) {
 
 var mapDispatchToProps = {
   receiveUser: _store_actions_user__WEBPACK_IMPORTED_MODULE_4__["receiveUser"],
-  emptyUser: _store_actions_user__WEBPACK_IMPORTED_MODULE_4__["emptyUser"]
+  emptyUser: _store_actions_user__WEBPACK_IMPORTED_MODULE_4__["emptyUser"],
+  emptyCart: _store_actions_cart__WEBPACK_IMPORTED_MODULE_5__["emptyCart"],
+  addToCart: _store_actions_cart__WEBPACK_IMPORTED_MODULE_5__["addToCart"]
 };
 
 var mapStateToProps = function mapStateToProps(_ref) {

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { addToCart, checkOut, delFromCart } from "../store/actions/cart";
 import Modal from "react-bootstrap/Modal";
 import { ButtonToolbar } from "react-bootstrap";
+import axios from 'axios'
 import LoginContainer from '../containers/LoginContainer'
 
 function MyVerticallyCenteredModal(props) {
@@ -73,7 +74,7 @@ function Cart(props) {
   };
 
   const [modalShow, setModalShow] = React.useState(false);
-
+  let cartToMap = Array.isArray(props.cart) != true? [props.cart]: props.cart
   return (
     <div>
       <div className="cart">
@@ -95,7 +96,7 @@ function Cart(props) {
             <h3>Total</h3>
           </div>
 
-          {props.cart.map(product => {
+          {cartToMap.map(product => {
             const totalPrice = product.price * product.quantity;
             let productQtty = product.quantity;
             return (
@@ -134,7 +135,7 @@ function Cart(props) {
                 </div>
               )
             );
-          })}
+          }) }
         </div>
         <div className="cart-container-total">
           <div className="cart-container-descount">
