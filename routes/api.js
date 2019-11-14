@@ -13,7 +13,6 @@ const {
 const chalk = require("chalk");
 
 var nodemailer = require("nodemailer");
-
 var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -24,13 +23,7 @@ var transporter = nodemailer.createTransport({
 
 const simplifyCart = cart => {
   let newCart = [];
-  cart.forEach(e => {
-    if (newCart.includes(e)) {
-      newCart(newCart.indexOf(e)).quantity += 1;
-    } else {
-      newCart.push({ book: e.name, quantity: 1 });
-    }
-  });
+  cart.forEach(e => newCart.push(`${e.quantity}x:${e.name}`));
   return newCart;
 };
 
