@@ -49420,7 +49420,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57433,6 +57433,10 @@ function useForceUpdate() {
 function Cart(props) {
   var forceUpdate = useForceUpdate();
 
+  var cartPersist = function cartPersist() {
+    !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
+  };
+
   var totalValue = function totalValue(cart) {
     var totalPrice = 0;
 
@@ -57491,6 +57495,7 @@ function Cart(props) {
       variant: "outline-info",
       onClick: function onClick() {
         props.delFromCart(product);
+        cartPersist();
         forceUpdate();
       }
     }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -57502,6 +57507,7 @@ function Cart(props) {
     }, productQtty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onClick: function onClick() {
         props.addToCart(product);
+        cartPersist();
         forceUpdate();
       },
       variant: "outline-info"
@@ -58351,27 +58357,31 @@ function SingleProduct(props) {
   var product = props.info;
 
   var addHandler = function addHandler(product) {
-    props.addToCart(product);
-
     if (!props.user) {
+      props.addToCart(product);
       localStorage.setItem("cart", JSON.stringify(props.cart));
     } else {
-      console.log('entre aca');
-      axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/addToCart", {
+      props.addToCart(product);
+      console.log('Entre al handler', product);
+      axios__WEBPACK_IMPORTED_MODULE_6___default.a.post('/api/addToCart', {
         userId: props.user.id,
         bookId: product.id,
         quantity: product.quantity
-      }).then(function (e) {
-        var arrayToStore = [];
-        e.data['0'].books.map(function (e) {
-          var singletoStore = {};
-          singletoStore = e;
-          singletoStore['quantity'] = e.cartProduct.quantity;
-          arrayToStore.push(singletoStore);
-          console.log(arrayToStore);
-        });
+      }).then(function (resp) {
+        return console.log('El servidor me respondio esto ', resp);
       });
-    }
+    } //   axios.post(`/api/addToCart`, {userId: props.user.id, bookId: product.id, quantity: quantityStored})
+    //   .then(e=>{
+    //     let arrayToStore = []
+    //     e.data['0'].books.map(e=>{
+    //       let singletoStore = {}
+    //       singletoStore=e
+    //       singletoStore['quantity'] = e.cartProduct.quantity
+    //       arrayToStore.push(singletoStore)
+    //       console.log(arrayToStore)
+    //     })
+    // })
+
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -58442,6 +58452,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Cart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Cart */ "./src/components/Cart.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -58459,6 +58471,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -58491,6 +58504,13 @@ function (_React$Component) {
     key: "deleteProduct",
     value: function deleteProduct(product) {
       this.props.deleteProductFromCart(product);
+      console.log(product);
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('/api/removeFromCart', {
+        userId: this.props.user.id,
+        book: product.id
+      }).then(function (resp) {
+        return console.log(resp);
+      });
     }
   }, {
     key: "componentDidMount",
@@ -58498,14 +58518,8 @@ function (_React$Component) {
       var window = localStorage;
 
       if (!this.props.user.id) {
-        if (this.props.cart.length > 0) {
-          window.setItem("cart", JSON.stringify(this.props.cart));
-          console.log("Dos");
-        }
-
         if (this.props.cart.length == 0) {
           this.props.setToCart(JSON.parse(window.cart));
-          console.log("Uno.");
         }
       }
     }
@@ -58705,27 +58719,24 @@ function (_React$Component) {
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/addToCartinBulk".concat(string), {
         userId: this.props.user.id,
         bookId: this.props.cart
-      }).then(function (e) {
-        if (string == "Merge" || string == "Replace") {
-          _this2.props.emptyCart();
+      }).then(function () {
+        return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/getNumberofCarts', {
+          userId: _this2.props.user.id
+        });
+      }).then(function (resp) {
+        return resp.data;
+      }).then(function (bookArray) {
+        console.log(bookArray);
+        var toStoreArray = [];
+        bookArray.map(function (singleBook) {
+          var singleBookToStore = {};
+          singleBookToStore = singleBook;
+          singleBookToStore['quantity'] = singleBook.cartProduct.quantity;
+          toStoreArray.push(singleBookToStore);
+        });
 
-          axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/getNumberOfCarts", {
-            userId: _this2.props.user.id
-          }).then(function (e) {
-            console.log(e);
-            var arrayToStore = [];
-            e.data.map(function (e) {
-              var singletoStore = {};
-              singletoStore = e;
-              singletoStore["quantity"] = e.cartProduct.quantity;
-              arrayToStore.push(singletoStore);
-
-              _this2.props.addFromDB(arrayToStore);
-            });
-          });
-        }
-      }) //Esto es el carrito que hay que pasar al store
-      .then(function () {
+        _this2.props.addFromDB(toStoreArray);
+      }).then(function () {
         _this2.setState({
           showCartModal: false
         });
@@ -58768,30 +58779,27 @@ function (_React$Component) {
         }).then(function (user) {
           _this3.props.receiveUser(user);
 
-          axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/getNumberOfCarts", {
+          console.log(_this3.props.user.id);
+          return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/getNumberofCarts', {
             userId: _this3.props.user.id
-          }).then(function (resp) {
-            if (_this3.props.cart.length > 0 && resp != null) {
-              _this3.handleShow();
-            } else if (resp != null) {
-              var arrayToStore = [];
-              console.log("entre", resp.data);
-              resp.data.map(function (e) {
-                console.log("AAAAAAAAAAAAAAAAAAAAAAAA");
-                var singletoStore = {};
-                singletoStore = e;
-                singletoStore["quantity"] = e.cartProduct.quantity;
-                arrayToStore.push(singletoStore);
-                console.log(arrayToStore);
-
-                _this3.props.addFromDB(arrayToStore);
-              });
-            }
-
-            return null;
           });
-        }) //return axios.post(`/api/addToCartinBulkMerge`, {userId: this.props.user.id, bookId: this.props.cart})
-        .then(function () {
+        }).then(function (bookArray) {
+          console.log(_this3.props.cart.length);
+
+          if (bookArray.data.length > 0 && _this3.props.cart.length == 0) {
+            var toStoreArray = [];
+            bookArray.data.map(function (singleBook) {
+              var singleBookToStore = {};
+              singleBookToStore = singleBook;
+              singleBookToStore['quantity'] = singleBook.cartProduct.quantity;
+              toStoreArray.push(singleBookToStore);
+            });
+
+            _this3.props.addFromDB(toStoreArray);
+          } else if (bookArray.data.length > 0 && _this3.props.cart.length > 0) {
+            _this3.handleShow();
+          }
+        }).then(function () {
           return _this3.setState({
             error: false
           });
@@ -59586,9 +59594,8 @@ var setCart = function setCart(payload) {
   };
 };
 var addFromDB = function addFromDB(payload) {
-  console.log("AAAAAAAAAAAAA ", payload);
   return {
-    type: "LOAD_FROM_DB",
+    type: 'LOAD_FROM_DB',
     payload: payload
   };
 };

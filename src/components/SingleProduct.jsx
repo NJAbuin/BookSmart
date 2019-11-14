@@ -40,25 +40,19 @@ function SingleProduct(props) {
   };
 
   const addHandler = product => {
-    props.addToCart(product);
-    if (!props.user.id) {
-      setTimeout(cartPersist, 3000);
+    if (!props.user) {
+      props.addToCart(product);
+      cartPersist();
     } else {
+      props.addToCart(product);
+      console.log("Entre al handler", product);
       axios
-        .post(`/api/addToCart`, {
+        .post("/api/addToCart", {
           userId: props.user.id,
           bookId: product.id,
           quantity: product.quantity
         })
-        .then(e => {
-          let arrayToStore = [];
-          e.data["0"].books.map(e => {
-            let singletoStore = {};
-            singletoStore = e;
-            singletoStore["quantity"] = e.cartProduct.quantity;
-            arrayToStore.push(singletoStore);
-          });
-        });
+        .then(resp => console.log("El servidor me respondio esto ", resp));
     }
   };
 
