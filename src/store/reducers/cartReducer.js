@@ -16,15 +16,19 @@ export const cartReducer = (state = initialState, action) => {
     case DEL_FROM_CART:
       return delProdFromCart(state, action.payload);
     case CHECKOUT:
-      return initialState;
+      return [];
     case DELETE_PRODUCT_FROM_CART:
-      return state.filter(item => item !== action.payload);
+      let found = state.find(book => {
+        return book.id == action.payload.id;
+      });
+      found.quantity = 0;
+      return [...state];
     case EMPTY_CART:
-      return []
+      return [];
     case SET_CART:
       return [...action.payload];
-    case 'LOAD_FROM_DB':
-      return action.payload
+    case "LOAD_FROM_DB":
+      return [...action.payload];
     default:
       return state;
   }
@@ -34,12 +38,10 @@ const delProdFromCart = (state, decreaser) => {
   let found = state.find(book => {
     return book.id == decreaser.id;
   });
-
   found.quantity -= 1;
-
   if (found.quantity === 0) state = state.filter(book => book !== found);
 
-  return state;
+  return [...state];
 };
 
 const cartFilter = (state, added) => {
@@ -54,5 +56,5 @@ const cartFilter = (state, added) => {
     state = [...state, added];
   }
 
-  return state;
+  return [...state];
 };
