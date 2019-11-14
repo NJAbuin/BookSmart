@@ -18,7 +18,6 @@ class CartContainer extends React.Component {
 
   incHandler(book) {
     this.props.addToCart(book);
-    this.forceUpdate();
   }
 
   deleteProduct(product) {
