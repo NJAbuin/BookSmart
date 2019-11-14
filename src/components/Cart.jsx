@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { addToCart, checkOut, delFromCart } from "../store/actions/cart";
 import Modal from "react-bootstrap/Modal";
 import { ButtonToolbar } from "react-bootstrap";
-import axios from "axios";
 import LoginContainer from "../containers/LoginContainer";
 
 function MyVerticallyCenteredModal(props) {
@@ -65,6 +64,7 @@ function useForceUpdate() {
 function Cart(props) {
   const forceUpdate = useForceUpdate();
   const cartPersist = function() {
+    if (props.cart.length == 0) return localStorage.setItem("cart", "[]");
     !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
   };
 
@@ -140,7 +140,11 @@ function Cart(props) {
                   </div>
                   <div className="product-price">${totalPrice.toFixed(2)}</div>
                   <Button
-                    onClick={() => props.deleteProduct(product)}
+                    onClick={() => {
+                      props.deleteProduct(product);
+                      cartPersist();
+                      forceUpdate();
+                    }}
                     variant="danger"
                   >
                     Delete
@@ -204,9 +208,6 @@ function Cart(props) {
                 <p style={{ marginBottom: "0" }}>
                   Por favor, inicie sesion para completar la compra
                 </p>
-              </div>
-              <div className="button-login-cart">
-                <LoginContainer />
               </div>
             </div>
           )}
