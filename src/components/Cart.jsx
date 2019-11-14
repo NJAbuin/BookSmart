@@ -209,9 +209,6 @@ function Cart(props) {
                   Por favor, inicie sesion para completar la compra
                 </p>
               </div>
-              <div className="button-login-cart">
-                <LoginContainer />
-              </div>
             </div>
           )}
         </div>
