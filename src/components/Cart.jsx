@@ -55,16 +55,13 @@ function App({ checkOutAction }) {
   );
 } // PARA MODAL CHECKOUT
 
-//create your forceUpdate hook
-function useForceUpdate() {
-  const [value, setValue] = useState(true); //boolean state
-  return () => setValue(!value); // toggle the state to force render
-}
-
 function Cart(props) {
-  const forceUpdate = useForceUpdate();
   const cartPersist = function() {
-    if (props.cart.length == 0) return localStorage.setItem("cart", "[]");
+    if (props.cart.length == 0) {
+      console.log("Hola.");
+      return localStorage.setItem("cart", "[]");
+    }
+    console.log("No.", props.cart);
     !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
   };
 
@@ -113,7 +110,6 @@ function Cart(props) {
                       onClick={() => {
                         props.delFromCart(product);
                         cartPersist();
-                        forceUpdate();
                       }}
                     >
                       -
@@ -131,7 +127,6 @@ function Cart(props) {
                       onClick={() => {
                         props.addToCart(product);
                         cartPersist();
-                        forceUpdate();
                       }}
                       variant="outline-info"
                     >
@@ -143,7 +138,6 @@ function Cart(props) {
                     onClick={() => {
                       props.deleteProduct(product);
                       cartPersist();
-                      forceUpdate();
                     }}
                     variant="danger"
                   >
