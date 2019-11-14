@@ -7,8 +7,6 @@ import {
 } from "../constants";
 import axios from "axios";
 
-import axios from "axios";
-
 export const addToCart = product => dispatch => {
   dispatch(cartAction(product));
 };
