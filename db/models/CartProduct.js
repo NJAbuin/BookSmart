@@ -5,14 +5,14 @@ const Op = S.Op;
 class CartProduct extends S.Model {}
 CartProduct.init(
   {
-    // cartId: {
-    //   type: S.INTEGER,
-    //   allowNull: false
-    // },
-    // bookId: {
-    //   type: S.INTEGER,
-    //   allowNull: false
-    // },
+    cartId: {
+      type: S.INTEGER,
+      allowNull: false
+    },
+    bookId: {
+      type: S.INTEGER,
+      allowNull: false
+    },
     quantity: {
       type: S.INTEGER,
       allowNull: false

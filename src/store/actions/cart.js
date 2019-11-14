@@ -26,9 +26,8 @@ export const setCart = payload => ({
 });
 
 export const addFromDB = payload => {
-  console.log("AAAAAAAAAAAAA ", payload);
-  return { type: "LOAD_FROM_DB", payload };
-};
+  return {type: 'LOAD_FROM_DB', payload}
+}
 export const setToCart = payload => dispatch => {
   dispatch(setCart(payload));
 };
