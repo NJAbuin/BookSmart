@@ -21,12 +21,26 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-var mailOptions = userEmail => {
+const simplifyCart = cart => {
+  let newCart = [];
+  cart.forEach(e => {
+    if (newCart.includes(e)) {
+      newCart(newCart.indexOf(e)).quantity += 1;
+    } else {
+      newCart.push({ book: e.name, quantity: 1 });
+    }
+  });
+  return newCart;
+};
+
+var mailOptions = (userEmail, userCart) => {
   return {
     from: "booksmart.is.cool@gmail.com",
     to: userEmail,
     subject: "Gracias por su compra!",
-    text: "La orden le llegara en 420 dias"
+    text: `La orden le llegara en 420 dias. Su pedido: ${JSON.stringify(
+      simplifyCart(userCart)
+    )}`
   };
 };
 
@@ -76,7 +90,10 @@ api.get("/products/:productName", (req, res) => {
 });
 
 api.post("/email", (req, res) => {
-  transporter.sendMail(mailOptions(req.body.email), function(error, info) {
+  transporter.sendMail(mailOptions(req.body.email, req.body.cart), function(
+    error,
+    info
+  ) {
     if (error) {
       console.log(error);
     } else {
@@ -85,7 +102,6 @@ api.post("/email", (req, res) => {
       );
     }
   });
-  done();
 });
 
 api.get("/category", (req, res) => {
