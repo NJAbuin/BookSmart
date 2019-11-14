@@ -121,7 +121,7 @@ function Cart(props) {
                     <p
                       style={{
                         width: "30px",
-                        marginLeft: "center",
+                        marginLeft: "1em",
                         marginRight: "auto"
                       }}
                     >
