@@ -25,11 +25,7 @@ var transporter = nodemailer.createTransport({
 const simplifyCart = cart => {
   let newCart = [];
   cart.forEach(e => {
-    if (newCart.includes(e)) {
-      newCart(newCart.indexOf(e)).quantity += 1;
-    } else {
-      newCart.push({ book: e.name, quantity: 1 });
-    }
+    newCart.push(`x${e.quantity}:${e.name}`);
   });
   return newCart;
 };
