@@ -49420,7 +49420,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57356,9 +57356,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
 /* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _containers_LoginContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../containers/LoginContainer */ "./src/containers/LoginContainer.jsx");
+/* harmony import */ var _containers_LoginContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../containers/LoginContainer */ "./src/containers/LoginContainer.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -57368,7 +57366,6 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 
 
 
@@ -57434,6 +57431,7 @@ function Cart(props) {
   var forceUpdate = useForceUpdate();
 
   var cartPersist = function cartPersist() {
+    if (props.cart.length == 0) return localStorage.setItem("cart", "[]");
     !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
   };
 
@@ -57515,7 +57513,9 @@ function Cart(props) {
       className: "product-price"
     }, "$", totalPrice.toFixed(2)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onClick: function onClick() {
-        return props.deleteProduct(product);
+        props.deleteProduct(product);
+        cartPersist();
+        forceUpdate();
       },
       variant: "danger"
     }, "Delete"));
@@ -57566,9 +57566,7 @@ function Cart(props) {
     style: {
       marginBottom: "0"
     }
-  }, "Por favor, inicie sesion para completar la compra")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "button-login-cart"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_LoginContainer__WEBPACK_IMPORTED_MODULE_7__["default"], null))))));
+  }, "Por favor, inicie sesion para completar la compra"))))));
 }
 
 var mapStateToProps = function mapStateToProps(_ref2) {
@@ -58326,6 +58324,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -58353,35 +58359,41 @@ var buttonStyle = {
   justifySelf: "center"
 };
 
+function useForceUpdate() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      value = _useState2[0],
+      setValue = _useState2[1]; //boolean state
+
+
+  return function () {
+    return setValue(!value);
+  }; // toggle the state to force render
+}
+
 function SingleProduct(props) {
   var product = props.info;
+  var forceUpdate = useForceUpdate();
+
+  var cartPersist = function cartPersist() {
+    !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
+  };
 
   var addHandler = function addHandler(product) {
     if (!props.user) {
       props.addToCart(product);
-      localStorage.setItem("cart", JSON.stringify(props.cart));
+      cartPersist();
     } else {
       props.addToCart(product);
-      console.log('Entre al handler', product);
-      axios__WEBPACK_IMPORTED_MODULE_6___default.a.post('/api/addToCart', {
+      console.log("Entre al handler", product);
+      axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/api/addToCart", {
         userId: props.user.id,
         bookId: product.id,
         quantity: product.quantity
       }).then(function (resp) {
-        return console.log('El servidor me respondio esto ', resp);
+        return console.log("El servidor me respondio esto ", resp);
       });
-    } //   axios.post(`/api/addToCart`, {userId: props.user.id, bookId: product.id, quantity: quantityStored})
-    //   .then(e=>{
-    //     let arrayToStore = []
-    //     e.data['0'].books.map(e=>{
-    //       let singletoStore = {}
-    //       singletoStore=e
-    //       singletoStore['quantity'] = e.cartProduct.quantity
-    //       arrayToStore.push(singletoStore)
-    //       console.log(arrayToStore)
-    //     })
-    // })
-
+    }
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Card__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -58411,7 +58423,9 @@ function SingleProduct(props) {
   }, "Rating: 3/5"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     variant: "success",
     onClick: function onClick() {
-      return addHandler(product);
+      addHandler(product);
+      cartPersist();
+      forceUpdate();
     },
     style: buttonStyle
   }, "Add to Cart")));
