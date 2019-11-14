@@ -6,7 +6,7 @@ import {
   setToCart,
   deleteProductFromCart
 } from "../store/actions/cart";
-import axios from 'axios'
+import axios from "axios";
 
 class CartContainer extends React.Component {
   constructor(props) {
@@ -23,9 +23,12 @@ class CartContainer extends React.Component {
 
   deleteProduct(product) {
     this.props.deleteProductFromCart(product);
-    console.log(product)
-    axios.post('/api/removeFromCart', {userId: this.props.user.id, book: product.id})
-    .then(resp=>console.log(resp))
+    axios
+      .post("/api/removeFromCart", {
+        userId: this.props.user.id,
+        book: product.id
+      })
+      .then(resp => console.log(resp));
   }
 
   componentDidMount() {

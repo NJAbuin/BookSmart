@@ -45,7 +45,7 @@ function SingleProduct(props) {
       cartPersist();
     } else {
       props.addToCart(product);
-      console.log("Entre al handler", product);
+
       axios
         .post("/api/addToCart", {
           userId: props.user.id,
