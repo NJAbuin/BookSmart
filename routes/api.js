@@ -317,55 +317,73 @@ api.get("/categs/:cat", (req, res) => {
   Book.findByCategory(req.params.cat).then(data => res.send(data));
 });
 
-
-
-// api.post('/checkout', (req, res) =>{
-//   Cart.checkout(req.body.id).then(e=> Transaction.open(e))
-//   .then(()=> res.send('SUCCESS'))
-//   .catch(error => {
-//     console.log(error)
-//     res.send("ERROR")})
-// })
+api.post('/removeFromCart', (req,res)=>{
+  const add = req.body
+  Cart.findOne({where: { cartId: add.userId, state: "Opened" } })
+  .then(e => {return e})
+  .then(e=>{
+    CartProduct.destroy({where:{
+    orderId: e.id,
+    bookId: add.book,}
+    //cartId: e.cartId}
+  })})
+  .then(()=>  Cart.findAll({where:{cartId: user.userId, state:"Opened"}, include:[{all:true}]}))
+  .then(e=>{
+    if(e != undefined) res.send(e[0].dataValues.books)
+    else {res.send(null)}
+  })
+  .catch(err=>console.log(err))
+})
 
 api.post("/addToCart", (req, res) => {
   const add = req.body;
-  console.log(add)
   let cartData = {}; // Aca va a cargarse el orderId y el cartId
+  //Si no tiene ningun carrito abierto lo crea y guarda el cartId, BookId y OrderId
   Cart.findOrCreate({ where: { cartId: add.userId, state: "Opened" } })
     .then(e => {
       return (cartData = { cartId: e[0].cartId, orderId: e[0].id });
     })
+  //Busca el libro para el numero de orden y el usuario (cartId)
     .then(cart => {
       return CartProduct.findOne({
         where: {
-          // id: add.userId,
+          //cartId: add.userId,
           bookId: add.bookId,
           orderId: cartData.orderId
         }
       });
     })
     .then(e => {  
-      return e == null
-        ? CartProduct.create({
-            cartId: cartData.cartId,
-            bookId: add.bookId,
-            quantity: add.quantity,
-            orderId: cartData.orderId
-          })
-        : CartProduct.update(
-            { quantity: add.quantity },
-            {
-              where: {
-                cartId: cartData.cartId,
-                // id: add.userId,
-                orderId: cartData.orderId,
-                bookId: add.bookId
-              }
+      console.log('Llegue hasta justo antes de crear o actualizar')
+      if(e==null){
+        CartProduct.create({
+          //cartId: cartData.cartId,
+          bookId: add.bookId,
+          quantity: add.quantity,
+          orderId: cartData.orderId
+        })
+        return null
+      }
+      else{
+        CartProduct.update(
+          { quantity: add.quantity },
+          {
+            where: {
+              //cartId: cartData.cartId,
+              // id: add.userId,
+              orderId: cartData.orderId,
+              bookId: add.bookId
             }
-          );
+          }
+        )
+        return null
+      }
     })
-    .then(()=> Cart.findAll({where:{cartId: add.userId, state:"Opened"}, include:[{all:true}]}))
-    .then(e=>res.send(e))
+    .then(()=> {
+      return Cart.findAll({where:{cartId: add.userId, state:"Opened"}, include:[{all:true}] })}) //, include:[{all:true}]
+    .then(e=>{
+      res.send(e)})
+    .catch(err => console.log(err))
     
 });
 
@@ -379,22 +397,17 @@ api.post("/addToCartinBulkReplace", (req, res) => {
   // Chequeo que no haya ningun carro del usuario abierto y si lo tiene se lo cierro
   Cart.update(
     { state: "Droped" },
-    { where: { cartId: add.userId, state: "Opened" } }
-  )
+    { where: { cartId: add.userId, state: "Opened" } })
     .then(() => Cart.create({ cartId: add.userId, state: "Opened" }))
     .then(e =>
-      {console.log('HOLAAAA', e.id)
-      console.log(add)
       add.bookId.map(book =>{
-        console.log(book)
         CartProduct.create({
           orderId: e.id,
           bookId: book.id,
           quantity: book.quantity,
-          cartId: e.cartId
+          //cartId: e.cartId
         })
-      })}
-    )
+      }))
     .catch(err => console.log(err));
 });
 
@@ -413,20 +426,19 @@ api.post("/addToCartinBulkMerge", (req, res) => {
           where: {
             orderId: e.id,
             bookId: book.id,
-            cartId: e.cartId
+            //cartId: e.cartId
           }
         }).then(res => {
-          console.log(book)
           return res == null
             ? CartProduct.create({
                 orderId: e.id,
                 bookId: book.id,
                 quantity: book.quantity,
-                cartId: e.cartId
+                //cartId: e.cartId
               })
             : CartProduct.update(
                 { quantity: res.quantity + book.quantity },
-                { where: { orderId: e.id, bookId: book.id, cartId: e.cartId } }
+                { where: { orderId: e.id, bookId: book.id} }
               );
         })
       )
@@ -437,11 +449,13 @@ api.post("/addToCartinBulkMerge", (req, res) => {
 });
 
 api.post("/getNumberOfCarts", (req, res) => {
-  console.log(req.body);
   user = req.body;
-  Cart.findAll({where:{cartId: user.userId, state:"Opened"}, include:[{all:true}]})
+  Cart.findOne({where:{cartId: user.userId, state:"Opened"}, include:[{all:true}]})
   .then(e=>{
-    if(e != undefined) res.send(e[0].dataValues.books)
+    console.log(e)
+    if(e != null) {
+      console.log('holaaaaa', e.dataValues.books)
+      res.send(e.dataValues.books)}
     else {res.send(null)}
   })
 });

@@ -33,24 +33,18 @@ class LoginContainer extends React.Component {
 
   handleCartSelection(string){
     axios.post(`/api/addToCartinBulk${string}`, {userId: this.props.user.id, bookId: this.props.cart})
-    .then(e=>{
-      if(string == 'Merge' || string == 'Replace'){
-        this.props.emptyCart()
-        axios.post('/api/getNumberOfCarts', {userId: this.props.user.id})
-        .then(e=>{
-          console.log(e)
-          let arrayToStore = []
-          e.data.map(e=>{
-            let singletoStore = {}
-            singletoStore=e
-            singletoStore['quantity'] = e.cartProduct.quantity
-            arrayToStore.push(singletoStore)
-            this.props.addFromDB(arrayToStore)
-          })
-       
-      })
-      }})
-     //Esto es el carrito que hay que pasar al store
+    .then(()=> axios.post('/api/getNumberofCarts', {userId: this.props.user.id}))
+    .then(resp=>resp.data)
+    .then(bookArray =>{
+    console.log(bookArray)
+    let toStoreArray = []
+    bookArray.map(singleBook=>{
+      let singleBookToStore = {}
+      singleBookToStore = singleBook
+      singleBookToStore['quantity'] = singleBook.cartProduct.quantity
+      toStoreArray.push(singleBookToStore)})
+    this.props.addFromDB(toStoreArray)
+    })
     .then(()=> {
       this.setState({showCartModal: false}) 
     })
@@ -80,31 +74,55 @@ class LoginContainer extends React.Component {
         .then(res => {
           return res.data;
         })
-        .then(user => {
-           this.props.receiveUser(user);
-           axios.post('/api/getNumberOfCarts', {userId: this.props.user.id})
-           .then(resp=>{
-           if(this.props.cart.length > 0 && resp != null){this.handleShow()}
-           else if(resp != null){
-            let arrayToStore = []
-            console.log('entre', resp.data)
-            resp.data.map(e=>{
-              console.log('AAAAAAAAAAAAAAAAAAAAAAAA')
-              let singletoStore = {}
-              singletoStore=e
-              singletoStore['quantity'] = e.cartProduct.quantity
-              arrayToStore.push(singletoStore)
-              console.log(arrayToStore)
-              this.props.addFromDB(arrayToStore)
+        .then(user=>{
+          this.props.receiveUser(user);
+          console.log(this.props.user.id)
+          return axios.post('/api/getNumberofCarts', {userId: this.props.user.id})
+        })
+        .then(bookArray=> {
+          console.log(this.props.cart.length)
+          if(bookArray.data.length > 0 && this.props.cart.length ==0  ){
+            let toStoreArray = []
+            bookArray.data.map(singleBook=>{
+              let singleBookToStore = {}
+              singleBookToStore = singleBook
+              singleBookToStore['quantity'] = singleBook.cartProduct.quantity
+              toStoreArray.push(singleBookToStore)
+              
             })
-           }
-           return null})})
+            this.props.addFromDB(toStoreArray)
+          }
+          else if(bookArray.data.length > 0 && this.props.cart.length > 0){
+            this.handleShow()
+          }
+          
+        })
+        // .then(user => {
+        //    this.props.receiveUser(user);
+        //    axios.post('/api/getNumberOfCarts', {userId: this.props.user.id})
+        //    .then(resp=>{
+        //   console.log(resp)
+        //    if(this.props.cart.length > 0 && resp != null){this.handleShow()}
+        //    else if(resp != null){
+        //      console.log('Definitivamente entre', resp.data)
+        //     let arrayToStore = []
+        //     resp.data.map(e=>{
+        //       console.log(e)
+        //       let singletoStore = {}
+        //       singletoStore=e
+        //       singletoStore['quantity'] = e.cartProduct.quantity
+        //       arrayToStore.push(singletoStore)
+        //       console.log(arrayToStore)
+        //       this.props.addFromDB(arrayToStore)
+        //     })
+        //    }
+        //    return null})})
            //return axios.post(`/api/addToCartinBulkMerge`, {userId: this.props.user.id, bookId: this.props.cart})
         .then(() => this.setState({ error: false }))
         .catch(() => {
           this.setState({ error: true });
         });
-    }
+    } 
   }
 
 

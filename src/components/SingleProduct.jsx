@@ -30,26 +30,32 @@ const buttonStyle = {
 function SingleProduct(props) {
   const product = props.info;
 
+
   const addHandler = product => {
-    props.addToCart(product);
     if (!props.user) {
+      props.addToCart(product)
       localStorage.setItem("cart", JSON.stringify(props.cart));
     }
     else{
-      console.log('entre aca')
-      axios.post(`/api/addToCart`, {userId: props.user.id, bookId: product.id, quantity: product.quantity})
-      .then(e=>{
-        let arrayToStore = []
-        e.data['0'].books.map(e=>{
-          let singletoStore = {}
-          singletoStore=e
-          singletoStore['quantity'] = e.cartProduct.quantity
-          arrayToStore.push(singletoStore)
-          console.log(arrayToStore)
-        })
+      props.addToCart(product)
+      console.log('Entre al handler', product)
+      axios.post('/api/addToCart', {userId: props.user.id, bookId: product.id, quantity: product.quantity})
+      .then(resp=>console.log('El servidor me respondio esto ', resp))
+    
+    }
+    //   axios.post(`/api/addToCart`, {userId: props.user.id, bookId: product.id, quantity: quantityStored})
+    //   .then(e=>{
+    //     let arrayToStore = []
+    //     e.data['0'].books.map(e=>{
+    //       let singletoStore = {}
+    //       singletoStore=e
+    //       singletoStore['quantity'] = e.cartProduct.quantity
+    //       arrayToStore.push(singletoStore)
+    //       console.log(arrayToStore)
+    //     })
      
-    })
-  }};
+    // })
+  };
 
   return (
     <Card key={product.id} style={{ marginBottom: "3%" }}>

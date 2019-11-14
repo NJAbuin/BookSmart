@@ -11,7 +11,9 @@ Book.belongsToMany(Cart, {
 
 Cart.belongsToMany(Book, {
   through: CartProduct,
+  foreignKey: 'orderId'
 });
+
 
  //Esto crea en la tabla Cart un campo que se llama UserID (https://sequelize.org/master/manual/associations.html#source--amp--target)
 
