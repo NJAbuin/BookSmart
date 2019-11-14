@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { addToCart, checkOut, delFromCart } from "../store/actions/cart";
 import Modal from "react-bootstrap/Modal";
 import { ButtonToolbar } from "react-bootstrap";
-import axios from "axios";
 import LoginContainer from "../containers/LoginContainer";
 
 function MyVerticallyCenteredModal(props) {
@@ -140,7 +139,10 @@ function Cart(props) {
                   </div>
                   <div className="product-price">${totalPrice.toFixed(2)}</div>
                   <Button
-                    onClick={() => props.deleteProduct(product)}
+                    onClick={() => {
+                      props.deleteProduct(product);
+                      cartPersist();
+                    }}
                     variant="danger"
                   >
                     Delete

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 import { addToCart } from "../store/actions/cart";
-import axios from 'axios'
+import axios from "axios";
 
 const priceStyle = {
   color: "grey",
@@ -26,30 +26,41 @@ const buttonStyle = {
   alignSelf: "center",
   justifySelf: "center"
 };
+function useForceUpdate() {
+  const [value, setValue] = useState(true); //boolean state
+  return () => setValue(!value); // toggle the state to force render
+}
 
 function SingleProduct(props) {
   const product = props.info;
 
+  const forceUpdate = useForceUpdate();
+  const cartPersist = function() {
+    !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
+  };
+
   const addHandler = product => {
     props.addToCart(product);
-    if (!props.user) {
-      localStorage.setItem("cart", JSON.stringify(props.cart));
-    }
-    else{
-      console.log('entre aca')
-      axios.post(`/api/addToCart`, {userId: props.user.id, bookId: product.id, quantity: product.quantity})
-      .then(e=>{
-        let arrayToStore = []
-        e.data['0'].books.map(e=>{
-          let singletoStore = {}
-          singletoStore=e
-          singletoStore['quantity'] = e.cartProduct.quantity
-          arrayToStore.push(singletoStore)
-          console.log(arrayToStore)
+    if (!props.user.id) {
+      setTimeout(cartPersist, 3000);
+    } else {
+      axios
+        .post(`/api/addToCart`, {
+          userId: props.user.id,
+          bookId: product.id,
+          quantity: product.quantity
         })
-     
-    })
-  }};
+        .then(e => {
+          let arrayToStore = [];
+          e.data["0"].books.map(e => {
+            let singletoStore = {};
+            singletoStore = e;
+            singletoStore["quantity"] = e.cartProduct.quantity;
+            arrayToStore.push(singletoStore);
+          });
+        });
+    }
+  };
 
   return (
     <Card key={product.id} style={{ marginBottom: "3%" }}>
@@ -71,7 +82,11 @@ function SingleProduct(props) {
         <p style={{ placeSelf: "center" }}>Rating: 3/5</p>
         <Button
           variant="success"
-          onClick={() => addHandler(product)}
+          onClick={() => {
+            addHandler(product);
+            cartPersist();
+            forceUpdate();
+          }}
           style={buttonStyle}
         >
           Add to Cart
