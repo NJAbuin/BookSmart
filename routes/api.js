@@ -34,8 +34,6 @@ const simplifyCart = cart => {
   return newCart;
 };
 
-// holi
-
 var mailOptions = (userEmail, userCart) => {
   return {
     from: "booksmart.is.cool@gmail.com",
