@@ -146,7 +146,8 @@ class LoginContainer extends React.Component {
               className="nav-item"
               style={{ marginTop: "7px", marginRight: "10px" }}
             >
-              Hola {name} &nbsp; |
+              Hola {name} {this.props.user.isAdmin ? "(Logged as Admin)" : ""}{" "}
+              &nbsp; |
             </li>
             <li
               className="nav-item"
