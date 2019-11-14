@@ -2752,7 +2752,7 @@ exports.push([module.i, "/*!\n * Bootstrap v4.3.1 (https://getbootstrap.com/)\n 
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".product-container{\ndisplay: flex;\n}\n\n.img-container{\n   margin-top: 30px;\n}\n\n.product-details{\n    margin-top: 30px;\n    padding-left: 100px;\n}\n.category-product-details{\n    display: inline-block;\n    color: white;\n    background-color: grey;\n}\n\n.product-name{\n    font-weight: bold;\n}\n\n.cart{\n    border-bottom: 2px solid black;\n}\n\n.cart-container{\n    display: flex;\n    margin-top: 10px;\n}\n\n.cart-container-products{\n    /* border: 2px solid grey; \n    border-radius: 6px; */\n}\n\n.cart-container-total{\n    border: 2px solid grey; \n    border-radius: 6px;\n    width: 300px;\n    height: 400px;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    margin-left: 10px;\n\n}\n\n.cart-container-products-titles{\n    width: 700px;\n    display: flex;\n    justify-content: space-evenly;\n}\n\n.cart-container-products-list{\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    border: 2px solid grey; \n    border-radius: 6px;\n    margin-top: 10px;\n}\n\n.cart-container-total-count{\n    display: flex;\n    justify-content: space-around;\n}\n.cart-container-descount{\n    padding-bottom: 10px;\n    border-bottom: 2px dashed grey;\n}\n\n.cart-container-subtotal-count{\n    display: flex;\n    justify-content: space-around;\n    padding-bottom: 10px;\n    border-bottom: 2px dashed grey;\n}\n\n.cart-container-envio{\n    display: flex;\n    justify-content: space-around;\n    padding-bottom: 10px;\n    border-bottom: 2px dashed grey;\n}\n\n\n.descount-input{\n    display: flex;\n    justify-content: space-around;\n}\n\n\n\n.button-finish-style{\n    border: none;\n    outline: 0;\n    padding: 12px;\n    cursor: pointer; \n    width: 100%;\n    font-size: 18px;\n    grid-area: add;\n    align-self: center;\n    justify-self: center\n}\n\n.compras-container{\n    background-color: lightblue;\n    border: solid 1px grey;\n    border-radius: 4px;\n    margin-top: 10px;\n    \n}\n\n.transaction-container{\n    display: flex;\n    justify-content: space-around;\n}\n\n.transaction-name{\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n}\n\n.transaction-details{\n    display: flex;\n    flex-direction: column;\n    justify-content: start;\n}\n\n.transaction-total-state{\n    \n}\n\n.transaction-total{\n    margin-top: 10px;\n    font-weight: bold;\n}\n\n.transaction-state{\n    margin-top: 10px;\n    display: inline-block;\n    color: white;\n    background-color: grey;\n    border-radius: 3px;\n}\n\n.transaction-buttons{\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n}\n\n\n\n.button-login-cart{\n    background-color: #007bff;\n    display: flex;\n    justify-content: center;\n}", ""]);
+exports.push([module.i, ".product-container {\n  display: flex;\n}\n\n.img-container {\n  margin-top: 30px;\n}\n\n.product-details {\n  margin-top: 30px;\n  padding-left: 100px;\n}\n\n.category-product-details {\n  display: inline-block;\n  color: white;\n  background-color: grey;\n}\n\n.product-name {\n  font-weight: bold;\n}\n\n.cart {\n  border-bottom: 2px solid black;\n}\n\n.cart-container {\n  display: flex;\n  margin-top: 10px;\n}\n\n.cart-container-products {\n  /* border: 2px solid grey; \n    border-radius: 6px; */\n}\n\n.cart-container-total {\n  border: 2px solid grey;\n  border-radius: 6px;\n  width: 300px;\n  height: 400px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-left: 10px;\n}\n\n.cart-container-products-titles {\n  width: 700px;\n  display: flex;\n  justify-content: space-evenly;\n}\n\n.cart-container-products-list {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  border: 2px solid grey;\n  border-radius: 6px;\n  margin-top: 10px;\n}\n\n.cart-container-total-count {\n  display: flex;\n  justify-content: space-around;\n}\n.cart-container-descount {\n  padding-bottom: 10px;\n  border-bottom: 2px dashed grey;\n}\n\n.cart-container-subtotal-count {\n  display: flex;\n  justify-content: space-around;\n  padding-bottom: 10px;\n  border-bottom: 2px dashed grey;\n}\n\n.cart-container-envio {\n  display: flex;\n  justify-content: space-around;\n  padding-bottom: 10px;\n  border-bottom: 2px dashed grey;\n}\n\n.descount-input {\n  display: flex;\n  justify-content: space-around;\n}\n\n.button-finish-style {\n  border: none;\n  outline: 0;\n  padding: 12px;\n  cursor: pointer;\n  width: 100%;\n  font-size: 18px;\n  grid-area: add;\n  align-self: center;\n  justify-self: center;\n}\n\n.compras-container {\n  background-color: lightblue;\n  border: solid 1px grey;\n  border-radius: 4px;\n  margin-top: 10px;\n}\n\n.transaction-container {\n  display: flex;\n  justify-content: space-around;\n}\n\n.transaction-name {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n\n.transaction-details {\n  display: flex;\n  flex-direction: column;\n  justify-content: start;\n}\n\n.transaction-total-state {\n}\n\n.transaction-total {\n  margin-top: 10px;\n  font-weight: bold;\n}\n\n.transaction-state {\n  margin-top: 10px;\n  display: inline-block;\n  color: white;\n  background-color: grey;\n  border-radius: 3px;\n}\n\n.transaction-buttons {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n\n.button-login-cart {\n  background-color: #007bff;\n  display: flex;\n  justify-content: center;\n}\n", ""]);
 
 
 /***/ }),
@@ -57433,6 +57433,10 @@ function useForceUpdate() {
 function Cart(props) {
   var forceUpdate = useForceUpdate();
 
+  var cartPersist = function cartPersist() {
+    !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
+  };
+
   var totalValue = function totalValue(cart) {
     var totalPrice = 0;
 
@@ -57491,17 +57495,19 @@ function Cart(props) {
       variant: "outline-info",
       onClick: function onClick() {
         props.delFromCart(product);
+        cartPersist();
         forceUpdate();
       }
     }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       style: {
         width: "30px",
-        marginLeft: "center",
+        marginLeft: "1em",
         marginRight: "auto"
       }
     }, productQtty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onClick: function onClick() {
         props.addToCart(product);
+        cartPersist();
         forceUpdate();
       },
       variant: "outline-info"
@@ -58512,14 +58518,8 @@ function (_React$Component) {
       var window = localStorage;
 
       if (!this.props.user.id) {
-        if (this.props.cart.length > 0) {
-          window.setItem("cart", JSON.stringify(this.props.cart));
-          console.log("Dos");
-        }
-
         if (this.props.cart.length == 0) {
           this.props.setToCart(JSON.parse(window.cart));
-          console.log("Uno.");
         }
       }
     }
@@ -58691,7 +58691,8 @@ function (_React$Component) {
       emailInput: "",
       passwordInput: "",
       error: false,
-      showCartModal: false
+      showCartModal: false,
+      isAdmin: _this.props.user && _this.props.user.isAdmin ? "(Logged as admin)" : ""
     };
     _this.handleEmailInput = _this.handleEmailInput.bind(_assertThisInitialized(_this));
     _this.handlePasswordInput = _this.handlePasswordInput.bind(_assertThisInitialized(_this));
@@ -58798,28 +58799,7 @@ function (_React$Component) {
           } else if (bookArray.data.length > 0 && _this3.props.cart.length > 0) {
             _this3.handleShow();
           }
-        }) // .then(user => {
-        //    this.props.receiveUser(user);
-        //    axios.post('/api/getNumberOfCarts', {userId: this.props.user.id})
-        //    .then(resp=>{
-        //   console.log(resp)
-        //    if(this.props.cart.length > 0 && resp != null){this.handleShow()}
-        //    else if(resp != null){
-        //      console.log('Definitivamente entre', resp.data)
-        //     let arrayToStore = []
-        //     resp.data.map(e=>{
-        //       console.log(e)
-        //       let singletoStore = {}
-        //       singletoStore=e
-        //       singletoStore['quantity'] = e.cartProduct.quantity
-        //       arrayToStore.push(singletoStore)
-        //       console.log(arrayToStore)
-        //       this.props.addFromDB(arrayToStore)
-        //     })
-        //    }
-        //    return null})})
-        //return axios.post(`/api/addToCartinBulkMerge`, {userId: this.props.user.id, bookId: this.props.cart})
-        .then(function () {
+        }).then(function () {
           return _this3.setState({
             error: false
           });
@@ -58876,7 +58856,7 @@ function (_React$Component) {
           marginTop: "7px",
           marginRight: "10px"
         }
-      }, "Hola ", name, " \xA0 |"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, "Hola ", name + this.state.isAdmin, " \xA0 |"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "nav-item",
         style: {
           marginTop: "7px",

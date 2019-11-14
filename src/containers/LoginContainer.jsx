@@ -3,11 +3,11 @@ import axios from "axios";
 import Login from "../components/Login";
 import { connect } from "react-redux";
 import { receiveUser, emptyUser } from "../store/actions/user";
-import { emptyCart, addToCart, addFromDB } from '../store/actions/cart'
+import { emptyCart, addToCart, addFromDB } from "../store/actions/cart";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import ModalChooseCart from '../components/ModalChooseCart'
+import ModalChooseCart from "../components/ModalChooseCart";
 
 class LoginContainer extends React.Component {
   constructor(props) {
@@ -17,18 +17,21 @@ class LoginContainer extends React.Component {
       passwordInput: "",
       error: false,
       showCartModal: false,
+      isAdmin:
+        this.props.user && this.props.user.isAdmin ? "(Logged as admin)" : ""
     };
+
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-    this.handleShow = this.handleShow.bind(this)
-    this.handleClose = this.handleClose.bind(this)
-    this.handleCartSelection = this.handleCartSelection.bind(this)
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleCartSelection = this.handleCartSelection.bind(this);
   }
 
   handleShow() {
-    this.setState({ showCartModal: true })
+    this.setState({ showCartModal: true });
   }
 
   handleCartSelection(string){
@@ -52,7 +55,7 @@ class LoginContainer extends React.Component {
   }
 
   handleClose() {
-    this.setState({ showCartModal: false })
+    this.setState({ showCartModal: false });
   }
 
   handleEmailInput(evt) {
@@ -97,27 +100,6 @@ class LoginContainer extends React.Component {
           }
           
         })
-        // .then(user => {
-        //    this.props.receiveUser(user);
-        //    axios.post('/api/getNumberOfCarts', {userId: this.props.user.id})
-        //    .then(resp=>{
-        //   console.log(resp)
-        //    if(this.props.cart.length > 0 && resp != null){this.handleShow()}
-        //    else if(resp != null){
-        //      console.log('Definitivamente entre', resp.data)
-        //     let arrayToStore = []
-        //     resp.data.map(e=>{
-        //       console.log(e)
-        //       let singletoStore = {}
-        //       singletoStore=e
-        //       singletoStore['quantity'] = e.cartProduct.quantity
-        //       arrayToStore.push(singletoStore)
-        //       console.log(arrayToStore)
-        //       this.props.addFromDB(arrayToStore)
-        //     })
-        //    }
-        //    return null})})
-           //return axios.post(`/api/addToCartinBulkMerge`, {userId: this.props.user.id, bookId: this.props.cart})
         .then(() => this.setState({ error: false }))
         .catch(() => {
           this.setState({ error: true });
@@ -125,10 +107,9 @@ class LoginContainer extends React.Component {
     } 
   }
 
-
   handleLogout() {
     axios.get("/api/auth/logout").then(() => this.props.emptyUser());
-    this.props.emptyCart()
+    this.props.emptyCart();
   }
 
   render() {
@@ -138,7 +119,7 @@ class LoginContainer extends React.Component {
     const displayError = () => {
       alert("Credenciales Incorrectas");
       this.setState({ error: false });
-    }
+    };
     return (
       <div>
         {userLogged == true ? (
@@ -150,41 +131,49 @@ class LoginContainer extends React.Component {
             handleError={this.state.error}
           />
         ) : (
-            <ul
-              className="nav"
-              style={{
-                color: "white",
-                justifyItems: "center",
-                alignItems: "center"
-              }}
+          <ul
+            className="nav"
+            style={{
+              color: "white",
+              justifyItems: "center",
+              alignItems: "center"
+            }}
+          >
+            <li
+              className="nav-item"
+              style={{ marginTop: "7px", marginRight: "10px" }}
             >
-              <li
-                className="nav-item"
-                style={{ marginTop: "7px", marginRight: "10px" }}
-              >
-                Hola {name} &nbsp; |
+              Hola {name + this.state.isAdmin} &nbsp; |
             </li>
-              <li
-                className="nav-item"
-                style={{ marginTop: "7px", marginRight: "10px" }}
+            <li
+              className="nav-item"
+              style={{ marginTop: "7px", marginRight: "10px" }}
+            >
+              <Link
+                style={{ color: "white", textDecoration: "none" }}
+                to="/compras"
               >
-                <Link style={{ color: "white", textDecoration: "none" }} to="/compras">
-                  Mis Compras &nbsp; | &nbsp;
+                Mis Compras &nbsp; | &nbsp;
               </Link>
-              </li>
-              <li
-                className="nav-item"
-                onClick={this.handleLogout}
-                style={{ marginTop: "7px" }}
-              >
-                <Link style={{ color: "white" }} to="/">
-                  Logout
+            </li>
+            <li
+              className="nav-item"
+              onClick={this.handleLogout}
+              style={{ marginTop: "7px" }}
+            >
+              <Link style={{ color: "white" }} to="/">
+                Logout
               </Link>
-              </li>
-            </ul>
-          )}
+            </li>
+          </ul>
+        )}
 
-        <ModalChooseCart show={this.state.showCartModal} handleClose={this.handleClose} handleShow={this.handleShow} handleCartSelection={this.handleCartSelection} />
+        <ModalChooseCart
+          show={this.state.showCartModal}
+          handleClose={this.handleClose}
+          handleShow={this.handleShow}
+          handleCartSelection={this.handleCartSelection}
+        />
       </div>
     );
   }
