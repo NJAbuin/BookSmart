@@ -64,6 +64,9 @@ function useForceUpdate() {
 
 function Cart(props) {
   const forceUpdate = useForceUpdate();
+  const cartPersist = function() {
+    !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
+  };
 
   const totalValue = function(cart) {
     let totalPrice = 0;
@@ -109,6 +112,7 @@ function Cart(props) {
                       variant="outline-info"
                       onClick={() => {
                         props.delFromCart(product);
+                        cartPersist();
                         forceUpdate();
                       }}
                     >
@@ -126,6 +130,7 @@ function Cart(props) {
                     <Button
                       onClick={() => {
                         props.addToCart(product);
+                        cartPersist();
                         forceUpdate();
                       }}
                       variant="outline-info"
