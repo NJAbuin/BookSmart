@@ -16,3 +16,4 @@ export const CATEGORIES = [
   "Romantica"
 ];
 export const CHECKOUT = "CHECKOUT";
+export const EMPTY_CART = "EMPTY_CART"

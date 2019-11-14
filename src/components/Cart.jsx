@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { addToCart, checkOut, delFromCart } from "../store/actions/cart";
 import Modal from "react-bootstrap/Modal";
 import { ButtonToolbar } from "react-bootstrap";
-import LoginContainer from '../containers/LoginContainer'
+import axios from "axios";
+import LoginContainer from "../containers/LoginContainer";
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -63,11 +64,11 @@ function useForceUpdate() {
 
 function Cart(props) {
   const forceUpdate = useForceUpdate();
+  const cartPersist = function () {
+    !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
+  };
 
-  let descount = ""
-
-  const totalValue = function (cart, descountParam) {
-    console.log(descountParam)
+  const totalValue = function (cart) {
     let totalPrice = 0;
     for (let i = 0; i < cart.length; i++) {
       totalPrice += cart[i].price * cart[i].quantity;
@@ -77,7 +78,7 @@ function Cart(props) {
   };
 
   const [modalShow, setModalShow] = React.useState(false);
-
+  let cartToMap = Array.isArray(props.cart) != true ? [props.cart] : props.cart;
   return (
     <div>
       <div className="cart">
@@ -99,7 +100,7 @@ function Cart(props) {
             <h3>Total</h3>
           </div>
 
-          {props.cart.map(product => {
+          {cartToMap.map(product => {
             const totalPrice = product.price * product.quantity;
             let productQtty = product.quantity;
             return (
@@ -107,20 +108,30 @@ function Cart(props) {
                 <div className="cart-container-products-list" key={product.id}>
                   <img src={product.imgURL} style={{ width: "75px" }} alt="" />
                   <p style={{ width: "80px" }}>{product.name}</p>
-                  <div className="cart-container-total-count" >
+                  <div className="cart-container-total-count">
                     <Button
                       variant="outline-info"
                       onClick={() => {
                         props.delFromCart(product);
+                        cartPersist();
                         forceUpdate();
                       }}
                     >
                       -
                     </Button>
-                    <p style={{ width: "30px", marginLeft: "center", marginRight: "auto" }} >{productQtty}</p>
+                    <p
+                      style={{
+                        width: "30px",
+                        marginLeft: "center",
+                        marginRight: "auto"
+                      }}
+                    >
+                      {productQtty}
+                    </p>
                     <Button
                       onClick={() => {
                         props.addToCart(product);
+                        cartPersist();
                         forceUpdate();
                       }}
                       variant="outline-info"
@@ -160,8 +171,7 @@ function Cart(props) {
             <p style={{ fontWeight: "bold" }}>TOTAL:</p>
             <p>$ {totalValue(props.cart, descount)}</p>
           </div>
-          {
-            props.user &&
+          {props.user && (
             <ButtonToolbar>
               <Button
                 variant="success"
@@ -173,14 +183,14 @@ function Cart(props) {
                 }}
               >
                 Finalizar Compra!
-            </Button>
+              </Button>
               {/* <LoginContainer /> */}
               <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
               />
             </ButtonToolbar>
-          }
+          )}
           {/* {
             props.cart.length == 0 &&
             <div>
@@ -189,18 +199,18 @@ function Cart(props) {
               </div>
             </div>
           } */}
-          {
-            !props.user &&
+          {!props.user && (
             <div>
-              <div className="text-login-cart" >
-                <p style={{ marginBottom: "0" }} >Por favor, inicie sesion para completar la compra</p>
+              <div className="text-login-cart">
+                <p style={{ marginBottom: "0" }}>
+                  Por favor, inicie sesion para completar la compra
+                </p>
               </div>
-              <div className="button-login-cart" >
+              <div className="button-login-cart">
                 <LoginContainer />
               </div>
             </div>
-
-          }
+          )}
         </div>
       </div>
     </div>
