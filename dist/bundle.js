@@ -57356,7 +57356,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
 /* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
-/* harmony import */ var _containers_LoginContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../containers/LoginContainer */ "./src/containers/LoginContainer.jsx");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _containers_LoginContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../containers/LoginContainer */ "./src/containers/LoginContainer.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -57372,29 +57374,8 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
-function App(_ref) {
-  var checkOutAction = _ref.checkOutAction;
 
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      modalShow = _React$useState2[0],
-      setModalShow = _React$useState2[1];
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["ButtonToolbar"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "success",
-    className: "button-finish-style",
-    onClick: function onClick() {
-      checkOutAction();
-      setModalShow(true);
-    }
-  }, "Finalizar compra!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MyVerticallyCenteredModal, {
-    show: modalShow,
-    onHide: function onHide() {
-      return setModalShow(false);
-    }
-  }));
-} // PARA MODAL CHECKOUT
-//create your forceUpdate hook
 
 
 function MyVerticallyCenteredModal(props) {
@@ -57451,10 +57432,12 @@ function useForceUpdate() {
 
 function Cart(props) {
   var forceUpdate = useForceUpdate();
-  var descount = "";
 
-  var totalValue = function totalValue(cart, descountParam) {
-    console.log(descountParam);
+  var cartPersist = function cartPersist() {
+    !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
+  };
+
+  var totalValue = function totalValue(cart) {
     var totalPrice = 0;
 
     for (var i = 0; i < cart.length; i++) {
@@ -57469,6 +57452,7 @@ function Cart(props) {
       modalShow = _React$useState4[0],
       setModalShow = _React$useState4[1];
 
+  var cartToMap = Array.isArray(props.cart) != true ? [props.cart] : props.cart;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cart"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -57489,7 +57473,7 @@ function Cart(props) {
     className: "cart-container-products"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cart-container-products-titles"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Producto"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Cantidad"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total")), props.cart.map(function (product) {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Producto"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Cantidad"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total")), cartToMap.map(function (product) {
     var totalPrice = product.price * product.quantity;
     var productQtty = product.quantity;
     return product.quantity > 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -57511,6 +57495,7 @@ function Cart(props) {
       variant: "outline-info",
       onClick: function onClick() {
         props.delFromCart(product);
+        cartPersist();
         forceUpdate();
       }
     }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -57522,6 +57507,7 @@ function Cart(props) {
     }, productQtty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onClick: function onClick() {
         props.addToCart(product);
+        cartPersist();
         forceUpdate();
       },
       variant: "outline-info"
@@ -57583,7 +57569,7 @@ function Cart(props) {
     }
   }, "Por favor, inicie sesion para completar la compra")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "button-login-cart"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_LoginContainer__WEBPACK_IMPORTED_MODULE_6__["default"], null))))));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_LoginContainer__WEBPACK_IMPORTED_MODULE_7__["default"], null))))));
 }
 
 var mapStateToProps = function mapStateToProps(_ref2) {
@@ -57990,7 +57976,10 @@ function ModalChooseCart(_ref) {
       return handleCartSelection('Replace');
     }
   }, "Replace"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "primary"
+    variant: "primary",
+    onClick: function onClick() {
+      return handleCartSelection('Keep');
+    }
   }, "Keep Original Cart")));
 }
 
@@ -58379,6 +58368,15 @@ function SingleProduct(props) {
         userId: props.user.id,
         bookId: product.id,
         quantity: product.quantity
+      }).then(function (e) {
+        var arrayToStore = [];
+        e.data['0'].books.map(function (e) {
+          var singletoStore = {};
+          singletoStore = e;
+          singletoStore['quantity'] = e.cartProduct.quantity;
+          arrayToStore.push(singletoStore);
+          console.log(arrayToStore);
+        });
       });
     }
   };
@@ -58507,14 +58505,8 @@ function (_React$Component) {
       var window = localStorage;
 
       if (!this.props.user.id) {
-        if (this.props.cart.length > 0) {
-          window.setItem("cart", JSON.stringify(this.props.cart));
-          console.log("Dos");
-        }
-
         if (this.props.cart.length == 0) {
           this.props.setToCart(JSON.parse(window.cart));
-          console.log("Uno.");
         }
       }
     }
@@ -58714,12 +58706,21 @@ function (_React$Component) {
         userId: this.props.user.id,
         bookId: this.props.cart
       }).then(function (e) {
-        if (string == 'Merge') {
+        if (string == 'Merge' || string == 'Replace') {
           _this2.props.emptyCart();
 
-          e.data.map(function (book) {
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/product/".concat(book.productId)).then(function (resp) {
-              return Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_5__["addToCart"])(resp.data);
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/getNumberOfCarts', {
+            userId: _this2.props.user.id
+          }).then(function (e) {
+            console.log(e);
+            var arrayToStore = [];
+            e.data.map(function (e) {
+              var singletoStore = {};
+              singletoStore = e;
+              singletoStore['quantity'] = e.cartProduct.quantity;
+              arrayToStore.push(singletoStore);
+
+              _this2.props.addFromDB(arrayToStore);
             });
           });
         }
@@ -58772,6 +58773,19 @@ function (_React$Component) {
           }).then(function (resp) {
             if (_this3.props.cart.length > 0 && resp != null) {
               _this3.handleShow();
+            } else if (resp != null) {
+              var arrayToStore = [];
+              console.log('entre', resp.data);
+              resp.data.map(function (e) {
+                console.log('AAAAAAAAAAAAAAAAAAAAAAAA');
+                var singletoStore = {};
+                singletoStore = e;
+                singletoStore['quantity'] = e.cartProduct.quantity;
+                arrayToStore.push(singletoStore);
+                console.log(arrayToStore);
+
+                _this3.props.addFromDB(arrayToStore);
+              });
             }
 
             return null;
@@ -58840,7 +58854,7 @@ function (_React$Component) {
           marginTop: "7px",
           marginRight: "10px"
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
         style: {
           color: "white",
           textDecoration: "none"
@@ -58873,7 +58887,8 @@ var mapDispatchToProps = {
   receiveUser: _store_actions_user__WEBPACK_IMPORTED_MODULE_4__["receiveUser"],
   emptyUser: _store_actions_user__WEBPACK_IMPORTED_MODULE_4__["emptyUser"],
   emptyCart: _store_actions_cart__WEBPACK_IMPORTED_MODULE_5__["emptyCart"],
-  addToCart: _store_actions_cart__WEBPACK_IMPORTED_MODULE_5__["addToCart"]
+  addToCart: _store_actions_cart__WEBPACK_IMPORTED_MODULE_5__["addToCart"],
+  addFromDB: _store_actions_cart__WEBPACK_IMPORTED_MODULE_5__["addFromDB"]
 };
 
 var mapStateToProps = function mapStateToProps(_ref) {
@@ -59526,14 +59541,16 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 /*!***********************************!*\
   !*** ./src/store/actions/cart.js ***!
   \***********************************/
-/*! exports provided: addToCart, cartAction, setCart, setToCart, deleteProductFromCart, deleteProductAction, delFromCart, delCartAction, checkOut, checkOutAction */
+/*! exports provided: addToCart, cartAction, emptyCart, setCart, addFromDB, setToCart, deleteProductFromCart, deleteProductAction, delFromCart, delCartAction, checkOut, checkOutAction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToCart", function() { return addToCart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cartAction", function() { return cartAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emptyCart", function() { return emptyCart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCart", function() { return setCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addFromDB", function() { return addFromDB; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setToCart", function() { return setToCart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteProductFromCart", function() { return deleteProductFromCart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteProductAction", function() { return deleteProductAction; });
@@ -59557,9 +59574,21 @@ var cartAction = function cartAction(payload) {
     payload: payload
   };
 };
+var emptyCart = function emptyCart() {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["EMPTY_CART"]
+  };
+};
 var setCart = function setCart(payload) {
   return {
     type: _constants__WEBPACK_IMPORTED_MODULE_0__["SET_CART"],
+    payload: payload
+  };
+};
+var addFromDB = function addFromDB(payload) {
+  console.log("AAAAAAAAAAAAA ", payload);
+  return {
+    type: "LOAD_FROM_DB",
     payload: payload
   };
 };
@@ -59742,7 +59771,7 @@ var fetchUser = function fetchUser() {
 /*!********************************!*\
   !*** ./src/store/constants.js ***!
   \********************************/
-/*! exports provided: FETCH_PRODUCTS, SEARCH_PRODUCTS, EMPTY_USER, RECEIVE_USER, SELECT_PRODUCT, FILTER_PRODUCT, ADD_TO_CART, DELETE_PRODUCT_FROM_CART, DEL_FROM_CART, SET_CART, CATEGORIES, CHECKOUT */
+/*! exports provided: FETCH_PRODUCTS, SEARCH_PRODUCTS, EMPTY_USER, RECEIVE_USER, SELECT_PRODUCT, FILTER_PRODUCT, ADD_TO_CART, DELETE_PRODUCT_FROM_CART, DEL_FROM_CART, SET_CART, CATEGORIES, CHECKOUT, EMPTY_CART */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59759,6 +59788,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_CART", function() { return SET_CART; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CATEGORIES", function() { return CATEGORIES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHECKOUT", function() { return CHECKOUT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EMPTY_CART", function() { return EMPTY_CART; });
 var FETCH_PRODUCTS = "FETCH_PRODUCTS";
 var SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
 var EMPTY_USER = "EMPTY_USER";
@@ -59771,6 +59801,7 @@ var DEL_FROM_CART = "DEL_FROM_CART";
 var SET_CART = "SET_CART";
 var CATEGORIES = ["Terror", "Aventura", "Policial", "Periodistico", "Romantica"];
 var CHECKOUT = "CHECKOUT";
+var EMPTY_CART = "EMPTY_CART";
 
 /***/ }),
 
@@ -59842,8 +59873,14 @@ var cartReducer = function cartReducer() {
         return item !== action.payload;
       });
 
+    case _constants__WEBPACK_IMPORTED_MODULE_0__["EMPTY_CART"]:
+      return [];
+
     case _constants__WEBPACK_IMPORTED_MODULE_0__["SET_CART"]:
       return _toConsumableArray(action.payload);
+
+    case 'LOAD_FROM_DB':
+      return action.payload;
 
     default:
       return state;
