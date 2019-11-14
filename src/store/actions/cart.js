@@ -26,7 +26,7 @@ export const setCart = payload => ({
 });
 
 export const addFromDB = payload => {
-  return {type: 'LOAD_FROM_DB', payload}
+  return { type: 'LOAD_FROM_DB', payload }
 }
 export const setToCart = payload => dispatch => {
   dispatch(setCart(payload));
@@ -66,6 +66,8 @@ export const checkOutAction = () => {
 /////////////////////////////////////////////////////////////////////////////////////
 
 export const addTransaction = cart => dispatch => {
+  console.log("SOY EL CART DEL AXIOS POST", cart)
+  axios.post('/api/transaction', { cart })
   dispatch(addTransactionAction(cart))
 }
 

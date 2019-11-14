@@ -41,6 +41,10 @@ export default function Compras(props) {
                                 <div className="transaction-total" >
                                     Total: $ {totalValue(transaction)}
                                 </div>
+                                <div className="transaction-state" >
+                                    <p>En proceso</p>
+                                </div>
+
                                 {/* {
                                     transaction[0].state === "en proceso" &&
                                     <div className="transaction-state" >
@@ -64,6 +68,7 @@ export default function Compras(props) {
                                 <div>
                                     <a href="">Ver detalle</a>
                                 </div>
+                                Fecha: {transaction[0].createdAt.slice(0, 16)}
                                 {/* {
                                     transaction.map(cart => {
                                         // if (cart.state) {

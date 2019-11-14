@@ -57357,6 +57357,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Modal */ "./node_modules/react-bootstrap/esm/Modal.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var _containers_LoginContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../containers/LoginContainer */ "./src/containers/LoginContainer.jsx");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -57366,6 +57368,7 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 
 
 
@@ -57557,6 +57560,7 @@ function Cart(props) {
         cart: props.cart,
         user: userId
       });
+      sendEmail(props.user.email, props.cart);
     }
   }, "Finalizar Compra!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MyVerticallyCenteredModal, {
     show: modalShow,
@@ -57571,6 +57575,15 @@ function Cart(props) {
     }
   }, "Por favor, inicie sesion para completar la compra"))))));
 }
+
+var sendEmail = function sendEmail(email, cart) {
+  axios__WEBPACK_IMPORTED_MODULE_7___default.a.post("/api/email", {
+    email: email,
+    cart: cart
+  }).then(function () {
+    return console.log("Email sent to: ".concat(email));
+  })["catch"](console.error());
+};
 
 var mapStateToProps = function mapStateToProps(_ref2) {
   var user = _ref2.user,
@@ -57662,11 +57675,13 @@ function Compras(props) {
       className: "transaction-total-state"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "transaction-total"
-    }, "Total: $ ", totalValue(transaction))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "Total: $ ", totalValue(transaction)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "transaction-state"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "En proceso"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "transaction-buttons"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: ""
-    }, "Ver detalle")))));
+    }, "Ver detalle")), "Fecha: ", transaction[0].createdAt.slice(0, 16))));
   }));
 }
 
@@ -59608,6 +59623,10 @@ var checkOutAction = function checkOutAction() {
 
 var addTransaction = function addTransaction(cart) {
   return function (dispatch) {
+    console.log("SOY EL CART DEL AXIOS POST", cart);
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/transaction', {
+      cart: cart
+    });
     dispatch(addTransactionAction(cart));
   };
 };
