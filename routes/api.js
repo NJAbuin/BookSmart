@@ -131,7 +131,6 @@ api.post("/removeFromCart", (req, res) => {
 
 api.post("/addToCart", (req, res) => {
   const add = req.body;
-  console.log(add);
   let cartData = {}; // Aca va a cargarse el orderId y el cartId
   //Si no tiene ningun carrito abierto lo crea y guarda el cartId, BookId y OrderId
   Cart.findOrCreate({ where: { cartId: add.userId, state: "Opened" } })
@@ -149,7 +148,6 @@ api.post("/addToCart", (req, res) => {
       });
     })
     .then(e => {
-      console.log("Llegue hasta justo antes de crear o actualizar");
       if (e == null) {
         CartProduct.create({
           cartId: cartData.cartId,
