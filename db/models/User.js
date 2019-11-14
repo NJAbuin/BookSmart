@@ -42,9 +42,9 @@ User.beforeCreate(user => {
   user.password = user.hashPassword(user.password);
 });
 
-User.afterCreate(user => {
-  Cart.create({});
-});
+// User.afterCreate(user => {
+//   Cart.create({});
+// });
 
 User.prototype.hashPassword = function(password) {
   return crypto

@@ -3,7 +3,7 @@ import axios from "axios";
 import Login from "../components/Login";
 import { connect } from "react-redux";
 import { receiveUser, emptyUser } from "../store/actions/user";
-import { emptyCart, addToCart } from '../store/actions/cart'
+import { emptyCart, addToCart, addFromDB } from '../store/actions/cart'
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -34,9 +34,22 @@ class LoginContainer extends React.Component {
   handleCartSelection(string){
     axios.post(`/api/addToCartinBulk${string}`, {userId: this.props.user.id, bookId: this.props.cart})
     .then(e=>{
-      if(string == 'Merge'){
+      if(string == 'Merge' || string == 'Replace'){
         this.props.emptyCart()
-        e.data.map(book=>axios.get(`/api/product/${book.productId}`).then(resp=>addToCart(resp.data)))}})
+        axios.post('/api/getNumberOfCarts', {userId: this.props.user.id})
+        .then(e=>{
+          console.log(e)
+          let arrayToStore = []
+          e.data.map(e=>{
+            let singletoStore = {}
+            singletoStore=e
+            singletoStore['quantity'] = e.cartProduct.quantity
+            arrayToStore.push(singletoStore)
+            this.props.addFromDB(arrayToStore)
+          })
+       
+      })
+      }})
      //Esto es el carrito que hay que pasar al store
     .then(()=> {
       this.setState({showCartModal: false}) 
@@ -72,6 +85,19 @@ class LoginContainer extends React.Component {
            axios.post('/api/getNumberOfCarts', {userId: this.props.user.id})
            .then(resp=>{
            if(this.props.cart.length > 0 && resp != null){this.handleShow()}
+           else if(resp != null){
+            let arrayToStore = []
+            console.log('entre', resp.data)
+            resp.data.map(e=>{
+              console.log('AAAAAAAAAAAAAAAAAAAAAAAA')
+              let singletoStore = {}
+              singletoStore=e
+              singletoStore['quantity'] = e.cartProduct.quantity
+              arrayToStore.push(singletoStore)
+              console.log(arrayToStore)
+              this.props.addFromDB(arrayToStore)
+            })
+           }
            return null})})
            //return axios.post(`/api/addToCartinBulkMerge`, {userId: this.props.user.id, bookId: this.props.cart})
         .then(() => this.setState({ error: false }))
@@ -142,7 +168,8 @@ const mapDispatchToProps = {
   receiveUser,
   emptyUser,
   emptyCart,
-  addToCart
+  addToCart,
+  addFromDB
 };
 
 const mapStateToProps = ({ user, cart }) => ({

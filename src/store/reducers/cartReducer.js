@@ -23,6 +23,8 @@ export const cartReducer = (state = initialState, action) => {
       return []
     case SET_CART:
       return [...action.payload];
+    case 'LOAD_FROM_DB':
+      return action.payload
     default:
       return state;
   }

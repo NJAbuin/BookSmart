@@ -9,8 +9,6 @@ import {
 import axios from 'axios'
 
 
-import axios from "axios";
-
 export const addToCart = product => dispatch => {
   dispatch(cartAction(product));
 };
@@ -27,6 +25,10 @@ export const setCart = payload => ({
   payload
 });
 
+export const addFromDB = payload => {
+  console.log('AAAAAAAAAAAAA ', payload)
+  return {type: 'LOAD_FROM_DB', payload}
+}
 export const setToCart = payload => dispatch => {
   dispatch(setCart(payload));
 };
