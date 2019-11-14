@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import {
   addToCart,
   setToCart,
-  deleteProductFromCart
+  deleteProductFromCart,
+  addTransaction
 } from "../store/actions/cart";
 import axios from "axios";
 
@@ -13,6 +14,7 @@ class CartContainer extends React.Component {
     super(props);
 
     this.deleteProduct = this.deleteProduct.bind(this);
+    this.addTransactionToStore = this.addTransactionToStore.bind(this);
     this.incHandler = this.incHandler.bind(this);
   }
 
@@ -30,6 +32,11 @@ class CartContainer extends React.Component {
       .then(resp => console.log(resp));
   }
 
+  addTransactionToStore(cart) {
+    console.log("LLEGO EL CART", cart)
+    this.props.addTransaction(cart)
+  }
+
   componentDidMount() {
     let window = localStorage;
     if (!this.props.user.id) {
@@ -42,6 +49,7 @@ class CartContainer extends React.Component {
   render() {
     return (
       <Cart
+        addTransactionToStore={this.addTransactionToStore}
         deleteProduct={this.deleteProduct}
         incHandler={this.incHandler}
         decHandler={this.props.delFromCart}
@@ -62,7 +70,10 @@ const mapStateToProps = ({ cart, user }) => {
 const mapDispatchToProps = dispatch => ({
   deleteProductFromCart: product => dispatch(deleteProductFromCart(product)),
   addToCart: book => dispatch(addToCart(book)),
-  setToCart: cart => dispatch(setToCart(cart))
+  setToCart: cart => dispatch(setToCart(cart)),
+  addTransaction: cart => {
+    dispatch(addTransaction(cart))
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);

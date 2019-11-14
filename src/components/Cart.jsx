@@ -57,19 +57,20 @@ function App({ checkOutAction }) {
 } // PARA MODAL CHECKOUT
 
 function Cart(props) {
-  const cartPersist = function() {
+  const cartPersist = function () {
     if (props.cart.length == 0) {
       return localStorage.setItem("cart", "[]");
     }
     !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
   };
 
-  const totalValue = function(cart) {
+  const totalValue = function (cart) {
     let totalPrice = 0;
     for (let i = 0; i < cart.length; i++) {
       totalPrice += cart[i].price * cart[i].quantity;
     }
-    return totalPrice.toFixed(2);
+    return totalPrice.toFixed(2)
+
   };
 
   const [modalShow, setModalShow] = React.useState(false);
@@ -151,7 +152,7 @@ function Cart(props) {
           <div className="cart-container-descount">
             <p>CUPON DE DESCUENTO</p>
             <div className="descount-input">
-              <input type="text" style={{ width: "120px" }} />
+              <input onChange={props.handleInput} type="text" style={{ width: "120px" }} />
               <Button variant="primary">Agregar</Button>
             </div>
           </div>
@@ -174,6 +175,8 @@ function Cart(props) {
                 className="button-finish-style"
                 onClick={() => {
                   let userId = props.user.id;
+                  console.log(props.cart)
+                  props.addTransactionToStore(props.cart)
                   setModalShow(true);
                   props.checkOut({ cart: props.cart, user: userId });
                   sendEmail(props.user.email, props.cart);
@@ -181,7 +184,6 @@ function Cart(props) {
               >
                 Finalizar Compra!
               </Button>
-              {/* <LoginContainer /> */}
               <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
