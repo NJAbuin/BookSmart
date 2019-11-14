@@ -3,6 +3,7 @@ import {
   DEL_FROM_CART,
   DELETE_PRODUCT_FROM_CART,
   CHECKOUT,
+  EMPTY_CART,
   SET_CART
 } from "../constants";
 
@@ -18,8 +19,12 @@ export const cartReducer = (state = initialState, action) => {
       return initialState;
     case DELETE_PRODUCT_FROM_CART:
       return state.filter(item => item !== action.payload);
+    case EMPTY_CART:
+      return []
     case SET_CART:
       return [...action.payload];
+    case 'LOAD_FROM_DB':
+      return action.payload
     default:
       return state;
   }
