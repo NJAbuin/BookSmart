@@ -17,7 +17,6 @@ class CartContainer extends React.Component {
     this.addTransactionToStore = this.addTransactionToStore.bind(this);
     this.incHandler = this.incHandler.bind(this);
     this.updateFromDB = this.updateFromDB.bind(this);
-
   }
 
   incHandler(book) {
@@ -35,15 +34,17 @@ class CartContainer extends React.Component {
   }
 
   updateFromDB(product) {
-    console.log(product)
-    axios.post('/api/updateCart', { userId: this.props.user.id, bookId: product.id, quantity: product.quantity })
+    axios.post("/api/updateCart", {
+      userId: this.props.user.id,
+      bookId: product.id,
+      quantity: product.quantity
+    });
   }
 
-  addOnetoDB(product) { }
+  addOnetoDB(product) {}
 
   addTransactionToStore(cart) {
-    console.log("LLEGO EL CART", cart)
-    this.props.addTransaction(cart)
+    this.props.addTransaction(cart);
   }
 
   componentDidMount() {
@@ -82,7 +83,7 @@ const mapDispatchToProps = dispatch => ({
   addToCart: book => dispatch(addToCart(book)),
   setToCart: cart => dispatch(setToCart(cart)),
   addTransaction: cart => {
-    dispatch(addTransaction(cart))
+    dispatch(addTransaction(cart));
   }
 });
 
