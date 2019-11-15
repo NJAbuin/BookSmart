@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ModalChooseCart from "../components/ModalChooseCart";
+import ModalAddProduct from "../components/ModalAddProduct";
 
 class LoginContainer extends React.Component {
   constructor(props) {
@@ -16,9 +17,11 @@ class LoginContainer extends React.Component {
       emailInput: "",
       passwordInput: "",
       error: false,
-      showCartModal: false
+      showCartModal: false,
+      showAddProductModal: false
     };
 
+    this.handleAddShow = this.handleAddShow.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,6 +33,10 @@ class LoginContainer extends React.Component {
 
   handleShow() {
     this.setState({ showCartModal: true });
+  }
+
+  handleAddShow() {
+    this.setState({ showAddProductModal: true });
   }
 
   handleCartSelection(string) {
@@ -59,7 +66,7 @@ class LoginContainer extends React.Component {
   }
 
   handleClose() {
-    this.setState({ showCartModal: false });
+    this.setState({ showCartModal: false, showAddProductModal: false });
   }
 
   handleEmailInput(evt) {
@@ -111,7 +118,10 @@ class LoginContainer extends React.Component {
   }
 
   handleLogout() {
-    axios.get("/api/auth/logout").then(() => this.props.emptyUser());
+    axios
+      .get("/api/auth/logout")
+      .then(() => this.props.emptyUser())
+      .catch(console.error);
     this.props.emptyCart();
   }
 
@@ -149,26 +159,35 @@ class LoginContainer extends React.Component {
               Hola {name} {this.props.user.isAdmin ? "(Logged as Admin)" : ""}{" "}
               &nbsp; |
             </li>
-            <li
-              className="nav-item"
-              style={{ marginTop: "7px", marginRight: "10px" }}
-            >
-              <Link
-                style={{ color: "white", textDecoration: "none" }}
-                to="/compras"
+            {!this.props.user.isAdmin ? (
+              <li
+                className="nav-item"
+                style={{ marginTop: "7px", marginRight: "10px" }}
               >
-                Mis Compras &nbsp; | &nbsp;
-              </Link>
-            </li>
+                <Link
+                  style={{ color: "white", textDecoration: "none" }}
+                  to="/compras"
+                >
+                  Mis Compras &nbsp; | &nbsp;
+                </Link>
+              </li>
+            ) : (
+              <ModalAddProduct
+                show={this.state.showAddProductModal}
+                handleClose={this.handleClose}
+                handleShow={this.handleAddShow}
+              />
+            )}
             <li
               className="nav-item"
               onClick={this.handleLogout}
               style={{ marginTop: "7px" }}
             >
               <Link style={{ color: "white" }} to="/">
-                Logout
+                | &nbsp; Logout
               </Link>
             </li>
+            &nbsp;&nbsp;&nbsp;
           </ul>
         )}
 

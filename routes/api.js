@@ -32,7 +32,7 @@ var mailOptions = (userEmail, userCart) => {
     from: "booksmart.is.cool@gmail.com",
     to: userEmail,
     subject: "Gracias por su compra!",
-    text: `La orden le llegara en 420 dias. Su pedido: ${JSON.stringify(
+    text: `Estamos procesando su orden. Su pedido: ${JSON.stringify(
       simplifyCart(userCart)
     )}`
   };
@@ -46,19 +46,36 @@ api.use("/seed", require("./seed"));
 api.get("/products", (req, res) => {
   Book.findAll()
     .then(data => {
-      res.json(data);
+      res.json(data.reverse());
     })
     .catch(err =>
       console.log("Failed to retrieve all products at /api/products")
     );
 });
 
+api.post("/products", (req, res) => {
+  const { nombre, descripcion, imgurl, price } = req.body;
+  chalk.bgGreen("CREANDO PRODUCTO");
+  Book.findOrCreate({
+    where: {
+      name: nombre,
+      description: descripcion,
+      imgURL: imgurl,
+      price
+    }
+  })
+    .then(data => console.log(chalk.bgGreen(`${nombre} book created`)))
+    .catch(console.error());
+});
+
 ////////////////////////////////////////////////////////////
 
 api.get("/product/:id", (req, res) => {
-  Book.findByPk(req.params.id).then(book => {
-    res.json(book);
-  });
+  Book.findByPk(req.params.id)
+    .then(book => {
+      res.json(book);
+    })
+    .catch(console.error);
 });
 
 // retorna un producto de la base de datos en formato JSON
@@ -194,7 +211,9 @@ api.post("/addToCart", (req, res) => {
 });
 
 api.get("/cart", (req, res) => {
-  Cart.findAll({ include: [{ all: true }] }).then(e => res.json(e));
+  Cart.findAll({ include: [{ all: true }] })
+    .then(e => res.json(e))
+    .catch(console.error);
 });
 
 api.post("/addToCartinBulkReplace", (req, res) => {
@@ -272,9 +291,10 @@ api.post("/getNumberOfCarts", (req, res) => {
       if (e != null) {
         console.log("holaaaaa", e.dataValues.books);
         res.send(e.dataValues.books);
-      } else {
-        res.send(null);
       }
+      // else {
+      //   res.send(null);
+      // }
     })
     .then(e => {
       if (e != undefined) res.send(e[0].dataValues.books);
@@ -289,7 +309,6 @@ api.put("/checkout", (req, res) => {
   ).catch(e => console.log(e));
 });
 
-
 api.post("/transaction", (req, res) => {
   const totalValue = function (cart) {
     let totalPrice = 0;
@@ -299,11 +318,30 @@ api.post("/transaction", (req, res) => {
     return totalPrice.toFixed(2);
   };
 
-  let totalTransaction = totalValue(req.body.cart)
+  let totalTransaction = totalValue(req.body.cart);
 
-  Transaction.create({ total: totalTransaction })
+  Transaction.create({ total: totalTransaction });
+});
 
-})
+api.post("/updateCart", (req, res) => {
+  user = req.body;
+  user.bookId;
+  Cart.findOne({
+    where: { cartId: user.userId, state: "Opened" }
+  })
+    .then(resp => resp.dataValues.id)
+    .then(orderId =>
+      CartProduct.update(
+        { quantity: user.quantity },
+        { where: { orderId: orderId, bookId: user.bookId } }
+      )
+    )
+    .then(() => res.status(201))
+    .catch(err => {
+      console.log(err);
+      res.send("Error");
+    });
+});
 
 api.post("/cartsdb", (req, res) => {
   console.log("SOY EL REQ BODY", req.body)
@@ -319,10 +357,4 @@ api.post("/cartsdb", (req, res) => {
 
 api.use("/auth", require("./auth"));
 
-
-
-
-
 module.exports = api;
-
-

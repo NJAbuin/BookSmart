@@ -109,6 +109,7 @@ function Cart(props) {
                       variant="outline-info"
                       onClick={() => {
                         props.delFromCart(product);
+                        props.updateFromDB(product)
                         cartPersist();
                       }}
                     >
@@ -126,6 +127,7 @@ function Cart(props) {
                     <Button
                       onClick={() => {
                         props.addToCart(product);
+                        props.updateFromDB(product)
                         cartPersist();
                       }}
                       variant="outline-info"

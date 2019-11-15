@@ -223,8 +223,7 @@ seed.get("/", (req, res) => {
         { name: "Romantica" }
       ]);
     })
-
-    .then(data => res.send("Category & Books succesfully seeded"));
+    .then(() => res.send("Category, Books succesfully seeded. "));
 });
 
 module.exports = seed;
