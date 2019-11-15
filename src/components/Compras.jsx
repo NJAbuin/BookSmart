@@ -1,5 +1,7 @@
 import React from "react";
 import Button from 'react-bootstrap/Button'
+import { Link } from "react-router-dom";
+
 
 
 export default function Compras(props) {
@@ -37,13 +39,17 @@ export default function Compras(props) {
                                 <div key={transaction.indexOf(transaction)} className="compras-container" >
                                     <div className="transaction-container" >
                                         <div className="transaction-name" >
-                                            <div key={product.id} className="transaction-details" >
-                                                <p style={{ marginBottom: "0", fontWeight: "bold" }} >{product.name} </p>
-                                                <p style={{ marginBottom: "0" }} > {totalValue(product.books)}</p>
-                                            </div>
-
-
-
+                                            {
+                                                product.books.map(e => {
+                                                    return (
+                                                        <div key={e.id} className="transaction-details" >
+                                                            <Link to={`/products/${e.id}`}>
+                                                                <p style={{ marginBottom: "0", fontWeight: "bold" }} >{e.name} </p>
+                                                            </Link>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
                                         </div>
                                         <div className="transaction-total-state" >
 
@@ -52,15 +58,15 @@ export default function Compras(props) {
                                             </div>
 
                                             <div className="transaction-state" >
-                                                <p style={{ marginBottom: "0" }} >En proceso</p>
+                                                <p style={{ marginBottom: "0" }} >{product.state}</p>
                                             </div>
 
                                         </div>
                                         <div className="transaction-buttons" >
                                             <div>
-                                                <a href="">Ver detalle</a>
+
                                             </div>
-                                            Fecha: {transaction[0].createdAt.slice(0, 16)}
+                                            Fecha: {product.createdAt.slice(0, 16)}
                                         </div>
                                     </div>
                                 </div>)
