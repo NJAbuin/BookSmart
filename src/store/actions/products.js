@@ -9,7 +9,7 @@ import {
 export const getProducts = () => dispatch => {
   axios
     .get(`/api/products`)
-    .then(res => res.data.sort(() => Math.random() - 0.5))
+    .then(res => res.data)
     .then(response => {
       return dispatch(productAction(response));
     });
