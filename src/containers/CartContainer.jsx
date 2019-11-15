@@ -34,12 +34,12 @@ class CartContainer extends React.Component {
       .then(resp => console.log(resp));
   }
 
-  updateFromDB(product){
+  updateFromDB(product) {
     console.log(product)
-    axios.post('/api/updateCart', {userId: this.props.user.id, bookId: product.id, quantity: product.quantity})
+    axios.post('/api/updateCart', { userId: this.props.user.id, bookId: product.id, quantity: product.quantity })
   }
 
-  addOnetoDB(product){}
+  addOnetoDB(product) { }
 
   addTransactionToStore(cart) {
     console.log("LLEGO EL CART", cart)

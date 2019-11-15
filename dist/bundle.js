@@ -49420,7 +49420,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57523,14 +57523,11 @@ function Cart(props) {
       width: "120px"
     }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    onClick: function onClick() {
+      alert("CUPON INVALIDO!");
+    },
     variant: "primary"
   }, "Agregar"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart-container-subtotal-count"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SUBTOTAL"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "$ ", totalValue(props.cart))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "cart-container-envio"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ENVIO"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "primary"
-  }, "Calcular")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cart-container-total-count"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     style: {
@@ -57613,18 +57610,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 function Compras(props) {
-  console.log(props);
+  console.log("SOY EL ARRAY TRANSACTION", props.transaction);
 
   var totalValue = function totalValue(cart) {
     var totalPrice = 0;
 
     for (var i = 0; i < cart.length; i++) {
-      totalPrice += cart[i].price * cart[i].quantity;
+      totalPrice += cart[i].price * cart[i]["cartProduct"]["quantity"];
     }
 
+    {
+      console.log(totalPrice);
+    }
     return totalPrice.toFixed(2);
   };
 
@@ -57635,39 +57637,51 @@ function Compras(props) {
       display: "inline-block",
       margin: "0 0 0 0"
     }
-  }, "Mis Compras")), props.transaction.map(function (transaction) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      key: transaction.indexOf(transaction),
-      className: "compras-container"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "transaction-container"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "transaction-name"
-    }, transaction.map(function (product) {
-      if (product.name) {
+  }, "Mis Compras")), console.log(props.transaction[0]), props.transaction.map(function (transaction) {
+    console.log(transaction);
+    return transaction.map(function (product) {
+      {
+        console.log(product);
+      }
+      {
+        console.log(product.books);
+      }
+
+      if (product.id) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          key: product.id,
-          className: "transaction-details"
+          key: Math.random() * 50000,
+          className: "compras-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "transaction-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "transaction-name"
+        }, product.books.map(function (e) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            key: e.id,
+            className: "transaction-details"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+            to: "/products/".concat(e.id)
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            style: {
+              marginBottom: "0",
+              fontWeight: "bold"
+            }
+          }, e.name, " ")));
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "transaction-total-state"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "transaction-total"
+        }, "Total: $ ", totalValue(product.books)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "transaction-state"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          style: {
-            marginBottom: "0",
-            fontWeight: "bold"
-          }
-        }, product.name, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           style: {
             marginBottom: "0"
           }
-        }, " ", "$", product.price, " x ", product.quantity));
+        }, product.state))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "transaction-buttons"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), "Fecha: ", product.createdAt.slice(0, 16))));
       }
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "transaction-total-state"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "transaction-total"
-    }, "Total: $ ", totalValue(transaction)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "transaction-state"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "En proceso"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "transaction-buttons"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), "Fecha: ", transaction[0].createdAt.slice(0, 16))));
+    });
   }));
 }
 
@@ -58696,6 +58710,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Compras__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Compras */ "./src/components/Compras.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -58718,6 +58735,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var ComprasContainer =
 /*#__PURE__*/
 function (_React$Component) {
@@ -58730,6 +58749,17 @@ function (_React$Component) {
   }
 
   _createClass(ComprasContainer, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("/api/auth/me").then(function (res) {
+        return res.data;
+      }).then(function (user) {
+        return _this.props.getCartsFromDb(user.id);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Compras__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -58741,13 +58771,24 @@ function (_React$Component) {
   return ComprasContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(_ref) {
+  var transaction = _ref.transaction,
+      user = _ref.user;
   return {
-    transaction: state.transaction
+    transaction: transaction,
+    user: user
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, null)(ComprasContainer));
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    getCartsFromDb: function getCartsFromDb(userId) {
+      return dispatch(Object(_store_actions_cart__WEBPACK_IMPORTED_MODULE_3__["getCartsFromDb"])(userId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(ComprasContainer));
 
 /***/ }),
 
@@ -59689,7 +59730,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 /*!***********************************!*\
   !*** ./src/store/actions/cart.js ***!
   \***********************************/
-/*! exports provided: addToCart, cartAction, emptyCart, setCart, addFromDB, setToCart, deleteProductFromCart, deleteProductAction, delFromCart, delCartAction, checkOut, checkOutAction, addTransaction, addTransactionAction */
+/*! exports provided: addToCart, cartAction, emptyCart, setCart, addFromDB, setToCart, deleteProductFromCart, deleteProductAction, delFromCart, delCartAction, checkOut, checkOutAction, addTransaction, addTransactionAction, getCartsFromDb, getCartsFromDbAction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59708,6 +59749,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkOutAction", function() { return checkOutAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addTransaction", function() { return addTransaction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addTransactionAction", function() { return addTransactionAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCartsFromDb", function() { return getCartsFromDb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCartsFromDbAction", function() { return getCartsFromDbAction; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
@@ -59797,6 +59840,24 @@ var addTransaction = function addTransaction(cart) {
 var addTransactionAction = function addTransactionAction(payload) {
   return {
     type: _constants__WEBPACK_IMPORTED_MODULE_0__["ADD_TRANSACTION"],
+    payload: payload
+  };
+}; /////////////////////////////////////////////////////////////////////////////////////
+
+var getCartsFromDb = function getCartsFromDb(userId) {
+  return function (dispatch) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/cartsdb", {
+      userId: userId
+    }).then(function (carts) {
+      dispatch(getCartsFromDbAction(carts.data));
+    })["catch"](function (err) {
+      return console.log(err);
+    });
+  };
+};
+var getCartsFromDbAction = function getCartsFromDbAction(payload) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["GET_CARTS_FROM_DB"],
     payload: payload
   };
 };
@@ -59937,7 +59998,7 @@ var fetchUser = function fetchUser() {
 /*!********************************!*\
   !*** ./src/store/constants.js ***!
   \********************************/
-/*! exports provided: FETCH_PRODUCTS, SEARCH_PRODUCTS, EMPTY_USER, RECEIVE_USER, SELECT_PRODUCT, FILTER_PRODUCT, ADD_TO_CART, DELETE_PRODUCT_FROM_CART, DEL_FROM_CART, SET_CART, CATEGORIES, CHECKOUT, EMPTY_CART, ADD_TRANSACTION */
+/*! exports provided: FETCH_PRODUCTS, SEARCH_PRODUCTS, EMPTY_USER, RECEIVE_USER, SELECT_PRODUCT, FILTER_PRODUCT, ADD_TO_CART, DELETE_PRODUCT_FROM_CART, DEL_FROM_CART, SET_CART, CATEGORIES, CHECKOUT, EMPTY_CART, ADD_TRANSACTION, GET_CARTS_FROM_DB */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59956,6 +60017,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHECKOUT", function() { return CHECKOUT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EMPTY_CART", function() { return EMPTY_CART; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_TRANSACTION", function() { return ADD_TRANSACTION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_CARTS_FROM_DB", function() { return GET_CARTS_FROM_DB; });
 var FETCH_PRODUCTS = "FETCH_PRODUCTS";
 var SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
 var EMPTY_USER = "EMPTY_USER";
@@ -59970,6 +60032,7 @@ var CATEGORIES = ["Terror", "Aventura", "Policial", "Periodistico", "Romantica"]
 var CHECKOUT = "CHECKOUT";
 var EMPTY_CART = "EMPTY_CART";
 var ADD_TRANSACTION = "ADD_TRANSACTION";
+var GET_CARTS_FROM_DB = "GET_CARTS_FROM_DB";
 
 /***/ }),
 
@@ -60175,26 +60238,16 @@ var getProducts = function getProducts(state) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "transactionReducer", function() { return transactionReducer; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
 
 var initialState = [];
 var transactionReducer = function transactionReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log("LLEGUE AL STORE", action);
 
   switch (action.type) {
-    case "ADD_TRANSACTION":
-      console.log("ESTOY EN EL CASE");
-      console.log("SOY LA ACTION:PAYLOAD", action.payload);
-      return [].concat(_toConsumableArray(state), [action.payload]);
+    case "GET_CARTS_FROM_DB":
+      console.log("SOY LA ACTION PAYLOAD", action.payload);
+      return [state, action.payload];
 
     default:
       return state;
