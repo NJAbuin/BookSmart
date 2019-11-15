@@ -11,12 +11,19 @@ class ComprasContainer extends React.Component {
 
     render() {
         return (
-            <Compras />
+            <Compras
+                transaction={this.props.transaction}
+            />
         )
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        transaction: state.transaction
+    };
+};
 
-export default connect(null, null)(ComprasContainer);
+export default connect(mapStateToProps, null)(ComprasContainer);
 
 
