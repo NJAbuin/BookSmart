@@ -71,9 +71,11 @@ api.post("/products", (req, res) => {
 ////////////////////////////////////////////////////////////
 
 api.get("/product/:id", (req, res) => {
-  Book.findByPk(req.params.id).then(book => {
-    res.json(book);
-  });
+  Book.findByPk(req.params.id)
+    .then(book => {
+      res.json(book);
+    })
+    .catch(console.error);
 });
 
 // retorna un producto de la base de datos en formato JSON
@@ -209,7 +211,9 @@ api.post("/addToCart", (req, res) => {
 });
 
 api.get("/cart", (req, res) => {
-  Cart.findAll({ include: [{ all: true }] }).then(e => res.json(e));
+  Cart.findAll({ include: [{ all: true }] })
+    .then(e => res.json(e))
+    .catch(console.error);
 });
 
 api.post("/addToCartinBulkReplace", (req, res) => {
@@ -287,7 +291,7 @@ api.post("/getNumberOfCarts", (req, res) => {
       if (e != null) {
         console.log("holaaaaa", e.dataValues.books);
         res.send(e.dataValues.books);
-      } 
+      }
       // else {
       //   res.send(null);
       // }
@@ -320,20 +324,25 @@ api.post("/transaction", (req, res) => {
   Transaction.create({ total: totalTransaction });
 });
 
-api.post('/updateCart', (req, res)=>{
-
+api.post("/updateCart", (req, res) => {
   user = req.body;
-  user.bookId 
+  user.bookId;
   Cart.findOne({
-    where: { cartId: user.userId, state: "Opened" }})
-  .then(resp => resp.dataValues.id)
-  .then(orderId => CartProduct.update({quantity: user.quantity}, {where:{orderId: orderId, bookId: user.bookId}}))
-  .then(()=> res.status(201))
-  .catch(err=> {
-    console.log(err)
-    res.send('Error')
+    where: { cartId: user.userId, state: "Opened" }
   })
-})
+    .then(resp => resp.dataValues.id)
+    .then(orderId =>
+      CartProduct.update(
+        { quantity: user.quantity },
+        { where: { orderId: orderId, bookId: user.bookId } }
+      )
+    )
+    .then(() => res.status(201))
+    .catch(err => {
+      console.log(err);
+      res.send("Error");
+    });
+});
 
 api.use("/auth", require("./auth"));
 
