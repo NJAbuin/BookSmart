@@ -46,7 +46,7 @@ api.use("/seed", require("./seed"));
 api.get("/products", (req, res) => {
   Book.findAll()
     .then(data => {
-      res.json(data);
+      res.json(data.reverse());
     })
     .catch(err =>
       console.log("Failed to retrieve all products at /api/products")
@@ -99,7 +99,7 @@ api.get("/products/:productName", (req, res) => {
 });
 
 api.post("/email", (req, res) => {
-  transporter.sendMail(mailOptions(req.body.email, req.body.cart), function (
+  transporter.sendMail(mailOptions(req.body.email, req.body.cart), function(
     error,
     info
   ) {
@@ -254,15 +254,15 @@ api.post("/addToCartinBulkMerge", (req, res) => {
           console.log(book);
           return res == null
             ? CartProduct.create({
-              orderId: e.id,
-              bookId: book.id,
-              quantity: book.quantity
-              //cartId: e.cartId
-            })
+                orderId: e.id,
+                bookId: book.id,
+                quantity: book.quantity
+                //cartId: e.cartId
+              })
             : CartProduct.update(
-              { quantity: res.quantity + book.quantity },
-              { where: { orderId: e.id, bookId: book.id } }
-            );
+                { quantity: res.quantity + book.quantity },
+                { where: { orderId: e.id, bookId: book.id } }
+              );
         })
       )
     )
@@ -304,10 +304,9 @@ api.put("/checkout", (req, res) => {
   ).catch(e => console.log(e));
 });
 
-
 api.post("/transaction", (req, res) => {
-  console.log("SOY EL REQ BODY", req.body.cart)
-  const totalValue = function (cart) {
+  console.log("SOY EL REQ BODY", req.body.cart);
+  const totalValue = function(cart) {
     let totalPrice = 0;
     for (let i = 0; i < cart.length; i++) {
       totalPrice += cart[i].price * cart[i].quantity;
@@ -315,18 +314,11 @@ api.post("/transaction", (req, res) => {
     return totalPrice.toFixed(2);
   };
 
-  let totalTransaction = totalValue(req.body.cart)
+  let totalTransaction = totalValue(req.body.cart);
 
-  Transaction.create({ total: totalTransaction })
-
-})
+  Transaction.create({ total: totalTransaction });
+});
 
 api.use("/auth", require("./auth"));
 
-
-
-
-
 module.exports = api;
-
-
