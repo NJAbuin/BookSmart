@@ -57483,7 +57483,9 @@ function Cart(props) {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
       variant: "outline-info",
       onClick: function onClick() {
+        console.log(props);
         props.delFromCart(product);
+        props.updateFromDB(product);
         cartPersist();
       }
     }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -57495,6 +57497,7 @@ function Cart(props) {
     }, productQtty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onClick: function onClick() {
         props.addToCart(product);
+        props.updateFromDB(product);
         cartPersist();
       },
       variant: "outline-info"
@@ -57654,7 +57657,7 @@ function Compras(props) {
           style: {
             marginBottom: "0"
           }
-        }, " $", product.price, " x ", product.quantity));
+        }, " ", "$", product.price, " x ", product.quantity));
       }
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "transaction-total-state"
@@ -57664,9 +57667,7 @@ function Compras(props) {
       className: "transaction-state"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "En proceso"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "transaction-buttons"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: ""
-    }, "Ver detalle")), "Fecha: ", transaction[0].createdAt.slice(0, 16))));
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), "Fecha: ", transaction[0].createdAt.slice(0, 16))));
   }));
 }
 
@@ -57955,6 +57956,7 @@ function (_React$Component) {
       }).then(function (res) {
         console.log("Product created");
       });
+      this.handleClose();
     }
   }, {
     key: "render",
@@ -58041,20 +58043,20 @@ function ModalChooseCart(_ref) {
     onHide: handleClose
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Header, {
     closeButton: true
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Title, null, "Que quiere hacer con su carrito anterior?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Body, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Ejemplo.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Footer, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Title, null, "Que quiere hacer con su carrito anterior?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Body, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Puede combinar ambos carros, reemplazar el que tiene en su cuenta por el nuevo o quedarse con su original.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"].Footer, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     variant: "secondary",
     onClick: function onClick() {
-      return handleCartSelection('Merge');
+      return handleCartSelection("Merge");
     }
   }, "Merge"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     variant: "primary",
     onClick: function onClick() {
-      return handleCartSelection('Replace');
+      return handleCartSelection("Replace");
     }
   }, "Replace"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     variant: "primary",
     onClick: function onClick() {
-      return handleCartSelection('Keep');
+      return handleCartSelection("Keep");
     }
   }, "Keep Original Cart")));
 }
@@ -58583,6 +58585,7 @@ function (_React$Component) {
     _this.deleteProduct = _this.deleteProduct.bind(_assertThisInitialized(_this));
     _this.addTransactionToStore = _this.addTransactionToStore.bind(_assertThisInitialized(_this));
     _this.incHandler = _this.incHandler.bind(_assertThisInitialized(_this));
+    _this.updateFromDB = _this.updateFromDB.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -58602,6 +58605,19 @@ function (_React$Component) {
         return console.log(resp);
       });
     }
+  }, {
+    key: "updateFromDB",
+    value: function updateFromDB(product) {
+      console.log(product);
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('/api/updateCart', {
+        userId: this.props.user.id,
+        bookId: product.id,
+        quantity: product.quantity
+      });
+    }
+  }, {
+    key: "addOnetoDB",
+    value: function addOnetoDB(product) {}
   }, {
     key: "addTransactionToStore",
     value: function addTransactionToStore(cart) {
@@ -58628,7 +58644,8 @@ function (_React$Component) {
         incHandler: this.incHandler,
         decHandler: this.props.delFromCart,
         cart: this.props.cart,
-        user: this.props.user
+        user: this.props.user,
+        updateFromDB: this.updateFromDB
       });
     }
   }]);
@@ -58936,7 +58953,7 @@ function (_React$Component) {
 
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/auth/logout").then(function () {
         return _this4.props.emptyUser();
-      });
+      })["catch"](console.error);
       this.props.emptyCart();
     }
   }, {
@@ -59354,7 +59371,7 @@ function (_React$Component) {
           }
         }
 
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_5__["default"], null, productList.reverse().slice(0, 9).map(function (e) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_5__["default"], null, productList.slice(0, 9).map(function (e) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_4__["default"], {
             sm: "12",
             md: "4",
@@ -59808,9 +59825,7 @@ __webpack_require__.r(__webpack_exports__);
 var getProducts = function getProducts() {
   return function (dispatch) {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/products").then(function (res) {
-      return res.data.sort(function () {
-        return Math.random() - 0.5;
-      });
+      return res.data;
     }).then(function (response) {
       return dispatch(productAction(response));
     });
