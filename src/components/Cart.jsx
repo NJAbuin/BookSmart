@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { addToCart, checkOut, delFromCart } from "../store/actions/cart";
 import Modal from "react-bootstrap/Modal";
 import { ButtonToolbar } from "react-bootstrap";
-import axios from "axios";
 import LoginContainer from "../containers/LoginContainer";
+import Axios from "axios";
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -56,24 +56,21 @@ function App({ checkOutAction }) {
   );
 } // PARA MODAL CHECKOUT
 
-//create your forceUpdate hook
-function useForceUpdate() {
-  const [value, setValue] = useState(true); //boolean state
-  return () => setValue(!value); // toggle the state to force render
-}
-
 function Cart(props) {
-  const forceUpdate = useForceUpdate();
-  const cartPersist = function() {
+  const cartPersist = function () {
+    if (props.cart.length == 0) {
+      return localStorage.setItem("cart", "[]");
+    }
     !props.user.id && localStorage.setItem("cart", JSON.stringify(props.cart));
   };
 
-  const totalValue = function(cart) {
+  const totalValue = function (cart) {
     let totalPrice = 0;
     for (let i = 0; i < cart.length; i++) {
       totalPrice += cart[i].price * cart[i].quantity;
     }
-    return totalPrice.toFixed(2);
+    return totalPrice.toFixed(2)
+
   };
 
   const [modalShow, setModalShow] = React.useState(false);
@@ -113,7 +110,6 @@ function Cart(props) {
                       onClick={() => {
                         props.delFromCart(product);
                         cartPersist();
-                        forceUpdate();
                       }}
                     >
                       -
@@ -131,7 +127,6 @@ function Cart(props) {
                       onClick={() => {
                         props.addToCart(product);
                         cartPersist();
-                        forceUpdate();
                       }}
                       variant="outline-info"
                     >
@@ -140,7 +135,10 @@ function Cart(props) {
                   </div>
                   <div className="product-price">${totalPrice.toFixed(2)}</div>
                   <Button
-                    onClick={() => props.deleteProduct(product)}
+                    onClick={() => {
+                      props.deleteProduct(product);
+                      cartPersist();
+                    }}
                     variant="danger"
                   >
                     Delete
@@ -154,7 +152,7 @@ function Cart(props) {
           <div className="cart-container-descount">
             <p>CUPON DE DESCUENTO</p>
             <div className="descount-input">
-              <input type="text" style={{ width: "120px" }} />
+              <input onChange={props.handleInput} type="text" style={{ width: "120px" }} />
               <Button variant="primary">Agregar</Button>
             </div>
           </div>
@@ -177,13 +175,15 @@ function Cart(props) {
                 className="button-finish-style"
                 onClick={() => {
                   let userId = props.user.id;
+                  console.log(props.cart)
+                  props.addTransactionToStore(props.cart)
                   setModalShow(true);
                   props.checkOut({ cart: props.cart, user: userId });
+                  sendEmail(props.user.email, props.cart);
                 }}
               >
                 Finalizar Compra!
               </Button>
-              {/* <LoginContainer /> */}
               <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
@@ -205,9 +205,6 @@ function Cart(props) {
                   Por favor, inicie sesion para completar la compra
                 </p>
               </div>
-              <div className="button-login-cart">
-                <LoginContainer />
-              </div>
             </div>
           )}
         </div>
@@ -215,6 +212,12 @@ function Cart(props) {
     </div>
   );
 }
+
+const sendEmail = (email, cart) => {
+  Axios.post("/api/email", { email, cart })
+    .then(() => console.log(`Email sent to: ${email}`))
+    .catch(console.error());
+};
 
 const mapStateToProps = ({ user, cart }) => ({
   user,

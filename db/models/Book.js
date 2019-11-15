@@ -26,10 +26,8 @@ Book.init(
     },
     stock: {
       type: S.INTEGER,
-      allowNull: false,
-      validate: {
-        min: 0
-      }
+      allowNull: true,
+      defaultValue: 0
     },
     imgURL: {
       type: S.STRING,
@@ -37,11 +35,11 @@ Book.init(
     },
     year: {
       type: S.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     author: {
       type: S.STRING,
-      allowNull: false
+      allowNull: true
     },
     category: {
       type: S.ARRAY(S.TEXT)

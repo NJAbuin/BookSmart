@@ -1,6 +1,5 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const FacebookStrategy = require("passport-facebook").Strategy;
 const User = require("../db/models/User");
 
 passport.use(
@@ -22,36 +21,6 @@ passport.use(
           return done(null, user);
         })
         .catch(console.error);
-    }
-  )
-);
-
-passport.use(
-  new FacebookStrategy(
-    {
-      clientID: "423643715217834",
-      clientSecret: "062bd9fefd2ed02398089d9e633d5203",
-      callbackURL: "http://localhost:3000/api/auth/facebook/callback"
-    },
-    function(accessToken, refreshToken, profile, done) {
-      console.log(profile);
-      User.findOrCreate(
-        {
-          where: {
-            name: profile.displayName,
-            email: profile.emails[0],
-            password: Math.random()
-              .toString(36)
-              .substring(7)
-          }
-        },
-        function(err, user) {
-          if (err) {
-            return done(err);
-          }
-          done(null, user);
-        }
-      );
     }
   )
 );

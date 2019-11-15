@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ModalChooseCart from "../components/ModalChooseCart";
+import ModalAddProduct from "../components/ModalAddProduct";
 
 class LoginContainer extends React.Component {
   constructor(props) {
@@ -17,10 +18,10 @@ class LoginContainer extends React.Component {
       passwordInput: "",
       error: false,
       showCartModal: false,
-      isAdmin:
-        this.props.user && this.props.user.isAdmin ? "(Logged as admin)" : ""
+      showAddProductModal: false
     };
 
+    this.handleAddShow = this.handleAddShow.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,28 +35,38 @@ class LoginContainer extends React.Component {
     this.setState({ showCartModal: true });
   }
 
-  handleCartSelection(string){
-    axios.post(`/api/addToCartinBulk${string}`, {userId: this.props.user.id, bookId: this.props.cart})
-    .then(()=> axios.post('/api/getNumberofCarts', {userId: this.props.user.id}))
-    .then(resp=>resp.data)
-    .then(bookArray =>{
-    console.log(bookArray)
-    let toStoreArray = []
-    bookArray.map(singleBook=>{
-      let singleBookToStore = {}
-      singleBookToStore = singleBook
-      singleBookToStore['quantity'] = singleBook.cartProduct.quantity
-      toStoreArray.push(singleBookToStore)})
-    this.props.addFromDB(toStoreArray)
-    })
-    .then(()=> {
-      this.setState({showCartModal: false}) 
-    })
-    
+  handleAddShow() {
+    this.setState({ showAddProductModal: true });
+  }
+
+  handleCartSelection(string) {
+    axios
+      .post(`/api/addToCartinBulk${string}`, {
+        userId: this.props.user.id,
+        bookId: this.props.cart
+      })
+      .then(() =>
+        axios.post("/api/getNumberofCarts", { userId: this.props.user.id })
+      )
+      .then(resp => resp.data)
+      .then(bookArray => {
+        console.log(bookArray);
+        let toStoreArray = [];
+        bookArray.map(singleBook => {
+          let singleBookToStore = {};
+          singleBookToStore = singleBook;
+          singleBookToStore["quantity"] = singleBook.cartProduct.quantity;
+          toStoreArray.push(singleBookToStore);
+        });
+        this.props.addFromDB(toStoreArray);
+      })
+      .then(() => {
+        this.setState({ showCartModal: false });
+      });
   }
 
   handleClose() {
-    this.setState({ showCartModal: false });
+    this.setState({ showCartModal: false, showAddProductModal: false });
   }
 
   handleEmailInput(evt) {
@@ -77,34 +88,33 @@ class LoginContainer extends React.Component {
         .then(res => {
           return res.data;
         })
-        .then(user=>{
+        .then(user => {
           this.props.receiveUser(user);
-          console.log(this.props.user.id)
-          return axios.post('/api/getNumberofCarts', {userId: this.props.user.id})
+          console.log(this.props.user.id);
+          return axios.post("/api/getNumberofCarts", {
+            userId: this.props.user.id
+          });
         })
-        .then(bookArray=> {
-          console.log(this.props.cart.length)
-          if(bookArray.data.length > 0 && this.props.cart.length ==0  ){
-            let toStoreArray = []
-            bookArray.data.map(singleBook=>{
-              let singleBookToStore = {}
-              singleBookToStore = singleBook
-              singleBookToStore['quantity'] = singleBook.cartProduct.quantity
-              toStoreArray.push(singleBookToStore)
-              
-            })
-            this.props.addFromDB(toStoreArray)
+        .then(bookArray => {
+          console.log(this.props.cart.length);
+          if (bookArray.data.length > 0 && this.props.cart.length == 0) {
+            let toStoreArray = [];
+            bookArray.data.map(singleBook => {
+              let singleBookToStore = {};
+              singleBookToStore = singleBook;
+              singleBookToStore["quantity"] = singleBook.cartProduct.quantity;
+              toStoreArray.push(singleBookToStore);
+            });
+            this.props.addFromDB(toStoreArray);
+          } else if (bookArray.data.length > 0 && this.props.cart.length > 0) {
+            this.handleShow();
           }
-          else if(bookArray.data.length > 0 && this.props.cart.length > 0){
-            this.handleShow()
-          }
-          
         })
         .then(() => this.setState({ error: false }))
         .catch(() => {
           this.setState({ error: true });
         });
-    } 
+    }
   }
 
   handleLogout() {
@@ -143,28 +153,38 @@ class LoginContainer extends React.Component {
               className="nav-item"
               style={{ marginTop: "7px", marginRight: "10px" }}
             >
-              Hola {name + this.state.isAdmin} &nbsp; |
+              Hola {name} {this.props.user.isAdmin ? "(Logged as Admin)" : ""}{" "}
+              &nbsp; |
             </li>
-            <li
-              className="nav-item"
-              style={{ marginTop: "7px", marginRight: "10px" }}
-            >
-              <Link
-                style={{ color: "white", textDecoration: "none" }}
-                to="/compras"
+            {!this.props.user.isAdmin ? (
+              <li
+                className="nav-item"
+                style={{ marginTop: "7px", marginRight: "10px" }}
               >
-                Mis Compras &nbsp; | &nbsp;
-              </Link>
-            </li>
+                <Link
+                  style={{ color: "white", textDecoration: "none" }}
+                  to="/compras"
+                >
+                  Mis Compras &nbsp; | &nbsp;
+                </Link>
+              </li>
+            ) : (
+              <ModalAddProduct
+                show={this.state.showAddProductModal}
+                handleClose={this.handleClose}
+                handleShow={this.handleAddShow}
+              />
+            )}
             <li
               className="nav-item"
               onClick={this.handleLogout}
               style={{ marginTop: "7px" }}
             >
               <Link style={{ color: "white" }} to="/">
-                Logout
+                | &nbsp; Logout
               </Link>
             </li>
+            &nbsp;&nbsp;&nbsp;
           </ul>
         )}
 

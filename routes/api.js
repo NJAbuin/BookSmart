@@ -11,8 +11,8 @@ const {
 } = require("../db/models/index");
 
 const chalk = require("chalk");
-var nodemailer = require("nodemailer");
 
+var nodemailer = require("nodemailer");
 var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -21,12 +21,20 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-var mailOptions = userEmail => {
+const simplifyCart = cart => {
+  let newCart = [];
+  cart.forEach(e => newCart.push(`${e.quantity}x:${e.name}`));
+  return newCart;
+};
+
+var mailOptions = (userEmail, userCart) => {
   return {
     from: "booksmart.is.cool@gmail.com",
     to: userEmail,
     subject: "Gracias por su compra!",
-    text: "La orden le llegara en 420 dias"
+    text: `La orden le llegara en 420 dias. Su pedido: ${JSON.stringify(
+      simplifyCart(userCart)
+    )}`
   };
 };
 
@@ -38,11 +46,26 @@ api.use("/seed", require("./seed"));
 api.get("/products", (req, res) => {
   Book.findAll()
     .then(data => {
-      res.json(data);
+      res.json(data.reverse());
     })
     .catch(err =>
       console.log("Failed to retrieve all products at /api/products")
     );
+});
+
+api.post("/products", (req, res) => {
+  const { nombre, descripcion, imgurl, price } = req.body;
+  chalk.bgGreen("CREANDO PRODUCTO");
+  Book.findOrCreate({
+    where: {
+      name: nombre,
+      description: descripcion,
+      imgURL: imgurl,
+      price
+    }
+  })
+    .then(data => console.log(chalk.bgGreen(`${nombre} book created`)))
+    .catch(console.error());
 });
 
 ////////////////////////////////////////////////////////////
@@ -76,7 +99,10 @@ api.get("/products/:productName", (req, res) => {
 });
 
 api.post("/email", (req, res) => {
-  transporter.sendMail(mailOptions(req.body.email), function(error, info) {
+  transporter.sendMail(mailOptions(req.body.email, req.body.cart), function(
+    error,
+    info
+  ) {
     if (error) {
       console.log(error);
     } else {
@@ -85,7 +111,6 @@ api.post("/email", (req, res) => {
       );
     }
   });
-  done();
 });
 
 api.get("/category", (req, res) => {
@@ -99,35 +124,45 @@ api.get("/categs/:cat", (req, res) => {
   Book.findByCategory(req.params.cat).then(data => res.send(data));
 });
 
-api.post('/removeFromCart', (req,res)=>{
-  const add = req.body
-  Cart.findOne({where: { cartId: add.userId, state: "Opened" } })
-  .then(e => {return e})
-  .then(e=>{
-    CartProduct.destroy({where:{
-    orderId: e.id,
-    bookId: add.book,}
-    //cartId: e.cartId}
-  })})
-  .then(()=>  Cart.findAll({where:{cartId: user.userId, state:"Opened"}, include:[{all:true}]}))
-  .then(e=>{
-    if(e != undefined) res.send(e[0].dataValues.books)
-    else {res.send(null)}
-  })
-  .catch(err=>console.log(err))
-})
-
+api.post("/removeFromCart", (req, res) => {
+  const add = req.body;
+  Cart.findOne({ where: { cartId: add.userId, state: "Opened" } })
+    .then(e => {
+      return e;
+    })
+    .then(e => {
+      CartProduct.destroy({
+        where: {
+          orderId: e.id,
+          bookId: add.book
+        }
+        //cartId: e.cartId}
+      });
+    })
+    .then(() =>
+      Cart.findAll({
+        where: { cartId: user.userId, state: "Opened" },
+        include: [{ all: true }]
+      })
+    )
+    .then(e => {
+      if (e != undefined) res.send(e[0].dataValues.books);
+      else {
+        res.send(null);
+      }
+    })
+    .catch(err => console.log(err));
+});
 
 api.post("/addToCart", (req, res) => {
   const add = req.body;
-  console.log(add);
   let cartData = {}; // Aca va a cargarse el orderId y el cartId
   //Si no tiene ningun carrito abierto lo crea y guarda el cartId, BookId y OrderId
   Cart.findOrCreate({ where: { cartId: add.userId, state: "Opened" } })
     .then(e => {
       return (cartData = { cartId: e[0].cartId, orderId: e[0].id });
     })
-  //Busca el libro para el numero de orden y el usuario (cartId)
+    //Busca el libro para el numero de orden y el usuario (cartId)
     .then(cart => {
       return CartProduct.findOne({
         where: {
@@ -137,38 +172,40 @@ api.post("/addToCart", (req, res) => {
         }
       });
     })
-    .then(e => {  
-      console.log('Llegue hasta justo antes de crear o actualizar')
-      if(e==null){
+    .then(e => {
+      if (e == null) {
         CartProduct.create({
-          //cartId: cartData.cartId,
+          cartId: cartData.cartId,
           bookId: add.bookId,
           quantity: add.quantity,
           orderId: cartData.orderId
-        })
-        return null
-      }
-      else{
+        });
+        return null;
+      } else {
         CartProduct.update(
           { quantity: add.quantity },
           {
             where: {
-              //cartId: cartData.cartId,
+              cartId: cartData.cartId,
               // id: add.userId,
               orderId: cartData.orderId,
               bookId: add.bookId
             }
           }
-        )
-        return null
+        );
+        return null;
       }
     })
-    .then(()=> {
-      return Cart.findAll({where:{cartId: add.userId, state:"Opened"}, include:[{all:true}] })}) //, include:[{all:true}]
-    .then(e=>{
-      res.send(e)})
-    .catch(err => console.log(err))
-    
+    .then(() => {
+      return Cart.findAll({
+        where: { cartId: add.userId, state: "Opened" },
+        include: [{ all: true }]
+      });
+    }) //, include:[{all:true}]
+    .then(e => {
+      res.send(e);
+    })
+    .catch(err => console.log(err));
 });
 
 api.get("/cart", (req, res) => {
@@ -180,17 +217,19 @@ api.post("/addToCartinBulkReplace", (req, res) => {
   // Chequeo que no haya ningun carro del usuario abierto y si lo tiene se lo cierro
   Cart.update(
     { state: "Droped" },
-    { where: { cartId: add.userId, state: "Opened" } })
+    { where: { cartId: add.userId, state: "Opened" } }
+  )
     .then(() => Cart.create({ cartId: add.userId, state: "Opened" }))
     .then(e =>
-      add.bookId.map(book =>{
+      add.bookId.map(book => {
         CartProduct.create({
           orderId: e.id,
           bookId: book.id,
-          quantity: book.quantity,
+          quantity: book.quantity
           //cartId: e.cartId
-        })
-      }))
+        });
+      })
+    )
     .catch(err => console.log(err));
 });
 
@@ -208,7 +247,7 @@ api.post("/addToCartinBulkMerge", (req, res) => {
         CartProduct.findOne({
           where: {
             orderId: e.id,
-            bookId: book.id,
+            bookId: book.id
             //cartId: e.cartId
           }
         }).then(res => {
@@ -217,12 +256,12 @@ api.post("/addToCartinBulkMerge", (req, res) => {
             ? CartProduct.create({
                 orderId: e.id,
                 bookId: book.id,
-                quantity: book.quantity,
+                quantity: book.quantity
                 //cartId: e.cartId
               })
             : CartProduct.update(
                 { quantity: res.quantity + book.quantity },
-                { where: { orderId: e.id, bookId: book.id} }
+                { where: { orderId: e.id, bookId: book.id } }
               );
         })
       )
@@ -239,19 +278,22 @@ api.post("/addToCartinBulkMerge", (req, res) => {
 
 api.post("/getNumberOfCarts", (req, res) => {
   user = req.body;
-  Cart.findOne({where:{cartId: user.userId, state:"Opened"}, include:[{all:true}]})
-  .then(e=>{
-    console.log(e)
-    if(e != null) {
-      console.log('holaaaaa', e.dataValues.books)
-      res.send(e.dataValues.books)}
-    else {res.send(null)}
+  Cart.findOne({
+    where: { cartId: user.userId, state: "Opened" },
+    include: [{ all: true }]
   })
     .then(e => {
-      if (e != undefined) res.send(e[0].dataValues.books);
+      console.log(e);
+      if (e != null) {
+        console.log("holaaaaa", e.dataValues.books);
+        res.send(e.dataValues.books);
+      } 
       // else {
       //   res.send(null);
       // }
+    })
+    .then(e => {
+      if (e != undefined) res.send(e[0].dataValues.books);
     })
     .catch(console.error());
 });
@@ -263,5 +305,21 @@ api.put("/checkout", (req, res) => {
   ).catch(e => console.log(e));
 });
 
+api.post("/transaction", (req, res) => {
+  console.log("SOY EL REQ BODY", req.body.cart);
+  const totalValue = function(cart) {
+    let totalPrice = 0;
+    for (let i = 0; i < cart.length; i++) {
+      totalPrice += cart[i].price * cart[i].quantity;
+    }
+    return totalPrice.toFixed(2);
+  };
+
+  let totalTransaction = totalValue(req.body.cart);
+
+  Transaction.create({ total: totalTransaction });
+});
+
 api.use("/auth", require("./auth"));
+
 module.exports = api;
