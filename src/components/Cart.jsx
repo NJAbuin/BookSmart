@@ -108,6 +108,7 @@ function Cart(props) {
                     <Button
                       variant="outline-info"
                       onClick={() => {
+                        console.log(props)
                         props.delFromCart(product);
                         props.updateFromDB(product)
                         cartPersist();

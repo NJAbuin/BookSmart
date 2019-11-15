@@ -16,8 +16,7 @@ class CartContainer extends React.Component {
     this.deleteProduct = this.deleteProduct.bind(this);
     this.addTransactionToStore = this.addTransactionToStore.bind(this);
     this.incHandler = this.incHandler.bind(this);
-    this.addOnetoDB = this.addOnetoDB.bind(this);
-    // this.removeOnefromDB = this.removeOnefromDB.bind(this)
+    this.updateFromDB = this.updateFromDB.bind(this);
 
   }
 
@@ -65,8 +64,7 @@ class CartContainer extends React.Component {
         decHandler={this.props.delFromCart}
         cart={this.props.cart}
         user={this.props.user}
-        removeOnefromDB={this.removeOnefromDB}
-        addOnetoDB={this.addOnetoDB}
+        updateFromDB={this.updateFromDB}
       />
     );
   }

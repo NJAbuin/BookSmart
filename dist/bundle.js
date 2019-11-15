@@ -57483,6 +57483,7 @@ function Cart(props) {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
       variant: "outline-info",
       onClick: function onClick() {
+        console.log(props);
         props.delFromCart(product);
         props.updateFromDB(product);
         cartPersist();
@@ -58601,8 +58602,7 @@ function (_React$Component) {
     _this.deleteProduct = _this.deleteProduct.bind(_assertThisInitialized(_this));
     _this.addTransactionToStore = _this.addTransactionToStore.bind(_assertThisInitialized(_this));
     _this.incHandler = _this.incHandler.bind(_assertThisInitialized(_this));
-    _this.addOnetoDB = _this.addOnetoDB.bind(_assertThisInitialized(_this)); // this.removeOnefromDB = this.removeOnefromDB.bind(this)
-
+    _this.updateFromDB = _this.updateFromDB.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -58662,8 +58662,7 @@ function (_React$Component) {
         decHandler: this.props.delFromCart,
         cart: this.props.cart,
         user: this.props.user,
-        removeOnefromDB: this.removeOnefromDB,
-        addOnetoDB: this.addOnetoDB
+        updateFromDB: this.updateFromDB
       });
     }
   }]);
