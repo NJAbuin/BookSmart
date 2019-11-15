@@ -53,6 +53,21 @@ api.get("/products", (req, res) => {
     );
 });
 
+api.post("/products", (req, res) => {
+  const { nombre, descripcion, imgurl, price } = req.body;
+  chalk.bgGreen("CREANDO PRODUCTO");
+  Book.findOrCreate({
+    where: {
+      name: nombre,
+      description: descripcion,
+      imgURL: imgurl,
+      price
+    }
+  })
+    .then(data => console.log(chalk.bgGreen(`${nombre} book created`)))
+    .catch(console.error());
+});
+
 ////////////////////////////////////////////////////////////
 
 api.get("/product/:id", (req, res) => {

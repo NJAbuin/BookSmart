@@ -43,13 +43,16 @@ class ProductsContainer extends React.Component {
       }
       return (
         <Row>
-          {productList.slice(0, 9).map(e => (
-            <Col sm="12" md="4" key={e.id}>
-              <CardDeck>
-                <SingleProduct key={e.id} info={e} />
-              </CardDeck>
-            </Col>
-          ))}
+          {productList
+            .reverse()
+            .slice(0, 9)
+            .map(e => (
+              <Col sm="12" md="4" key={e.id}>
+                <CardDeck>
+                  <SingleProduct key={e.id} info={e} />
+                </CardDeck>
+              </Col>
+            ))}
         </Row>
       );
     }
