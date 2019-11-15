@@ -1,12 +1,19 @@
 import React from 'react'
 import Compras from '../components/Compras'
 import { connect } from "react-redux";
+import { getCartsFromDb } from '../store/actions/cart'
+
+
 
 
 class ComprasContainer extends React.Component {
     constructor(props) {
         super(props);
 
+    }
+
+    componentDidMount() {
+        this.props.getCartsFromDb(this.props.userId)
     }
 
     render() {
@@ -20,10 +27,15 @@ class ComprasContainer extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        transaction: state.transaction
+        transaction: state.transaction,
+        userId: state.user.id
     };
 };
 
-export default connect(mapStateToProps, null)(ComprasContainer);
+const mapDispatchToProps = dispatch => ({
+    getCartsFromDb: userId => dispatch(getCartsFromDb(userId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ComprasContainer);
 
 

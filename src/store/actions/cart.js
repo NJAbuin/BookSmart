@@ -5,7 +5,8 @@ import {
   CHECKOUT,
   EMPTY_CART,
   SET_CART,
-  ADD_TRANSACTION
+  ADD_TRANSACTION,
+  GET_CARTS_FROM_DB
 } from "../constants";
 import axios from "axios";
 
@@ -73,4 +74,18 @@ export const addTransaction = cart => dispatch => {
 
 export const addTransactionAction = payload => {
   return { type: ADD_TRANSACTION, payload }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+export const getCartsFromDb = userId => dispatch => {
+  axios.post("/api/cartsdb", { userId })
+    .then(carts => {
+      dispatch(getCartsFromDbAction(carts.data))
+    })
+    .catch(err => console.log(err))
+}
+
+export const getCartsFromDbAction = payload => {
+  return { type: GET_CARTS_FROM_DB, payload }
 }

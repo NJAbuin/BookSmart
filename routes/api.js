@@ -291,7 +291,6 @@ api.put("/checkout", (req, res) => {
 
 
 api.post("/transaction", (req, res) => {
-  console.log("SOY EL REQ BODY", req.body.cart)
   const totalValue = function (cart) {
     let totalPrice = 0;
     for (let i = 0; i < cart.length; i++) {
@@ -304,6 +303,18 @@ api.post("/transaction", (req, res) => {
 
   Transaction.create({ total: totalTransaction })
 
+})
+
+api.post("/cartsdb", (req, res) => {
+  console.log("SOY EL REQ BODY", req.body)
+  const userId = req.body.userId
+  Cart.findAll({
+    where: { cartId: userId, state: "In Process" },
+    include: [{ all: true }]
+  })
+    .then(data => {
+      res.json(data)
+    })
 })
 
 api.use("/auth", require("./auth"));
