@@ -22,6 +22,7 @@ export default class Main extends Component {
     store.dispatch(fetchUser());
   }
 
+
   render() {
     return (
       <div className="container-fluid">

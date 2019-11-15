@@ -57652,7 +57652,7 @@ function Compras(props) {
 
       if (product.id) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          key: transaction.indexOf(transaction),
+          key: Math.random() * 50000,
           className: "compras-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "transaction-container"
@@ -58714,6 +58714,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Compras__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Compras */ "./src/components/Compras.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_actions_cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/cart */ "./src/store/actions/cart.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -58737,6 +58739,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var ComprasContainer =
 /*#__PURE__*/
 function (_React$Component) {
@@ -58751,7 +58754,13 @@ function (_React$Component) {
   _createClass(ComprasContainer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.getCartsFromDb(this.props.userId);
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("/api/auth/me").then(function (res) {
+        return res.data;
+      }).then(function (user) {
+        return _this.props.getCartsFromDb(user.id);
+      });
     }
   }, {
     key: "render",
@@ -58765,10 +58774,12 @@ function (_React$Component) {
   return ComprasContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(_ref) {
+  var transaction = _ref.transaction,
+      user = _ref.user;
   return {
-    transaction: state.transaction,
-    userId: state.user.id
+    transaction: transaction,
+    user: user
   };
 };
 
@@ -60230,14 +60241,6 @@ var getProducts = function getProducts(state) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "transactionReducer", function() { return transactionReducer; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
 
 var initialState = [];
 var transactionReducer = function transactionReducer() {
@@ -60247,7 +60250,7 @@ var transactionReducer = function transactionReducer() {
   switch (action.type) {
     case "GET_CARTS_FROM_DB":
       console.log("SOY LA ACTION PAYLOAD", action.payload);
-      return [].concat(_toConsumableArray(state), [action.payload]);
+      return [state, action.payload];
 
     default:
       return state;

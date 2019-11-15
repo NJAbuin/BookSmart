@@ -18,7 +18,7 @@ export default function Compras(props) {
     };
 
     return (
-        <div>
+        <div >
             <div className="cart">
                 <h1 style={{ display: "inline-block", margin: "0 0 0 0" }}>
                     Mis Compras
@@ -28,15 +28,13 @@ export default function Compras(props) {
             {props.transaction.map(transaction => {
                 console.log(transaction)
                 return (
-
-
                     transaction.map(product => {
 
                         { console.log(product) }
                         { console.log(product.books) }
                         if (product.id) {
                             return (
-                                <div key={transaction.indexOf(transaction)} className="compras-container" >
+                                <div key={Math.random() * 50000} className="compras-container" >
                                     <div className="transaction-container" >
                                         <div className="transaction-name" >
                                             {
