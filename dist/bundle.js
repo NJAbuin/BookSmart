@@ -57484,6 +57484,7 @@ function Cart(props) {
       variant: "outline-info",
       onClick: function onClick() {
         props.delFromCart(product);
+        props.updateFromDB(product);
         cartPersist();
       }
     }, "-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -57495,6 +57496,7 @@ function Cart(props) {
     }, productQtty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onClick: function onClick() {
         props.addToCart(product);
+        props.updateFromDB(product);
         cartPersist();
       },
       variant: "outline-info"
@@ -57955,6 +57957,7 @@ function (_React$Component) {
       }).then(function (res) {
         console.log("Product created");
       });
+      this.handleClose();
     }
   }, {
     key: "render",
@@ -58583,6 +58586,8 @@ function (_React$Component) {
     _this.deleteProduct = _this.deleteProduct.bind(_assertThisInitialized(_this));
     _this.addTransactionToStore = _this.addTransactionToStore.bind(_assertThisInitialized(_this));
     _this.incHandler = _this.incHandler.bind(_assertThisInitialized(_this));
+    _this.addOnetoDB = _this.addOnetoDB.bind(_assertThisInitialized(_this));
+    _this.removeOnefromDB = _this.removeOnefromDB.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -58602,6 +58607,19 @@ function (_React$Component) {
         return console.log(resp);
       });
     }
+  }, {
+    key: "updateFromDB",
+    value: function updateFromDB(product) {
+      console.log(product);
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('/api/updateCart', {
+        userId: this.props.user.id,
+        bookId: product.id,
+        quantity: product.quantity
+      });
+    }
+  }, {
+    key: "addOnetoDB",
+    value: function addOnetoDB(product) {}
   }, {
     key: "addTransactionToStore",
     value: function addTransactionToStore(cart) {
@@ -58628,7 +58646,9 @@ function (_React$Component) {
         incHandler: this.incHandler,
         decHandler: this.props.delFromCart,
         cart: this.props.cart,
-        user: this.props.user
+        user: this.props.user,
+        removeOnefromDB: this.removeOnefromDB,
+        addOnetoDB: this.addOnetoDB
       });
     }
   }]);
@@ -59354,7 +59374,7 @@ function (_React$Component) {
           }
         }
 
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_5__["default"], null, productList.reverse().slice(0, 9).map(function (e) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Row__WEBPACK_IMPORTED_MODULE_5__["default"], null, productList.slice(0, 9).map(function (e) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Col__WEBPACK_IMPORTED_MODULE_4__["default"], {
             sm: "12",
             md: "4",
@@ -59808,9 +59828,7 @@ __webpack_require__.r(__webpack_exports__);
 var getProducts = function getProducts() {
   return function (dispatch) {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/products").then(function (res) {
-      return res.data.sort(function () {
-        return Math.random() - 0.5;
-      });
+      return res.data;
     }).then(function (response) {
       return dispatch(productAction(response));
     });
