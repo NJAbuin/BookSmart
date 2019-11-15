@@ -46,11 +46,26 @@ api.use("/seed", require("./seed"));
 api.get("/products", (req, res) => {
   Book.findAll()
     .then(data => {
-      res.json(data);
+      res.json(data.reverse());
     })
     .catch(err =>
       console.log("Failed to retrieve all products at /api/products")
     );
+});
+
+api.post("/products", (req, res) => {
+  const { nombre, descripcion, imgurl, price } = req.body;
+  chalk.bgGreen("CREANDO PRODUCTO");
+  Book.findOrCreate({
+    where: {
+      name: nombre,
+      description: descripcion,
+      imgURL: imgurl,
+      price
+    }
+  })
+    .then(data => console.log(chalk.bgGreen(`${nombre} book created`)))
+    .catch(console.error());
 });
 
 ////////////////////////////////////////////////////////////
@@ -289,5 +304,21 @@ api.put("/checkout", (req, res) => {
   ).catch(e => console.log(e));
 });
 
+api.post("/transaction", (req, res) => {
+  console.log("SOY EL REQ BODY", req.body.cart);
+  const totalValue = function(cart) {
+    let totalPrice = 0;
+    for (let i = 0; i < cart.length; i++) {
+      totalPrice += cart[i].price * cart[i].quantity;
+    }
+    return totalPrice.toFixed(2);
+  };
+
+  let totalTransaction = totalValue(req.body.cart);
+
+  Transaction.create({ total: totalTransaction });
+});
+
 api.use("/auth", require("./auth"));
+
 module.exports = api;
