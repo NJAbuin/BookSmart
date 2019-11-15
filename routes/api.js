@@ -320,6 +320,21 @@ api.post("/transaction", (req, res) => {
   Transaction.create({ total: totalTransaction });
 });
 
+api.post('/updateCart', (req, res)=>{
+
+  user = req.body;
+  user.bookId 
+  Cart.findOne({
+    where: { cartId: user.userId, state: "Opened" }})
+  .then(resp => resp.dataValues.id)
+  .then(orderId => CartProduct.update({quantity: user.quantity}, {where:{orderId: orderId, bookId: user.bookId}}))
+  .then(()=> res.status(201))
+  .catch(err=> {
+    console.log(err)
+    res.send('Error')
+  })
+})
+
 api.use("/auth", require("./auth"));
 
 module.exports = api;
