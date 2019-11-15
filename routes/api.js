@@ -344,7 +344,7 @@ api.post("/updateCart", (req, res) => {
 });
 
 api.post("/cartsdb", (req, res) => {
-  console.log("SOY EL REQ BODY", req.body)
+  console.log("SOY EL REQ BODY!!!!!!!!!!!", req.body)
   const userId = req.body.userId
   Cart.findAll({
     where: { cartId: userId, state: "In Process" },

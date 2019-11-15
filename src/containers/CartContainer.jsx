@@ -17,7 +17,7 @@ class CartContainer extends React.Component {
     this.addTransactionToStore = this.addTransactionToStore.bind(this);
     this.incHandler = this.incHandler.bind(this);
     this.addOnetoDB = this.addOnetoDB.bind(this);
-    this.removeOnefromDB = this.removeOnefromDB.bind(this)
+    // this.removeOnefromDB = this.removeOnefromDB.bind(this)
 
   }
 
@@ -35,12 +35,12 @@ class CartContainer extends React.Component {
       .then(resp => console.log(resp));
   }
 
-  updateFromDB(product){
+  updateFromDB(product) {
     console.log(product)
-    axios.post('/api/updateCart', {userId: this.props.user.id, bookId: product.id, quantity: product.quantity})
+    axios.post('/api/updateCart', { userId: this.props.user.id, bookId: product.id, quantity: product.quantity })
   }
 
-  addOnetoDB(product){}
+  addOnetoDB(product) { }
 
   addTransactionToStore(cart) {
     console.log("LLEGO EL CART", cart)
@@ -65,8 +65,8 @@ class CartContainer extends React.Component {
         decHandler={this.props.delFromCart}
         cart={this.props.cart}
         user={this.props.user}
-        removeOnefromDB = {this.removeOnefromDB}
-        addOnetoDB = {this.addOnetoDB}
+        removeOnefromDB={this.removeOnefromDB}
+        addOnetoDB={this.addOnetoDB}
       />
     );
   }

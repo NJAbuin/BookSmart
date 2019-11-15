@@ -58601,8 +58601,8 @@ function (_React$Component) {
     _this.deleteProduct = _this.deleteProduct.bind(_assertThisInitialized(_this));
     _this.addTransactionToStore = _this.addTransactionToStore.bind(_assertThisInitialized(_this));
     _this.incHandler = _this.incHandler.bind(_assertThisInitialized(_this));
-    _this.addOnetoDB = _this.addOnetoDB.bind(_assertThisInitialized(_this));
-    _this.removeOnefromDB = _this.removeOnefromDB.bind(_assertThisInitialized(_this));
+    _this.addOnetoDB = _this.addOnetoDB.bind(_assertThisInitialized(_this)); // this.removeOnefromDB = this.removeOnefromDB.bind(this)
+
     return _this;
   }
 
