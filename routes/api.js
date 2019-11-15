@@ -249,9 +249,9 @@ api.post("/getNumberOfCarts", (req, res) => {
   })
     .then(e => {
       if (e != undefined) res.send(e[0].dataValues.books);
-      else {
-        res.send(null);
-      }
+      // else {
+      //   res.send(null);
+      // }
     })
     .catch(console.error());
 });
