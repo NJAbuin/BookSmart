@@ -30,7 +30,6 @@ export default class AddProduct extends React.Component {
   }
 
   postProduct() {
-    console.log(this.state);
     Axios.post("/api/products", {
       nombre: this.state.nombre,
       descripcion: this.state.descripcion,

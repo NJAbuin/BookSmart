@@ -22,11 +22,11 @@ function NavBar({ handleInput, handleSubmit, user, getProducts }) {
         &nbsp;&nbsp;&nbsp;
         <Nav className="mr-auto">
           <ul className="nav ">
-            {!user.id &&
+            {!user.id && (
               <li className="nav-item">
                 <RegisterContainer />
               </li>
-            }
+            )}
             <li className="nav-item">
               <LoginContainer />
             </li>
@@ -58,7 +58,7 @@ function NavBar({ handleInput, handleSubmit, user, getProducts }) {
   );
 }
 
-const mapStateToProps = state => { };
+const mapStateToProps = state => {};
 
 const mapDispatchToProps = dispatch => ({
   getProducts: () => dispatch(getProducts())

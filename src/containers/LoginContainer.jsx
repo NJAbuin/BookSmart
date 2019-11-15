@@ -50,7 +50,6 @@ class LoginContainer extends React.Component {
       )
       .then(resp => resp.data)
       .then(bookArray => {
-        console.log(bookArray);
         let toStoreArray = [];
         bookArray.map(singleBook => {
           let singleBookToStore = {};
@@ -90,7 +89,6 @@ class LoginContainer extends React.Component {
         })
         .then(user => {
           this.props.receiveUser(user);
-          console.log(this.props.user.id);
           return axios.post("/api/getNumberofCarts", {
             userId: this.props.user.id
           });
