@@ -39,6 +39,8 @@ export default class AddProduct extends React.Component {
     }).then(res => {
       console.log("Product created");
     });
+
+    this.handleClose();
   }
 
   render() {

