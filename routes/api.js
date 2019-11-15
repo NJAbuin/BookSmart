@@ -32,7 +32,7 @@ var mailOptions = (userEmail, userCart) => {
     from: "booksmart.is.cool@gmail.com",
     to: userEmail,
     subject: "Gracias por su compra!",
-    text: `La orden le llegara en 420 dias. Su pedido: ${JSON.stringify(
+    text: `Estamos procesando su orden. Su pedido: ${JSON.stringify(
       simplifyCart(userCart)
     )}`
   };
