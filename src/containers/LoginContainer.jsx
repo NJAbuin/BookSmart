@@ -118,7 +118,10 @@ class LoginContainer extends React.Component {
   }
 
   handleLogout() {
-    axios.get("/api/auth/logout").then(() => this.props.emptyUser());
+    axios
+      .get("/api/auth/logout")
+      .then(() => this.props.emptyUser())
+      .catch(console.error);
     this.props.emptyCart();
   }
 
