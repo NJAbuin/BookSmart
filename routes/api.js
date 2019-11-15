@@ -23,7 +23,7 @@ var transporter = nodemailer.createTransport({
 
 const simplifyCart = cart => {
   let newCart = [];
-  cart.forEach(e => newCart.push(`${e.quantity}x:${e.name}`));
+  cart.forEach(e => newCart.push(`${e.quantity} x: ${e.name}`));
   return newCart;
 };
 
