@@ -42,7 +42,8 @@ Book.init(
       allowNull: true
     },
     category: {
-      type: S.ARRAY(S.TEXT)
+      type: S.ARRAY(S.TEXT),
+      defaultValue: ["Terror", "Aventura"]
     }
   },
   { sequelize: db, modelName: "book" }
