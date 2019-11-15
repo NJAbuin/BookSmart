@@ -287,9 +287,10 @@ api.post("/getNumberOfCarts", (req, res) => {
       if (e != null) {
         console.log("holaaaaa", e.dataValues.books);
         res.send(e.dataValues.books);
-      } else {
-        res.send(null);
-      }
+      } 
+      // else {
+      //   res.send(null);
+      // }
     })
     .then(e => {
       if (e != undefined) res.send(e[0].dataValues.books);
@@ -318,6 +319,21 @@ api.post("/transaction", (req, res) => {
 
   Transaction.create({ total: totalTransaction });
 });
+
+api.post('/updateCart', (req, res)=>{
+
+  user = req.body;
+  user.bookId 
+  Cart.findOne({
+    where: { cartId: user.userId, state: "Opened" }})
+  .then(resp => resp.dataValues.id)
+  .then(orderId => CartProduct.update({quantity: user.quantity}, {where:{orderId: orderId, bookId: user.bookId}}))
+  .then(()=> res.status(201))
+  .catch(err=> {
+    console.log(err)
+    res.send('Error')
+  })
+})
 
 api.use("/auth", require("./auth"));
 
