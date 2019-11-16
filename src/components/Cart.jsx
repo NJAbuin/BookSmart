@@ -108,7 +108,9 @@ function Cart(props) {
                     <Button
                       variant="outline-info"
                       onClick={() => {
+                        console.log(props)
                         props.delFromCart(product);
+                        props.updateFromDB(product)
                         cartPersist();
                       }}
                     >
@@ -126,6 +128,7 @@ function Cart(props) {
                     <Button
                       onClick={() => {
                         props.addToCart(product);
+                        props.updateFromDB(product)
                         cartPersist();
                       }}
                       variant="outline-info"
@@ -153,16 +156,10 @@ function Cart(props) {
             <p>CUPON DE DESCUENTO</p>
             <div className="descount-input">
               <input onChange={props.handleInput} type="text" style={{ width: "120px" }} />
-              <Button variant="primary">Agregar</Button>
+              <Button onClick={() => {
+                alert("CUPON INVALIDO!")
+              }} variant="primary">Agregar</Button>
             </div>
-          </div>
-          <div className="cart-container-subtotal-count">
-            <p>SUBTOTAL</p>
-            <p>$ {totalValue(props.cart)}</p>
-          </div>
-          <div className="cart-container-envio">
-            <p>ENVIO</p>
-            <Button variant="primary">Calcular</Button>
           </div>
           <div className="cart-container-total-count">
             <p style={{ fontWeight: "bold" }}>TOTAL:</p>
@@ -190,14 +187,6 @@ function Cart(props) {
               />
             </ButtonToolbar>
           )}
-          {/* {
-            props.cart.length == 0 &&
-            <div>
-              <div className="text-login-cart" >
-                <p style={{ marginBottom: "0" }} >Por favor, agregue productos al carro para completar la compra</p>
-              </div>
-            </div>
-          } */}
           {!props.user && (
             <div>
               <div className="text-login-cart">

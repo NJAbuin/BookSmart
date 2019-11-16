@@ -32,7 +32,7 @@ var mailOptions = (userEmail, userCart) => {
     from: "booksmart.is.cool@gmail.com",
     to: userEmail,
     subject: "Gracias por su compra!",
-    text: `La orden le llegara en 420 dias. Su pedido: ${JSON.stringify(
+    text: `Estamos procesando su orden. Su pedido: ${JSON.stringify(
       simplifyCart(userCart)
     )}`
   };
@@ -71,9 +71,11 @@ api.post("/products", (req, res) => {
 ////////////////////////////////////////////////////////////
 
 api.get("/product/:id", (req, res) => {
-  Book.findByPk(req.params.id).then(book => {
-    res.json(book);
-  });
+  Book.findByPk(req.params.id)
+    .then(book => {
+      res.json(book);
+    })
+    .catch(console.error);
 });
 
 // retorna un producto de la base de datos en formato JSON
@@ -99,7 +101,7 @@ api.get("/products/:productName", (req, res) => {
 });
 
 api.post("/email", (req, res) => {
-  transporter.sendMail(mailOptions(req.body.email, req.body.cart), function(
+  transporter.sendMail(mailOptions(req.body.email, req.body.cart), function (
     error,
     info
   ) {
@@ -209,7 +211,9 @@ api.post("/addToCart", (req, res) => {
 });
 
 api.get("/cart", (req, res) => {
-  Cart.findAll({ include: [{ all: true }] }).then(e => res.json(e));
+  Cart.findAll({ include: [{ all: true }] })
+    .then(e => res.json(e))
+    .catch(console.error);
 });
 
 api.post("/addToCartinBulkReplace", (req, res) => {
@@ -254,15 +258,15 @@ api.post("/addToCartinBulkMerge", (req, res) => {
           console.log(book);
           return res == null
             ? CartProduct.create({
-                orderId: e.id,
-                bookId: book.id,
-                quantity: book.quantity
-                //cartId: e.cartId
-              })
+              orderId: e.id,
+              bookId: book.id,
+              quantity: book.quantity
+              //cartId: e.cartId
+            })
             : CartProduct.update(
-                { quantity: res.quantity + book.quantity },
-                { where: { orderId: e.id, bookId: book.id } }
-              );
+              { quantity: res.quantity + book.quantity },
+              { where: { orderId: e.id, bookId: book.id } }
+            );
         })
       )
     )
@@ -287,9 +291,10 @@ api.post("/getNumberOfCarts", (req, res) => {
       if (e != null) {
         console.log("holaaaaa", e.dataValues.books);
         res.send(e.dataValues.books);
-      } else {
-        res.send(null);
       }
+      // else {
+      //   res.send(null);
+      // }
     })
     .then(e => {
       if (e != undefined) res.send(e[0].dataValues.books);
@@ -305,8 +310,7 @@ api.put("/checkout", (req, res) => {
 });
 
 api.post("/transaction", (req, res) => {
-  console.log("SOY EL REQ BODY", req.body.cart);
-  const totalValue = function(cart) {
+  const totalValue = function (cart) {
     let totalPrice = 0;
     for (let i = 0; i < cart.length; i++) {
       totalPrice += cart[i].price * cart[i].quantity;
@@ -318,6 +322,38 @@ api.post("/transaction", (req, res) => {
 
   Transaction.create({ total: totalTransaction });
 });
+
+api.post("/updateCart", (req, res) => {
+  user = req.body;
+  user.bookId;
+  Cart.findOne({
+    where: { cartId: user.userId, state: "Opened" }
+  })
+    .then(resp => resp.dataValues.id)
+    .then(orderId =>
+      CartProduct.update(
+        { quantity: user.quantity },
+        { where: { orderId: orderId, bookId: user.bookId } }
+      )
+    )
+    .then(() => res.status(201))
+    .catch(err => {
+      console.log(err);
+      res.send("Error");
+    });
+});
+
+api.post("/cartsdb", (req, res) => {
+  console.log("SOY EL REQ BODY!!!!!!!!!!!", req.body)
+  const userId = req.body.userId
+  Cart.findAll({
+    where: { cartId: userId, state: "In Process" },
+    include: [{ all: true }]
+  })
+    .then(data => {
+      res.json(data)
+    })
+})
 
 api.use("/auth", require("./auth"));
 

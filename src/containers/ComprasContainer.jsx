@@ -1,6 +1,10 @@
 import React from 'react'
 import Compras from '../components/Compras'
 import { connect } from "react-redux";
+import { getCartsFromDb } from '../store/actions/cart'
+import Axios from 'axios';
+
+
 
 
 class ComprasContainer extends React.Component {
@@ -8,6 +12,14 @@ class ComprasContainer extends React.Component {
         super(props);
 
     }
+
+    componentDidMount() {
+        Axios.get("/api/auth/me")
+            .then(res => res.data)
+            .then(user => this.props.getCartsFromDb(user.id))
+    }
+
+
 
     render() {
         return (
@@ -18,12 +30,17 @@ class ComprasContainer extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ transaction, user }) => {
     return {
-        transaction: state.transaction
+        transaction,
+        user
     };
 };
 
-export default connect(mapStateToProps, null)(ComprasContainer);
+const mapDispatchToProps = dispatch => ({
+    getCartsFromDb: userId => dispatch(getCartsFromDb(userId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ComprasContainer);
 
 

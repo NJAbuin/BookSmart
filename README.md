@@ -1,4 +1,8 @@
 # BookSmart Online Shop 
+
+# THE BOOKSMART TEAM: <¯Gabi_/> , xXmAnUeLEl+kPiT*_999_Xx, JUANFLAMA$, |||#BUDI#|||, $|$FACOLAFONT$|$ , cazaputas42
+
+---
 ### includes sequelize db, express server, react, babel &, css styles;
 
 ____________________________________________________________________________
