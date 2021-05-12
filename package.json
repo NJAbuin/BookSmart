@@ -22,7 +22,7 @@
     "express-session": "^1.17.0",
     "faker": "^4.1.0",
     "morgan": "^1.9.1",
-    "nodemailer": "^6.3.1",
+    "nodemailer": "^6.4.16",
     "passport": "^0.4.0",
     "passport-facebook": "^3.0.0",
     "passport-google-oauth": "^2.0.0",
